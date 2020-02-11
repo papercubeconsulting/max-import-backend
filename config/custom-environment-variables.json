@@ -1,0 +1,4 @@
+{
+  "dbConfig": "ENV_MONGO_URL",
+  "hostname": "ENV_HOSTNAME"
+}
