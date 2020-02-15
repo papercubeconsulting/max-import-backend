@@ -11,6 +11,7 @@ const error = require('../api/middleware/error');
 // Routers for applications
 const indexRouter = require('../routes/index');
 const usersRouter = require('../routes/users');
+const InventoryRouter = require('../api/inventory/inventoryRoutes');
 
 module.exports = app => {
   app.options('*', cors()); // Update according to project
@@ -33,9 +34,10 @@ module.exports = app => {
 
   app.use('/', indexRouter);
   app.use('/users', usersRouter);
+  app.use('/inventory', InventoryRouter);
 
   app.use(celebrateError);
   app.use(error);
 
-  winston.info('4/6 Setup router and middlewares');
+  winston.info('4/4 Setup router and middlewares');
 };

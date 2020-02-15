@@ -36,7 +36,7 @@ module.exports = () => {
         if (!config.has(varEnv))
           throw new Error(`FATAL ERROR: ${varEnv} not defined`);
       });
-      winston.info('1/6 All env variables setted');
+      winston.info('1/4 All env variables setted');
     },
   );
 };

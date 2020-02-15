@@ -3,7 +3,6 @@
 const winston = require('winston');
 const config = require('config');
 require('express-async-errors');
-require('winston-mongodb');
 
 const { combine, timestamp, printf, label } = winston.format;
 
@@ -40,11 +39,6 @@ module.exports = () => {
       // new winston.transports.File({
       //   filename: 'combined.log'
       // }),
-      // new winston.transports.MongoDB({
-      //   db: config.get('dbConfig'),
-      //   level: 'error',
-      //   collection: 'errorLog'
-      // })
     ],
   });
 
@@ -58,5 +52,5 @@ module.exports = () => {
     }),
   );
 
-  winston.info('3/6 Setup loggers');
+  winston.info('3/4 Setup loggers');
 };

@@ -7,5 +7,5 @@ const winston = require('winston');
 module.exports = app => {
   app.use(helmet());
   app.use(compression());
-  winston.info('6/6 Set up Production packages.');
+  winston.info('5/5 Set up Production packages.');
 };
