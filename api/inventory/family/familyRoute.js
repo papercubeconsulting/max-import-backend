@@ -2,7 +2,7 @@ const express = require('express');
 const { celebrate } = require('celebrate');
 
 const Controller = require('./familyController');
-const Validator = require('./familyValidator.js');
+const Validator = require('./familyValidator');
 
 const router = express.Router();
 

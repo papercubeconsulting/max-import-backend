@@ -1,3 +1,4 @@
+/* eslint-disable import/no-dynamic-require */
 const Sequelize = require('sequelize');
 
 const sequelize = require(`${process.cwd()}/startup/db`);
@@ -17,4 +18,4 @@ const Family = sequelize.define(
   },
 );
 
-module.exports = { Family };
+module.exports = Family;
