@@ -3,6 +3,7 @@ const _ = require('lodash');
 const { setResponse } = require('../../utils');
 
 const Subfamily = require('./subfamilyModel');
+const Family = require('../family/familyModel');
 
 const readSubfamily = async reqBody => {
   const subfamily = await Subfamily.findByPk(reqBody.id);
@@ -24,6 +25,9 @@ const createSubfamily = async reqBody => {
     where: { name: reqBody.name, familyId: reqBody.familyId },
   });
   if (subfamily) return setResponse(400, 'Subfamily already exists.');
+
+  const family = await Family.findByPk(reqBody.familyId);
+  if (!family) return setResponse(400, 'Family does not exists.');
 
   subfamily = await Subfamily.create(reqBody);
 

@@ -3,6 +3,7 @@ const _ = require('lodash');
 const { setResponse } = require('../../utils');
 
 const Model = require('./modelModel');
+const Element = require('../element/elementModel');
 
 const readModel = async reqBody => {
   const model = await Model.findByPk(reqBody.id);
@@ -24,6 +25,9 @@ const createModel = async reqBody => {
     where: { name: reqBody.name, elementId: reqBody.elementId },
   });
   if (model) return setResponse(400, 'Model already exists.');
+
+  const element = await Element.findByPk(reqBody.elementId);
+  if (!element) return setResponse(400, 'Element does not exists.');
 
   model = await Model.create(reqBody);
 
