@@ -24,7 +24,7 @@ const Element = sequelize.define(
   },
 );
 
-Subfamily.hasMany(Subfamily);
-Subfamily.belongsTo(Subfamily);
+Subfamily.hasMany(Element);
+Element.belongsTo(Subfamily);
 
 module.exports = Element;

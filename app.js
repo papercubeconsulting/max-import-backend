@@ -17,6 +17,7 @@ app.use(morgan('dev'));
 
 const sequelize = require('./startup/db');
 
+// sequelize.sync({ force: true });
 sequelize.sync();
 
 module.exports = app;

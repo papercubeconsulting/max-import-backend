@@ -2,36 +2,36 @@ const _ = require('lodash');
 
 const { setResponse } = require('../../utils');
 
-const Subfamily = require('./subfamilyModel');
+const Element = require('./elementModel');
 
-const readSubfamily = async reqBody => {
-  const subfamily = await Subfamily.findByPk(reqBody.id);
-  if (!subfamily) return setResponse(400, 'Subfamily not found.');
+const readElement = async reqBody => {
+  const element = await Element.findByPk(reqBody.id);
+  if (!element) return setResponse(400, 'Element not found.');
 
-  return setResponse(200, 'Subfamily found.', subfamily);
+  return setResponse(200, 'Element found.', element);
 };
 
-const listSubfamilies = async reqQuery => {
-  const subfamilies = await Subfamily.findAll({
-    where: _.pick(reqQuery, ['familyId']),
+const listElements = async reqQuery => {
+  const elements = await Element.findAll({
+    where: _.pick(reqQuery, ['subfamilyId']),
   });
 
-  return setResponse(200, 'Subfamilies found.', subfamilies);
+  return setResponse(200, 'Elements found.', elements);
 };
 
-const createSubfamily = async reqBody => {
-  let subfamily = await Subfamily.findOne({
-    where: { name: reqBody.name, familyId: reqBody.familyId },
+const createElement = async reqBody => {
+  let element = await Element.findOne({
+    where: { name: reqBody.name, subfamilyId: reqBody.subfamilyId },
   });
-  if (subfamily) return setResponse(400, 'Subfamily already exists.');
+  if (element) return setResponse(400, 'Element already exists.');
 
-  subfamily = await Subfamily.create(reqBody);
+  element = await Element.create(reqBody);
 
-  return setResponse(201, 'Subfamily created.', subfamily);
+  return setResponse(201, 'Element created.', element);
 };
 
 module.exports = {
-  readSubfamily,
-  listSubfamilies,
-  createSubfamily,
+  readElement,
+  listElements,
+  createElement,
 };

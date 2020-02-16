@@ -2,7 +2,7 @@ const { Joi } = require('celebrate');
 
 const List = {
   query: {
-    familyId: Joi.number().integer(),
+    subfamilyId: Joi.number().integer(),
   },
 };
 
@@ -20,7 +20,7 @@ const Post = {
       .max(255)
       .min(1)
       .required(),
-    familyId: Joi.number()
+    subfamilyId: Joi.number()
       .integer()
       .required(),
   },

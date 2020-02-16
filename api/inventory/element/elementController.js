@@ -1,25 +1,25 @@
-const Services = require('./subfamilyService');
+const Services = require('./elementService');
 
-const getSubfamily = async (req, res) => {
-  const subfamily = await Services.readSubfamily(req.params);
+const getElement = async (req, res) => {
+  const element = await Services.readElement(req.params);
 
-  return res.status(subfamily.status).send(subfamily);
+  return res.status(element.status).send(element);
 };
 
-const listSubfamilies = async (req, res) => {
-  const subfamilies = await Services.listSubfamilies(req.query);
+const listElements = async (req, res) => {
+  const elements = await Services.listElements(req.query);
 
-  return res.status(subfamilies.status).send(subfamilies);
+  return res.status(elements.status).send(elements);
 };
 
-const postSubfamily = async (req, res) => {
-  const subfamily = await Services.createSubfamily(req.body);
+const postElement = async (req, res) => {
+  const element = await Services.createElement(req.body);
 
-  return res.status(subfamily.status).send(subfamily);
+  return res.status(element.status).send(element);
 };
 
 module.exports = {
-  getSubfamily,
-  listSubfamilies,
-  postSubfamily,
+  getElement,
+  listElements,
+  postElement,
 };
