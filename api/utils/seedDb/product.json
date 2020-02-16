@@ -1,0 +1,57 @@
+[
+  {
+    "suggestedPrice": 1200,
+    "modelId": 9,
+    "compatibility": "sunt aute veniam"
+  },
+  {
+    "suggestedPrice": 3200,
+    "modelId": 7,
+    "compatibility": "laborum elit commodo"
+  },
+  {
+    "suggestedPrice": 1500,
+    "modelId": 2,
+    "compatibility": "ad magna velit"
+  },
+  {
+    "suggestedPrice": 4700,
+    "modelId": 13,
+    "compatibility": "id excepteur sit"
+  },
+  {
+    "suggestedPrice": 1100,
+    "modelId": 4,
+    "compatibility": "sint incididunt aliquip"
+  },
+  {
+    "suggestedPrice": 2600,
+    "modelId": 14,
+    "compatibility": "deserunt duis dolor"
+  },
+  {
+    "suggestedPrice": 7700,
+    "modelId": 11,
+    "compatibility": "elit eu cupidatat"
+  },
+  {
+    "suggestedPrice": 3600,
+    "modelId": 9,
+    "compatibility": "et aliqua nisi"
+  },
+  {
+    "suggestedPrice": 6800,
+    "modelId": 3,
+    "compatibility": "enim nulla ad"
+  },
+  {
+    "suggestedPrice": 1000,
+    "modelId": 5,
+    "compatibility": "elit do ipsum"
+  },
+  {
+    "suggestedPrice": 4300,
+    "modelId": 16,
+    "compatibility": "consequat ea et"
+  }
+]
