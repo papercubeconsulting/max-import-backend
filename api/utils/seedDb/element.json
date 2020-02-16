@@ -1,202 +1,66 @@
 [
   {
-    "name": "tempor",
-    "subfamilyId": 9
+    "name": "duis",
+    "subfamilyId": 1
   },
   {
-    "name": "labore",
-    "subfamilyId": 17
+    "name": "duis",
+    "subfamilyId": 8
+  },
+  {
+    "name": "culpa",
+    "subfamilyId": 7
   },
   {
     "name": "cillum",
-    "subfamilyId": 11
+    "subfamilyId": 6
   },
   {
-    "name": "ipsum",
-    "subfamilyId": 7
+    "name": "pariatur",
+    "subfamilyId": 2
   },
   {
-    "name": "adipisicing",
-    "subfamilyId": 7
-  },
-  {
-    "name": "nisi",
+    "name": "ea",
     "subfamilyId": 4
   },
   {
-    "name": "sunt",
-    "subfamilyId": 16
+    "name": "do",
+    "subfamilyId": 3
   },
   {
-    "name": "et",
-    "subfamilyId": 8
-  },
-  {
-    "name": "eiusmod",
+    "name": "ullamco",
     "subfamilyId": 5
   },
   {
-    "name": "minim",
-    "subfamilyId": 12
+    "name": "cupidatat",
+    "subfamilyId": 7
   },
   {
-    "name": "elit",
-    "subfamilyId": 5
+    "name": "nostrud",
+    "subfamilyId": 7
   },
   {
-    "name": "qui",
-    "subfamilyId": 8
-  },
-  {
-    "name": "reprehenderit",
-    "subfamilyId": 12
+    "name": "tempor",
+    "subfamilyId": 2
   },
   {
     "name": "esse",
     "subfamilyId": 2
   },
   {
-    "name": "et",
-    "subfamilyId": 15
-  },
-  {
-    "name": "aliqua",
-    "subfamilyId": 19
-  },
-  {
-    "name": "sunt",
-    "subfamilyId": 4
-  },
-  {
-    "name": "anim",
-    "subfamilyId": 10
-  },
-  {
-    "name": "non",
-    "subfamilyId": 17
-  },
-  {
-    "name": "proident",
-    "subfamilyId": 10
-  },
-  {
-    "name": "laborum",
-    "subfamilyId": 8
-  },
-  {
-    "name": "laborum",
-    "subfamilyId": 5
-  },
-  {
-    "name": "reprehenderit",
-    "subfamilyId": 6
-  },
-  {
-    "name": "est",
-    "subfamilyId": 12
-  },
-  {
-    "name": "duis",
-    "subfamilyId": 18
-  },
-  {
-    "name": "dolor",
-    "subfamilyId": 13
-  },
-  {
-    "name": "veniam",
-    "subfamilyId": 15
-  },
-  {
-    "name": "occaecat",
-    "subfamilyId": 14
-  },
-  {
-    "name": "do",
-    "subfamilyId": 16
-  },
-  {
-    "name": "esse",
-    "subfamilyId": 10
-  },
-  {
-    "name": "dolore",
-    "subfamilyId": 18
-  },
-  {
-    "name": "dolore",
-    "subfamilyId": 16
-  },
-  {
-    "name": "esse",
-    "subfamilyId": 18
-  },
-  {
-    "name": "sunt",
-    "subfamilyId": 17
-  },
-  {
-    "name": "occaecat",
-    "subfamilyId": 19
-  },
-  {
-    "name": "fugiat",
+    "name": "aliquip",
     "subfamilyId": 1
   },
   {
-    "name": "occaecat",
-    "subfamilyId": 18
-  },
-  {
-    "name": "officia",
-    "subfamilyId": 13
-  },
-  {
-    "name": "consectetur",
-    "subfamilyId": 9
-  },
-  {
-    "name": "laboris",
-    "subfamilyId": 5
-  },
-  {
-    "name": "proident",
-    "subfamilyId": 4
-  },
-  {
-    "name": "eu",
-    "subfamilyId": 18
-  },
-  {
-    "name": "esse",
-    "subfamilyId": 8
-  },
-  {
-    "name": "Lorem",
+    "name": "ullamco",
     "subfamilyId": 3
   },
   {
-    "name": "exercitation",
-    "subfamilyId": 15
-  },
-  {
-    "name": "do",
-    "subfamilyId": 9
-  },
-  {
-    "name": "tempor",
+    "name": "irure",
     "subfamilyId": 8
   },
   {
-    "name": "eu",
-    "subfamilyId": 12
-  },
-  {
-    "name": "eu",
-    "subfamilyId": 15
-  },
-  {
-    "name": "aliqua",
-    "subfamilyId": 6
+    "name": "quis",
+    "subfamilyId": 3
   }
 ]
