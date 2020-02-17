@@ -9,9 +9,6 @@ const Supply = sequelize.define(
   'supply',
   {
     // attributes
-    provider: {
-      type: Sequelize.STRING,
-    },
     code: {
       type: Sequelize.STRING,
     },
@@ -57,10 +54,19 @@ const SuppliedProduct = sequelize.define(
   },
   {
     // options
+    indexes: [
+      {
+        unique: true,
+        fields: ['boxSize', 'productId', 'supplyId'],
+      },
+    ],
   },
 );
 
-Product.belongsToMany(Supply, { through: SuppliedProduct });
-Supply.belongsToMany(Product, { through: SuppliedProduct });
+SuppliedProduct.belongsTo(Supply);
+Supply.hasMany(SuppliedProduct);
+
+SuppliedProduct.belongsTo(Product);
+Product.hasMany(SuppliedProduct);
 
 module.exports = { Supply, SuppliedProduct };

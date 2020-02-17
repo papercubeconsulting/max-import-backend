@@ -16,9 +16,6 @@ const Get = {
 
 const Post = {
   body: {
-    provider: Joi.string()
-      .max(255)
-      .required(),
     observations: Joi.string()
       .allow('')
       .default(''),

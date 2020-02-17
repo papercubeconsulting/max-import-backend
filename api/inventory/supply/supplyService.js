@@ -25,7 +25,7 @@ const SUPPLIED_PRODUCT_NESTED_ATTRIBUTES = [
 
 const readSupply = async reqBody => {
   const supply = await Supply.findByPk(reqBody.id, {
-    include: Product,
+    include: SuppliedProduct,
   });
   if (!supply) return setResponse(400, 'Supply not found.');
 
@@ -36,23 +36,23 @@ const readSupply = async reqBody => {
 const listSupplies = async reqQuery => {
   let supplies = await Supply.findAll({
     include: {
-      model: Product,
-      attributes: PRODUCT_NESTED_ATTRIBUTES,
+      model: SuppliedProduct,
+      // attributes: PRODUCT_NESTED_ATTRIBUTES,
     },
   });
 
   // * Simplify response
-  supplies = supplies.map(_supply => {
-    const supply = _supply.get({ plain: true });
-    supply.products = supply.products.map(prod => {
-      prod.suppliedProduct = _.pick(
-        prod.suppliedProduct,
-        SUPPLIED_PRODUCT_NESTED_ATTRIBUTES,
-      );
-      return prod;
-    });
-    return supply;
-  });
+  // supplies = supplies.map(_supply => {
+  //   const supply = _supply.get({ plain: true });
+  //   supply.products = supply.products.map(prod => {
+  //     prod.suppliedProduct = _.pick(
+  //       prod.suppliedProduct,
+  //       SUPPLIED_PRODUCT_NESTED_ATTRIBUTES,
+  //     );
+  //     return prod;
+  //   });
+  //   return supply;
+  // });
 
   return setResponse(200, 'Supplies found.', supplies);
 };
@@ -70,8 +70,11 @@ const createSupply = async reqBody => {
   // * Update object with nested entities
   supply = await Supply.findByPk(supply.id, {
     include: {
-      model: Product,
-      attributes: PRODUCT_NESTED_ATTRIBUTES,
+      model: SuppliedProduct,
+      include: {
+        model: Product,
+      },
+      // attributes: PRODUCT_NESTED_ATTRIBUTES,
     },
   });
 
