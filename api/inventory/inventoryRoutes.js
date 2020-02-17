@@ -8,5 +8,6 @@ router.use('/elements', require('./element/elementRoute'));
 router.use('/models', require('./model/modelRoute'));
 
 router.use('/products', require('./product/productRoute'));
+router.use('/supplies', require('./supply/supplyRoute'));
 
 module.exports = router;

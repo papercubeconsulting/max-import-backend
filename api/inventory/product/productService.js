@@ -12,9 +12,7 @@ const readProduct = async reqBody => {
 };
 
 const listProducts = async reqQuery => {
-  const products = await Product.findAll({
-    where: _.pick(reqQuery, ['elementId']),
-  });
+  const products = await Product.findAll({});
 
   return setResponse(200, 'Products found.', products);
 };
