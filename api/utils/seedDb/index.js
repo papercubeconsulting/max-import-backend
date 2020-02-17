@@ -11,6 +11,8 @@ const Family = require('../../inventory/family/familyModel');
 const Subfamily = require('../../inventory/subfamily/subfamilyModel');
 const Element = require('../../inventory/element/elementModel');
 const Model = require('../../inventory/model/modelModel');
+const Provider = require('../../inventory/provider/providerModel');
+const Warehouse = require('../../inventory/warehouse/warehouseModel');
 
 const Product = require('../../inventory/product/productModel');
 const { Supply } = require('../../inventory/supply/supplyModel');
@@ -46,7 +48,10 @@ sequelize.sync({ force: true }).then(async result => {
   await seedModel(Subfamily, 'subfamily.json');
   await seedModel(Element, 'element.json');
   await seedModel(Model, 'model.json');
+  await seedModel(Provider, 'provider.json');
+  await seedModel(Warehouse, 'warehouse.json');
 
   await seedModelOneByOne(Product, 'product.json');
+
   await seedModelByService(Supply, 'supply.json', createSupply);
 });
