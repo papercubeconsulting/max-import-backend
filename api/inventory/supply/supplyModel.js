@@ -4,6 +4,8 @@ const Sequelize = require('sequelize');
 const sequelize = require('../../../startup/db');
 
 const Product = require('../product/productModel');
+const Provider = require('../provider/providerModel');
+const Warehouse = require('../warehouse/warehouseModel');
 
 const Supply = sequelize.define(
   'supply',
@@ -62,6 +64,12 @@ const SuppliedProduct = sequelize.define(
     ],
   },
 );
+
+Supply.belongsTo(Provider);
+Provider.hasMany(Supply);
+
+Supply.belongsTo(Warehouse);
+Warehouse.hasMany(Supply);
 
 SuppliedProduct.belongsTo(Supply);
 Supply.hasMany(SuppliedProduct);

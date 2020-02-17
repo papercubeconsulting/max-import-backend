@@ -4,6 +4,8 @@ const { setResponse } = require('../../utils');
 
 const { Supply, SuppliedProduct } = require('./supplyModel');
 const Product = require('../product/productModel');
+const Provider = require('../provider/providerModel');
+const Warehouse = require('../warehouse/warehouseModel');
 
 const PRODUCT_NESTED_ATTRIBUTES = [
   'id',
@@ -35,10 +37,14 @@ const readSupply = async reqBody => {
 
 const listSupplies = async reqQuery => {
   let supplies = await Supply.findAll({
-    include: {
-      model: SuppliedProduct,
-      // attributes: PRODUCT_NESTED_ATTRIBUTES,
-    },
+    include: [
+      Warehouse,
+      Provider,
+      {
+        model: SuppliedProduct,
+        include: Product,
+      },
+    ],
   });
 
   // * Simplify response
@@ -69,13 +75,14 @@ const createSupply = async reqBody => {
 
   // * Update object with nested entities
   supply = await Supply.findByPk(supply.id, {
-    include: {
-      model: SuppliedProduct,
-      include: {
-        model: Product,
+    include: [
+      Warehouse,
+      Provider,
+      {
+        model: SuppliedProduct,
+        include: Product,
       },
-      // attributes: PRODUCT_NESTED_ATTRIBUTES,
-    },
+    ],
   });
 
   return setResponse(201, 'Supply created.', supply);

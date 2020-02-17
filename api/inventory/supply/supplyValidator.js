@@ -16,6 +16,12 @@ const Get = {
 
 const Post = {
   body: {
+    providerId: Joi.number()
+      .integer()
+      .required(),
+    warehouseId: Joi.number()
+      .integer()
+      .required(),
     observations: Joi.string()
       .allow('')
       .default(''),

@@ -1,241 +1,276 @@
 [
   {
-    "observations": "Ipsum velit commodo voluptate elit.",
+    "providerId": 17,
+    "warehouseId": 3,
+    "observations": "Non duis ad elit consectetur culpa dolor culpa.",
     "suppliedProducts": [
       {
-        "productId": 10,
-        "boxSize": 10,
-        "quantity": 20
+        "productId": 4,
+        "boxSize": 151,
+        "quantity": 12
       },
       {
-        "productId": 9,
-        "boxSize": 45,
-        "quantity": 25
+        "productId": 8,
+        "boxSize": 34,
+        "quantity": 61
+      },
+      {
+        "productId": 5,
+        "boxSize": 118,
+        "quantity": 4
       },
       {
         "productId": 6,
-        "boxSize": 30,
-        "quantity": 45
+        "boxSize": 4,
+        "quantity": 63
+      },
+      {
+        "productId": 8,
+        "boxSize": 75,
+        "quantity": 70
       }
     ]
   },
   {
-    "observations": "Incididunt fugiat ad cillum commodo sit veniam duis eu cupidatat fugiat ut dolor sit.",
+    "providerId": 11,
+    "warehouseId": 6,
+    "observations": "Officia dolore aute consequat mollit magna sit mollit reprehenderit amet elit excepteur reprehenderit laborum est.",
     "suppliedProducts": [
       {
-        "productId": 2,
-        "boxSize": 50,
-        "quantity": 5
+        "productId": 7,
+        "boxSize": 103,
+        "quantity": 91
       },
       {
-        "productId": 6,
-        "boxSize": 15,
-        "quantity": 20
+        "productId": 1,
+        "boxSize": 189,
+        "quantity": 48
+      },
+      {
+        "productId": 3,
+        "boxSize": 75,
+        "quantity": 52
+      },
+      {
+        "productId": 3,
+        "boxSize": 108,
+        "quantity": 68
+      }
+    ]
+  },
+  {
+    "providerId": 19,
+    "warehouseId": 1,
+    "observations": "Tempor amet ea amet culpa elit dolore ipsum velit.",
+    "suppliedProducts": [
+      {
+        "productId": 1,
+        "boxSize": 120,
+        "quantity": 21
       },
       {
         "productId": 10,
-        "boxSize": 45,
+        "boxSize": 22,
+        "quantity": 5
+      },
+      {
+        "productId": 8,
+        "boxSize": 109,
+        "quantity": 61
+      },
+      {
+        "productId": 6,
+        "boxSize": 160,
+        "quantity": 22
+      },
+      {
+        "productId": 5,
+        "boxSize": 34,
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "providerId": 16,
+    "warehouseId": 6,
+    "observations": "Anim tempor commodo exercitation sit consequat laboris sunt consequat cupidatat.",
+    "suppliedProducts": [
+      {
+        "productId": 8,
+        "boxSize": 27,
+        "quantity": 32
+      },
+      {
+        "productId": 3,
+        "boxSize": 34,
+        "quantity": 52
+      },
+      {
+        "productId": 6,
+        "boxSize": 46,
+        "quantity": 61
+      },
+      {
+        "productId": 5,
+        "boxSize": 146,
+        "quantity": 99
+      },
+      {
+        "productId": 3,
+        "boxSize": 26,
+        "quantity": 30
+      }
+    ]
+  },
+  {
+    "providerId": 6,
+    "warehouseId": 6,
+    "observations": "Tempor magna laborum duis consequat id commodo sunt magna aute do eu consectetur excepteur exercitation.",
+    "suppliedProducts": [
+      {
+        "productId": 4,
+        "boxSize": 30,
+        "quantity": 76
+      },
+      {
+        "productId": 5,
+        "boxSize": 59,
+        "quantity": 74
+      },
+      {
+        "productId": 3,
+        "boxSize": 99,
+        "quantity": 98
+      }
+    ]
+  },
+  {
+    "providerId": 4,
+    "warehouseId": 6,
+    "observations": "Cupidatat ex nulla ullamco elit dolore laboris.",
+    "suppliedProducts": [
+      {
+        "productId": 3,
+        "boxSize": 20,
+        "quantity": 7
+      },
+      {
+        "productId": 6,
+        "boxSize": 120,
+        "quantity": 48
+      },
+      {
+        "productId": 7,
+        "boxSize": 105,
+        "quantity": 92
+      }
+    ]
+  },
+  {
+    "providerId": 13,
+    "warehouseId": 7,
+    "observations": "Ipsum officia est excepteur eu enim nisi in ullamco ad adipisicing ipsum eu enim consectetur.",
+    "suppliedProducts": [
+      {
+        "productId": 3,
+        "boxSize": 8,
+        "quantity": 53
+      },
+      {
+        "productId": 4,
+        "boxSize": 71,
+        "quantity": 78
+      },
+      {
+        "productId": 5,
+        "boxSize": 133,
+        "quantity": 79
+      },
+      {
+        "productId": 3,
+        "boxSize": 176,
+        "quantity": 86
+      }
+    ]
+  },
+  {
+    "providerId": 10,
+    "warehouseId": 5,
+    "observations": "Officia veniam dolore reprehenderit elit anim voluptate commodo voluptate quis mollit voluptate.",
+    "suppliedProducts": [
+      {
+        "productId": 10,
+        "boxSize": 32,
+        "quantity": 81
+      },
+      {
+        "productId": 11,
+        "boxSize": 174,
+        "quantity": 21
+      },
+      {
+        "productId": 4,
+        "boxSize": 31,
+        "quantity": 68
+      },
+      {
+        "productId": 3,
+        "boxSize": 77,
+        "quantity": 43
+      }
+    ]
+  },
+  {
+    "providerId": 5,
+    "warehouseId": 5,
+    "observations": "Eiusmod ut do non sunt ex duis ipsum occaecat ad voluptate voluptate voluptate.",
+    "suppliedProducts": [
+      {
+        "productId": 6,
+        "boxSize": 153,
+        "quantity": 50
+      },
+      {
+        "productId": 8,
+        "boxSize": 14,
+        "quantity": 52
+      },
+      {
+        "productId": 7,
+        "boxSize": 36,
+        "quantity": 12
+      },
+      {
+        "productId": 9,
+        "boxSize": 101,
+        "quantity": 61
+      },
+      {
+        "productId": 8,
+        "boxSize": 134,
+        "quantity": 35
+      }
+    ]
+  },
+  {
+    "providerId": 17,
+    "warehouseId": 5,
+    "observations": "Nostrud pariatur nulla consectetur est voluptate fugiat pariatur qui laborum consectetur.",
+    "suppliedProducts": [
+      {
+        "productId": 2,
+        "boxSize": 75,
+        "quantity": 41
+      },
+      {
+        "productId": 4,
+        "boxSize": 79,
         "quantity": 50
       },
       {
         "productId": 11,
-        "boxSize": 40,
-        "quantity": 20
-      }
-    ]
-  },
-  {
-    "observations": "Est Lorem laborum est enim aliqua ut.",
-    "suppliedProducts": [
-      {
-        "productId": 10,
-        "boxSize": 15,
-        "quantity": 30
-      },
-      {
-        "productId": 10,
-        "boxSize": 50,
-        "quantity": 15
-      },
-      {
-        "productId": 9,
-        "boxSize": 10,
-        "quantity": 40
-      }
-    ]
-  },
-  {
-    "observations": "Commodo irure occaecat aliqua velit deserunt quis ipsum reprehenderit.",
-    "suppliedProducts": [
-      {
-        "productId": 7,
-        "boxSize": 40,
-        "quantity": 30
-      },
-      {
-        "productId": 7,
-        "boxSize": 35,
-        "quantity": 35
-      },
-      {
-        "productId": 9,
-        "boxSize": 30,
-        "quantity": 10
-      },
-      {
-        "productId": 8,
-        "boxSize": 35,
-        "quantity": 10
-      }
-    ]
-  },
-  {
-    "observations": "Sit cupidatat laborum ipsum cillum ullamco est aliquip.",
-    "suppliedProducts": [
-      {
-        "productId": 8,
-        "boxSize": 40,
-        "quantity": 10
-      },
-      {
-        "productId": 1,
-        "boxSize": 30,
-        "quantity": 25
-      },
-      {
-        "productId": 4,
-        "boxSize": 45,
-        "quantity": 30
-      },
-      {
-        "productId": 2,
-        "boxSize": 30,
-        "quantity": 15
-      }
-    ]
-  },
-  {
-    "observations": "Eiusmod consectetur eu labore dolor occaecat ad tempor do Lorem do id minim esse dolore.",
-    "suppliedProducts": [
-      {
-        "productId": 5,
-        "boxSize": 25,
-        "quantity": 30
-      },
-      {
-        "productId": 10,
-        "boxSize": 35,
-        "quantity": 15
-      },
-      {
-        "productId": 1,
-        "boxSize": 30,
-        "quantity": 5
-      },
-      {
-        "productId": 10,
-        "boxSize": 40,
-        "quantity": 5
-      },
-      {
-        "productId": 10,
-        "boxSize": 10,
-        "quantity": 40
-      }
-    ]
-  },
-  {
-    "observations": "Eiusmod aliqua esse ut aute Lorem sit nisi ex.",
-    "suppliedProducts": [
-      {
-        "productId": 10,
-        "boxSize": 50,
-        "quantity": 20
-      },
-      {
-        "productId": 4,
-        "boxSize": 45,
-        "quantity": 5
-      },
-      {
-        "productId": 9,
-        "boxSize": 25,
-        "quantity": 50
-      }
-    ]
-  },
-  {
-    "observations": "Do minim et mollit irure mollit mollit do esse labore et ea exercitation fugiat.",
-    "suppliedProducts": [
-      {
-        "productId": 8,
-        "boxSize": 50,
-        "quantity": 25
-      },
-      {
-        "productId": 3,
-        "boxSize": 10,
-        "quantity": 25
-      },
-      {
-        "productId": 1,
-        "boxSize": 25,
-        "quantity": 30
-      },
-      {
-        "productId": 6,
-        "boxSize": 50,
-        "quantity": 25
-      }
-    ]
-  },
-  {
-    "observations": "Qui aute deserunt irure nulla tempor enim.",
-    "suppliedProducts": [
-      {
-        "productId": 1,
-        "boxSize": 50,
-        "quantity": 20
-      },
-      {
-        "productId": 5,
-        "boxSize": 35,
-        "quantity": 5
-      },
-      {
-        "productId": 8,
-        "boxSize": 30,
-        "quantity": 20
-      },
-      {
-        "productId": 1,
-        "boxSize": 30,
-        "quantity": 15
-      }
-    ]
-  },
-  {
-    "observations": "Anim occaecat laborum qui est sit elit sunt deserunt ea cillum.",
-    "suppliedProducts": [
-      {
-        "productId": 9,
-        "boxSize": 45,
-        "quantity": 35
-      },
-      {
-        "productId": 2,
-        "boxSize": 50,
-        "quantity": 10
-      },
-      {
-        "productId": 6,
-        "boxSize": 30,
-        "quantity": 5
-      },
-      {
-        "productId": 7,
-        "boxSize": 25,
-        "quantity": 5
+        "boxSize": 173,
+        "quantity": 58
       }
     ]
   }
