@@ -41,7 +41,16 @@ module.exports = app => {
   app.use('/users', usersRouter);
   app.use('/inventory', InventoryRouter);
 
-  app.use('/apiDocs', swaggerUi.serve, swaggerUi.setup(openApiDocumentation));
+  app.use(
+    '/apiDocsInventory',
+    swaggerUi.serve,
+    swaggerUi.setup(openApiDocumentation),
+  );
+  app.use(
+    '/apiDocsOther',
+    swaggerUi.serve,
+    swaggerUi.setup(openApiDocumentation),
+  );
 
   app.use(celebrateError);
   app.use(error);
