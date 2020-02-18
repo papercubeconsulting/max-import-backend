@@ -1,0 +1,37 @@
+openapi: 3.0.0
+info:
+  description: |
+    API desarrollada por el equipo de 
+    [PaperCube](http://papercube.pe) para la implementación
+    del ERP de la empresa Max Import.
+  version: "1.0.0"
+  title: Max Import ERP
+  # termsOfService: 'http://swagger.io/terms/'
+  contact:
+    email: soluciones@papercube.pe
+  license:
+    name: Apache 2.0
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+servers:
+  # Added by API Auto Mocking Plugin
+  - url: http://localhost:3000/
+    description: Local Server
+  - url: POR DEFINIR
+    description: Development Server
+  - url: POR DEFINIR
+    description: Production Server
+tags:
+  - name: families
+    description: Familia a la que pertenece un producto
+  - name: Proforma
+    description: Servicios asociados a la gestion de proformas
+paths:
+  /inventory/families:
+    get:
+      tags:
+        - families
+      summary: List all families
+      operationId: listFamily
+      responses:
+        "200":
+          description: Families found
