@@ -7,7 +7,7 @@ deploy:
 - provider: elasticbeanstalk
   region: us-east-1
   app: MaxImport
-  env: MaxImport-backend-env
+  env: MaxImport-backend-dev
   bucket_name: elasticbeanstalk-us-east-1-047468546016
   bucket_path: MaxImport
   on:
