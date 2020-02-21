@@ -4,23 +4,23 @@ info:
     API desarrollada por el equipo de 
     [PaperCube](http://papercube.pe) para la implementación
     del ERP de la empresa Max Import.
-  version: "1.0.0"
+  version: '1.0.0'
   title: Max Import ERP
   # termsOfService: 'http://swagger.io/terms/'
   contact:
     email: soluciones@papercube.pe
   license:
     name: Apache 2.0
-    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
 servers:
   - url: http://localhost:3000
     description: Local Server
-  - description: SwaggerHub API Auto Mocking
-    url: https://virtserver.swaggerhub.com/PaperCube/max-import-papercube/1.0.0
-  - url: POR DEFINIR
+  - url: http://maximport-backend.q3d2pmiqsz.us-east-1.elasticbeanstalk.com
     description: Development Server
   - url: POR DEFINIR
     description: Production Server
+  - url: https://virtserver.swaggerhub.com/PaperCube/max-import-papercube/1.0.0
+    description: SwaggerHub API Auto Mocking
 tags:
   - name: families
     description: Familia a la que pertenece un producto
@@ -29,14 +29,14 @@ tags:
 paths:
   # ----------------------------------------------------------------------
   # ----------------------------------------------------------------------
-  "/families":
+  '/families':
     post:
       tags:
         - families
       summary: Crear una nueva familia
       operationId: addFamily
       responses:
-        "201":
+        '201':
           description: Family created
           # content:
           #   application/json:
@@ -47,17 +47,17 @@ paths:
           #             data:
           #               $ref: "#/components/schemas/Family"
           #         - $ref: "#/components/schemas/ResponseBaseSchema"
-        "400":
+        '400':
           description: Bad request
       requestBody:
-        $ref: "#/components/requestBodies/Family"
+        $ref: '#/components/requestBodies/Family'
     get:
       tags:
         - families
       summary: Listar todas las familias
       operationId: listFamily
       responses:
-        "200":
+        '200':
           description: Families found
           # content:
           #   application/json:
@@ -70,16 +70,16 @@ paths:
           #               items:
           #                 $ref: "#/components/schemas/Family"
           #         - $ref: "#/components/schemas/ResponseBaseSchema"
-  "/families/{id}":
+  '/families/{id}':
     get:
       tags:
         - families
       summary: Encontrar familia por Id
       operationId: getFamilyById
       parameters:
-        - $ref: "#/components/parameters/paramId"
+        - $ref: '#/components/parameters/paramId'
       responses:
-        "200":
+        '200':
           description: successful operation
           # content:
           #   application/json:
@@ -90,20 +90,20 @@ paths:
           #             data:
           #               $ref: '#/components/schemas/Family'
           #         - $ref: "#/components/schemas/ResponseBaseSchema"
-        "400":
+        '400':
           description: Invalid ID supplied
-        "404":
+        '404':
           description: Resource not found
   # ----------------------------------------------------------------------
   # ----------------------------------------------------------------------
-  "/subfamilies":
+  '/subfamilies':
     post:
       tags:
         - subfamilies
       summary: Crear una nueva subfamilia
       operationId: addSubfamily
       responses:
-        "201":
+        '201':
           description: Subfamily created
           # content:
           #   application/json:
@@ -114,19 +114,19 @@ paths:
           #             data:
           #               $ref: "#/components/schemas/Subfamily"
           #         - $ref: "#/components/schemas/ResponseBaseSchema"
-        "400":
+        '400':
           description: Bad request
       requestBody:
-        $ref: "#/components/requestBodies/Subfamily"
+        $ref: '#/components/requestBodies/Subfamily'
     get:
       tags:
         - subfamilies
       summary: Listar todas las subfamilias. Opcionalmente se puede filtrar por familia
       operationId: listSubfamily
       parameters:
-        - $ref: "#/components/parameters/familyId"
+        - $ref: '#/components/parameters/familyId'
       responses:
-        "200":
+        '200':
           description: Subfamilies found
           # content:
           #   application/json:
@@ -139,16 +139,16 @@ paths:
           #               items:
           #                 $ref: "#/components/schemas/Subfamily"
           #         - $ref: "#/components/schemas/ResponseBaseSchema"
-  "/subfamilies/{id}":
+  '/subfamilies/{id}':
     get:
       tags:
         - subfamilies
       summary: Encontrar subfamilia por Id
       operationId: getSubfamilyById
       parameters:
-        - $ref: "#/components/parameters/paramId"
+        - $ref: '#/components/parameters/paramId'
       responses:
-        "200":
+        '200':
           description: successful operation
           # content:
           #   application/json:
@@ -159,20 +159,20 @@ paths:
           #             data:
           #               $ref: '#/components/schemas/Subfamily'
           #         - $ref: "#/components/schemas/ResponseBaseSchema"
-        "400":
+        '400':
           description: Invalid ID supplied
-        "404":
+        '404':
           description: Resource not found
   # ----------------------------------------------------------------------
   # ----------------------------------------------------------------------
-  "/elements":
+  '/elements':
     post:
       tags:
         - elements
       summary: Crear un nuevo elemento
       operationId: addElement
       responses:
-        "201":
+        '201':
           description: Element created
           # content:
           #   application/json:
@@ -183,19 +183,19 @@ paths:
           #             data:
           #               $ref: "#/components/schemas/Element"
           #         - $ref: "#/components/schemas/ResponseBaseSchema"
-        "400":
+        '400':
           description: Bad request
       requestBody:
-        $ref: "#/components/requestBodies/Element"
+        $ref: '#/components/requestBodies/Element'
     get:
       tags:
         - elements
       summary: Listar todos los elementos. Opcionalmente se puede filtrar por subfamilia
       operationId: listElements
       parameters:
-        - $ref: "#/components/parameters/subfamilyId"
+        - $ref: '#/components/parameters/subfamilyId'
       responses:
-        "200":
+        '200':
           description: Elements found
           # content:
           #   application/json:
@@ -208,16 +208,16 @@ paths:
           #               items:
           #                 $ref: "#/components/schemas/Element"
           #         - $ref: "#/components/schemas/ResponseBaseSchema"
-  "/elements/{id}":
+  '/elements/{id}':
     get:
       tags:
         - elements
       summary: Encontrar elemento por Id
       operationId: getElementById
       parameters:
-        - $ref: "#/components/parameters/paramId"
+        - $ref: '#/components/parameters/paramId'
       responses:
-        "200":
+        '200':
           description: successful operation
           # content:
           #   application/json:
@@ -228,20 +228,20 @@ paths:
           #             data:
           #               $ref: '#/components/schemas/Element'
           #         - $ref: "#/components/schemas/ResponseBaseSchema"
-        "400":
+        '400':
           description: Invalid ID supplied
-        "404":
+        '404':
           description: Resource not found
   # ----------------------------------------------------------------------
   # ----------------------------------------------------------------------
-  "/models":
+  '/models':
     post:
       tags:
         - models
       summary: Crear un nuevo modelo
       operationId: addModel
       responses:
-        "201":
+        '201':
           description: Model created
           # content:
           #   application/json:
@@ -252,19 +252,19 @@ paths:
           #             data:
           #               $ref: "#/components/schemas/Model"
           #         - $ref: "#/components/schemas/ResponseBaseSchema"
-        "400":
+        '400':
           description: Bad request
       requestBody:
-        $ref: "#/components/requestBodies/Model"
+        $ref: '#/components/requestBodies/Model'
     get:
       tags:
         - models
       summary: Listar todos los modelos. Opcionalmente se puede filtrar por elemento
       operationId: listModels
       parameters:
-        - $ref: "#/components/parameters/elementId"
+        - $ref: '#/components/parameters/elementId'
       responses:
-        "200":
+        '200':
           description: Models found
           # content:
           #   application/json:
@@ -277,16 +277,16 @@ paths:
           #               items:
           #                 $ref: "#/components/schemas/Model"
           #         - $ref: "#/components/schemas/ResponseBaseSchema"
-  "/models/{id}":
+  '/models/{id}':
     get:
       tags:
         - models
       summary: Encontrar modelo por Id
       operationId: getModelById
       parameters:
-        - $ref: "#/components/parameters/paramId"
+        - $ref: '#/components/parameters/paramId'
       responses:
-        "200":
+        '200':
           description: successful operation
           # content:
           #   application/json:
@@ -297,20 +297,20 @@ paths:
           #             data:
           #               $ref: '#/components/schemas/Model'
           #         - $ref: "#/components/schemas/ResponseBaseSchema"
-        "400":
+        '400':
           description: Invalid ID supplied
-        "404":
+        '404':
           description: Resource not found
   # ----------------------------------------------------------------------
   # ----------------------------------------------------------------------
-  "/providers":
+  '/providers':
     post:
       tags:
         - providers
       summary: Crear un nuevo proveedor
       operationId: addProvider
       responses:
-        "201":
+        '201':
           description: Provider created
           # content:
           #   application/json:
@@ -321,10 +321,10 @@ paths:
           #             data:
           #               $ref: "#/components/schemas/Provider"
           #         - $ref: "#/components/schemas/ResponseBaseSchema"
-        "400":
+        '400':
           description: Bad request
       requestBody:
-        $ref: "#/components/requestBodies/Provider"
+        $ref: '#/components/requestBodies/Provider'
     get:
       tags:
         - providers
@@ -333,7 +333,7 @@ paths:
       # parameters:
       #   - $ref: '#/components/parameters/elementId'
       responses:
-        "200":
+        '200':
           description: Providers found
           # content:
           #   application/json:
@@ -346,16 +346,16 @@ paths:
           #               items:
           #                 $ref: "#/components/schemas/Provider"
           #         - $ref: "#/components/schemas/ResponseBaseSchema"
-  "/providers/{id}":
+  '/providers/{id}':
     get:
       tags:
         - providers
       summary: Encontrar proveedor por Id
       operationId: getProviderById
       parameters:
-        - $ref: "#/components/parameters/paramId"
+        - $ref: '#/components/parameters/paramId'
       responses:
-        "200":
+        '200':
           description: successful operation
           # content:
           #   application/json:
@@ -366,20 +366,20 @@ paths:
           #             data:
           #               $ref: '#/components/schemas/Provider'
           #         - $ref: "#/components/schemas/ResponseBaseSchema"
-        "400":
+        '400':
           description: Invalid ID supplied
-        "404":
+        '404':
           description: Resource not found
   # ----------------------------------------------------------------------
   # ----------------------------------------------------------------------
-  "/warehouses":
+  '/warehouses':
     post:
       tags:
         - warehouses
       summary: Crear un nuevo almacen
       operationId: addWarehouse
       responses:
-        "201":
+        '201':
           description: Warehouse created
           # content:
           #   application/json:
@@ -390,10 +390,10 @@ paths:
           #             data:
           #               $ref: "#/components/schemas/Warehouse"
           #         - $ref: "#/components/schemas/ResponseBaseSchema"
-        "400":
+        '400':
           description: Bad request
       requestBody:
-        $ref: "#/components/requestBodies/Warehouse"
+        $ref: '#/components/requestBodies/Warehouse'
     get:
       tags:
         - warehouses
@@ -402,7 +402,7 @@ paths:
       # parameters:
       #   - $ref: '#/components/parameters/elementId'
       responses:
-        "200":
+        '200':
           description: Warehouses found
           # content:
           #   application/json:
@@ -415,16 +415,16 @@ paths:
           #               items:
           #                 $ref: "#/components/schemas/Warehouse"
           #         - $ref: "#/components/schemas/ResponseBaseSchema"
-  "/warehouses/{id}":
+  '/warehouses/{id}':
     get:
       tags:
         - warehouses
       summary: Encontrar almacen por Id
       operationId: getWarehouseById
       parameters:
-        - $ref: "#/components/parameters/paramId"
+        - $ref: '#/components/parameters/paramId'
       responses:
-        "200":
+        '200':
           description: successful operation
           # content:
           #   application/json:
@@ -435,20 +435,20 @@ paths:
           #             data:
           #               $ref: '#/components/schemas/Warehouse'
           #         - $ref: "#/components/schemas/ResponseBaseSchema"
-        "400":
+        '400':
           description: Invalid ID supplied
-        "404":
+        '404':
           description: Resource not found
   # ----------------------------------------------------------------------
   # ----------------------------------------------------------------------
-  "/products":
+  '/products':
     post:
       tags:
         - products
       summary: Crear un nuevo producto
       operationId: addProduct
       responses:
-        "201":
+        '201':
           description: Product created
           # content:
           #   application/json:
@@ -459,10 +459,10 @@ paths:
           #             data:
           #               $ref: "#/components/schemas/Product"
           #         - $ref: "#/components/schemas/ResponseBaseSchema"
-        "400":
+        '400':
           description: Bad request
       requestBody:
-        $ref: "#/components/requestBodies/Product"
+        $ref: '#/components/requestBodies/Product'
     get:
       tags:
         - products
@@ -471,7 +471,7 @@ paths:
       # parameters:
       #   - $ref: '#/components/parameters/elementId'
       responses:
-        "200":
+        '200':
           description: Products found
           # content:
           #   application/json:
@@ -484,16 +484,16 @@ paths:
           #               items:
           #                 $ref: "#/components/schemas/Product"
           #         - $ref: "#/components/schemas/ResponseBaseSchema"
-  "/products/{id}":
+  '/products/{id}':
     get:
       tags:
         - products
       summary: Encontrar producto por Id
       operationId: getProductById
       parameters:
-        - $ref: "#/components/parameters/paramId"
+        - $ref: '#/components/parameters/paramId'
       responses:
-        "200":
+        '200':
           description: successful operation
           # content:
           #   application/json:
@@ -504,49 +504,52 @@ paths:
           #             data:
           #               $ref: '#/components/schemas/Product'
           #         - $ref: "#/components/schemas/ResponseBaseSchema"
-        "400":
+        '400':
           description: Invalid ID supplied
-        "404":
+        '404':
           description: Resource not found
   # ----------------------------------------------------------------------
   # ----------------------------------------------------------------------
-  "/supplies":
+  '/supplies':
     post:
       tags:
         - supplies
       summary: Crear un nuevo abastecimiento
       operationId: addSupply
       responses:
-        "201":
+        '201':
           description: Supply created
-        "400":
+        '400':
           description: Bad request
       requestBody:
-        $ref: "#/components/requestBodies/Supply"
+        $ref: '#/components/requestBodies/Supply'
     get:
       tags:
         - supplies
-      summary: Listar todos los almacenes. Existen filtros opcionales # TODO
+      summary: Listar todos los abastecimientos. Ordenado por fecha de creación. Existen filtros opcionales.
       operationId: listSupplies
-      # parameters:
-      #   - $ref: '#/components/parameters/elementId'
+      parameters:
+        - $ref: '#/components/parameters/fromDate'
+        - $ref: '#/components/parameters/toDate'
+        - $ref: '#/components/parameters/pagePagination'
+        - $ref: '#/components/parameters/pageSizePagination'
       responses:
-        "200":
+        '200':
           description: Supplies found
-  "/supplies/{id}":
+  '/supplies/{id}':
     get:
       tags:
         - supplies
       summary: Encontrar abastecimiento por Id
       operationId: getSupplyById
       parameters:
-        - $ref: "#/components/parameters/paramId"
+        - $ref: '#/components/parameters/paramId'
       responses:
-        "200":
+        '200':
           description: Successful operation
-        "400":
+        '400':
           description: Invalid ID supplied
-        "404":
+        '404':
           description: Resource not found
 components:
   # schemas:
@@ -692,6 +695,38 @@ components:
         type: integer
         format: int32
         minimum: 1
+    fromDate:
+      name: from
+      in: query
+      description: Fecha inicial de la consulta "YYYY-MM-DD". El valor por defecto es 1 semana antes del dia actual
+      required: false
+      schema:
+        type: string
+        format: date
+    toDate:
+      name: to
+      in: query
+      description: Fecha final de la consulta "YYYY-MM-DD". El valor por defecto es el dia actual
+      required: false
+      schema:
+        type: string
+        format: date
+    pagePagination:
+      name: page
+      in: query
+      description: Numero de pagina a consultar. Indexado en 1
+      required: false
+      schema:
+        type: integer
+        format: int32
+    pageSizePagination:
+      name: pageSize
+      in: query
+      description: Cantidad de items por pagina
+      required: false
+      schema:
+        type: integer
+        format: int32
   requestBodies:
     Family:
       content:
@@ -702,7 +737,7 @@ components:
               name:
                 type: string
             example:
-              name: "Nueva Familia"
+              name: 'Nueva Familia'
             required:
               - name
       required: true
@@ -720,7 +755,7 @@ components:
               - name
               - familyId
             example:
-              name: "Nueva Subfamilia"
+              name: 'Nueva Subfamilia'
               familyId: 1
       required: true
     Element:
@@ -737,7 +772,7 @@ components:
               - name
               - subfamilyId
             example:
-              name: "Nuevo Elemento"
+              name: 'Nuevo Elemento'
               subfamilyId: 1
       required: true
     Model:
@@ -754,7 +789,7 @@ components:
               - name
               - elementId
             example:
-              name: "Nuevo Modelo"
+              name: 'Nuevo Modelo'
               elementId: 1
       required: true
     Product:
@@ -779,7 +814,7 @@ components:
               - suggestedPrice
             example:
               modelId: 1
-              compatibility: "Compatible con todos"
+              compatibility: 'Compatible con todos'
               suggestedPrice: 10000
       required: true
     Provider:
@@ -791,7 +826,7 @@ components:
               name:
                 type: string
             example:
-              name: "Nuevo proveedor"
+              name: 'Nuevo proveedor'
             required:
               - name
       required: true
@@ -806,8 +841,8 @@ components:
               address:
                 type: string
             example:
-              name: "Nuevo almacen"
-              address: "Nueva direccion"
+              name: 'Nuevo almacen'
+              address: 'Nueva direccion'
             required:
               - name
               - address
@@ -849,7 +884,7 @@ components:
             example:
               providerId: 1
               warehouseId: 1
-              observations: "Ninguna"
+              observations: 'Ninguna'
               suppliedProducts:
                 [
                   { productId: 1, boxSize: 20, quantity: 100 },
