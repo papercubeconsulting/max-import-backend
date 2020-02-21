@@ -8,10 +8,10 @@ require('./startup/config')();
 require('./startup/logging')();
 require('./startup/routes')(app);
 
-// if (process.env.NODE_ENV === 'production') {
-//   require('./startup/prod')(app);
-// }
-require('./startup/prod')(app);
+if (process.env.NODE_ENV === 'production') {
+ require('./startup/prod')(app);
+}
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
