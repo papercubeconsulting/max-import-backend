@@ -12,6 +12,7 @@ require('dotenv').config({
   ),
 });
 
+console.log("node env",process.env.NODE_ENV);
 const config = require('config');
 const fs = require('fs');
 
