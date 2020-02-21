@@ -24,6 +24,10 @@ const Supply = sequelize.define(
       type: Sequelize.ENUM(['Pendiente', 'Atendido', 'Cancelado']),
       defaultValue: 'Pendiente',
     },
+    active: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: true,
+    },
   },
   {
     // options

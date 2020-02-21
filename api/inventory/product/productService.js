@@ -19,7 +19,7 @@ const listProducts = async reqQuery => {
 
 const createProduct = async reqBody => {
   let product = await Product.findOne({
-    where: _.pick(reqBody, ['familyId', 'subfamilyId', 'elementId', 'modelId']),
+    where: _.pick(reqBody, ['modelId']),
   });
   if (product) return setResponse(400, 'Product already exists.');
 

@@ -1,6 +1,8 @@
 const _ = require('lodash');
+const moment = require('moment-timezone');
+const { Op } = require('sequelize');
 
-const { setResponse } = require('../../utils');
+const { setResponse, paginate } = require('../../utils');
 
 const { Supply, SuppliedProduct } = require('./supplyModel');
 const Product = require('../product/productModel');
@@ -27,16 +29,6 @@ const SUPPLIED_PRODUCT_NESTED_ATTRIBUTES = [
 
 const readSupply = async reqBody => {
   const supply = await Supply.findByPk(reqBody.id, {
-    include: SuppliedProduct,
-  });
-  if (!supply) return setResponse(400, 'Supply not found.');
-
-  supply.products = await supply.getProducts();
-  return setResponse(200, 'Supply found.', supply);
-};
-
-const listSupplies = async reqQuery => {
-  let supplies = await Supply.findAll({
     include: [
       Warehouse,
       Provider,
@@ -46,20 +38,42 @@ const listSupplies = async reqQuery => {
       },
     ],
   });
+  if (!supply) return setResponse(400, 'Supply not found.');
 
-  // * Simplify response
-  // supplies = supplies.map(_supply => {
-  //   const supply = _supply.get({ plain: true });
-  //   supply.products = supply.products.map(prod => {
-  //     prod.suppliedProduct = _.pick(
-  //       prod.suppliedProduct,
-  //       SUPPLIED_PRODUCT_NESTED_ATTRIBUTES,
-  //     );
-  //     return prod;
-  //   });
-  //   return supply;
-  // });
+  return setResponse(200, 'Supply found.', supply);
+};
 
+const listSupplies = async reqQuery => {
+  const supplies = await Supply.findAndCountAll({
+    where: {
+      createdAt: {
+        [Op.between]: [
+          moment
+            .tz(moment.utc(reqQuery.from).format('YYYY-MM-DD'), 'America/Lima')
+            .startOf('day')
+            .toDate(),
+          moment
+            .tz(moment.utc(reqQuery.to).format('YYYY-MM-DD'), 'America/Lima')
+            .endOf('day')
+            .toDate(),
+        ],
+      },
+    },
+    order: [['createdAt', 'DESC']],
+    include: [
+      Warehouse,
+      Provider,
+      {
+        model: SuppliedProduct,
+        include: Product,
+      },
+    ],
+    distinct: true,
+    ...paginate(_.pick(reqQuery, ['page', 'pageSize'])),
+  });
+  supplies.page = reqQuery.page;
+  supplies.pageSize = reqQuery.pageSize;
+  supplies.pages = _.ceil(supplies.count / supplies.pageSize);
   return setResponse(200, 'Supplies found.', supplies);
 };
 
