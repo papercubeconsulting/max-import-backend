@@ -1,32 +1,16 @@
+language: generic
 sudo: required
 services:
-  - docker 
-before_install:
-  - docker build -t hdeudorb/backend-client-test -f ./client/Dockerfile.dev ./client
-
-script:
-  - docker run -e CI=true hdeudorb/backend-client-test npm test
-
-after_success:
-  - docker build -t hdeudorb/backend-client ./client
-  - docker build -t hdeudorb/backend-nginx ./nginx
-  - docker build -t hdeudorb/backend-server ./server
-  # Log in to the docker CLI
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  # Tale those images and push them to docker hub
-  - docker push hdeudorb/backend-client
-  - docker push hdeudorb/backend-nginx
-  - docker push hdeudorb/backend-server
+  - docker
 
 deploy:
-  provider: elasticbeanstalk
+- provider: elasticbeanstalk
   region: us-east-1
-  app: max-import-backend
-  env: MaxImportBackend-env
-  bucket_name: elasticbeanstalk-us-east-1-691046028389
-  bucket_path: max-import-backend
+  app: MaxImport-dev
+  env: MaxImport-backend
+  bucket_name: elasticbeanstalk-us-east-1-047468546016
+  bucket_path: MaxImport-dev
   on:
-    branch: version1_ready
+    branch: dev
   access_key_id: $AWS_ACCESS_KEY
-  secret_access_key:
-    secure: $AWS_SECRET_KEY
+  secret_access_key: $AWS_SECRET_KEY
