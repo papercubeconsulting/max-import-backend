@@ -6,10 +6,10 @@ services:
 deploy:
 - provider: elasticbeanstalk
   region: us-east-1
-  app: MaxImport
-  env: MaxImport-backend-dev
+  app: MaxImport-dev
+  env: MaxImport-backend
   bucket_name: elasticbeanstalk-us-east-1-047468546016
-  bucket_path: MaxImport
+  bucket_path: MaxImport-dev
   on:
     branch: dev
   access_key_id: $AWS_ACCESS_KEY
