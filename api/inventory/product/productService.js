@@ -4,8 +4,8 @@ const { setResponse } = require('../../utils');
 
 const Product = require('./productModel');
 
-const readProduct = async reqBody => {
-  const product = await Product.findByPk(reqBody.id);
+const readProduct = async reqParams => {
+  const product = await Product.findByPk(reqParams.id);
   if (!product) return setResponse(400, 'Product not found.');
 
   return setResponse(200, 'Product found.', product);

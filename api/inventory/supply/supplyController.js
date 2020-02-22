@@ -18,8 +18,15 @@ const postSupply = async (req, res) => {
   return res.status(supply.status).send(supply);
 };
 
+const deleteSupply = async (req, res) => {
+  const supply = await Services.deleteSupply(req.params);
+
+  return res.status(supply.status).send(supply);
+};
+
 module.exports = {
   getSupply,
   listSupplies,
   postSupply,
+  deleteSupply,
 };

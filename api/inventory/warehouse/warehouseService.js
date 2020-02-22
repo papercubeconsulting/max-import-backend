@@ -2,8 +2,8 @@ const { setResponse } = require('../../utils');
 
 const Warehouse = require('./warehouseModel');
 
-const readWarehouse = async reqBody => {
-  const warehouse = await Warehouse.findByPk(reqBody.id);
+const readWarehouse = async reqParams => {
+  const warehouse = await Warehouse.findByPk(reqParams.id);
   if (!warehouse) return setResponse(400, 'Warehouse not found.');
 
   return setResponse(200, 'Warehouse found.', warehouse);

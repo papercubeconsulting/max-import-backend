@@ -31,6 +31,7 @@ const Supply = sequelize.define(
   },
   {
     // options
+    paranoid: true,
   },
 );
 

@@ -27,8 +27,8 @@ const SUPPLIED_PRODUCT_NESTED_ATTRIBUTES = [
   'suppliedQuantity',
 ];
 
-const readSupply = async reqBody => {
-  const supply = await Supply.findByPk(reqBody.id, {
+const readSupply = async reqParams => {
+  const supply = await Supply.findByPk(reqParams.id, {
     include: [
       Warehouse,
       Provider,
@@ -102,8 +102,16 @@ const createSupply = async reqBody => {
   return setResponse(201, 'Supply created.', supply);
 };
 
+const deleteSupply = async reqParams => {
+  const supply = await Supply.destroy({ where: { id: reqParams.id } });
+  if (!supply) return setResponse(400, 'Supply not found.');
+
+  return setResponse(200, 'Supply deleted.');
+};
+
 module.exports = {
   readSupply,
   listSupplies,
   createSupply,
+  deleteSupply,
 };

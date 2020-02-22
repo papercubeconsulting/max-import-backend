@@ -70,8 +70,17 @@ const Post = {
   },
 };
 
+const Delete = {
+  params: {
+    id: Joi.number()
+      .integer()
+      .required(),
+  },
+};
+
 module.exports = {
   List,
   Get,
   Post,
+  Delete,
 };
