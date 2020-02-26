@@ -4,7 +4,7 @@ const Provider = require('./providerModel');
 
 const readProvider = async reqParams => {
   const provider = await Provider.findByPk(reqParams.id);
-  if (!provider) return setResponse(400, 'Provider not found.');
+  if (!provider) return setResponse(404, 'Provider not found.');
 
   return setResponse(200, 'Provider found.', provider);
 };

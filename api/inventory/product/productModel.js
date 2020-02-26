@@ -1,7 +1,8 @@
+/* eslint-disable import/no-dynamic-require */
 /* eslint-disable no-param-reassign */
 const Sequelize = require('sequelize');
 
-const sequelize = require('../../../startup/db');
+const sequelize = require(`${process.cwd()}/startup/db`);
 
 const Family = require('../family/familyModel');
 const Subfamily = require('../subfamily/subfamilyModel');

@@ -7,7 +7,7 @@ const Element = require('../element/elementModel');
 
 const readModel = async reqParams => {
   const model = await Model.findByPk(reqParams.id);
-  if (!model) return setResponse(400, 'Model not found.');
+  if (!model) return setResponse(404, 'Model not found.');
 
   return setResponse(200, 'Model found.', model);
 };

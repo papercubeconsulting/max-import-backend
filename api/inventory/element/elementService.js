@@ -7,7 +7,7 @@ const Subfamily = require('../subfamily/subfamilyModel');
 
 const readElement = async reqParams => {
   const element = await Element.findByPk(reqParams.id);
-  if (!element) return setResponse(400, 'Element not found.');
+  if (!element) return setResponse(404, 'Element not found.');
 
   return setResponse(200, 'Element found.', element);
 };

@@ -3,8 +3,9 @@
 const fs = require('fs');
 const path = require('path');
 
-const setResponse = (status, message = '', data = null) => {
-  return { data, status, message };
+const setResponse = (status, message = '', data = null, userMessage = null) => {
+  if (!userMessage) userMessage = message;
+  return { data, status, message, userMessage };
 };
 
 const asyncForEach = async (array, callback) => {

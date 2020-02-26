@@ -6,7 +6,7 @@ const Product = require('./productModel');
 
 const readProduct = async reqParams => {
   const product = await Product.findByPk(reqParams.id);
-  if (!product) return setResponse(400, 'Product not found.');
+  if (!product) return setResponse(404, 'Product not found.');
 
   return setResponse(200, 'Product found.', product);
 };
