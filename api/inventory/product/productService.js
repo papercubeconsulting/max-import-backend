@@ -28,8 +28,17 @@ const createProduct = async reqBody => {
   return setResponse(201, 'Product created.', product);
 };
 
+const readProductByModel = async reqQuery => {
+  const product = await Product.findOne({ where: reqQuery });
+
+  if (!product) return setResponse(404, 'Product not found.');
+
+  return setResponse(200, 'Product found.', product);
+};
+
 module.exports = {
   readProduct,
+  readProductByModel,
   listProducts,
   createProduct,
 };

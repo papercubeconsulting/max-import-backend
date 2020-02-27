@@ -24,6 +24,13 @@ const Subfamily = sequelize.define(
   },
 );
 
+Family.afterCreate('createDefaultSubfamily', async (family, options) => {
+  await Subfamily.create({
+    name: '-',
+    familyId: family.id,
+  });
+});
+
 Family.hasMany(Subfamily);
 Subfamily.belongsTo(Family);
 
