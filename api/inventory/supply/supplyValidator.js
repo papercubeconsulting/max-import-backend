@@ -56,7 +56,7 @@ const Post = {
     suppliedProducts: Joi.array()
       .items(
         Joi.object({
-          productId: Joi.number()
+          modelId: Joi.number()
             .integer()
             .required(),
           boxSize: Joi.number()
@@ -68,7 +68,7 @@ const Post = {
           suppliedQuantity: Joi.number().integer(), // TODO: REMOVE
         }),
       )
-      .unique((a, b) => a.productId === b.productId && a.boxSize === b.boxSize)
+      .unique((a, b) => a.modelId === b.modelId && a.boxSize === b.boxSize)
       .min(1)
       .required(),
   },
@@ -87,7 +87,7 @@ const Put = {
     suppliedProducts: Joi.array()
       .items(
         Joi.object({
-          productId: Joi.number()
+          modelId: Joi.number()
             .integer()
             .required(),
           boxSize: Joi.number()
@@ -98,7 +98,7 @@ const Put = {
             .required(),
         }),
       )
-      .unique((a, b) => a.productId === b.productId && a.boxSize === b.boxSize)
+      .unique((a, b) => a.modelId === b.modelId && a.boxSize === b.boxSize)
       .min(1)
       .required(),
   },

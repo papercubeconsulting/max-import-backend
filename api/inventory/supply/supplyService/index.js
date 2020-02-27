@@ -1,3 +1,5 @@
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable global-require */
 const _ = require('lodash');
@@ -83,6 +85,22 @@ const listSupplies = async reqQuery => {
 };
 
 const createSupply = async reqBody => {
+  const products = await Promise.all(
+    reqBody.suppliedProducts.map(prod =>
+      Product.findOne({
+        attributes: ['id'],
+        where: { modelId: prod.modelId },
+      }),
+    ),
+  );
+
+  if (products.some(element => !element))
+    return setResponse(404, 'Product not found.');
+
+  reqBody.suppliedProducts.forEach((prod, i) => {
+    prod.productId = products[i].id;
+  });
+
   let supply = await Supply.create(reqBody, {
     include: [SuppliedProduct],
   });
@@ -105,6 +123,22 @@ const createSupply = async reqBody => {
 // ? Servicio para actualiza campos del abastecimiento y añadir/remover productos
 // ? El abastecimiento debe estar sin atender
 const updateSupply = async (reqBody, reqParams, validatedData) => {
+  const products = await Promise.all(
+    reqBody.suppliedProducts.map(prod =>
+      Product.findOne({
+        attributes: ['id'],
+        where: { modelId: prod.modelId },
+      }),
+    ),
+  );
+
+  if (products.some(element => !element))
+    return setResponse(404, 'Product not found.');
+
+  reqBody.suppliedProducts.forEach((prod, i) => {
+    prod.productId = products[i].id;
+  });
+
   const t = await sequelize.transaction();
 
   try {

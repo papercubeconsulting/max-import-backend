@@ -44,10 +44,11 @@ const seedModelByService = async (model, filename, service) => {
 };
 
 sequelize.sync({ force: true }).then(async result => {
-  await seedModel(Family, 'family.json');
-  await seedModel(Subfamily, 'subfamily.json');
-  await seedModel(Element, 'element.json');
-  await seedModel(Model, 'model.json');
+  await seedModelOneByOne(Family, 'family.json');
+  await seedModelOneByOne(Subfamily, 'subfamily.json');
+  await seedModelOneByOne(Element, 'element.json');
+  await seedModelOneByOne(Model, 'model.json');
+
   await seedModel(Provider, 'provider.json');
   await seedModel(Warehouse, 'warehouse.json');
 
