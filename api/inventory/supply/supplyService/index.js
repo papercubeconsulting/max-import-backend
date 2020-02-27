@@ -120,6 +120,7 @@ const updateSupply = async (reqBody, reqParams, validatedData) => {
       acc.push(
         SuppliedProduct.destroy({ where: { id: cur.id }, transaction: t }),
       );
+      return acc;
     }, promises);
 
     // * Update items (cantidad de cajas)
@@ -134,6 +135,7 @@ const updateSupply = async (reqBody, reqParams, validatedData) => {
           { where: { id: cur.id }, transaction: t },
         ),
       );
+      return acc;
     }, promises);
 
     // * Crear nuevos items

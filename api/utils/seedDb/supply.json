@@ -1,34 +1,5 @@
 [
   {
-    "providerId": 1,
-    "warehouseId": 1,
-    "observations": "Caso de ejemplo variado.",
-    "status": "Pendiente",
-    "suppliedProducts": [
-      {
-        "productId": 1,
-        "boxSize": 100,
-        "quantity": 10
-      },
-      {
-        "productId": 1,
-        "boxSize": 150,
-        "quantity": 15
-      },
-      {
-        "productId": 2,
-        "boxSize": 100,
-        "quantity": 10,
-        "suppliedQuantity": 5
-      },
-      {
-        "productId": 3,
-        "boxSize": 50,
-        "quantity": 5
-      }
-    ]
-  },
-  {
     "providerId": 13,
     "warehouseId": 1,
     "observations": "Mollit magna occaecat quis eiusmod dolore elit commodo deserunt in anim tempor ex excepteur.",
@@ -54,6 +25,35 @@
         "productId": 5,
         "boxSize": 629,
         "quantity": 28
+      }
+    ]
+  },
+  {
+    "providerId": 1,
+    "warehouseId": 1,
+    "observations": "Caso de ejemplo variado.",
+    "status": "Pendiente",
+    "suppliedProducts": [
+      {
+        "productId": 1,
+        "boxSize": 100,
+        "quantity": 10
+      },
+      {
+        "productId": 1,
+        "boxSize": 150,
+        "quantity": 15
+      },
+      {
+        "productId": 2,
+        "boxSize": 100,
+        "quantity": 10,
+        "suppliedQuantity": 5
+      },
+      {
+        "productId": 3,
+        "boxSize": 50,
+        "quantity": 5
       }
     ]
   },

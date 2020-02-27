@@ -67,6 +67,7 @@ const validateUpdateSupply = async (reqBody, reqParams) => {
       accumulator.push(
         `El producto ${currentValue.id} ya ha generado al menos un códigos de barras y no puede eliminarse`,
       );
+      return accumulator;
     }, errorMessages);
 
   // * Si el elemento a actualizar indica una cantidad de cajas menor a las ya entregadas
@@ -84,18 +85,19 @@ const validateUpdateSupply = async (reqBody, reqParams) => {
       accumulator.push(
         `El producto ${currentValue.id} ya ha generado ${currentValue.suppliedQuantity} códigos de barras y no puede actualizarse a una cantidad menor a esa`,
       );
+      return accumulator;
     }, errorMessages);
 
-  console.log(errorMessages);
   if (Array.isArray(errorMessages) && errorMessages.length)
     return setResponse(
       400,
       'Bad Request.',
-      {
-        deleteSuppliedProducts,
-        newSuppliedProducts,
-        updateSuppliedProducts,
-      },
+      null,
+      // {
+      //   deleteSuppliedProducts,
+      //   newSuppliedProducts,
+      //   updateSuppliedProducts,
+      // },
       errorMessages.join(' | '),
     );
 
