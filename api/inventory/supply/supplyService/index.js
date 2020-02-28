@@ -5,6 +5,7 @@
 const _ = require('lodash');
 const moment = require('moment-timezone');
 const { Op } = require('sequelize');
+const winston = require('winston');
 
 const sequelize = require(`${process.cwd()}/startup/db`);
 
@@ -41,7 +42,7 @@ const readSupply = async reqParams => {
       Provider,
       {
         model: SuppliedProduct,
-        // include: Product,
+        include: Product,
       },
     ],
   });
@@ -85,22 +86,6 @@ const listSupplies = async reqQuery => {
 };
 
 const createSupply = async reqBody => {
-  const products = await Promise.all(
-    reqBody.suppliedProducts.map(prod =>
-      Product.findOne({
-        attributes: ['id'],
-        where: { modelId: prod.modelId },
-      }),
-    ),
-  );
-
-  if (products.some(element => !element))
-    return setResponse(404, 'Product not found.');
-
-  reqBody.suppliedProducts.forEach((prod, i) => {
-    prod.productId = products[i].id;
-  });
-
   let supply = await Supply.create(reqBody, {
     include: [SuppliedProduct],
   });
@@ -123,22 +108,6 @@ const createSupply = async reqBody => {
 // ? Servicio para actualiza campos del abastecimiento y añadir/remover productos
 // ? El abastecimiento debe estar sin atender
 const updateSupply = async (reqBody, reqParams, validatedData) => {
-  const products = await Promise.all(
-    reqBody.suppliedProducts.map(prod =>
-      Product.findOne({
-        attributes: ['id'],
-        where: { modelId: prod.modelId },
-      }),
-    ),
-  );
-
-  if (products.some(element => !element))
-    return setResponse(404, 'Product not found.');
-
-  reqBody.suppliedProducts.forEach((prod, i) => {
-    prod.productId = products[i].id;
-  });
-
   const t = await sequelize.transaction();
 
   try {
@@ -202,7 +171,7 @@ const updateSupply = async (reqBody, reqParams, validatedData) => {
 
     return setResponse(200, 'Supply updated.', supply);
   } catch (error) {
-    console.log(error);
+    winston.error(error);
     // If the execution reaches this line, an error was thrown.
     // We rollback the transaction.
     await t.rollback();

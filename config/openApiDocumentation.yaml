@@ -560,7 +560,7 @@ paths:
           * Id del proveedor
           * Id del almacen
           * Observacion
-          * Lista de items del abastecimiento
+          * Lista de items del abastecimiento - Obligatorio, *debe indicarse la lista de items incluso si no hay cambios*
           
         Para la lista de items se debe tener en cuenta las siguientes reglas
           * Solo se puede remover un item si no se ha registrado ninguna atención de ese item (campo suppliedQuantity debe ser 0)

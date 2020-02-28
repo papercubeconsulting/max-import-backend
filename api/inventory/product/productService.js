@@ -3,6 +3,7 @@ const _ = require('lodash');
 const { setResponse } = require('../../utils');
 
 const Product = require('./productModel');
+const Model = require('../model/modelModel');
 
 const readProduct = async reqParams => {
   const product = await Product.findByPk(reqParams.id);
@@ -18,6 +19,8 @@ const listProducts = async reqQuery => {
 };
 
 const createProduct = async reqBody => {
+  const model = await Model.findByPk(reqBody.modelId);
+  if (!model) return setResponse(404, 'Model not found.');
   let product = await Product.findOne({
     where: _.pick(reqBody, ['modelId']),
   });
@@ -28,17 +31,8 @@ const createProduct = async reqBody => {
   return setResponse(201, 'Product created.', product);
 };
 
-const readProductByModel = async reqQuery => {
-  const product = await Product.findOne({ where: reqQuery });
-
-  if (!product) return setResponse(404, 'Product not found.');
-
-  return setResponse(200, 'Product found.', product);
-};
-
 module.exports = {
   readProduct,
-  readProductByModel,
   listProducts,
   createProduct,
 };

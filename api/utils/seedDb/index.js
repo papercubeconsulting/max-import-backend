@@ -30,7 +30,9 @@ const seedModel = async (model, filename) => {
 const seedModelOneByOne = async (model, filename) => {
   const rawdata = fs.readFileSync(path.join(__dirname, filename));
 
-  await asyncForEach(JSON.parse(rawdata), async data => model.create(data));
+  await asyncForEach(JSON.parse(rawdata).reverse(), async data =>
+    model.create(data),
+  );
   winston.info(`${model.tableName} seeded!`);
   return 1;
 };
@@ -47,7 +49,7 @@ sequelize.sync({ force: true }).then(async result => {
   await seedModelOneByOne(Family, 'family.json');
   await seedModelOneByOne(Subfamily, 'subfamily.json');
   await seedModelOneByOne(Element, 'element.json');
-  await seedModelOneByOne(Model, 'model.json');
+  await seedModel(Model, 'model.json');
 
   await seedModel(Provider, 'provider.json');
   await seedModel(Warehouse, 'warehouse.json');
