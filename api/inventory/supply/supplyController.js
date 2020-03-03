@@ -33,6 +33,12 @@ const putSupply = async (req, res) => {
   return res.status(supply.status).send(supply);
 };
 
+const putSupplyStatus = async (req, res) => {
+  const supply = await Services.updateSupplyStatus(req.body, req.params);
+
+  return res.status(supply.status).send(supply);
+};
+
 const deleteSupply = async (req, res) => {
   const supply = await Services.deleteSupply(req.params);
 
@@ -44,5 +50,6 @@ module.exports = {
   listSupplies,
   postSupply,
   putSupply,
+  putSupplyStatus,
   deleteSupply,
 };

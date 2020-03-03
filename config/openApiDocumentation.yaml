@@ -579,20 +579,42 @@ paths:
           description: Resource not found
       requestBody:
         $ref: "#/components/requestBodies/UpdateSupply"
-    delete:
+
+  "/supplies/{id}/status":
+    put:
       tags:
         - supplies
-      summary: Eliminar abastecimiento por Id
-      operationId: deleteSupplyById
+      summary: Actualizar status de un abastecimiento por Id
+      description: |
+        El campo status puede ser "Cancelado" o "Atendido".
+        El abastecimiento debe tener estado "Pendiente"
+
+      operationId: updateSupplyStatusById
       parameters:
         - $ref: "#/components/parameters/paramId"
       responses:
         "200":
           description: Successful operation
         "400":
-          description: Invalid ID supplied
+          description: Bad request | Check message
         "404":
           description: Resource not found
+      requestBody:
+        $ref: "#/components/requestBodies/Status"
+    # delete:
+    #   tags:
+    #     - supplies
+    #   summary: Eliminar abastecimiento por Id
+    #   operationId: deleteSupplyById
+    #   parameters:
+    #     - $ref: '#/components/parameters/paramId'
+    #   responses:
+    #     '200':
+    #       description: Successful operation
+    #     '400':
+    #       description: Invalid ID supplied
+    #     '404':
+    #       description: Resource not found
 components:
   # schemas:
   #   Family:
@@ -938,6 +960,18 @@ components:
               - warehouseId
               - suppliedProducts
       required: true
+    Status:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                format: int32
+                description: Nuevo estado
+            example:
+              status: Atendido
     UpdateSupply:
       content:
         application/json:

@@ -1,6 +1,8 @@
 const { Joi } = require('celebrate');
 const moment = require('moment');
 
+const { status } = require('../../utils/constants');
+
 const List = {
   query: {
     page: Joi.number()
@@ -104,6 +106,19 @@ const Put = {
   },
 };
 
+const PutStatus = {
+  params: {
+    id: Joi.number()
+      .integer()
+      .required(),
+  },
+  body: {
+    status: Joi.string()
+      .valid(status.CANCELLED, status.ATTENDED)
+      .required(),
+  },
+};
+
 const Delete = {
   params: {
     id: Joi.number()
@@ -117,5 +132,6 @@ module.exports = {
   Get,
   Post,
   Put,
+  PutStatus,
   Delete,
 };
