@@ -18,6 +18,7 @@ const Supply = sequelize.define(
     // attributes
     code: {
       type: Sequelize.STRING,
+      defaultValue: '',
     },
     attentionDate: {
       type: Sequelize.DATE,

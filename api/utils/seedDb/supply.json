@@ -1,935 +1,526 @@
 [
   {
     "providerId": 13,
-    "warehouseId": 1,
-    "observations": "Mollit magna occaecat quis eiusmod dolore elit commodo deserunt in anim tempor ex excepteur.",
-    "createdAt": "2020-02-07T16:24:18+00:00",
-    "status": "Pendiente",
-    "suppliedProducts": [
-      {
-        "productId": 9,
-        "boxSize": 489,
-        "quantity": 82
-      },
-      {
-        "productId": 11,
-        "boxSize": 654,
-        "quantity": 54
-      },
-      {
-        "productId": 6,
-        "boxSize": 684,
-        "quantity": 56
-      },
-      {
-        "productId": 5,
-        "boxSize": 629,
-        "quantity": 28
-      }
-    ]
-  },
-  {
-    "providerId": 1,
-    "warehouseId": 1,
-    "observations": "Caso de ejemplo variado.",
-    "status": "Pendiente",
-    "suppliedProducts": [
-      {
-        "productId": 1,
-        "boxSize": 100,
-        "quantity": 10
-      },
-      {
-        "productId": 1,
-        "boxSize": 150,
-        "quantity": 15
-      },
-      {
-        "productId": 2,
-        "boxSize": 100,
-        "quantity": 10,
-        "suppliedQuantity": 5
-      },
-      {
-        "productId": 3,
-        "boxSize": 50,
-        "quantity": 5
-      }
-    ]
-  },
-  {
-    "providerId": 8,
     "warehouseId": 7,
-    "observations": "Nisi esse mollit cupidatat minim sint ipsum commodo veniam minim dolor mollit.",
-    "createdAt": "2020-02-23T21:13:21+00:00",
-    "status": "Pendiente",
-    "suppliedProducts": [
-      {
-        "productId": 10,
-        "boxSize": 687,
-        "quantity": 57
-      }
-    ]
-  },
-  {
-    "providerId": 14,
-    "warehouseId": 3,
-    "observations": "Non quis laborum voluptate est do culpa magna.",
-    "createdAt": "2020-02-18T19:30:24+00:00",
-    "status": "Pendiente",
-    "suppliedProducts": [
-      {
-        "productId": 9,
-        "boxSize": 755,
-        "quantity": 93
-      },
-      {
-        "productId": 2,
-        "boxSize": 614,
-        "quantity": 33
-      },
-      {
-        "productId": 2,
-        "boxSize": 201,
-        "quantity": 97
-      },
-      {
-        "productId": 8,
-        "boxSize": 690,
-        "quantity": 28
-      },
-      {
-        "productId": 7,
-        "boxSize": 415,
-        "quantity": 39
-      },
-      {
-        "productId": 3,
-        "boxSize": 388,
-        "quantity": 15
-      },
-      {
-        "productId": 4,
-        "boxSize": 105,
-        "quantity": 33
-      }
-    ]
-  },
-  {
-    "providerId": 12,
-    "warehouseId": 7,
-    "observations": "Laboris esse sint nisi ad consequat cupidatat fugiat sit sint duis fugiat non officia.",
-    "createdAt": "2020-02-13T10:20:39+00:00",
+    "observations": "Voluptate velit sit eiusmod in sit nisi deserunt eiusmod consectetur eiusmod magna.",
+    "createdAt": "2020-02-13T01:42:55+00:00",
     "status": "Atendido",
     "suppliedProducts": [
       {
         "productId": 1,
-        "boxSize": 115,
-        "quantity": 5
+        "boxSize": 190,
+        "quantity": 54
       },
       {
-        "productId": 10,
-        "boxSize": 350,
-        "quantity": 96
-      },
-      {
-        "productId": 5,
-        "boxSize": 317,
-        "quantity": 86
-      },
-      {
-        "productId": 4,
-        "boxSize": 328,
-        "quantity": 25
-      },
-      {
-        "productId": 1,
-        "boxSize": 946,
-        "quantity": 91
-      },
-      {
-        "productId": 5,
-        "boxSize": 668,
+        "productId": 11,
+        "boxSize": 844,
         "quantity": 11
-      },
-      {
-        "productId": 10,
-        "boxSize": 440,
-        "quantity": 78
-      },
-      {
-        "productId": 9,
-        "boxSize": 667,
-        "quantity": 29
-      },
-      {
-        "productId": 7,
-        "boxSize": 612,
-        "quantity": 76
-      },
-      {
-        "productId": 8,
-        "boxSize": 40,
-        "quantity": 59
       }
     ]
   },
   {
-    "providerId": 8,
+    "providerId": 13,
     "warehouseId": 1,
-    "observations": "Qui dolore occaecat consectetur sint id ea reprehenderit nostrud anim.",
-    "createdAt": "2020-02-02T08:52:32+00:00",
-    "status": "Cancelado",
+    "observations": "Velit in consequat eu nulla qui culpa in et veniam proident aute ea consequat.",
+    "createdAt": "2020-02-29T00:28:12+00:00",
+    "status": "Atendido",
     "suppliedProducts": [
       {
-        "productId": 11,
-        "boxSize": 622,
-        "quantity": 74
+        "productId": 5,
+        "boxSize": 36,
+        "quantity": 19
       },
       {
-        "productId": 9,
-        "boxSize": 801,
-        "quantity": 34
+        "productId": 6,
+        "boxSize": 130,
+        "quantity": 25
       },
       {
-        "productId": 1,
-        "boxSize": 855,
-        "quantity": 75
-      },
-      {
-        "productId": 10,
-        "boxSize": 207,
-        "quantity": 22
-      },
-      {
-        "productId": 2,
-        "boxSize": 728,
-        "quantity": 72
+        "productId": 7,
+        "boxSize": 883,
+        "quantity": 20
       },
       {
         "productId": 10,
-        "boxSize": 765,
-        "quantity": 56
+        "boxSize": 799,
+        "quantity": 84
       }
     ]
   },
   {
     "providerId": 4,
-    "warehouseId": 7,
-    "observations": "Veniam id ut consectetur nostrud et adipisicing.",
-    "createdAt": "2020-02-15T01:38:12+00:00",
-    "status": "Pendiente",
+    "warehouseId": 2,
+    "observations": "Culpa consequat dolore est non sint pariatur qui est do deserunt esse.",
+    "createdAt": "2020-02-15T15:29:00+00:00",
+    "status": "Atendido",
     "suppliedProducts": [
       {
-        "productId": 3,
-        "boxSize": 993,
-        "quantity": 12
+        "productId": 5,
+        "boxSize": 708,
+        "quantity": 52
       },
       {
-        "productId": 4,
-        "boxSize": 641,
-        "quantity": 20
-      },
-      {
-        "productId": 4,
-        "boxSize": 488,
-        "quantity": 40
-      },
-      {
-        "productId": 9,
-        "boxSize": 877,
-        "quantity": 45
-      },
-      {
-        "productId": 10,
-        "boxSize": 299,
-        "quantity": 59
-      },
-      {
-        "productId": 4,
-        "boxSize": 385,
-        "quantity": 33
-      },
-      {
-        "productId": 8,
-        "boxSize": 509,
-        "quantity": 76
+        "productId": 5,
+        "boxSize": 624,
+        "quantity": 78
       }
     ]
   },
   {
-    "providerId": 9,
-    "warehouseId": 2,
-    "observations": "Non ex minim non dolor consequat.",
-    "createdAt": "2020-02-02T18:04:31+00:00",
-    "status": "Pendiente",
+    "providerId": 2,
+    "warehouseId": 7,
+    "observations": "Nostrud incididunt culpa laborum in ipsum.",
+    "createdAt": "2020-02-11T14:04:17+00:00",
+    "status": "Atendido",
     "suppliedProducts": [
       {
-        "productId": 7,
-        "boxSize": 392,
-        "quantity": 28
+        "productId": 2,
+        "boxSize": 397,
+        "quantity": 37
       },
       {
-        "productId": 8,
-        "boxSize": 442,
-        "quantity": 38
+        "productId": 6,
+        "boxSize": 22,
+        "quantity": 84
       }
     ]
   },
   {
     "providerId": 14,
-    "warehouseId": 6,
-    "observations": "Consectetur deserunt esse laborum laborum mollit velit deserunt nisi fugiat quis cillum sunt irure quis.",
-    "createdAt": "2020-02-19T01:45:31+00:00",
+    "warehouseId": 1,
+    "observations": "Ad minim elit consequat in ullamco dolor do amet cillum minim eu culpa sit aliquip.",
+    "createdAt": "2020-02-26T15:20:16+00:00",
+    "status": "Atendido",
+    "suppliedProducts": [
+      {
+        "productId": 10,
+        "boxSize": 235,
+        "quantity": 30
+      },
+      {
+        "productId": 8,
+        "boxSize": 165,
+        "quantity": 34
+      }
+    ]
+  },
+  {
+    "providerId": 4,
+    "warehouseId": 1,
+    "observations": "Quis mollit labore sint tempor pariatur consectetur.",
+    "createdAt": "2020-02-25T18:30:39+00:00",
     "status": "Cancelado",
     "suppliedProducts": [
       {
-        "productId": 8,
-        "boxSize": 118,
-        "quantity": 41
-      },
-      {
         "productId": 5,
-        "boxSize": 155,
-        "quantity": 10
-      },
-      {
-        "productId": 8,
-        "boxSize": 689,
-        "quantity": 21
-      },
-      {
-        "productId": 2,
-        "boxSize": 929,
-        "quantity": 19
-      },
-      {
-        "productId": 2,
-        "boxSize": 426,
-        "quantity": 12
-      },
-      {
-        "productId": 6,
-        "boxSize": 728,
-        "quantity": 68
-      },
-      {
-        "productId": 7,
-        "boxSize": 348,
-        "quantity": 45
-      }
-    ]
-  },
-  {
-    "providerId": 6,
-    "warehouseId": 3,
-    "observations": "Consequat minim nostrud qui nulla ea in sit ipsum sunt nulla elit mollit exercitation.",
-    "createdAt": "2020-02-11T17:40:03+00:00",
-    "status": "Pendiente",
-    "suppliedProducts": [
-      {
-        "productId": 8,
-        "boxSize": 89,
-        "quantity": 80
-      },
-      {
-        "productId": 5,
-        "boxSize": 655,
-        "quantity": 17
-      },
-      {
-        "productId": 2,
-        "boxSize": 84,
-        "quantity": 15
-      },
-      {
-        "productId": 9,
-        "boxSize": 1000,
-        "quantity": 33
-      }
-    ]
-  },
-  {
-    "providerId": 20,
-    "warehouseId": 5,
-    "observations": "Est laborum ad excepteur ex aliquip aliqua nisi nulla.",
-    "createdAt": "2020-02-13T09:36:02+00:00",
-    "status": "Pendiente",
-    "suppliedProducts": [
-      {
-        "productId": 7,
-        "boxSize": 332,
-        "quantity": 9
-      },
-      {
-        "productId": 8,
-        "boxSize": 926,
-        "quantity": 32
-      },
-      {
-        "productId": 2,
-        "boxSize": 588,
+        "boxSize": 619,
         "quantity": 22
-      },
-      {
-        "productId": 1,
-        "boxSize": 174,
-        "quantity": 1
-      },
-      {
-        "productId": 10,
-        "boxSize": 771,
-        "quantity": 94
-      },
-      {
-        "productId": 3,
-        "boxSize": 72,
-        "quantity": 24
-      },
-      {
-        "productId": 8,
-        "boxSize": 830,
-        "quantity": 84
-      },
-      {
-        "productId": 4,
-        "boxSize": 124,
-        "quantity": 61
-      },
-      {
-        "productId": 9,
-        "boxSize": 68,
-        "quantity": 60
-      },
-      {
-        "productId": 8,
-        "boxSize": 271,
-        "quantity": 71
       }
     ]
   },
   {
-    "providerId": 7,
-    "warehouseId": 3,
-    "observations": "Ad tempor do et dolore et eu proident sint elit consequat non.",
-    "createdAt": "2020-02-02T19:14:57+00:00",
-    "status": "Atendido",
+    "providerId": 2,
+    "warehouseId": 6,
+    "observations": "Eiusmod ipsum eu reprehenderit elit pariatur nostrud consequat voluptate commodo fugiat.",
+    "createdAt": "2020-02-13T16:51:26+00:00",
+    "status": "Pendiente",
     "suppliedProducts": [
       {
         "productId": 1,
-        "boxSize": 99,
-        "quantity": 81
-      },
-      {
-        "productId": 8,
-        "boxSize": 2,
-        "quantity": 51
-      },
-      {
-        "productId": 10,
-        "boxSize": 937,
-        "quantity": 70
-      },
-      {
-        "productId": 2,
-        "boxSize": 687,
-        "quantity": 96
-      },
-      {
-        "productId": 6,
-        "boxSize": 400,
-        "quantity": 43
+        "boxSize": 645,
+        "quantity": 91
       },
       {
         "productId": 11,
-        "boxSize": 582,
-        "quantity": 82
+        "boxSize": 867,
+        "quantity": 34
       },
       {
-        "productId": 6,
-        "boxSize": 379,
-        "quantity": 97
+        "productId": 10,
+        "boxSize": 658,
+        "quantity": 5
       }
     ]
   },
   {
-    "providerId": 1,
-    "warehouseId": 5,
-    "observations": "Aliquip voluptate sint irure do in ipsum cillum non do quis esse est.",
-    "createdAt": "2020-02-13T22:59:30+00:00",
-    "status": "Atendido",
+    "providerId": 16,
+    "warehouseId": 2,
+    "observations": "Consequat consectetur in ipsum exercitation esse do tempor incididunt anim velit.",
+    "createdAt": "2020-02-04T19:24:25+00:00",
+    "status": "Pendiente",
     "suppliedProducts": [
       {
-        "productId": 7,
-        "boxSize": 650,
-        "quantity": 85
+        "productId": 5,
+        "boxSize": 29,
+        "quantity": 14
       },
       {
-        "productId": 2,
-        "boxSize": 899,
-        "quantity": 31
+        "productId": 8,
+        "boxSize": 816,
+        "quantity": 62
       },
       {
-        "productId": 11,
-        "boxSize": 171,
-        "quantity": 100
-      },
-      {
-        "productId": 3,
-        "boxSize": 277,
-        "quantity": 48
-      },
-      {
-        "productId": 6,
-        "boxSize": 712,
-        "quantity": 28
+        "productId": 5,
+        "boxSize": 161,
+        "quantity": 69
       }
     ]
   },
   {
     "providerId": 18,
     "warehouseId": 7,
-    "observations": "Aliqua labore proident id mollit magna ad ut dolor veniam ex nisi voluptate.",
-    "createdAt": "2020-02-20T11:58:17+00:00",
-    "status": "Cancelado",
-    "suppliedProducts": [
-      {
-        "productId": 7,
-        "boxSize": 927,
-        "quantity": 71
-      },
-      {
-        "productId": 8,
-        "boxSize": 854,
-        "quantity": 18
-      },
-      {
-        "productId": 5,
-        "boxSize": 608,
-        "quantity": 21
-      },
-      {
-        "productId": 3,
-        "boxSize": 585,
-        "quantity": 37
-      },
-      {
-        "productId": 7,
-        "boxSize": 930,
-        "quantity": 74
-      }
-    ]
-  },
-  {
-    "providerId": 10,
-    "warehouseId": 6,
-    "observations": "Exercitation commodo enim cillum deserunt anim incididunt laboris.",
-    "createdAt": "2020-02-25T06:03:35+00:00",
-    "status": "Pendiente",
-    "suppliedProducts": [
-      {
-        "productId": 4,
-        "boxSize": 273,
-        "quantity": 81
-      },
-      {
-        "productId": 7,
-        "boxSize": 606,
-        "quantity": 24
-      }
-    ]
-  },
-  {
-    "providerId": 20,
-    "warehouseId": 4,
-    "observations": "Aliqua incididunt pariatur esse sit.",
-    "createdAt": "2020-02-12T23:39:24+00:00",
-    "status": "Cancelado",
-    "suppliedProducts": [
-      {
-        "productId": 6,
-        "boxSize": 84,
-        "quantity": 24
-      },
-      {
-        "productId": 9,
-        "boxSize": 462,
-        "quantity": 56
-      },
-      {
-        "productId": 1,
-        "boxSize": 784,
-        "quantity": 40
-      },
-      {
-        "productId": 5,
-        "boxSize": 452,
-        "quantity": 53
-      },
-      {
-        "productId": 9,
-        "boxSize": 296,
-        "quantity": 47
-      },
-      {
-        "productId": 1,
-        "boxSize": 33,
-        "quantity": 72
-      },
-      {
-        "productId": 7,
-        "boxSize": 89,
-        "quantity": 37
-      }
-    ]
-  },
-  {
-    "providerId": 20,
-    "warehouseId": 3,
-    "observations": "Excepteur laborum quis duis exercitation nulla incididunt.",
-    "createdAt": "2020-02-19T12:45:50+00:00",
+    "observations": "Aliquip laboris eu ullamco consequat sint esse esse.",
+    "createdAt": "2020-02-22T12:50:40+00:00",
     "status": "Atendido",
     "suppliedProducts": [
       {
-        "productId": 6,
-        "boxSize": 62,
-        "quantity": 93
-      },
-      {
-        "productId": 4,
-        "boxSize": 980,
-        "quantity": 68
-      },
-      {
-        "productId": 9,
-        "boxSize": 44,
-        "quantity": 20
-      },
-      {
-        "productId": 8,
-        "boxSize": 470,
-        "quantity": 97
-      },
-      {
-        "productId": 2,
-        "boxSize": 854,
-        "quantity": 26
-      },
-      {
-        "productId": 11,
-        "boxSize": 922,
-        "quantity": 79
-      }
-    ]
-  },
-  {
-    "providerId": 10,
-    "warehouseId": 6,
-    "observations": "Adipisicing duis duis Lorem occaecat adipisicing mollit cupidatat magna adipisicing consectetur laboris do anim.",
-    "createdAt": "2020-02-19T20:18:06+00:00",
-    "status": "Cancelado",
-    "suppliedProducts": [
-      {
-        "productId": 11,
-        "boxSize": 473,
-        "quantity": 57
-      }
-    ]
-  },
-  {
-    "providerId": 9,
-    "warehouseId": 2,
-    "observations": "Cupidatat anim voluptate id non fugiat excepteur aliqua reprehenderit.",
-    "createdAt": "2020-02-18T22:03:27+00:00",
-    "status": "Atendido",
-    "suppliedProducts": [
-      {
-        "productId": 9,
-        "boxSize": 284,
-        "quantity": 37
-      },
-      {
-        "productId": 9,
-        "boxSize": 647,
-        "quantity": 54
-      },
-      {
-        "productId": 5,
-        "boxSize": 118,
-        "quantity": 5
-      },
-      {
-        "productId": 5,
-        "boxSize": 763,
-        "quantity": 99
-      },
-      {
-        "productId": 3,
-        "boxSize": 748,
-        "quantity": 64
-      },
-      {
-        "productId": 9,
-        "boxSize": 194,
-        "quantity": 87
-      }
-    ]
-  },
-  {
-    "providerId": 9,
-    "warehouseId": 5,
-    "observations": "Dolore consequat non officia sunt anim mollit ullamco et magna amet commodo consequat non officia.",
-    "createdAt": "2020-02-20T12:41:35+00:00",
-    "status": "Pendiente",
-    "suppliedProducts": [
-      {
-        "productId": 6,
-        "boxSize": 867,
-        "quantity": 74
-      },
-      {
-        "productId": 6,
-        "boxSize": 938,
-        "quantity": 87
-      },
-      {
-        "productId": 7,
-        "boxSize": 348,
-        "quantity": 77
+        "productId": 10,
+        "boxSize": 681,
+        "quantity": 89
       }
     ]
   },
   {
     "providerId": 13,
     "warehouseId": 3,
-    "observations": "Ex laboris veniam dolore ipsum mollit culpa ea cupidatat qui.",
-    "createdAt": "2020-02-06T06:01:40+00:00",
+    "observations": "Proident deserunt quis elit consequat est mollit fugiat aute est reprehenderit.",
+    "createdAt": "2020-02-04T06:29:19+00:00",
     "status": "Cancelado",
     "suppliedProducts": [
       {
-        "productId": 11,
-        "boxSize": 716,
-        "quantity": 59
-      },
-      {
-        "productId": 9,
-        "boxSize": 211,
-        "quantity": 16
+        "productId": 6,
+        "boxSize": 781,
+        "quantity": 18
       },
       {
         "productId": 10,
-        "boxSize": 337,
-        "quantity": 14
+        "boxSize": 156,
+        "quantity": 26
+      },
+      {
+        "productId": 4,
+        "boxSize": 923,
+        "quantity": 99
+      },
+      {
+        "productId": 1,
+        "boxSize": 894,
+        "quantity": 6
+      }
+    ]
+  },
+  {
+    "providerId": 4,
+    "warehouseId": 4,
+    "observations": "Magna velit culpa sunt fugiat.",
+    "createdAt": "2020-02-10T14:49:31+00:00",
+    "status": "Cancelado",
+    "suppliedProducts": [
+      {
+        "productId": 3,
+        "boxSize": 419,
+        "quantity": 38
       },
       {
         "productId": 9,
-        "boxSize": 684,
-        "quantity": 62
+        "boxSize": 782,
+        "quantity": 22
+      },
+      {
+        "productId": 6,
+        "boxSize": 117,
+        "quantity": 83
+      }
+    ]
+  },
+  {
+    "providerId": 20,
+    "warehouseId": 5,
+    "observations": "Culpa deserunt minim irure quis aliquip aliquip fugiat qui laboris magna.",
+    "createdAt": "2020-02-15T21:14:28+00:00",
+    "status": "Cancelado",
+    "suppliedProducts": [
+      {
+        "productId": 1,
+        "boxSize": 232,
+        "quantity": 17
       },
       {
         "productId": 9,
-        "boxSize": 956,
-        "quantity": 88
+        "boxSize": 857,
+        "quantity": 27
       },
       {
-        "productId": 5,
-        "boxSize": 958,
-        "quantity": 78
-      },
+        "productId": 6,
+        "boxSize": 510,
+        "quantity": 38
+      }
+    ]
+  },
+  {
+    "providerId": 8,
+    "warehouseId": 1,
+    "observations": "Incididunt nulla occaecat nostrud cupidatat.",
+    "createdAt": "2020-02-24T00:33:07+00:00",
+    "status": "Atendido",
+    "suppliedProducts": [
       {
         "productId": 11,
-        "boxSize": 129,
+        "boxSize": 674,
+        "quantity": 81
+      },
+      {
+        "productId": 1,
+        "boxSize": 414,
+        "quantity": 40
+      }
+    ]
+  },
+  {
+    "providerId": 12,
+    "warehouseId": 1,
+    "observations": "Nulla incididunt exercitation cillum excepteur.",
+    "createdAt": "2020-02-25T19:37:40+00:00",
+    "status": "Atendido",
+    "suppliedProducts": [
+      {
+        "productId": 5,
+        "boxSize": 773,
+        "quantity": 44
+      },
+      {
+        "productId": 1,
+        "boxSize": 574,
         "quantity": 67
       },
       {
         "productId": 8,
-        "boxSize": 70,
-        "quantity": 53
+        "boxSize": 56,
+        "quantity": 37
       },
       {
+        "productId": 3,
+        "boxSize": 275,
+        "quantity": 95
+      }
+    ]
+  },
+  {
+    "providerId": 17,
+    "warehouseId": 5,
+    "observations": "Qui mollit exercitation esse dolor dolor adipisicing incididunt in.",
+    "createdAt": "2020-02-17T06:07:03+00:00",
+    "status": "Pendiente",
+    "suppliedProducts": [
+      {
+        "productId": 10,
+        "boxSize": 292,
+        "quantity": 18
+      },
+      {
+        "productId": 3,
+        "boxSize": 615,
+        "quantity": 98
+      },
+      {
+        "productId": 10,
+        "boxSize": 509,
+        "quantity": 85
+      },
+      {
+        "productId": 10,
+        "boxSize": 77,
+        "quantity": 55
+      }
+    ]
+  },
+  {
+    "providerId": 1,
+    "warehouseId": 1,
+    "observations": "Ad officia laborum ea duis.",
+    "createdAt": "2020-03-02T14:51:50+00:00",
+    "status": "Atendido",
+    "suppliedProducts": [
+      {
         "productId": 1,
-        "boxSize": 185,
+        "boxSize": 670,
+        "quantity": 77
+      },
+      {
+        "productId": 10,
+        "boxSize": 851,
         "quantity": 68
       },
       {
+        "productId": 4,
+        "boxSize": 74,
+        "quantity": 83
+      }
+    ]
+  },
+  {
+    "providerId": 15,
+    "warehouseId": 6,
+    "observations": "Sint nostrud dolore irure fugiat aliquip fugiat sunt ex.",
+    "createdAt": "2020-02-29T07:41:56+00:00",
+    "status": "Pendiente",
+    "suppliedProducts": [
+      {
+        "productId": 3,
+        "boxSize": 541,
+        "quantity": 97
+      }
+    ]
+  },
+  {
+    "providerId": 10,
+    "warehouseId": 6,
+    "observations": "Id occaecat eu non mollit reprehenderit ut sit eu culpa officia aliquip est do laborum.",
+    "createdAt": "2020-02-06T01:55:31+00:00",
+    "status": "Atendido",
+    "suppliedProducts": [
+      {
+        "productId": 10,
+        "boxSize": 657,
+        "quantity": 71
+      },
+      {
         "productId": 7,
-        "boxSize": 540,
-        "quantity": 66
+        "boxSize": 926,
+        "quantity": 78
+      },
+      {
+        "productId": 10,
+        "boxSize": 249,
+        "quantity": 77
       }
     ]
   },
   {
     "providerId": 16,
     "warehouseId": 7,
-    "observations": "Mollit aliquip cillum eu sunt dolor.",
-    "createdAt": "2020-02-05T17:58:41+00:00",
-    "status": "Atendido",
+    "observations": "Minim elit veniam id ex sit.",
+    "createdAt": "2020-02-12T22:51:01+00:00",
+    "status": "Cancelado",
     "suppliedProducts": [
-      {
-        "productId": 7,
-        "boxSize": 79,
-        "quantity": 92
-      },
-      {
-        "productId": 11,
-        "boxSize": 581,
-        "quantity": 57
-      },
-      {
-        "productId": 11,
-        "boxSize": 138,
-        "quantity": 71
-      },
-      {
-        "productId": 1,
-        "boxSize": 296,
-        "quantity": 3
-      },
-      {
-        "productId": 3,
-        "boxSize": 405,
-        "quantity": 62
-      }
-    ]
-  },
-  {
-    "providerId": 20,
-    "warehouseId": 1,
-    "observations": "Sit Lorem quis aliquip nisi mollit adipisicing Lorem exercitation magna anim id nulla tempor.",
-    "createdAt": "2020-02-24T16:08:14+00:00",
-    "status": "Pendiente",
-    "suppliedProducts": [
-      {
-        "productId": 5,
-        "boxSize": 578,
-        "quantity": 17
-      }
-    ]
-  },
-  {
-    "providerId": 17,
-    "warehouseId": 1,
-    "observations": "Aliqua laboris laboris excepteur sit ullamco pariatur sint excepteur consequat ea in deserunt nostrud minim.",
-    "createdAt": "2020-02-13T07:19:07+00:00",
-    "status": "Pendiente",
-    "suppliedProducts": [
-      {
-        "productId": 2,
-        "boxSize": 931,
-        "quantity": 92
-      },
-      {
-        "productId": 3,
-        "boxSize": 662,
-        "quantity": 51
-      },
-      {
-        "productId": 10,
-        "boxSize": 795,
-        "quantity": 37
-      },
-      {
-        "productId": 10,
-        "boxSize": 787,
-        "quantity": 28
-      },
-      {
-        "productId": 8,
-        "boxSize": 906,
-        "quantity": 86
-      },
-      {
-        "productId": 10,
-        "boxSize": 284,
-        "quantity": 65
-      },
-      {
-        "productId": 2,
-        "boxSize": 389,
-        "quantity": 13
-      },
-      {
-        "productId": 2,
-        "boxSize": 889,
-        "quantity": 42
-      }
-    ]
-  },
-  {
-    "providerId": 13,
-    "warehouseId": 2,
-    "observations": "Proident deserunt anim voluptate enim commodo cillum id adipisicing.",
-    "createdAt": "2020-02-15T17:36:00+00:00",
-    "status": "Pendiente",
-    "suppliedProducts": [
-      {
-        "productId": 7,
-        "boxSize": 302,
-        "quantity": 99
-      },
       {
         "productId": 4,
-        "boxSize": 704,
-        "quantity": 53
+        "boxSize": 648,
+        "quantity": 46
       },
       {
-        "productId": 5,
-        "boxSize": 689,
-        "quantity": 47
+        "productId": 3,
+        "boxSize": 964,
+        "quantity": 81
       }
     ]
   },
   {
     "providerId": 19,
     "warehouseId": 4,
-    "observations": "Minim est velit tempor Lorem ipsum aliqua et cillum aliqua quis magna consequat culpa ipsum.",
-    "createdAt": "2020-02-04T09:27:36+00:00",
-    "status": "Pendiente",
+    "observations": "Dolor laborum incididunt qui voluptate do deserunt duis dolor reprehenderit nulla.",
+    "createdAt": "2020-02-24T20:11:56+00:00",
+    "status": "Cancelado",
     "suppliedProducts": [
       {
-        "productId": 9,
-        "boxSize": 887,
-        "quantity": 88
-      },
-      {
-        "productId": 8,
-        "boxSize": 421,
-        "quantity": 83
-      },
-      {
-        "productId": 11,
-        "boxSize": 236,
-        "quantity": 60
-      },
-      {
-        "productId": 7,
-        "boxSize": 616,
-        "quantity": 30
+        "productId": 10,
+        "boxSize": 79,
+        "quantity": 43
       },
       {
         "productId": 5,
-        "boxSize": 555,
-        "quantity": 71
+        "boxSize": 763,
+        "quantity": 3
+      }
+    ]
+  },
+  {
+    "providerId": 11,
+    "warehouseId": 3,
+    "observations": "Quis sit commodo minim anim nisi consectetur dolore ullamco ex deserunt eu laboris aliqua cillum.",
+    "createdAt": "2020-02-25T05:38:48+00:00",
+    "status": "Pendiente",
+    "suppliedProducts": [
+      {
+        "productId": 5,
+        "boxSize": 706,
+        "quantity": 53
       },
       {
-        "productId": 6,
-        "boxSize": 56,
-        "quantity": 13
+        "productId": 8,
+        "boxSize": 993,
+        "quantity": 76
       },
+      {
+        "productId": 3,
+        "boxSize": 792,
+        "quantity": 58
+      }
+    ]
+  },
+  {
+    "providerId": 16,
+    "warehouseId": 5,
+    "observations": "Adipisicing enim ut veniam excepteur labore aliquip.",
+    "createdAt": "2020-02-13T05:22:31+00:00",
+    "status": "Pendiente",
+    "suppliedProducts": [
       {
         "productId": 4,
-        "boxSize": 323,
-        "quantity": 59
+        "boxSize": 703,
+        "quantity": 50
+      }
+    ]
+  },
+  {
+    "providerId": 4,
+    "warehouseId": 7,
+    "observations": "Eiusmod deserunt nulla fugiat aliqua velit aliqua.",
+    "createdAt": "2020-03-01T01:52:03+00:00",
+    "status": "Atendido",
+    "suppliedProducts": [
+      {
+        "productId": 10,
+        "boxSize": 165,
+        "quantity": 92
       },
       {
         "productId": 10,
-        "boxSize": 42,
-        "quantity": 46
+        "boxSize": 364,
+        "quantity": 4
+      }
+    ]
+  },
+  {
+    "providerId": 7,
+    "warehouseId": 2,
+    "observations": "Nisi nostrud nostrud eiusmod sint voluptate non amet.",
+    "createdAt": "2020-02-25T21:39:04+00:00",
+    "status": "Cancelado",
+    "suppliedProducts": [
+      {
+        "productId": 5,
+        "boxSize": 655,
+        "quantity": 87
       },
       {
-        "productId": 7,
-        "boxSize": 258,
-        "quantity": 50
+        "productId": 9,
+        "boxSize": 287,
+        "quantity": 76
+      }
+    ]
+  },
+  {
+    "providerId": 11,
+    "warehouseId": 2,
+    "observations": "Mollit quis anim ad sit excepteur pariatur adipisicing sit nostrud exercitation consequat fugiat.",
+    "createdAt": "2020-02-14T11:43:51+00:00",
+    "status": "Cancelado",
+    "suppliedProducts": [
+      {
+        "productId": 11,
+        "boxSize": 885,
+        "quantity": 23
       }
     ]
   }

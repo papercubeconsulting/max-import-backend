@@ -51,6 +51,9 @@ const Post = {
     warehouseId: Joi.number()
       .integer()
       .required(),
+    code: Joi.string()
+      .allow('')
+      .default(''),
     observations: Joi.string()
       .allow('')
       .default(''),
@@ -83,6 +86,7 @@ const Put = {
       .required(),
   },
   body: {
+    code: Joi.string().allow(''),
     providerId: Joi.number().integer(),
     warehouseId: Joi.number().integer(),
     observations: Joi.string().allow(''),

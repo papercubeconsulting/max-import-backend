@@ -927,6 +927,8 @@ components:
                 description: Id del almacen destino
               observations:
                 type: string
+              code:
+                type: string
               suppliedProducts:
                 type: array
                 items:
@@ -949,6 +951,7 @@ components:
               providerId: 1
               warehouseId: 1
               observations: "Ninguna"
+              code: "20200101-1"
               suppliedProducts:
                 [
                   { productId: 1, boxSize: 20, quantity: 100 },
@@ -986,6 +989,9 @@ components:
                 type: integer
                 format: int32
                 description: Id del almacen destino | Opcional
+              code:
+                type: string
+                description: Opcional
               observations:
                 type: string
                 description: Opcional
@@ -1011,6 +1017,7 @@ components:
               providerId: 1
               warehouseId: 1
               observations: "Ninguna"
+              code: "20200101-1"
               suppliedProducts:
                 [
                   { productId: 1, boxSize: 20, quantity: 100 },
