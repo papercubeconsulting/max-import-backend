@@ -3,10 +3,11 @@ const _ = require('lodash');
 const { setResponse } = require('../../utils');
 
 const Product = require('./productModel');
+const Model = require('../model/modelModel');
 
-const readProduct = async reqBody => {
-  const product = await Product.findByPk(reqBody.id);
-  if (!product) return setResponse(400, 'Product not found.');
+const readProduct = async reqParams => {
+  const product = await Product.findByPk(reqParams.id);
+  if (!product) return setResponse(404, 'Product not found.');
 
   return setResponse(200, 'Product found.', product);
 };
@@ -18,8 +19,10 @@ const listProducts = async reqQuery => {
 };
 
 const createProduct = async reqBody => {
+  const model = await Model.findByPk(reqBody.modelId);
+  if (!model) return setResponse(404, 'Model not found.');
   let product = await Product.findOne({
-    where: _.pick(reqBody, ['familyId', 'subfamilyId', 'elementId', 'modelId']),
+    where: _.pick(reqBody, ['modelId']),
   });
   if (product) return setResponse(400, 'Product already exists.');
 

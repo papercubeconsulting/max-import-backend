@@ -1,7 +1,8 @@
+/* eslint-disable import/no-dynamic-require */
 /* eslint-disable no-param-reassign */
 const Sequelize = require('sequelize');
 
-const sequelize = require('../../../startup/db');
+const sequelize = require(`${process.cwd()}/startup/db`);
 
 const Family = require('../family/familyModel');
 const Subfamily = require('../subfamily/subfamilyModel');
@@ -12,6 +13,10 @@ const Product = sequelize.define(
   'product',
   {
     // attributes
+    id: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+    },
     familyName: {
       type: Sequelize.STRING,
     },
@@ -43,6 +48,10 @@ const Product = sequelize.define(
     // options
   },
 );
+
+Product.beforeCreate('SetId', async (product, options) => {
+  product.id = product.modelId;
+});
 
 Product.beforeSave('SetCategories', async (product, options) => {
   const categories = await Model.findOne({
@@ -85,6 +94,6 @@ Element.hasMany(Product);
 Product.belongsTo(Element);
 
 Model.hasMany(Product);
-Product.belongsTo(Model);
+Product.belongsTo(Model, { foreignKey: 'id' });
 
 module.exports = Product;

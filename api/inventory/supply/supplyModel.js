@@ -1,11 +1,16 @@
+/* eslint-disable import/no-dynamic-require */
 /* eslint-disable no-param-reassign */
 const Sequelize = require('sequelize');
 
-const sequelize = require('../../../startup/db');
+const sequelize = require(`${process.cwd()}/startup/db`);
 
 const Product = require('../product/productModel');
 const Provider = require('../provider/providerModel');
 const Warehouse = require('../warehouse/warehouseModel');
+
+const { status } = require('../../utils/constants');
+
+const statuses = [status.PENDING, status.CANCELLED, status.ATTENDED];
 
 const Supply = sequelize.define(
   'supply',
@@ -13,6 +18,7 @@ const Supply = sequelize.define(
     // attributes
     code: {
       type: Sequelize.STRING,
+      defaultValue: '',
     },
     attentionDate: {
       type: Sequelize.DATE,
@@ -21,12 +27,13 @@ const Supply = sequelize.define(
       type: Sequelize.TEXT,
     },
     status: {
-      type: Sequelize.ENUM(['Pendiente', 'Atendido', 'Cancelado']),
-      defaultValue: 'Pendiente',
+      type: Sequelize.ENUM(statuses),
+      defaultValue: status.PENDING,
     },
   },
   {
     // options
+    paranoid: true,
   },
 );
 
@@ -50,8 +57,8 @@ const SuppliedProduct = sequelize.define(
       type: Sequelize.INTEGER,
     },
     status: {
-      type: Sequelize.ENUM(['Pendiente', 'Atendido', 'Cancelado']),
-      defaultValue: 'Pendiente',
+      type: Sequelize.ENUM(statuses),
+      defaultValue: status.PENDING,
     },
   },
   {
@@ -71,10 +78,10 @@ Provider.hasMany(Supply);
 Supply.belongsTo(Warehouse);
 Warehouse.hasMany(Supply);
 
-SuppliedProduct.belongsTo(Supply);
-Supply.hasMany(SuppliedProduct);
+SuppliedProduct.Supply = SuppliedProduct.belongsTo(Supply);
+Supply.SuppliedProducts = Supply.hasMany(SuppliedProduct);
 
-SuppliedProduct.belongsTo(Product);
+SuppliedProduct.Product = SuppliedProduct.belongsTo(Product);
 Product.hasMany(SuppliedProduct);
 
 module.exports = { Supply, SuppliedProduct };

@@ -5,9 +5,9 @@ const { setResponse } = require('../../utils');
 const Element = require('./elementModel');
 const Subfamily = require('../subfamily/subfamilyModel');
 
-const readElement = async reqBody => {
-  const element = await Element.findByPk(reqBody.id);
-  if (!element) return setResponse(400, 'Element not found.');
+const readElement = async reqParams => {
+  const element = await Element.findByPk(reqParams.id);
+  if (!element) return setResponse(404, 'Element not found.');
 
   return setResponse(200, 'Element found.', element);
 };
