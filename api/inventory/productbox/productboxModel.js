@@ -3,7 +3,11 @@ const Sequelize = require('sequelize');
 
 const sequelize = require(`${process.cwd()}/startup/db`);
 
-const Provider = sequelize.define(
+const Product = require('../product/productModel');
+const Warehouse = require('../warehouse/warehouseModel');
+const { Supply, SuppliedProduct } = require('../supply/supplyModel');
+
+const ProductBox = sequelize.define(
   'provider',
   {
     // attributes
@@ -30,4 +34,16 @@ const Provider = sequelize.define(
   },
 );
 
-module.exports = Provider;
+ProductBox.belogsTo(Product);
+Product.hasMany(ProductBox);
+
+ProductBox.belogsTo(Warehouse);
+Warehouse.hasMany(ProductBox);
+
+ProductBox.belogsTo(Supply);
+Supply.hasMany(ProductBox);
+
+ProductBox.belogsTo(SuppliedProduct);
+SuppliedProduct.hasMany(ProductBox);
+
+module.exports = ProductBox;
