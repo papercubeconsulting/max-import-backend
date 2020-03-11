@@ -4,6 +4,7 @@ const { Supply, SuppliedProduct } = require('../supplyModel');
 const Product = require('../../product/productModel');
 const Provider = require('../../provider/providerModel');
 const Warehouse = require('../../warehouse/warehouseModel');
+const ProductBox = require('../../productbox/productboxModel');
 
 const readSupply = async reqParams => {
   const supply = await Supply.findByPk(reqParams.id, {
@@ -12,7 +13,13 @@ const readSupply = async reqParams => {
       Provider,
       {
         model: SuppliedProduct,
-        include: Product,
+        include: [
+          Product,
+          {
+            model: ProductBox,
+            attributes: ['indexFromSupliedProduct', 'trackingCode'],
+          },
+        ],
       },
     ],
   });

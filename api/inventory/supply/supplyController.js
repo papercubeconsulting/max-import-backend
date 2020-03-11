@@ -46,6 +46,14 @@ const putSupplyStatus = async (req, res) => {
 };
 
 const updateAttendSuppliedProduct = async (req, res) => {
+  const validate = await Services.validateAttendSuppliedProduct(
+    req.body,
+    req.params,
+  );
+
+  if (validate.status !== 200)
+    return res.status(validate.status).send(validate);
+
   const suppliedProduct = await Services.updateAttendSuppliedProduct(
     req.body,
     req.params,

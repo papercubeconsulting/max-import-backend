@@ -53,6 +53,10 @@ const SuppliedProduct = sequelize.define(
       type: Sequelize.INTEGER,
       defaultValue: 0,
     },
+    maxIndexSupplied: {
+      type: Sequelize.INTEGER,
+      defaultValue: 0,
+    },
     boxSize: {
       type: Sequelize.INTEGER,
     },

@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable object-shorthand */
 /* eslint-disable import/no-dynamic-require */
 const Sequelize = require('sequelize');
@@ -35,6 +36,12 @@ const ProductBox = sequelize.define(
   },
   {
     // options
+    indexes: [
+      {
+        unique: true,
+        fields: ['suppliedProductId', 'indexFromSupliedProduct'],
+      },
+    ],
   },
 );
 

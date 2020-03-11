@@ -15,14 +15,10 @@
       "error",
       {
         "singleQuote": true,
-        "spaceBeforeFunctionParen": true
+        "spaceBeforeFunctionParen": false
       }
     ],
     "no-console": "warn",
-    "func-names": "off",
-    "space-before-function-paren": [
-      "error",
-      "always"
-    ]
+    "func-names": "off"
   }
 }

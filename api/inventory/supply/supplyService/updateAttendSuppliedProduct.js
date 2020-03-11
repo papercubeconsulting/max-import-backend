@@ -1,17 +1,36 @@
+/* eslint-disable import/no-dynamic-require */
 const winston = require('winston');
-const { Op } = require('sequelize');
 
 const sequelize = require(`${process.cwd()}/startup/db`);
 
+const { status } = require('../../../utils/constants');
 const { setResponse } = require('../../../utils');
 
 const { Supply, SuppliedProduct } = require('../supplyModel');
 const ProductBox = require('../../productbox/productboxModel');
 
-// TODO: Se debe validar que el pedido es correcto
-// TODO: 1. El estado del supply es pendiente
-// TODO: El id del supplied product debe pertenecer al id del supply
-// TODO: Los indices deben ser menores o iguales a la cantidad de cajas
+const validateAttendSuppliedProduct = async (reqBody, reqParams) => {
+  const suppliedProduct = await SuppliedProduct.findByPk(
+    reqParams.idSuppliedProduct,
+    {
+      include: [Supply],
+    },
+  );
+
+  // * El id del supplied product debe pertenecer al id del supply
+  if (!suppliedProduct || suppliedProduct.supplyId !== reqParams.id)
+    return setResponse(404, 'Supplied Product or Supply did not found.');
+
+  // * El estado del supply es pendiente
+  if (suppliedProduct.supply.status !== status.PENDING)
+    return setResponse(400, 'Supply already cancelled or completed.');
+
+  // *Los indices deben ser menores o iguales a la cantidad de cajas
+  if (Math.max(...reqBody.boxes) > suppliedProduct.quantity)
+    return setResponse(400, 'Box index out of limit.');
+
+  return setResponse(200, 'Supplied Product attended.');
+};
 
 const updateAttendSuppliedProduct = async (reqBody, reqParams) => {
   const t = await sequelize.transaction();
@@ -19,17 +38,12 @@ const updateAttendSuppliedProduct = async (reqBody, reqParams) => {
     const suppliedProduct = await SuppliedProduct.findByPk(
       reqParams.idSuppliedProduct,
       {
-        include: [
-          ProductBox,
-          {
-            model: Supply,
-          },
-        ],
+        include: [Supply],
         transaction: t,
       },
     );
 
-    const productBoxes = await ProductBox.findAll({
+    const existingProductBoxes = await ProductBox.findAll({
       where: { suppliedProductId: reqParams.idSuppliedProduct },
       attributes: ['id', 'indexFromSupliedProduct'],
       transaction: t,
@@ -39,7 +53,7 @@ const updateAttendSuppliedProduct = async (reqBody, reqParams) => {
       reqBody.boxes
         .filter(
           index =>
-            !productBoxes.some(
+            !existingProductBoxes.some(
               productBox => productBox.indexFromSupliedProduct === index,
             ),
         )
@@ -54,6 +68,17 @@ const updateAttendSuppliedProduct = async (reqBody, reqParams) => {
         })),
       { individualHooks: true, transaction: t },
     );
+
+    const allProducBoxes = existingProductBoxes.concat(newProductBoxes);
+
+    suppliedProduct.suppliedQuantity = allProducBoxes.length;
+    suppliedProduct.maxIndexSupplied = Math.max(
+      ...allProducBoxes.map(
+        ({ indexFromSupliedProduct }) => indexFromSupliedProduct,
+      ),
+    );
+    await suppliedProduct.save({ transaction: t });
+
     await t.commit();
     return setResponse(200, 'Supplied Product attended.', newProductBoxes);
   } catch (error) {
@@ -66,4 +91,4 @@ const updateAttendSuppliedProduct = async (reqBody, reqParams) => {
   }
 };
 
-module.exports = updateAttendSuppliedProduct;
+module.exports = { validateAttendSuppliedProduct, updateAttendSuppliedProduct };
