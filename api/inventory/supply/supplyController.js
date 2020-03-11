@@ -33,15 +33,27 @@ const putSupply = async (req, res) => {
   return res.status(supply.status).send(supply);
 };
 
+const deleteSupply = async (req, res) => {
+  const supply = await Services.deleteSupply(req.params);
+
+  return res.status(supply.status).send(supply);
+};
+
 const putSupplyStatus = async (req, res) => {
   const supply = await Services.updateSupplyStatus(req.body, req.params);
 
   return res.status(supply.status).send(supply);
 };
 
-const deleteSupply = async (req, res) => {
-  const supply = await Services.deleteSupply(req.params);
+const updateAttendSuppliedProduct = async (req, res) => {
+  const suppliedProduct = await Services.updateAttendSuppliedProduct(
+    req.body,
+    req.params,
+  );
 
+  if (suppliedProduct.status !== 200)
+    return res.status(suppliedProduct.status).send(suppliedProduct);
+  const supply = await Services.readSupply(req.params);
   return res.status(supply.status).send(supply);
 };
 
@@ -50,6 +62,8 @@ module.exports = {
   listSupplies,
   postSupply,
   putSupply,
-  putSupplyStatus,
   deleteSupply,
+  // * Others
+  putSupplyStatus,
+  updateAttendSuppliedProduct,
 };

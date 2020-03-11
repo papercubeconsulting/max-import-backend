@@ -72,16 +72,16 @@ const SuppliedProduct = sequelize.define(
   },
 );
 
-Supply.belongsTo(Provider);
-Provider.hasMany(Supply);
-
-Supply.belongsTo(Warehouse);
 Warehouse.hasMany(Supply);
+Supply.belongsTo(Warehouse);
 
-SuppliedProduct.Supply = SuppliedProduct.belongsTo(Supply);
 Supply.SuppliedProducts = Supply.hasMany(SuppliedProduct);
+SuppliedProduct.Supply = SuppliedProduct.belongsTo(Supply);
 
-SuppliedProduct.Product = SuppliedProduct.belongsTo(Product);
 Product.hasMany(SuppliedProduct);
+SuppliedProduct.Product = SuppliedProduct.belongsTo(Product);
+
+Provider.hasMany(Supply);
+Supply.belongsTo(Provider);
 
 module.exports = { Supply, SuppliedProduct };

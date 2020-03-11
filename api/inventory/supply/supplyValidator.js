@@ -131,11 +131,34 @@ const Delete = {
   },
 };
 
+const PostAttendSuppliedProduct = {
+  params: {
+    id: Joi.number()
+      .integer()
+      .required(),
+    idSuppliedProduct: Joi.number()
+      .integer()
+      .required(),
+  },
+  body: {
+    boxes: Joi.array()
+      .items(
+        Joi.number()
+          .integer()
+          .min(1),
+      )
+      .min(1)
+      .required(),
+  },
+};
+
 module.exports = {
   List,
   Get,
   Post,
   Put,
-  PutStatus,
   Delete,
+  // * Other
+  PutStatus,
+  PostAttendSuppliedProduct,
 };

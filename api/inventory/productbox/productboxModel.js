@@ -1,3 +1,4 @@
+/* eslint-disable object-shorthand */
 /* eslint-disable import/no-dynamic-require */
 const Sequelize = require('sequelize');
 
@@ -8,11 +9,14 @@ const Warehouse = require('../warehouse/warehouseModel');
 const { Supply, SuppliedProduct } = require('../supply/supplyModel');
 
 const ProductBox = sequelize.define(
-  'provider',
+  'productBox',
   {
     // attributes
-    qrCode: {
+    indexFromSupliedProduct: {
       type: Sequelize.INTEGER,
+    },
+    trackingCode: {
+      type: Sequelize.STRING,
     },
     boxSize: {
       type: Sequelize.INTEGER,
@@ -34,16 +38,25 @@ const ProductBox = sequelize.define(
   },
 );
 
-ProductBox.belogsTo(Product);
+ProductBox.prototype.getTrackingCode = function() {
+  return `${this.id}-${this.suppliedProductId}-${this.productId}-${this.indexFromSupliedProduct}`;
+};
+
+ProductBox.afterCreate('generateCode', async (productBox, options) => {
+  productBox.trackingCode = productBox.getTrackingCode();
+  await productBox.save({ transaction: options.transaction });
+});
+
+ProductBox.belongsTo(Product);
 Product.hasMany(ProductBox);
 
-ProductBox.belogsTo(Warehouse);
+ProductBox.belongsTo(Warehouse);
 Warehouse.hasMany(ProductBox);
 
-ProductBox.belogsTo(Supply);
+ProductBox.belongsTo(Supply);
 Supply.hasMany(ProductBox);
 
-ProductBox.belogsTo(SuppliedProduct);
+ProductBox.belongsTo(SuppliedProduct);
 SuppliedProduct.hasMany(ProductBox);
 
 module.exports = ProductBox;

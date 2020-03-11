@@ -17,4 +17,10 @@ router.put(
 router.put('/:id', celebrate(Validator.Put), Controller.putSupply);
 // router.delete('/:id', celebrate(Validator.Delete), Controller.deleteSupply);
 
+router.post(
+  '/:id/attend/:idSuppliedProduct',
+  celebrate(Validator.PostAttendSuppliedProduct),
+  Controller.updateAttendSuppliedProduct,
+);
+
 module.exports = router;

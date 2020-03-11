@@ -1,6 +1,11 @@
 {
-  "extends": ["airbnb-base", "plugin:prettier/recommended"],
-  "plugins": ["prettier"],
+  "extends": [
+    "airbnb-base",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": [
+    "prettier"
+  ],
   "env": {
     "es6": true,
     "node": true
@@ -8,10 +13,16 @@
   "rules": {
     "prettier/prettier": [
       "error",
-      { "singleQuote": true, "spaceBeforeFunctionParen": true }
+      {
+        "singleQuote": true,
+        "spaceBeforeFunctionParen": true
+      }
     ],
     "no-console": "warn",
     "func-names": "off",
-    "space-before-function-paren": ["error", "always"]
+    "space-before-function-paren": [
+      "error",
+      "always"
+    ]
   }
 }
