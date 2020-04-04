@@ -31,6 +31,8 @@ const updateSupplyStatus = async (reqBody, reqParams) => {
     return setResponse(400, 'Some supplied products are not fully attended.');
 
   supply.status = reqBody.status;
+  if (reqBody.status === status.ATTENDED) supply.attentionDate = new Date();
+  if (reqBody.status === status.CANCELLED) supply.cancellationDate = new Date();
   await supply.save();
 
   return setResponse(200, 'Supply status updated.');

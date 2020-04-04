@@ -23,6 +23,9 @@ const Supply = sequelize.define(
     attentionDate: {
       type: Sequelize.DATE,
     },
+    cancellationDate: {
+      type: Sequelize.DATE,
+    },
     observations: {
       type: Sequelize.TEXT,
     },
