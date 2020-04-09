@@ -1,0 +1,68 @@
+paths:
+  '/subfamilies':
+    post:
+      tags:
+        - subfamilies
+      summary: Crear una nueva subfamilia
+      operationId: addSubfamily
+      responses:
+        '201':
+          description: Subfamily created
+        '400':
+          description: Bad request
+      requestBody:
+        $ref: '#/components/requestBodies/Subfamily'
+    get:
+      tags:
+        - subfamilies
+      summary: Listar todas las subfamilias. Opcionalmente se puede filtrar por familia
+      operationId: listSubfamily
+      parameters:
+        - $ref: '#/components/parameters/familyId'
+      responses:
+        '200':
+          description: Subfamilies found
+  '/subfamilies/{id}':
+    get:
+      tags:
+        - subfamilies
+      summary: Encontrar subfamilia por Id
+      operationId: getSubfamilyById
+      parameters:
+        - $ref: '#/components/parameters/paramId'
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Resource not found
+components:
+  requestBodies:
+    Subfamily:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              familyId:
+                type: integer
+            required:
+              - name
+              - familyId
+            example:
+              name: 'Nueva Subfamilia'
+              familyId: 1
+      required: true
+  parameters:
+    familyId:
+      name: familyId
+      in: query
+      description: Id de la categoria "familia"
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1

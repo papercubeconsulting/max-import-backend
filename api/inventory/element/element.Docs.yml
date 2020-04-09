@@ -1,0 +1,68 @@
+paths:
+  '/elements':
+    post:
+      tags:
+        - elements
+      summary: Crear un nuevo elemento
+      operationId: addElement
+      responses:
+        '201':
+          description: Element created
+        '400':
+          description: Bad request
+      requestBody:
+        $ref: '#/components/requestBodies/Element'
+    get:
+      tags:
+        - elements
+      summary: Listar todos los elementos. Opcionalmente se puede filtrar por subfamilia
+      operationId: listElements
+      parameters:
+        - $ref: '#/components/parameters/subfamilyId'
+      responses:
+        '200':
+          description: Elements found
+  '/elements/{id}':
+    get:
+      tags:
+        - elements
+      summary: Encontrar elemento por Id
+      operationId: getElementById
+      parameters:
+        - $ref: '#/components/parameters/paramId'
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Resource not found
+components:
+  requestBodies:
+    Element:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              subfamilyId:
+                type: integer
+            required:
+              - name
+              - subfamilyId
+            example:
+              name: 'Nuevo Elemento'
+              subfamilyId: 1
+      required: true
+  parameters:
+    subfamilyId:
+      name: subfamilyId
+      in: query
+      description: Id de la categoria "subfamilia"
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1

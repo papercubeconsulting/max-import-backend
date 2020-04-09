@@ -1,5 +1,5 @@
 const { setResponse } = require('../../../utils');
-const { status } = require('../../../utils/constants');
+const { supplyStatus: status } = require('../../../utils/constants');
 
 const { Supply, SuppliedProduct } = require('../supplyModel');
 

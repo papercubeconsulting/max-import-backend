@@ -1,7 +1,7 @@
 const _ = require('lodash');
 
 const { setResponse } = require('../../../utils');
-const { status } = require('../../../utils/constants');
+const { supplyStatus: status } = require('../../../utils/constants');
 
 const { Supply, SuppliedProduct } = require('../supplyModel');
 const Product = require('../../product/productModel');

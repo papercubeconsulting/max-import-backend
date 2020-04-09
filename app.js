@@ -6,10 +6,10 @@ const app = express();
 
 require('./startup/config')();
 require('./startup/logging')();
-require('./startup/routes')(app);
+require('./startup/middleware')(app);
 
 if (process.env.NODE_ENV === 'production') {
- require('./startup/prod')(app);
+  require('./startup/prod')(app);
 }
 
 app.use(express.json());

@@ -3,6 +3,8 @@ const Sequelize = require('sequelize');
 
 const sequelize = require(`${process.cwd()}/startup/db`);
 
+const { warehouseTypes: types } = require('../../utils/constants');
+
 const Warehouse = sequelize.define(
   'warehouse',
   {
@@ -15,6 +17,10 @@ const Warehouse = sequelize.define(
     address: {
       type: Sequelize.STRING,
       allowNull: false,
+    },
+    type: {
+      type: Sequelize.ENUM([types.WAREHOUSE, types.STORE, types.DAMAGED]),
+      defaultValue: types.WAREHOUSE,
     },
   },
   {

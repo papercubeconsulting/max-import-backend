@@ -3,7 +3,7 @@ const winston = require('winston');
 
 const sequelize = require(`${process.cwd()}/startup/db`);
 
-const { status } = require('../../../utils/constants');
+const { supplyStatus: status } = require('../../../utils/constants');
 const { setResponse } = require('../../../utils');
 
 const { Supply, SuppliedProduct } = require('../supplyModel');

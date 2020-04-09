@@ -1,7 +1,7 @@
 const { Joi } = require('celebrate');
 const moment = require('moment');
 
-const { status } = require('../../utils/constants');
+const { supplyStatus: status } = require('../../utils/constants');
 
 const List = {
   query: {

@@ -8,7 +8,7 @@ const Product = require('../product/productModel');
 const Provider = require('../provider/providerModel');
 const Warehouse = require('../warehouse/warehouseModel');
 
-const { status } = require('../../utils/constants');
+const { supplyStatus: status } = require('../../utils/constants');
 
 const statuses = [status.PENDING, status.CANCELLED, status.ATTENDED];
 

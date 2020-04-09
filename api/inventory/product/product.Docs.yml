@@ -1,0 +1,115 @@
+paths:
+  "/products":
+    post:
+      tags:
+        - products
+      summary: Crear un nuevo producto
+      description: |
+        Se crea un nuevo producto teniendo como parámetros las categorias 
+        de familia, subfamilia, elemento y modelo.
+
+        El servicio puede crear automaticamente estas categorias en caso no existan
+        pero debe tenerse en cuenta las siguientes condiciones.
+        - Para indicar que una categoria ya existe debe proporcionarse su Id. En caso no se 
+        proporcione el Id, se considera que la categoría es nueva y se verificará que el nombre
+        no exista en la DB.
+        - En caso se proporcione el Id, el nombre enviado debe coincidir con el nombre de la 
+        categoría existente.
+        - Debe respetarse la jerarquía al momento de crear las categorías. El orden de creación
+        es de arriba hacia abajo.
+      operationId: addProduct
+      responses:
+        "201":
+          description: Product created
+        "400":
+          description: Bad request
+      requestBody:
+        $ref: "#/components/requestBodies/Product"
+    get:
+      tags:
+        - products
+      summary: Listar todos los productos. Existen filtros opcionales # TODO
+      operationId: listProducts
+      responses:
+        "200":
+          description: Products found
+  "/products/{id}":
+    get:
+      tags:
+        - products
+      summary: Encontrar producto por Id
+      operationId: getProductById
+      parameters:
+        - $ref: "#/components/parameters/paramId"
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Resource not found
+components:
+  requestBodies:
+    Product:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              familyId:
+                type: string
+                description: Id de la familia al que pertenece. Opcional para indicar que la familia existe.
+              subfamilyId:
+                type: string
+                description: Id de la subfamilia al que pertenece. Opcional para indicar que la subfamilia existe.
+              elementId:
+                type: string
+                description: Id del elemento al que pertenece. Opcional para indicar que el elemento existe.
+              modelId:
+                type: string
+                description: Id del modelo al que pertenece. Opcional para indicar que el modelo existe.
+              familyName:
+                type: string
+                description: Nombre de la familia al que pertenece.
+              subfamilyName:
+                type: string
+                description: Nombre de la subfamilia al que pertenece.
+              elementName:
+                type: string
+                description: Nombre del elemento al que pertenece.
+              modelName:
+                type: string
+                description: Nombre del modelo al que pertenece.
+              compatibility:
+                type: string
+                description: Marcas con los que es compatible el producto
+              suggestedPrice:
+                type: integer
+                format: int32
+                description: Precio sugerido. El valor debe ser entregado en centimos
+            required:
+              - familyName
+              - subfamilyName
+              - elementName
+              - modelName
+              - compatibility
+              - suggestedPrice
+          examples:
+            Todo Nuevo:
+              value:
+                familyName: "Familia 1"
+                subfamilyName: "Subfamilia 1"
+                elementName: "Elemento 1"
+                modelName: "Modelo 1"
+                compatibility: "Compatible con todos"
+                suggestedPrice: 10000
+            Familia Existente:
+              value:
+                familyId: 1
+                familyName: "Arrancador"
+                subfamilyName: "Subfamilia 1"
+                elementName: "Elemento 1"
+                modelName: "Modelo 1"
+                compatibility: "Compatible con todos"
+                suggestedPrice: 10000
+      required: true

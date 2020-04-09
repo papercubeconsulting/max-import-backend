@@ -1,0 +1,61 @@
+tags:
+  - name: products
+    description: Productos del inventario
+  - name: supplies
+    description: Abastecimiento - Registro de ingreso de productos
+  - name: warehouses
+    description: Almacenes donde se guardan los productos
+  - name: providers
+    description: Proveedores de productos
+  - name: families
+    description: Familia a la que pertenece un producto
+  - name: subfamilies
+    description: Subfamilia a la que pertenece un producto
+  - name: elements
+    description: Elemento al que pertenece un producto
+  - name: models
+    description: Modelo al que pertenece un producto
+components:
+  parameters:
+    paramId:
+      name: id
+      in: path
+      description: Id del recurso requerido.
+      required: true
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        default: 1
+    fromDate:
+      name: from
+      in: query
+      description: Fecha inicial de la consulta "YYYY-MM-DD". El valor por defecto es 1 semana antes del dia actual
+      required: false
+      schema:
+        type: string
+        format: date
+    toDate:
+      name: to
+      in: query
+      description: Fecha final de la consulta "YYYY-MM-DD". El valor por defecto es el dia actual
+      required: false
+      schema:
+        type: string
+        format: date
+    pagePagination:
+      name: page
+      in: query
+      description: Numero de pagina a consultar. Indexado en 1
+      required: false
+      schema:
+        type: integer
+        format: int32
+    pageSizePagination:
+      name: pageSize
+      in: query
+      description: Cantidad de items por pagina
+      required: false
+      schema:
+        type: integer
+        format: int32

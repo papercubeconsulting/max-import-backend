@@ -1,0 +1,68 @@
+paths:
+  '/models':
+    post:
+      tags:
+        - models
+      summary: Crear un nuevo modelo
+      operationId: addModel
+      responses:
+        '201':
+          description: Model created
+        '400':
+          description: Bad request
+      requestBody:
+        $ref: '#/components/requestBodies/Model'
+    get:
+      tags:
+        - models
+      summary: Listar todos los modelos. Opcionalmente se puede filtrar por elemento
+      operationId: listModels
+      parameters:
+        - $ref: '#/components/parameters/elementId'
+      responses:
+        '200':
+          description: Models found
+  '/models/{id}':
+    get:
+      tags:
+        - models
+      summary: Encontrar modelo por Id
+      operationId: getModelById
+      parameters:
+        - $ref: '#/components/parameters/paramId'
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Resource not found
+components:
+  requestBodies:
+    Model:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              elementId:
+                type: integer
+            required:
+              - name
+              - elementId
+            example:
+              name: 'Nuevo Modelo'
+              elementId: 1
+      required: true
+  parameters:
+    elementId:
+      name: elementId
+      in: query
+      description: Id de la categoria "elemento"
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
