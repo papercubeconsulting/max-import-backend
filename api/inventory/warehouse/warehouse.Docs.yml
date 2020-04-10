@@ -1,41 +1,52 @@
 paths:
-  '/warehouses':
+  "/warehouses":
     post:
       tags:
         - warehouses
       summary: Crear un nuevo almacen
       operationId: addWarehouse
       responses:
-        '201':
+        "201":
           description: Warehouse created
-        '400':
+        "400":
           description: Bad request
       requestBody:
-        $ref: '#/components/requestBodies/Warehouse'
+        $ref: "#/components/requestBodies/Warehouse"
     get:
       tags:
         - warehouses
       summary: Listar todos los almacenes
       operationId: listWarehouses
+      parameters:
+        - $ref: "#/components/parameters/warehouseType"
       responses:
-        '200':
+        "200":
           description: Warehouses found
-  '/warehouses/{id}':
+  "/warehouses/{id}":
     get:
       tags:
         - warehouses
       summary: Encontrar almacen por Id
       operationId: getWarehouseById
       parameters:
-        - $ref: '#/components/parameters/paramId'
+        - $ref: "#/components/parameters/paramId"
       responses:
-        '200':
+        "200":
           description: successful operation
-        '400':
+        "400":
           description: Invalid ID supplied
-        '404':
+        "404":
           description: Resource not found
 components:
+  parameters:
+    warehouseType:
+      name: type
+      in: query
+      description: Tipo de almacen
+      required: false
+      schema:
+        type: string
+        enum: ["Almacén", "Tienda", "Averiado"]
   requestBodies:
     Warehouse:
       content:
@@ -48,8 +59,8 @@ components:
               address:
                 type: string
             example:
-              name: 'Nuevo almacen'
-              address: 'Nueva direccion'
+              name: "Nuevo almacen"
+              address: "Nueva direccion"
             required:
               - name
               - address

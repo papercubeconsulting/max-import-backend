@@ -10,8 +10,8 @@ const readWarehouse = async reqParams => {
 };
 
 const listWarehouses = async reqQuery => {
-  const warehouses = await Warehouse.findAll({});
-
+  const warehouses = await Warehouse.findAll({ where: reqQuery });
+  console.log(reqQuery);
   return setResponse(200, 'Warehouses found.', warehouses);
 };
 

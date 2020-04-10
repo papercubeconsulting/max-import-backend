@@ -89,8 +89,7 @@ Product.beforeCreate('SetId', async (product, options) => {
 
 Product.prototype.aggregateStock = function() {
   const that = this.get();
-  that.stockByWarehouseType = [];
-
+  that.totalStock = 0;
   that.stockByWarehouse = Object.values(
     that.productBoxes.reduce(
       (accumulator, currentValue, currentIndex, array) => {
@@ -102,6 +101,7 @@ Product.prototype.aggregateStock = function() {
             stock: 0,
           };
         accumulator[key].stock += currentValue.stock;
+        that.totalStock += currentValue.stock;
         return accumulator;
       },
       {},

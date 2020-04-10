@@ -3,7 +3,7 @@ const { Joi } = require('celebrate');
 const List = {
   query: {
     stock: Joi.string()
-      .valid('yes', 'no', 'all')
+      .valid('yes', 'all')
       .default('all'),
     code: Joi.string(),
     familyId: Joi.number().integer(),

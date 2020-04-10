@@ -28,7 +28,22 @@ paths:
     get:
       tags:
         - products
-      summary: Listar todos los productos. Existen filtros opcionales # TODO
+      summary: Listado de productos del inventario
+      description: |
+        Listar todos los productos del inventario. Existen filtros opcionales:
+        - stock: Toma los valores 'yes': productos con stock disponible o 'all': todos los productos.
+        - familyId, subfamilyId, elementId, modelId : Categorias de productos
+        - code: Codigo de producto
+
+      parameters:
+        - $ref: "#/components/parameters/stock"
+        - $ref: "#/components/parameters/code"
+        - $ref: "#/components/parameters/familyId"
+        - $ref: "#/components/parameters/subfamilyId"
+        - $ref: "#/components/parameters/elementId"
+        - $ref: "#/components/parameters/modelId"
+        - $ref: "#/components/parameters/pagePagination"
+        - $ref: "#/components/parameters/pageSizePagination"
       operationId: listProducts
       responses:
         "200":
@@ -37,7 +52,7 @@ paths:
     get:
       tags:
         - products
-      summary: Encontrar producto por Id
+      summary: Encontrar producto por Id incluyendo stock
       operationId: getProductById
       parameters:
         - $ref: "#/components/parameters/paramId"
@@ -49,6 +64,61 @@ paths:
         "404":
           description: Resource not found
 components:
+  parameters:
+    stock:
+      name: stock
+      in: query
+      description: Indicador de si incluir productos con stock o todos
+      required: false
+      schema:
+        type: string
+        enum: ["yes", "all"]
+    code:
+      name: code
+      in: query
+      description: Código único de producto
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    familyId:
+      name: familyId
+      in: query
+      description: Id de la familia del producto
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    subfamilyId:
+      name: subfamilyId
+      in: query
+      description: Id de la subfamilia del producto
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    elementId:
+      name: elementId
+      in: query
+      description: Id del elemento del producto
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    modelId:
+      name: modelId
+      in: query
+      description: Id del modelo del producto
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+
   requestBodies:
     Product:
       content:

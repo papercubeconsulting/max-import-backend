@@ -11,9 +11,6 @@ const Subfamily = require('../subfamily/subfamilyModel');
 const Element = require('../element/elementModel');
 const Model = require('../model/modelModel');
 
-// TODO: El servicio debe considerar busqueda por codigo de inventario
-// TODO: Se debe incluir detalle de staock
-
 const readProduct = async reqParams => {
   const product = await Product.findByPk(reqParams.id, {
     include: [
@@ -32,16 +29,10 @@ const readProduct = async reqParams => {
   });
   if (!product) return setResponse(404, 'Product not found.');
 
-  // rawData = product.
-
   return setResponse(200, 'Product found.', product.aggregateStock());
 };
 
-// TODO: El servicio debe considerar un parametros para incluir detalle de stock
-// TODO: Se debe considerar los filtros
-// TODO:   1. Stock (Si/No/Todo)
-// TODO:   2. Codigo de inventario (incremental)
-// TODO:   3. Categorias
+// TODO: Considerar stock nulo
 
 const listProducts = async reqQuery => {
   const products = await Product.findAll({
@@ -55,7 +46,7 @@ const listProducts = async reqQuery => {
     include: [
       {
         model: ProductBox,
-        where: { stock: { [Op.gt]: 0 } },
+        where: reqQuery.stock === 'yes' ? { stock: { [Op.gt]: 0 } } : undefined,
         attributes: ['id', 'stock'],
         include: [
           {
