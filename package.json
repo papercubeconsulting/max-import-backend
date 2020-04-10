@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "startN": "DEBUG=http nodemon -e yml,js ./bin/www",
-    "seedDb": "node api/utils/seedDb"
+    "seedDB": "node api/utils/seedDb"
   },
   "dependencies": {
     "celebrate": "^11.0.0",

@@ -17,7 +17,7 @@ const Warehouse = require('../../inventory/warehouse/warehouseModel');
 const Product = require('../../inventory/product/productModel');
 const { Supply } = require('../../inventory/supply/supplyModel');
 
-const { createSupply } = require('../../inventory/supply/supplyService');
+const { fullCreateSupply } = require('../../inventory/supply/supplyService');
 const { asyncForEach } = require('../../utils');
 
 const seedModel = async (model, filename) => {
@@ -56,7 +56,7 @@ sequelize.sync({ force: true }).then(async result => {
 
   await seedModelOneByOne(Product, 'product.json');
 
-  await seedModelByService(Supply, 'supply.json', createSupply);
+  await seedModelByService(Supply, 'supply.json', fullCreateSupply);
 
   await sequelize.close();
 });

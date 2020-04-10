@@ -46,12 +46,21 @@ const ProductBox = sequelize.define(
 );
 
 ProductBox.prototype.getTrackingCode = function() {
-  return `${this.id}-${this.suppliedProductId}-${this.productId}-${this.indexFromSupliedProduct}`;
+  return `${this.suppliedProductId}-${this.productId}-${this.indexFromSupliedProduct}`;
 };
 
 ProductBox.afterCreate('generateCode', async (productBox, options) => {
   productBox.trackingCode = productBox.getTrackingCode();
   await productBox.save({ transaction: options.transaction });
+});
+
+ProductBox.beforeBulkCreate('generateCode', async (productBoxes, options) => {
+  productBoxes.forEach(
+    (obj, index, array) =>
+      (array[index].trackingCode = array[index].getTrackingCode()),
+  );
+  // productBox.trackingCode = productBox.getTrackingCode();
+  // await productBox.save({ transaction: options.transaction });
 });
 
 ProductBox.belongsTo(Product);

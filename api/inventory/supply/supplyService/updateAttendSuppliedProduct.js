@@ -66,12 +66,15 @@ const updateAttendSuppliedProduct = async (reqBody, reqParams) => {
           supplyId: suppliedProduct.supplyId,
           suppliedProductId: suppliedProduct.id,
         })),
-      { individualHooks: true, transaction: t },
+      { individualHooks: false, transaction: t },
     );
 
     const allProducBoxes = existingProductBoxes.concat(newProductBoxes);
 
     suppliedProduct.suppliedQuantity = allProducBoxes.length;
+
+    if (suppliedProduct.suppliedQuantity === suppliedProduct.quantity)
+      suppliedProduct.status = status.ATTENDED;
     suppliedProduct.maxIndexSupplied = Math.max(
       ...allProducBoxes.map(
         ({ indexFromSupliedProduct }) => indexFromSupliedProduct,

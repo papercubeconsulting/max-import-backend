@@ -8,4 +8,5 @@ module.exports = {
   updateSupplyStatus: require('./updateSupplyStatus'),
   deleteSupply: require('./deleteSupply'),
   ...require('./updateAttendSuppliedProduct'),
+  fullCreateSupply: require('./fullCreateSupply'),
 };

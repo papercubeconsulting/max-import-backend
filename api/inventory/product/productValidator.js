@@ -2,7 +2,23 @@ const { Joi } = require('celebrate');
 
 const List = {
   query: {
-    // elementId: Joi.number().integer(),
+    stock: Joi.string()
+      .valid('yes', 'no', 'all')
+      .default('all'),
+    code: Joi.string(),
+    familyId: Joi.number().integer(),
+    subfamilyId: Joi.number().integer(),
+    elementId: Joi.number().integer(),
+    modelId: Joi.number().integer(),
+
+    page: Joi.number()
+      .integer()
+      .min(1)
+      .default(1),
+    pageSize: Joi.number()
+      .integer()
+      .min(1)
+      .default(20),
   },
 };
 

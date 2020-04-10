@@ -1,30 +1,77 @@
 [
   {
-    "name": "Quarmony",
-    "address": "Lott Street"
+    "name": "Ziore",
+    "address": "Boerum Street",
+    "type": "Almacén"
   },
   {
-    "name": "Glukgluk",
-    "address": "Hunts Lane"
+    "name": "Netropic",
+    "address": "Schenectady Avenue",
+    "type": "Tienda"
   },
   {
-    "name": "Arctiq",
-    "address": "Rockaway Avenue"
+    "name": "Deviltoe",
+    "address": "Lott Street",
+    "type": "Averiado"
   },
   {
-    "name": "Pulze",
-    "address": "McKibbin Street"
+    "name": "Enjola",
+    "address": "Dekoven Court",
+    "type": "Averiado"
   },
   {
-    "name": "Collaire",
-    "address": "Elliott Walk"
+    "name": "Ozean",
+    "address": "Irvington Place",
+    "type": "Almacén"
   },
   {
     "name": "Bolax",
-    "address": "Kenmore Court"
+    "address": "Melrose Street",
+    "type": "Tienda"
   },
   {
-    "name": "Aquasure",
-    "address": "Howard Alley"
+    "name": "Anivet",
+    "address": "Linden Boulevard",
+    "type": "Almacén"
+  },
+  {
+    "name": "Tropolis",
+    "address": "Lake Avenue",
+    "type": "Tienda"
+  },
+  {
+    "name": "Rugstars",
+    "address": "Halsey Street",
+    "type": "Tienda"
+  },
+  {
+    "name": "Insource",
+    "address": "Herkimer Place",
+    "type": "Tienda"
+  },
+  {
+    "name": "Unq",
+    "address": "Joval Court",
+    "type": "Almacén"
+  },
+  {
+    "name": "Pearlesex",
+    "address": "Atlantic Avenue",
+    "type": "Tienda"
+  },
+  {
+    "name": "Verbus",
+    "address": "Hubbard Place",
+    "type": "Almacén"
+  },
+  {
+    "name": "Automon",
+    "address": "Chestnut Avenue",
+    "type": "Averiado"
+  },
+  {
+    "name": "Solaren",
+    "address": "Channel Avenue",
+    "type": "Tienda"
   }
 ]

@@ -1,6 +1,7 @@
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable no-param-reassign */
 const Sequelize = require('sequelize');
+const _ = require('lodash');
 
 const sequelize = require(`${process.cwd()}/startup/db`);
 
@@ -30,7 +31,8 @@ const Product = sequelize.define(
       type: Sequelize.STRING,
     },
     code: {
-      type: Sequelize.STRING,
+      type: Sequelize.INTEGER,
+      autoIncrement: true,
     },
     compatibility: {
       type: Sequelize.TEXT,
@@ -51,9 +53,6 @@ const Product = sequelize.define(
 
 Product.beforeCreate('SetId', async (product, options) => {
   product.id = product.modelId;
-});
-
-Product.beforeSave('SetCategories', async (product, options) => {
   const categories = await Model.findOne({
     attributes: ['name', 'elementId'],
     where: { id: product.modelId },
@@ -83,6 +82,51 @@ Product.beforeSave('SetCategories', async (product, options) => {
   product.familyId = categories.element.subfamily.familyId;
   product.familyName = categories.element.subfamily.family.name;
 });
+
+// Product.beforeSave('SetCategories', async (product, options) => {
+
+// });
+
+Product.prototype.aggregateStock = function() {
+  const that = this.get();
+  that.stockByWarehouseType = [];
+
+  that.stockByWarehouse = Object.values(
+    that.productBoxes.reduce(
+      (accumulator, currentValue, currentIndex, array) => {
+        const key = currentValue.warehouse.id;
+        if (!_.get(accumulator, [key]))
+          accumulator[key] = {
+            warehouseId: currentValue.warehouse.id,
+            warehouseName: currentValue.warehouse.name,
+            stock: 0,
+          };
+        accumulator[key].stock += currentValue.stock;
+        return accumulator;
+      },
+      {},
+    ),
+  );
+
+  that.stockByWarehouseType = Object.values(
+    that.productBoxes.reduce(
+      (accumulator, currentValue, currentIndex, array) => {
+        const key = currentValue.warehouse.type;
+        if (!_.get(accumulator, [key]))
+          accumulator[key] = {
+            warehouseType: currentValue.warehouse.type,
+            stock: 0,
+          };
+        accumulator[key].stock += currentValue.stock;
+        return accumulator;
+      },
+      {},
+    ),
+  );
+
+  that.productBoxes = undefined;
+  return that;
+};
 
 Family.hasMany(Product);
 Product.belongsTo(Family);

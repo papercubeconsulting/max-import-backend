@@ -1,8 +1,11 @@
 const _ = require('lodash');
+const { Op } = require('sequelize');
 
-const { setResponse } = require('../../utils');
+const { setResponse, paginate } = require('../../utils');
 
 const Product = require('./productModel');
+const ProductBox = require('../productbox/productboxModel');
+const Warehouse = require('../warehouse/warehouseModel');
 const Family = require('../family/familyModel');
 const Subfamily = require('../subfamily/subfamilyModel');
 const Element = require('../element/elementModel');
@@ -12,10 +15,26 @@ const Model = require('../model/modelModel');
 // TODO: Se debe incluir detalle de staock
 
 const readProduct = async reqParams => {
-  const product = await Product.findByPk(reqParams.id);
+  const product = await Product.findByPk(reqParams.id, {
+    include: [
+      {
+        model: ProductBox,
+        where: { stock: { [Op.gt]: 0 } },
+        attributes: ['id', 'stock'],
+        include: [
+          {
+            model: Warehouse,
+            attributes: ['type', 'id', 'name'],
+          },
+        ],
+      },
+    ],
+  });
   if (!product) return setResponse(404, 'Product not found.');
 
-  return setResponse(200, 'Product found.', product);
+  // rawData = product.
+
+  return setResponse(200, 'Product found.', product.aggregateStock());
 };
 
 // TODO: El servicio debe considerar un parametros para incluir detalle de stock
@@ -25,14 +44,35 @@ const readProduct = async reqParams => {
 // TODO:   3. Categorias
 
 const listProducts = async reqQuery => {
-  const products = await Product.findAll({});
+  const products = await Product.findAll({
+    where: _.pick(reqQuery, [
+      'code',
+      'familyId',
+      'subfamilyId',
+      'elementId',
+      'modelId',
+    ]),
+    include: [
+      {
+        model: ProductBox,
+        where: { stock: { [Op.gt]: 0 } },
+        attributes: ['id', 'stock'],
+        include: [
+          {
+            model: Warehouse,
+            attributes: ['type', 'id', 'name'],
+          },
+        ],
+      },
+    ],
+    distinct: true,
+    ...paginate(_.pick(reqQuery, ['page', 'pageSize'])),
+  }).map(product => product.aggregateStock());
 
   return setResponse(200, 'Products found.', products);
 };
 
 // TODO: Crear nuevo servicio que:
-// TODO  1. Cree categorias segun sea necesario
-// TODO  2. Cree el producto usando el model Id
 // TODO  3. Tome en cuenta la imagen
 
 const checkCategory = async (
@@ -78,7 +118,6 @@ const checkCategory = async (
     data.name = categoryName;
     if (parentKey) data[parentKey] = parent.id;
     category = await Category.findOne({ where: data });
-    console.log(data, category);
     if (category)
       // * entidad repetida
       return { valid: false, message: `${categoryName} already exists` };

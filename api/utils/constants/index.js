@@ -9,6 +9,6 @@ module.exports = {
   warehouseTypes: {
     WAREHOUSE: 'Almacén',
     STORE: 'Tienda',
-    DAMAGED: 'Dañado',
+    DAMAGED: 'Averiado',
   },
 };

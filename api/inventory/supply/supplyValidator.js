@@ -12,7 +12,7 @@ const List = {
     pageSize: Joi.number()
       .integer()
       .min(1)
-      .default(100),
+      .default(20),
 
     from: Joi.date()
       .iso()
