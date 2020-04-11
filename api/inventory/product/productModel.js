@@ -41,6 +41,14 @@ const Product = sequelize.define(
     imagePath: {
       type: Sequelize.STRING,
     },
+    imageBase64: {
+      type: Sequelize.DataTypes.BLOB,
+      get() {
+        return this.getDataValue('imageBase64')
+          ? this.getDataValue('imageBase64').toString('utf8')
+          : undefined;
+      },
+    },
     suggestedPrice: {
       type: Sequelize.INTEGER,
       allowNull: false,
@@ -87,7 +95,7 @@ Product.beforeCreate('SetId', async (product, options) => {
 
 // });
 
-Product.prototype.aggregateStock = function() {
+Product.prototype.aggregateStock = function(includeBoxSizeDetail = false) {
   const that = this.get();
   that.totalStock = 0;
   that.stockByWarehouse = Object.values(
@@ -98,6 +106,7 @@ Product.prototype.aggregateStock = function() {
           accumulator[key] = {
             warehouseId: currentValue.warehouse.id,
             warehouseName: currentValue.warehouse.name,
+            warehouseType: currentValue.warehouse.type,
             stock: 0,
           };
         accumulator[key].stock += currentValue.stock;
@@ -123,6 +132,31 @@ Product.prototype.aggregateStock = function() {
       {},
     ),
   );
+
+  if (includeBoxSizeDetail)
+    that.stockByWarehouseAndBoxSize = Object.values(
+      that.productBoxes.reduce(
+        (accumulator, currentValue, currentIndex, array) => {
+          const key = `${currentValue.warehouseId}-${currentValue.boxSize}`;
+          if (!_.get(accumulator, [key]))
+            accumulator[key] = {
+              warehouseId: currentValue.warehouse.id,
+              warehouseName: currentValue.warehouse.name,
+              warehouseType: currentValue.warehouse.type,
+              boxSize: currentValue.boxSize,
+              quantityBoxes: 0,
+              completeBoxes: 0,
+              stock: 0,
+            };
+          accumulator[key].stock += currentValue.stock;
+          accumulator[key].quantityBoxes += 1;
+          accumulator[key].completeBoxes +=
+            currentValue.boxSize === currentValue.stock ? 1 : 0;
+          return accumulator;
+        },
+        {},
+      ),
+    );
 
   that.productBoxes = undefined;
   return that;

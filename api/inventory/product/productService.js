@@ -17,25 +17,26 @@ const readProduct = async reqParams => {
       {
         model: ProductBox,
         where: { stock: { [Op.gt]: 0 } },
-        attributes: ['id', 'stock'],
+        attributes: ['id', 'stock', 'boxSize'],
         include: [
           {
             model: Warehouse,
             attributes: ['type', 'id', 'name'],
           },
         ],
+        required: false,
       },
     ],
   });
   if (!product) return setResponse(404, 'Product not found.');
 
-  return setResponse(200, 'Product found.', product.aggregateStock());
+  return setResponse(200, 'Product found.', product.aggregateStock(true));
 };
 
 // TODO: Considerar stock nulo
 
 const listProducts = async reqQuery => {
-  const products = await Product.findAll({
+  const products = await Product.findAndCountAll({
     where: _.pick(reqQuery, [
       'code',
       'familyId',
@@ -43,6 +44,8 @@ const listProducts = async reqQuery => {
       'elementId',
       'modelId',
     ]),
+    attributes: { exclude: 'imageBase64' },
+    order: [['createdAt', 'DESC']],
     include: [
       {
         model: ProductBox,
@@ -54,11 +57,16 @@ const listProducts = async reqQuery => {
             attributes: ['type', 'id', 'name'],
           },
         ],
+        // required: false,
       },
     ],
     distinct: true,
     ...paginate(_.pick(reqQuery, ['page', 'pageSize'])),
-  }).map(product => product.aggregateStock());
+  });
+  products.rows = products.rows.map(product => product.aggregateStock());
+  products.page = reqQuery.page;
+  products.pageSize = reqQuery.pageSize;
+  products.pages = _.ceil(products.count / products.pageSize);
 
   return setResponse(200, 'Products found.', products);
 };

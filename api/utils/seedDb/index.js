@@ -30,9 +30,7 @@ const seedModel = async (model, filename) => {
 const seedModelOneByOne = async (model, filename) => {
   const rawdata = fs.readFileSync(path.join(__dirname, filename));
 
-  await asyncForEach(JSON.parse(rawdata).reverse(), async data =>
-    model.create(data),
-  );
+  await asyncForEach(JSON.parse(rawdata), async data => model.create(data));
   winston.info(`${model.tableName} seeded!`);
   return 1;
 };

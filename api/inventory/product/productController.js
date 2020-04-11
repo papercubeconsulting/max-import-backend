@@ -13,7 +13,6 @@ const listProducts = async (req, res) => {
 };
 const postProduct = async (req, res) => {
   const validate = await Services.validatePost(req.body);
-  console.log(validate);
   if (validate.status !== 200)
     return res.status(validate.status).send(validate);
 

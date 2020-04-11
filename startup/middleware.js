@@ -17,12 +17,14 @@ module.exports = app => {
   app.use(
     express.urlencoded({
       extended: false,
+      limit: '30mb',
     }),
   );
   app.use(express.static(path.join(__dirname, '../public')));
 
   app.use(
     express.json({
+      limit: '30mb',
       verify(req, res, buf, encoding) {
         req.rawBody = buf.toString();
       },
