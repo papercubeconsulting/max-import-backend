@@ -52,8 +52,10 @@ const Post = {
     imageBase64: Joi.string().base64(),
     compatibility: Joi.string(),
     suggestedPrice: Joi.number()
-      .integer()
-      .required(),
+      .precision(2)
+      .required()
+      .custom(v => v * 100)
+      .integer(),
   },
 };
 module.exports = {

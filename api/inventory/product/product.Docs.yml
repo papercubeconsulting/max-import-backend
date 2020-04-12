@@ -156,7 +156,7 @@ components:
               suggestedPrice:
                 type: integer
                 format: int32
-                description: Precio sugerido. El valor debe ser entregado en centimos
+                description: Precio sugerido. El valor debe tener una precision de 2 decimales
               imageBase64:
                 type: integer
                 format: int32
