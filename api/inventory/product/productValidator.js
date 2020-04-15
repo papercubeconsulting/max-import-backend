@@ -49,7 +49,7 @@ const Post = {
     modelName: Joi.string()
       .min(1)
       .required(),
-    imageBase64: Joi.string().base64(),
+    imageBase64: Joi.string(),
     compatibility: Joi.string(),
     suggestedPrice: Joi.number()
       .precision(2)
