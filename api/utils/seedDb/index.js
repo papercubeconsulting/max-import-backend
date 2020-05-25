@@ -52,9 +52,9 @@ sequelize.sync({ force: true }).then(async result => {
   await seedModel(Provider, 'provider.json');
   await seedModel(Warehouse, 'warehouse.json');
 
-  await seedModelOneByOne(Product, 'product.json');
+  // await seedModelOneByOne(Product, 'product.json');
 
-  await seedModelByService(Supply, 'supply.json', fullCreateSupply);
+  // await seedModelByService(Supply, 'supply.json', fullCreateSupply);
 
   await sequelize.close();
 });

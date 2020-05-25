@@ -51,6 +51,7 @@ const Post = {
       .required(),
     imageBase64: Joi.string(),
     compatibility: Joi.string(),
+    tradename: Joi.string(),
     suggestedPrice: Joi.number()
       .precision(2)
       .required()

@@ -24,12 +24,12 @@ const Model = sequelize.define(
   },
 );
 
-Element.afterCreate('createDefaultModel', async (element, options) => {
-  await Model.create({
-    name: '-',
-    elementId: element.id,
-  });
-});
+// Element.afterCreate('createDefaultModel', async (element, options) => {
+//   await Model.create({
+//     name: '-',
+//     elementId: element.id,
+//   });
+// });
 
 Element.hasMany(Model);
 Model.belongsTo(Element);

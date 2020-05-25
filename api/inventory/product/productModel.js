@@ -38,6 +38,10 @@ const Product = sequelize.define(
       type: Sequelize.TEXT,
       defaultValue: '',
     },
+    tradename: {
+      type: Sequelize.TEXT,
+      defaultValue: '',
+    },
     imagePath: {
       type: Sequelize.STRING,
     },

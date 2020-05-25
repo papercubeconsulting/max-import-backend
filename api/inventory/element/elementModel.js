@@ -24,12 +24,12 @@ const Element = sequelize.define(
   },
 );
 
-Subfamily.afterCreate('createDefaultElement', async (subfamily, options) => {
-  await Element.create({
-    name: '-',
-    subfamilyId: subfamily.id,
-  });
-});
+// Subfamily.afterCreate('createDefaultElement', async (subfamily, options) => {
+//   await Element.create({
+//     name: '-',
+//     subfamilyId: subfamily.id,
+//   });
+// });
 
 Subfamily.hasMany(Element);
 Element.belongsTo(Subfamily);
