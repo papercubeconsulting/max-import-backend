@@ -12,6 +12,12 @@ const Family = sequelize.define(
       allowNull: false,
       unique: true,
     },
+    code: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      unique: true,
+      defaultValue: '',
+    },
   },
   {
     // options

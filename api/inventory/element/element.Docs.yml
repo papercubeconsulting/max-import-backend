@@ -1,42 +1,36 @@
 paths:
-  '/elements':
+  "/elements":
     post:
       tags:
-        - elements
+        - inventory.elements
       summary: Crear un nuevo elemento
       operationId: addElement
       responses:
-        '201':
+        "201":
           description: Element created
-        '400':
-          description: Bad request
       requestBody:
-        $ref: '#/components/requestBodies/Element'
+        $ref: "#/components/requestBodies/Element"
     get:
       tags:
-        - elements
+        - inventory.elements
       summary: Listar todos los elementos. Opcionalmente se puede filtrar por subfamilia
       operationId: listElements
       parameters:
-        - $ref: '#/components/parameters/subfamilyId'
+        - $ref: "#/components/parameters/subfamilyId"
       responses:
-        '200':
+        "200":
           description: Elements found
-  '/elements/{id}':
+  "/elements/{id}":
     get:
       tags:
-        - elements
+        - inventory.elements
       summary: Encontrar elemento por Id
       operationId: getElementById
       parameters:
-        - $ref: '#/components/parameters/paramId'
+        - $ref: "#/components/parameters/paramId"
       responses:
-        '200':
+        "200":
           description: Successful operation
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Resource not found
 components:
   requestBodies:
     Element:
@@ -47,13 +41,16 @@ components:
             properties:
               name:
                 type: string
+              code:
+                type: string
               subfamilyId:
                 type: integer
             required:
               - name
               - subfamilyId
             example:
-              name: 'Nuevo Elemento'
+              name: "Nuevo Elemento"
+              code: "X0X"
               subfamilyId: 1
       required: true
   parameters:

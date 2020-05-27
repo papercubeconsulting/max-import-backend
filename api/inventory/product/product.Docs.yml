@@ -138,6 +138,18 @@ components:
               modelId:
                 type: string
                 description: Id del modelo al que pertenece. Opcional para indicar que el modelo existe.
+              providerId:
+                type: string
+                description: Id del proveedor del producto
+              familyCode:
+                type: string
+                description: Codigo de la familia al que pertenece.
+              subfamilyCode:
+                type: string
+                description: Codigo de la subfamilia al que pertenece.
+              elementCode:
+                type: string
+                description: Codigo del elemento al que pertenece.
               familyName:
                 type: string
                 description: Nombre de la familia al que pertenece.
@@ -173,7 +185,11 @@ components:
               - familyName
               - subfamilyName
               - elementName
+              - familyCode
+              - subfamilyCode
+              - elementCode
               - modelName
+              - providerId
               - compatibility
               - tradename
               - suggestedPrice
@@ -184,6 +200,23 @@ components:
                 subfamilyName: "Subfamilia 1"
                 elementName: "Elemento 1"
                 modelName: "Modelo 1"
+                familyCode: "F1"
+                subfamilyCode: "SF1"
+                elementCode: "El1"
+                providerId: 1
+                compatibility: "Compatible con todos"
+                tradename: "Nombre comercial"
+                suggestedPrice: 10000
+            Con imagen:
+              value:
+                familyName: "Familia 1"
+                subfamilyName: "Subfamilia 1"
+                elementName: "Elemento 1"
+                modelName: "Modelo 1"
+                familyCode: "F1"
+                subfamilyCode: "SF1"
+                elementCode: "El1"
+                providerId: 1
                 compatibility: "Compatible con todos"
                 tradename: "Nombre comercial"
                 suggestedPrice: 10000
@@ -192,9 +225,13 @@ components:
               value:
                 familyId: 1
                 familyName: "Arrancador"
+                familyCode: "MX1"
                 subfamilyName: "Subfamilia 1"
+                subfamilyCode: "SF22"
                 elementName: "Elemento 1"
+                elementCode: "El22"
                 modelName: "Modelo 1"
+                providerId: 1
                 compatibility: "Compatible con todos"
                 tradename: "Nombre comercial"
                 suggestedPrice: 10000

@@ -12,6 +12,12 @@ const Element = sequelize.define(
       type: Sequelize.STRING,
       allowNull: false,
     },
+    code: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      unique: true,
+      defaultValue: '',
+    },
   },
   {
     // options
@@ -19,6 +25,10 @@ const Element = sequelize.define(
       {
         unique: true,
         fields: ['name', 'subfamilyId'],
+      },
+      {
+        unique: true,
+        fields: ['code', 'subfamilyId'],
       },
     ],
   },

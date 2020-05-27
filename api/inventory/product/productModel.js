@@ -5,6 +5,8 @@ const _ = require('lodash');
 
 const sequelize = require(`${process.cwd()}/startup/db`);
 
+const Provider = require('../provider/providerModel');
+
 const Family = require('../family/familyModel');
 const Subfamily = require('../subfamily/subfamilyModel');
 const Element = require('../element/elementModel');
@@ -31,8 +33,7 @@ const Product = sequelize.define(
       type: Sequelize.STRING,
     },
     code: {
-      type: Sequelize.INTEGER,
-      autoIncrement: true,
+      type: Sequelize.STRING,
     },
     compatibility: {
       type: Sequelize.TEXT,
@@ -41,9 +42,6 @@ const Product = sequelize.define(
     tradename: {
       type: Sequelize.TEXT,
       defaultValue: '',
-    },
-    imagePath: {
-      type: Sequelize.STRING,
     },
     imageBase64: {
       type: Sequelize.DataTypes.BLOB,
@@ -66,17 +64,17 @@ const Product = sequelize.define(
 Product.beforeCreate('SetId', async (product, options) => {
   product.id = product.modelId;
   const categories = await Model.findOne({
-    attributes: ['name', 'elementId'],
+    attributes: ['name', 'code', 'elementId'],
     where: { id: product.modelId },
     include: [
       {
         model: Element,
-        attributes: ['name', 'subfamilyId'],
+        attributes: ['name', 'code', 'subfamilyId'],
         include: [
           {
             model: Subfamily,
-            attributes: ['name', 'familyId'],
-            include: [{ model: Family, attributes: ['name'] }],
+            attributes: ['name', 'code', 'familyId'],
+            include: [{ model: Family, attributes: ['name', 'code'] }],
           },
         ],
       },
@@ -93,6 +91,8 @@ Product.beforeCreate('SetId', async (product, options) => {
 
   product.familyId = categories.element.subfamily.familyId;
   product.familyName = categories.element.subfamily.family.name;
+
+  product.code = `${categories.element.subfamily.family.code}-${categories.element.subfamily.code}-${categories.element.code}-${categories.code}`;
 });
 
 // Product.beforeSave('SetCategories', async (product, options) => {
@@ -165,6 +165,9 @@ Product.prototype.aggregateStock = function(includeBoxSizeDetail = false) {
   that.productBoxes = undefined;
   return that;
 };
+
+Provider.hasMany(Product);
+Product.belongsTo(Provider);
 
 Family.hasMany(Product);
 Product.belongsTo(Family);

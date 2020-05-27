@@ -1,6 +1,8 @@
 /* eslint-disable import/no-dynamic-require */
 const Sequelize = require('sequelize');
 
+const { Op } = Sequelize;
+
 const sequelize = require(`${process.cwd()}/startup/db`);
 const Element = require('../element/elementModel');
 
@@ -11,6 +13,9 @@ const Model = sequelize.define(
     name: {
       type: Sequelize.STRING,
       allowNull: false,
+    },
+    code: {
+      type: Sequelize.INTEGER,
     },
   },
   {
@@ -23,6 +28,21 @@ const Model = sequelize.define(
     ],
   },
 );
+
+Model.afterCreate('setCode', async (model, options) => {
+  const next =
+    (await Model.max('code', {
+      where: {
+        elementId: {
+          [Op.eq]: model.elementId,
+        },
+        createdAt: {
+          [Op.lt]: model.createdAt,
+        },
+      },
+    })) || 0;
+  await model.update({ code: next + 1 });
+});
 
 // Element.afterCreate('createDefaultModel', async (element, options) => {
 //   await Model.create({

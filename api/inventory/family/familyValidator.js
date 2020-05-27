@@ -18,6 +18,10 @@ const Post = {
       .max(255)
       .min(1)
       .required(),
+    code: Joi.string()
+      .max(255)
+      .min(1)
+      .required(),
   },
 };
 module.exports = {

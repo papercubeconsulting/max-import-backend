@@ -37,6 +37,14 @@ const Post = {
     elementId: Joi.number().integer(),
     modelId: Joi.number().integer(),
 
+    familyCode: Joi.string().required(),
+    subfamilyCode: Joi.string().required(),
+    elementCode: Joi.string().required(),
+
+    providerId: Joi.number()
+      .integer()
+      .required(),
+
     familyName: Joi.string()
       .min(1)
       .required(),

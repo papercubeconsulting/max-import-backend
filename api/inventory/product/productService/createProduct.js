@@ -1,98 +1,40 @@
 const _ = require('lodash');
 const { Op } = require('sequelize');
 
-const { setResponse, paginate } = require('../../utils');
+const { setResponse } = require('../../../utils');
 
-const Product = require('./productModel');
-const ProductBox = require('../productbox/productboxModel');
-const Warehouse = require('../warehouse/warehouseModel');
-const Family = require('../family/familyModel');
-const Subfamily = require('../subfamily/subfamilyModel');
-const Element = require('../element/elementModel');
-const Model = require('../model/modelModel');
-
-const readProduct = async reqParams => {
-  const product = await Product.findByPk(reqParams.id, {
-    include: [
-      {
-        model: ProductBox,
-        where: { stock: { [Op.gt]: 0 } },
-        attributes: ['id', 'stock', 'boxSize'],
-        include: [
-          {
-            model: Warehouse,
-            attributes: ['type', 'id', 'name'],
-          },
-        ],
-        required: false,
-      },
-    ],
-  });
-  if (!product) return setResponse(404, 'Product not found.');
-
-  return setResponse(200, 'Product found.', product.aggregateStock(true));
-};
-
-// TODO: Considerar stock nulo
-
-const listProducts = async reqQuery => {
-  const products = await Product.findAndCountAll({
-    where: _.pick(reqQuery, [
-      'code',
-      'familyId',
-      'subfamilyId',
-      'elementId',
-      'modelId',
-    ]),
-    attributes: { exclude: 'imageBase64' },
-    order: [['createdAt', 'DESC']],
-    include: [
-      {
-        model: ProductBox,
-        where: reqQuery.stock === 'yes' ? { stock: { [Op.gt]: 0 } } : undefined,
-        attributes: ['id', 'stock'],
-        include: [
-          {
-            model: Warehouse,
-            attributes: ['type', 'id', 'name'],
-          },
-        ],
-        // required: false,
-      },
-    ],
-    distinct: true,
-    ...paginate(_.pick(reqQuery, ['page', 'pageSize'])),
-  });
-  products.rows = products.rows.map(product => product.aggregateStock());
-  products.page = reqQuery.page;
-  products.pageSize = reqQuery.pageSize;
-  products.pages = _.ceil(products.count / products.pageSize);
-
-  return setResponse(200, 'Products found.', products);
-};
-
-// TODO: Crear nuevo servicio que:
-// TODO  3. Tome en cuenta la imagen
+const Product = require('./../productModel');
+const Provider = require('../../provider/providerModel');
+const Family = require('../../family/familyModel');
+const Subfamily = require('../../subfamily/subfamilyModel');
+const Element = require('../../element/elementModel');
+const Model = require('../../model/modelModel');
 
 const checkCategory = async (
   Category,
   categoryId,
   categoryName,
+  categoryCode,
   parent,
   parentKey,
   depth,
 ) => {
   let category;
+  // * Es un registro q ya existe en la DB
   if (categoryId) {
     // * validar si existe en la db
     category = await Category.findByPk(categoryId);
-    if (!category || category.name !== categoryName)
+    if (
+      !category ||
+      category.name !== categoryName ||
+      category.code !== categoryCode
+    )
       return {
         valid: false,
-        message: `Invalid Id or Name for ${categoryName}`,
+        message: `Invalid Id or Name or Code for ${categoryName}`,
       };
     if (!parent && depth !== 0)
-      // * El padre debe existir a menos que se raiz
+      // * El padre debe existir a menos que sea raiz
       return {
         valid: false,
         message: `No parentId provided for ${categoryName}`,
@@ -110,21 +52,32 @@ const checkCategory = async (
       next: category,
     }; // * se devuelve el objeto
   }
+
   // * La entidad no existe por lo que sera creada
-  if (parent) {
-    // * Hay un padre, se debe validar que no sea repetido
-    const data = {};
-    data.name = categoryName;
-    if (parentKey) data[parentKey] = parent.id;
-    category = await Category.findOne({ where: data });
-    if (category)
-      // * entidad repetida
-      return { valid: false, message: `${categoryName} already exists` };
-  } else if (depth === 0) {
-    category = await Category.findOne({ where: { name: categoryName } });
-    if (category)
-      return { valid: false, message: `${categoryName} already exists` };
-  }
+
+  // * Se debe validar que el registro no sea repetido
+  const query = {
+    [Op.or]: [
+      {
+        name: categoryName,
+      },
+      {
+        code: categoryCode,
+      },
+    ],
+  };
+  // * En caso exista un padre
+  if (parentKey && parent && parent.id) query[parentKey] = parent.id;
+
+  category = await Category.findOne({ where: query });
+  if (category)
+    // * entidad repetida
+    return {
+      valid: false,
+      message: `${categoryName} or ${categoryCode} already exists`,
+    };
+
+  // * Pasa los requisitos
   return {
     valid: true,
     message: 'New category to create',
@@ -132,10 +85,14 @@ const checkCategory = async (
 };
 
 const validatePost = async reqBody => {
+  const provider = await Provider.findByPk(reqBody.providerId);
+  if (!provider) return setResponse(404, 'Provider not found');
+
   const family = await checkCategory(
     Family,
     reqBody.familyId,
     reqBody.familyName,
+    reqBody.familyCode,
     null,
     null,
     0,
@@ -146,6 +103,7 @@ const validatePost = async reqBody => {
     Subfamily,
     reqBody.subfamilyId,
     reqBody.subfamilyName,
+    reqBody.subfamilyCode,
     family.next,
     'familyId',
     1,
@@ -156,6 +114,7 @@ const validatePost = async reqBody => {
     Element,
     reqBody.elementId,
     reqBody.elementName,
+    reqBody.elementCode,
     subfamily.next,
     'subfamilyId',
     2,
@@ -166,11 +125,13 @@ const validatePost = async reqBody => {
     Model,
     reqBody.modelId,
     reqBody.modelName,
+    null,
     element.next,
     'elementId',
     3,
   );
   if (!model.valid) return setResponse(400, model.message);
+
   return setResponse(200, 'Valida data provided', {
     family,
     subfamily,
@@ -182,17 +143,22 @@ const validatePost = async reqBody => {
 const createCategories = async (reqBody, categories) => {
   const family = categories.family.next
     ? categories.family.next
-    : await Family.create({ name: reqBody.familyName });
+    : await Family.create({
+        name: reqBody.familyName,
+        code: reqBody.familyCode,
+      });
   const subfamily = categories.subfamily.next
     ? categories.subfamily.next
     : await Subfamily.create({
         name: reqBody.subfamilyName,
+        code: reqBody.subfamilyCode,
         familyId: family.id,
       });
   const element = categories.element.next
     ? categories.element.next
     : await Element.create({
         name: reqBody.elementName,
+        code: reqBody.elementCode,
         subfamilyId: subfamily.id,
       });
   const model = categories.model.next
@@ -223,8 +189,6 @@ const createProduct = async reqBody => {
 };
 
 module.exports = {
-  readProduct,
-  listProducts,
   createProduct,
   validatePost,
   createCategories,

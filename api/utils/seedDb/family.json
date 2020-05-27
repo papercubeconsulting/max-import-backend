@@ -1,8 +1,10 @@
 [
   {
-    "name": "Arrancador"
+    "name": "Arrancador",
+    "code": "MX1"
   },
   {
-    "name": "Alternador"
+    "name": "Alternador",
+    "code": "MX2"
   }
 ]

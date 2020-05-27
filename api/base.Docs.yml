@@ -1,19 +1,19 @@
 tags:
-  - name: products
+  - name: inventory.products
     description: Productos del inventario
-  - name: supplies
+  - name: inventory.supplies
     description: Abastecimiento - Registro de ingreso de productos
-  - name: warehouses
+  - name: inventory.warehouses
     description: Almacenes donde se guardan los productos
-  - name: providers
+  - name: inventory.providers
     description: Proveedores de productos
-  - name: families
+  - name: inventory.families
     description: Familia a la que pertenece un producto
-  - name: subfamilies
+  - name: inventory.subfamilies
     description: Subfamilia a la que pertenece un producto
-  - name: elements
+  - name: inventory.elements
     description: Elemento al que pertenece un producto
-  - name: models
+  - name: inventory.models
     description: Modelo al que pertenece un producto
 components:
   parameters:

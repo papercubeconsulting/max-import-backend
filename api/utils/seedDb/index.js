@@ -22,7 +22,7 @@ const { asyncForEach } = require('../../utils');
 
 const seedModel = async (model, filename) => {
   const rawdata = fs.readFileSync(path.join(__dirname, filename));
-  await model.bulkCreate(JSON.parse(rawdata), { individualHooks: true });
+  await model.bulkCreate(JSON.parse(rawdata));
   winston.info(`${model.tableName} seeded!`);
   return 1;
 };
@@ -47,14 +47,14 @@ sequelize.sync({ force: true }).then(async result => {
   await seedModel(Family, 'family.json');
   await seedModel(Subfamily, 'subfamily.json');
   await seedModel(Element, 'element.json');
-  await seedModel(Model, 'model.json');
+  await seedModelOneByOne(Model, 'model.json');
 
   await seedModel(Provider, 'provider.json');
   await seedModel(Warehouse, 'warehouse.json');
 
-  // await seedModelOneByOne(Product, 'product.json');
+  await seedModelOneByOne(Product, 'product.json');
 
-  // await seedModelByService(Supply, 'supply.json', fullCreateSupply);
+  await seedModelByService(Supply, 'supply.json', fullCreateSupply);
 
   await sequelize.close();
 });

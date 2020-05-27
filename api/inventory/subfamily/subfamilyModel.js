@@ -12,6 +12,11 @@ const Subfamily = sequelize.define(
       type: Sequelize.STRING,
       allowNull: false,
     },
+    code: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      defaultValue: '',
+    },
   },
   {
     // options
@@ -19,6 +24,10 @@ const Subfamily = sequelize.define(
       {
         unique: true,
         fields: ['name', 'familyId'],
+      },
+      {
+        unique: true,
+        fields: ['code', 'familyId'],
       },
     ],
   },

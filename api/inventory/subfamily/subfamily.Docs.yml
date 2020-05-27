@@ -1,42 +1,36 @@
 paths:
-  '/subfamilies':
+  "/subfamilies":
     post:
       tags:
-        - subfamilies
+        - inventory.subfamilies
       summary: Crear una nueva subfamilia
       operationId: addSubfamily
       responses:
-        '201':
+        "201":
           description: Subfamily created
-        '400':
-          description: Bad request
       requestBody:
-        $ref: '#/components/requestBodies/Subfamily'
+        $ref: "#/components/requestBodies/Subfamily"
     get:
       tags:
-        - subfamilies
+        - inventory.subfamilies
       summary: Listar todas las subfamilias. Opcionalmente se puede filtrar por familia
       operationId: listSubfamily
       parameters:
-        - $ref: '#/components/parameters/familyId'
+        - $ref: "#/components/parameters/familyId"
       responses:
-        '200':
+        "200":
           description: Subfamilies found
-  '/subfamilies/{id}':
+  "/subfamilies/{id}":
     get:
       tags:
-        - subfamilies
+        - inventory.subfamilies
       summary: Encontrar subfamilia por Id
       operationId: getSubfamilyById
       parameters:
-        - $ref: '#/components/parameters/paramId'
+        - $ref: "#/components/parameters/paramId"
       responses:
-        '200':
+        "200":
           description: successful operation
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Resource not found
 components:
   requestBodies:
     Subfamily:
@@ -47,13 +41,16 @@ components:
             properties:
               name:
                 type: string
+              code:
+                type: string
               familyId:
                 type: integer
             required:
               - name
               - familyId
             example:
-              name: 'Nueva Subfamilia'
+              name: "Nueva Subfamilia"
+              code: "X0X"
               familyId: 1
       required: true
   parameters:
