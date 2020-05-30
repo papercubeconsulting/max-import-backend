@@ -10,13 +10,15 @@ const readProvider = async reqParams => {
 };
 
 const listProviders = async reqQuery => {
-  const providers = await Provider.findAll({});
+  const providers = await Provider.findAll(reqQuery);
 
   return setResponse(200, 'Providers found.', providers);
 };
 
 const createProvider = async reqBody => {
-  let provider = await Provider.findOne({ where: { name: reqBody.name } });
+  let provider = await Provider.findOne({
+    where: { $or: [{ name: reqBody.name }, { code: reqBody.code }] },
+  });
   if (provider) return setResponse(400, 'Provider already exists.');
 
   provider = await Provider.create(reqBody);

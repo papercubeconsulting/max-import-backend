@@ -27,6 +27,13 @@ components:
         format: int32
         minimum: 1
         default: 1
+    active:
+      name: active
+      in: query
+      description: Valor booleano para filtrar recursos no deshabilitados
+      required: false
+      schema:
+        type: bool
     fromDate:
       name: from
       in: query

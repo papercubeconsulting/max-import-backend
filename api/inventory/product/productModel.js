@@ -63,23 +63,26 @@ const Product = sequelize.define(
 
 Product.beforeCreate('SetId', async (product, options) => {
   product.id = product.modelId;
-  const categories = await Model.findOne({
-    attributes: ['name', 'code', 'elementId'],
-    where: { id: product.modelId },
-    include: [
-      {
-        model: Element,
-        attributes: ['name', 'code', 'subfamilyId'],
-        include: [
-          {
-            model: Subfamily,
-            attributes: ['name', 'code', 'familyId'],
-            include: [{ model: Family, attributes: ['name', 'code'] }],
-          },
-        ],
-      },
-    ],
-  });
+  const [categories, provider] = await Promise.all([
+    Model.findOne({
+      attributes: ['name', 'code', 'elementId'],
+      where: { id: product.modelId },
+      include: [
+        {
+          model: Element,
+          attributes: ['name', 'code', 'subfamilyId'],
+          include: [
+            {
+              model: Subfamily,
+              attributes: ['name', 'code', 'familyId'],
+              include: [{ model: Family, attributes: ['name', 'code'] }],
+            },
+          ],
+        },
+      ],
+    }),
+    Provider.findByPk(product.providerId),
+  ]);
 
   product.modelName = categories.name;
 
@@ -92,7 +95,7 @@ Product.beforeCreate('SetId', async (product, options) => {
   product.familyId = categories.element.subfamily.familyId;
   product.familyName = categories.element.subfamily.family.name;
 
-  product.code = `${categories.element.subfamily.family.code}-${categories.element.subfamily.code}-${categories.element.code}-${categories.code}`;
+  product.code = `${categories.element.subfamily.family.code}-${categories.element.subfamily.code}-${categories.element.code}-${provider.code}-${categories.code}`;
 });
 
 // Product.beforeSave('SetCategories', async (product, options) => {

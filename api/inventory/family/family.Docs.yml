@@ -46,4 +46,5 @@ components:
               code: "X0X"
             required:
               - name
+              - code
       required: true

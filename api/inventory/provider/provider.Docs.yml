@@ -1,40 +1,36 @@
 paths:
-  '/providers':
+  "/providers":
     post:
       tags:
         - providers
       summary: Crear un nuevo proveedor
       operationId: addProvider
       responses:
-        '201':
+        "201":
           description: Provider created
-        '400':
-          description: Bad request
       requestBody:
-        $ref: '#/components/requestBodies/Provider'
+        $ref: "#/components/requestBodies/Provider"
     get:
       tags:
         - providers
       summary: Listar todos los proveedores
       operationId: listProviders
+      parameters:
+        - $ref: "#/components/parameters/active"
       responses:
-        '200':
+        "200":
           description: Providers found
-  '/providers/{id}':
+  "/providers/{id}":
     get:
       tags:
         - providers
       summary: Encontrar proveedor por Id
       operationId: getProviderById
       parameters:
-        - $ref: '#/components/parameters/paramId'
+        - $ref: "#/components/parameters/paramId"
       responses:
-        '200':
+        "200":
           description: Successful operation
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Resource not found
 components:
   requestBodies:
     Provider:
@@ -45,8 +41,12 @@ components:
             properties:
               name:
                 type: string
+              code:
+                type: string
             example:
-              name: 'Nuevo proveedor'
+              name: "Nuevo proveedor"
+              code: "X0X"
             required:
               - name
+              - code
       required: true

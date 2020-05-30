@@ -12,6 +12,16 @@ const Provider = sequelize.define(
       allowNull: false,
       unique: true,
     },
+    code: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      unique: true,
+      defaultValue: '',
+    },
+    active: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: true,
+    },
   },
   {
     // options
