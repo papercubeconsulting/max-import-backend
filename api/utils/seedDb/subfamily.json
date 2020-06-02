@@ -1,42 +1,22 @@
 [
   {
-    "name": "veniam",
-    "code": "officia",
-    "familyId": 1
-  },
-  {
-    "name": "laboris",
-    "code": "est",
-    "familyId": 1
-  },
-  {
-    "name": "sunt",
-    "code": "nulla",
-    "familyId": 2
-  },
-  {
-    "name": "et",
-    "code": "sint",
-    "familyId": 2
-  },
-  {
-    "name": "duis",
-    "code": "occaecat",
-    "familyId": 2
-  },
-  {
-    "name": "cillum",
-    "code": "sit",
+    "name": "nostrud",
+    "code": "CE6",
     "familyId": 1
   },
   {
     "name": "occaecat",
-    "code": "consequat",
+    "code": "5B1",
     "familyId": 1
   },
   {
-    "name": "est",
-    "code": "mollit",
-    "familyId": 1
+    "name": "ut",
+    "code": "C4A",
+    "familyId": 2
+  },
+  {
+    "name": "commodo",
+    "code": "BBF",
+    "familyId": 2
   }
 ]

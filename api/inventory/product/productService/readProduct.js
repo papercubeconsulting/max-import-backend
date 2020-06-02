@@ -27,7 +27,11 @@ const readProduct = async reqParams => {
   });
   if (!product) return setResponse(404, 'Product not found.');
 
-  return setResponse(200, 'Product found.', product.aggregateStock(true));
+  return setResponse(
+    200,
+    'Product found.',
+    Product.aggregateStock(product.get(), true),
+  );
 };
 
 module.exports = {

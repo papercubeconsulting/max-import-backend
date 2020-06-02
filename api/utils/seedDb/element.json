@@ -1,82 +1,42 @@
 [
   {
-    "name": "magna",
-    "code": "velit",
-    "subfamilyId": 1
-  },
-  {
-    "name": "pariatur",
-    "code": "ea",
-    "subfamilyId": 4
-  },
-  {
-    "name": "pariatur",
-    "code": "non",
-    "subfamilyId": 5
+    "name": "tempor",
+    "code": "A27",
+    "subfamilyId": 2
   },
   {
     "name": "excepteur",
-    "code": "mollit",
-    "subfamilyId": 4
-  },
-  {
-    "name": "commodo",
-    "code": "fugiat",
-    "subfamilyId": 1
-  },
-  {
-    "name": "ut",
-    "code": "et",
-    "subfamilyId": 2
-  },
-  {
-    "name": "dolor",
-    "code": "esse",
-    "subfamilyId": 4
-  },
-  {
-    "name": "voluptate",
-    "code": "duis",
-    "subfamilyId": 6
-  },
-  {
-    "name": "cupidatat",
-    "code": "incididunt",
-    "subfamilyId": 2
-  },
-  {
-    "name": "cupidatat",
-    "code": "amet",
+    "code": "G4B",
     "subfamilyId": 3
   },
   {
-    "name": "culpa",
-    "code": "adipisicing",
-    "subfamilyId": 4
-  },
-  {
-    "name": "est",
-    "code": "reprehenderit",
+    "name": "ad",
+    "code": "3BF",
     "subfamilyId": 2
   },
   {
-    "name": "aliquip",
-    "code": "ex",
-    "subfamilyId": 6
+    "name": "non",
+    "code": "14F",
+    "subfamilyId": 1
   },
   {
-    "name": "exercitation",
-    "code": "ut",
-    "subfamilyId": 7
+    "name": "quis",
+    "code": "E1E",
+    "subfamilyId": 1
   },
   {
-    "name": "irure",
-    "code": "in",
-    "subfamilyId": 7
+    "name": "fugiat",
+    "code": "F25",
+    "subfamilyId": 4
   },
   {
-    "name": "qui",
-    "code": "id",
-    "subfamilyId": 7
+    "name": "ullamco",
+    "code": "74C",
+    "subfamilyId": 4
+  },
+  {
+    "name": "sit",
+    "code": "FEH",
+    "subfamilyId": 4
   }
 ]

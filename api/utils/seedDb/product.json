@@ -1,226 +1,51 @@
 [
   {
-    "suggestedPrice": 2400,
+    "suggestedPrice": 200,
     "modelId": 1,
-    "providerId": 14,
-    "compatibility": "quis magna dolor",
-    "tradename": "commodo veniam nisi"
-  },
-  {
-    "suggestedPrice": 4900,
-    "modelId": 2,
-    "providerId": 6,
-    "compatibility": "cupidatat aute ipsum",
-    "tradename": "enim aute non"
-  },
-  {
-    "suggestedPrice": 9700,
-    "modelId": 3,
-    "providerId": 11,
-    "compatibility": "commodo magna enim",
-    "tradename": "qui sunt exercitation"
-  },
-  {
-    "suggestedPrice": 1600,
-    "modelId": 4,
-    "providerId": 12,
-    "compatibility": "in laboris officia",
-    "tradename": "laboris aliquip mollit"
-  },
-  {
-    "suggestedPrice": 3800,
-    "modelId": 5,
     "providerId": 2,
-    "compatibility": "consectetur dolore proident",
-    "tradename": "aliqua est voluptate"
+    "compatibility": "veniam labore anim",
+    "tradename": "aliqua duis irure"
   },
   {
-    "suggestedPrice": 1900,
-    "modelId": 6,
-    "providerId": 18,
-    "compatibility": "et labore in",
-    "tradename": "nostrud dolore sit"
-  },
-  {
-    "suggestedPrice": 8600,
-    "modelId": 7,
-    "providerId": 13,
-    "compatibility": "duis duis eiusmod",
-    "tradename": "ipsum eiusmod nisi"
-  },
-  {
-    "suggestedPrice": 600,
-    "modelId": 8,
-    "providerId": 17,
-    "compatibility": "do deserunt do",
-    "tradename": "nulla excepteur officia"
-  },
-  {
-    "suggestedPrice": 5700,
-    "modelId": 9,
-    "providerId": 14,
-    "compatibility": "elit et laboris",
-    "tradename": "et ut fugiat"
-  },
-  {
-    "suggestedPrice": 2500,
-    "modelId": 10,
-    "providerId": 1,
-    "compatibility": "laborum labore cillum",
-    "tradename": "velit ad ipsum"
-  },
-  {
-    "suggestedPrice": 9400,
-    "modelId": 11,
-    "providerId": 19,
-    "compatibility": "eiusmod quis enim",
-    "tradename": "ea laborum est"
-  },
-  {
-    "suggestedPrice": 600,
-    "modelId": 12,
-    "providerId": 16,
-    "compatibility": "ut nisi qui",
-    "tradename": "est anim ea"
-  },
-  {
-    "suggestedPrice": 1700,
-    "modelId": 13,
-    "providerId": 9,
-    "compatibility": "pariatur anim adipisicing",
-    "tradename": "velit ut cupidatat"
-  },
-  {
-    "suggestedPrice": 1500,
-    "modelId": 14,
-    "providerId": 5,
-    "compatibility": "ipsum quis pariatur",
-    "tradename": "nisi sunt duis"
-  },
-  {
-    "suggestedPrice": 3600,
-    "modelId": 15,
+    "suggestedPrice": 3300,
+    "modelId": 2,
     "providerId": 11,
-    "compatibility": "magna ipsum reprehenderit",
-    "tradename": "reprehenderit sint cupidatat"
+    "compatibility": "officia nulla mollit",
+    "tradename": "consequat duis veniam"
   },
   {
-    "suggestedPrice": 5700,
-    "modelId": 16,
-    "providerId": 3,
-    "compatibility": "Lorem mollit incididunt",
-    "tradename": "et veniam aliquip"
+    "suggestedPrice": 9300,
+    "modelId": 3,
+    "providerId": 10,
+    "compatibility": "consequat esse officia",
+    "tradename": "qui duis magna"
   },
   {
-    "suggestedPrice": 6300,
-    "modelId": 17,
-    "providerId": 6,
-    "compatibility": "esse officia dolor",
-    "tradename": "qui tempor commodo"
+    "suggestedPrice": 300,
+    "modelId": 4,
+    "providerId": 9,
+    "compatibility": "mollit voluptate consequat",
+    "tradename": "aute adipisicing aliquip"
   },
   {
-    "suggestedPrice": 9600,
-    "modelId": 18,
-    "providerId": 16,
-    "compatibility": "et nisi proident",
-    "tradename": "elit pariatur mollit"
-  },
-  {
-    "suggestedPrice": 5800,
-    "modelId": 19,
-    "providerId": 4,
-    "compatibility": "consequat cillum magna",
-    "tradename": "labore minim sunt"
+    "suggestedPrice": 3000,
+    "modelId": 5,
+    "providerId": 13,
+    "compatibility": "qui proident excepteur",
+    "tradename": "ut deserunt aute"
   },
   {
     "suggestedPrice": 5600,
-    "modelId": 20,
-    "providerId": 17,
-    "compatibility": "in sint eiusmod",
-    "tradename": "do cupidatat laboris"
-  },
-  {
-    "suggestedPrice": 500,
-    "modelId": 21,
-    "providerId": 18,
-    "compatibility": "non pariatur voluptate",
-    "tradename": "ullamco sit amet"
-  },
-  {
-    "suggestedPrice": 6200,
-    "modelId": 22,
-    "providerId": 5,
-    "compatibility": "incididunt ad non",
-    "tradename": "ut anim magna"
-  },
-  {
-    "suggestedPrice": 8000,
-    "modelId": 23,
-    "providerId": 5,
-    "compatibility": "consectetur magna proident",
-    "tradename": "sint incididunt officia"
-  },
-  {
-    "suggestedPrice": 900,
-    "modelId": 24,
-    "providerId": 7,
-    "compatibility": "tempor fugiat ut",
-    "tradename": "excepteur aliqua quis"
-  },
-  {
-    "suggestedPrice": 2200,
-    "modelId": 25,
-    "providerId": 7,
-    "compatibility": "esse quis exercitation",
-    "tradename": "nulla ullamco consectetur"
-  },
-  {
-    "suggestedPrice": 600,
-    "modelId": 26,
+    "modelId": 6,
     "providerId": 6,
-    "compatibility": "veniam elit elit",
-    "tradename": "eu ea labore"
+    "compatibility": "ad enim nostrud",
+    "tradename": "cupidatat dolore ad"
   },
   {
-    "suggestedPrice": 8200,
-    "modelId": 27,
-    "providerId": 20,
-    "compatibility": "labore officia dolor",
-    "tradename": "dolor commodo tempor"
-  },
-  {
-    "suggestedPrice": 4000,
-    "modelId": 28,
-    "providerId": 2,
-    "compatibility": "ex enim id",
-    "tradename": "commodo nisi ad"
-  },
-  {
-    "suggestedPrice": 8400,
-    "modelId": 29,
-    "providerId": 19,
-    "compatibility": "eu enim ullamco",
-    "tradename": "adipisicing sint tempor"
-  },
-  {
-    "suggestedPrice": 2800,
-    "modelId": 30,
-    "providerId": 5,
-    "compatibility": "laborum id esse",
-    "tradename": "est dolore eiusmod"
-  },
-  {
-    "suggestedPrice": 9700,
-    "modelId": 31,
-    "providerId": 20,
-    "compatibility": "est excepteur eiusmod",
-    "tradename": "Lorem cillum Lorem"
-  },
-  {
-    "suggestedPrice": 1800,
-    "modelId": 32,
+    "suggestedPrice": 6500,
+    "modelId": 7,
     "providerId": 18,
-    "compatibility": "irure sunt voluptate",
-    "tradename": "quis aliquip anim"
+    "compatibility": "commodo amet tempor",
+    "tradename": "laborum aliquip et"
   }
 ]

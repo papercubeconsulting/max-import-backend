@@ -101,12 +101,78 @@ Product.beforeCreate('SetId', async (product, options) => {
 // Product.beforeSave('SetCategories', async (product, options) => {
 
 // });
+// Product.prototype.aggregateStock = function(includeBoxSizeDetail = false) {
+//   const that = this.get();
+//   that.totalStock = 0;
+//   console.log(that);
+//   that.stockByWarehouse = Object.values(
+//     that.productBoxes.reduce(
+//       (accumulator, currentValue, currentIndex, array) => {
+//         const key = currentValue.warehouse.id;
+//         if (!_.get(accumulator, [key]))
+//           accumulator[key] = {
+//             warehouseId: currentValue.warehouse.id,
+//             warehouseName: currentValue.warehouse.name,
+//             warehouseType: currentValue.warehouse.type,
+//             stock: 0,
+//           };
+//         accumulator[key].stock += currentValue.stock;
+//         that.totalStock += currentValue.stock;
+//         return accumulator;
+//       },
+//       {},
+//     ),
+//   );
 
-Product.prototype.aggregateStock = function(includeBoxSizeDetail = false) {
-  const that = this.get();
-  that.totalStock = 0;
-  that.stockByWarehouse = Object.values(
-    that.productBoxes.reduce(
+//   that.stockByWarehouseType = Object.values(
+//     that.productBoxes.reduce(
+//       (accumulator, currentValue, currentIndex, array) => {
+//         const key = currentValue.warehouse.type;
+//         if (!_.get(accumulator, [key]))
+//           accumulator[key] = {
+//             warehouseType: currentValue.warehouse.type,
+//             stock: 0,
+//           };
+//         accumulator[key].stock += currentValue.stock;
+//         return accumulator;
+//       },
+//       {},
+//     ),
+//   );
+
+//   if (includeBoxSizeDetail)
+//     that.stockByWarehouseAndBoxSize = Object.values(
+//       that.productBoxes.reduce(
+//         (accumulator, currentValue, currentIndex, array) => {
+//           const key = `${currentValue.warehouseId}-${currentValue.boxSize}`;
+//           if (!_.get(accumulator, [key]))
+//             accumulator[key] = {
+//               warehouseId: currentValue.warehouse.id,
+//               warehouseName: currentValue.warehouse.name,
+//               warehouseType: currentValue.warehouse.type,
+//               boxSize: currentValue.boxSize,
+//               quantityBoxes: 0,
+//               completeBoxes: 0,
+//               stock: 0,
+//             };
+//           accumulator[key].stock += currentValue.stock;
+//           accumulator[key].quantityBoxes += 1;
+//           accumulator[key].completeBoxes +=
+//             currentValue.boxSize === currentValue.stock ? 1 : 0;
+//           return accumulator;
+//         },
+//         {},
+//       ),
+//     );
+
+//   that.productBoxes = undefined;
+//   return that;
+// };
+
+Product.aggregateStock = function(product, includeBoxSizeDetail = false) {
+  product.totalStock = 0;
+  product.stockByWarehouse = Object.values(
+    product.productBoxes.reduce(
       (accumulator, currentValue, currentIndex, array) => {
         const key = currentValue.warehouse.id;
         if (!_.get(accumulator, [key]))
@@ -117,56 +183,50 @@ Product.prototype.aggregateStock = function(includeBoxSizeDetail = false) {
             stock: 0,
           };
         accumulator[key].stock += currentValue.stock;
-        that.totalStock += currentValue.stock;
+        product.totalStock += currentValue.stock;
         return accumulator;
       },
       {},
     ),
   );
 
-  that.stockByWarehouseType = Object.values(
-    that.productBoxes.reduce(
-      (accumulator, currentValue, currentIndex, array) => {
-        const key = currentValue.warehouse.type;
-        if (!_.get(accumulator, [key]))
-          accumulator[key] = {
-            warehouseType: currentValue.warehouse.type,
-            stock: 0,
-          };
-        accumulator[key].stock += currentValue.stock;
-        return accumulator;
-      },
-      {},
-    ),
+  product.stockByWarehouseType = Object.values(
+    product.productBoxes.reduce((accumulator, currentValue) => {
+      const key = currentValue.warehouse.type;
+      if (!_.get(accumulator, [key]))
+        accumulator[key] = {
+          warehouseType: currentValue.warehouse.type,
+          stock: 0,
+        };
+      accumulator[key].stock += currentValue.stock;
+      return accumulator;
+    }, {}),
   );
 
   if (includeBoxSizeDetail)
-    that.stockByWarehouseAndBoxSize = Object.values(
-      that.productBoxes.reduce(
-        (accumulator, currentValue, currentIndex, array) => {
-          const key = `${currentValue.warehouseId}-${currentValue.boxSize}`;
-          if (!_.get(accumulator, [key]))
-            accumulator[key] = {
-              warehouseId: currentValue.warehouse.id,
-              warehouseName: currentValue.warehouse.name,
-              warehouseType: currentValue.warehouse.type,
-              boxSize: currentValue.boxSize,
-              quantityBoxes: 0,
-              completeBoxes: 0,
-              stock: 0,
-            };
-          accumulator[key].stock += currentValue.stock;
-          accumulator[key].quantityBoxes += 1;
-          accumulator[key].completeBoxes +=
-            currentValue.boxSize === currentValue.stock ? 1 : 0;
-          return accumulator;
-        },
-        {},
-      ),
+    product.stockByWarehouseAndBoxSize = Object.values(
+      product.productBoxes.reduce((accumulator, currentValue) => {
+        const key = `${currentValue.warehouseId}-${currentValue.boxSize}`;
+        if (!_.get(accumulator, [key]))
+          accumulator[key] = {
+            warehouseId: currentValue.warehouse.id,
+            warehouseName: currentValue.warehouse.name,
+            warehouseType: currentValue.warehouse.type,
+            boxSize: currentValue.boxSize,
+            quantityBoxes: 0,
+            completeBoxes: 0,
+            stock: 0,
+          };
+        accumulator[key].stock += currentValue.stock;
+        accumulator[key].quantityBoxes += 1;
+        accumulator[key].completeBoxes +=
+          currentValue.boxSize === currentValue.stock ? 1 : 0;
+        return accumulator;
+      }, {}),
     );
 
-  that.productBoxes = undefined;
-  return that;
+  product.productBoxes = undefined;
+  return product;
 };
 
 Provider.hasMany(Product);

@@ -14,22 +14,23 @@ const ProductBox = sequelize.define(
   {
     // attributes
     indexFromSupliedProduct: {
+      // ? Correlativo asociado a supply
       type: Sequelize.INTEGER,
     },
     trackingCode: {
+      // ? Codigo de seguimiento
       type: Sequelize.STRING,
     },
     boxSize: {
+      // ? Tamano de la caja - Cantidad original de productos
       type: Sequelize.INTEGER,
     },
     stock: {
+      // ? Cantidad actual de productos
       type: Sequelize.INTEGER,
-    },
-    damagedStock: {
-      type: Sequelize.INTEGER,
-      defaultValue: 0,
     },
     isAvailable: {
+      // ? Indica si existen productos disponibles | stock === 0
       type: Sequelize.BOOLEAN,
       defaultValue: true,
     },

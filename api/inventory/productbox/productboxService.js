@@ -16,10 +16,7 @@ const listProductBoxes = async reqQuery => {
 };
 
 const createProductBox = async reqBody => {
-  let productBox = await ProductBox.findOne({ where: { name: reqBody.name } });
-  if (productBox) return setResponse(400, 'ProductBox already exists.');
-
-  productBox = await ProductBox.create(reqBody);
+  const productBox = await ProductBox.create(reqBody);
 
   return setResponse(201, 'ProductBox created.', productBox);
 };

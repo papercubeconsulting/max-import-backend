@@ -2,7 +2,7 @@ paths:
   "/warehouses":
     post:
       tags:
-        - warehouses
+        - inventory.warehouses
       summary: Crear un nuevo almacen
       operationId: addWarehouse
       responses:
@@ -14,7 +14,7 @@ paths:
         $ref: "#/components/requestBodies/Warehouse"
     get:
       tags:
-        - warehouses
+        - inventory.warehouses
       summary: Listar todos los almacenes
       operationId: listWarehouses
       parameters:
@@ -25,7 +25,7 @@ paths:
   "/warehouses/{id}":
     get:
       tags:
-        - warehouses
+        - inventory.warehouses
       summary: Encontrar almacen por Id
       operationId: getWarehouseById
       parameters:

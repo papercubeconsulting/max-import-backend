@@ -1,77 +1,50 @@
 [
   {
-    "name": "Ziore",
-    "address": "Boerum Street",
-    "type": "Almacén"
+    "index": 0,
+    "name": "Tienda 1",
+    "type": "Tienda",
+    "address": "Irving Avenue"
   },
   {
-    "name": "Netropic",
-    "address": "Schenectady Avenue",
-    "type": "Tienda"
+    "index": 1,
+    "name": "Tienda 2",
+    "type": "Tienda",
+    "address": "Sumner Place"
   },
   {
-    "name": "Deviltoe",
-    "address": "Lott Street",
-    "type": "Averiado"
+    "index": 2,
+    "name": "Tienda 3",
+    "type": "Tienda",
+    "address": "Pierrepont Place"
   },
   {
-    "name": "Enjola",
-    "address": "Dekoven Court",
-    "type": "Averiado"
+    "index": 3,
+    "name": "Tienda 4",
+    "type": "Tienda",
+    "address": "Flatbush Avenue"
   },
   {
-    "name": "Ozean",
-    "address": "Irvington Place",
-    "type": "Almacén"
+    "index": 4,
+    "name": "Tienda 5",
+    "type": "Tienda",
+    "address": "Bliss Terrace"
   },
   {
-    "name": "Bolax",
-    "address": "Melrose Street",
-    "type": "Tienda"
+    "index": 5,
+    "name": "Almacén 6",
+    "type": "Almacén",
+    "address": "Gotham Avenue"
   },
   {
-    "name": "Anivet",
-    "address": "Linden Boulevard",
-    "type": "Almacén"
+    "index": 6,
+    "name": "Almacén 7",
+    "type": "Almacén",
+    "address": "Thomas Street"
   },
   {
-    "name": "Tropolis",
-    "address": "Lake Avenue",
-    "type": "Tienda"
-  },
-  {
-    "name": "Rugstars",
-    "address": "Halsey Street",
-    "type": "Tienda"
-  },
-  {
-    "name": "Insource",
-    "address": "Herkimer Place",
-    "type": "Tienda"
-  },
-  {
-    "name": "Unq",
-    "address": "Joval Court",
-    "type": "Almacén"
-  },
-  {
-    "name": "Pearlesex",
-    "address": "Atlantic Avenue",
-    "type": "Tienda"
-  },
-  {
-    "name": "Verbus",
-    "address": "Hubbard Place",
-    "type": "Almacén"
-  },
-  {
-    "name": "Automon",
-    "address": "Chestnut Avenue",
-    "type": "Averiado"
-  },
-  {
-    "name": "Solaren",
-    "address": "Channel Avenue",
-    "type": "Tienda"
+    "index": 7,
+    "name": "Averiado 8",
+    "type": "Averiado",
+    "address": "Anchorage Place"
   }
 ]

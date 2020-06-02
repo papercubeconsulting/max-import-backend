@@ -2,7 +2,7 @@ paths:
   "/products":
     post:
       tags:
-        - products
+        - inventory.products
       summary: Crear un nuevo producto
       description: |
         Se crea un nuevo producto teniendo como parámetros las categorias 
@@ -27,7 +27,7 @@ paths:
         $ref: "#/components/requestBodies/Product"
     get:
       tags:
-        - products
+        - inventory.products
       summary: Listado de productos del inventario
       description: |
         Listar todos los productos del inventario. Existen filtros opcionales:
@@ -51,7 +51,7 @@ paths:
   "/products/{id}":
     get:
       tags:
-        - products
+        - inventory.products
       summary: Encontrar producto por Id incluyendo stock
       operationId: getProductById
       parameters:

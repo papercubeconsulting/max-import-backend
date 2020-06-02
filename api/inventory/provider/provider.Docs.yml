@@ -2,7 +2,7 @@ paths:
   "/providers":
     post:
       tags:
-        - providers
+        - inventory.providers
       summary: Crear un nuevo proveedor
       operationId: addProvider
       responses:
@@ -12,7 +12,7 @@ paths:
         $ref: "#/components/requestBodies/Provider"
     get:
       tags:
-        - providers
+        - inventory.providers
       summary: Listar todos los proveedores
       operationId: listProviders
       parameters:
@@ -23,7 +23,7 @@ paths:
   "/providers/{id}":
     get:
       tags:
-        - providers
+        - inventory.providers
       summary: Encontrar proveedor por Id
       operationId: getProviderById
       parameters:

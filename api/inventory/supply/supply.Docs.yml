@@ -1,48 +1,48 @@
 paths:
-  '/supplies':
+  "/supplies":
     post:
       tags:
-        - supplies
+        - inventory.supplies
       summary: Crear un nuevo abastecimiento
       operationId: addSupply
       responses:
-        '201':
+        "201":
           description: Supply created
-        '400':
+        "400":
           description: Bad request
       requestBody:
-        $ref: '#/components/requestBodies/Supply'
+        $ref: "#/components/requestBodies/Supply"
     get:
       tags:
-        - supplies
+        - inventory.supplies
       summary: Listar todos los abastecimientos. Ordenado por fecha de creación. Existen filtros opcionales.
       operationId: listSupplies
       parameters:
-        - $ref: '#/components/parameters/fromDate'
-        - $ref: '#/components/parameters/toDate'
-        - $ref: '#/components/parameters/pagePagination'
-        - $ref: '#/components/parameters/pageSizePagination'
+        - $ref: "#/components/parameters/fromDate"
+        - $ref: "#/components/parameters/toDate"
+        - $ref: "#/components/parameters/pagePagination"
+        - $ref: "#/components/parameters/pageSizePagination"
       responses:
-        '200':
+        "200":
           description: Supplies found
-  '/supplies/{id}':
+  "/supplies/{id}":
     get:
       tags:
-        - supplies
+        - inventory.supplies
       summary: Encontrar abastecimiento por Id
       operationId: getSupplyById
       parameters:
-        - $ref: '#/components/parameters/paramId'
+        - $ref: "#/components/parameters/paramId"
       responses:
-        '200':
+        "200":
           description: Successful operation
-        '400':
+        "400":
           description: Invalid ID supplied
-        '404':
+        "404":
           description: Resource not found
     put:
       tags:
-        - supplies
+        - inventory.supplies
       summary: Actualizar abastecimiento por Id
       description: |
         Los campos a actualizar permitidos son:
@@ -58,21 +58,21 @@ paths:
 
       operationId: updateSupplyById
       parameters:
-        - $ref: '#/components/parameters/paramId'
+        - $ref: "#/components/parameters/paramId"
       responses:
-        '200':
+        "200":
           description: Successful operation
-        '400':
+        "400":
           description: Bad request | Check message
-        '404':
+        "404":
           description: Resource not found
       requestBody:
-        $ref: '#/components/requestBodies/UpdateSupply'
+        $ref: "#/components/requestBodies/UpdateSupply"
 
-  '/supplies/{id}/status':
+  "/supplies/{id}/status":
     put:
       tags:
-        - supplies
+        - inventory.supplies
       summary: Actualizar status de un abastecimiento por Id
       description: |
         El campo status puede ser "Cancelado" o "Atendido".
@@ -84,21 +84,21 @@ paths:
 
       operationId: updateSupplyStatusById
       parameters:
-        - $ref: '#/components/parameters/paramId'
+        - $ref: "#/components/parameters/paramId"
       responses:
-        '200':
+        "200":
           description: Successful operation
-        '400':
+        "400":
           description: Bad request | Check message
-        '404':
+        "404":
           description: Resource not found
       requestBody:
-        $ref: '#/components/requestBodies/SupplyStatus'
+        $ref: "#/components/requestBodies/SupplyStatus"
 
-  '/supplies/{supplyId}/attend/{suppliedProductId}':
+  "/supplies/{supplyId}/attend/{suppliedProductId}":
     post:
       tags:
-        - supplies
+        - inventory.supplies
       summary: Atender
       description: |
         Se "atiende" una lista de cajas de una fila del abastecimiento o suppliedProduct. Devuelve un arreglo con los codigos de las cajas atendidas que deben ser usados para generar los codigos QR.
@@ -112,17 +112,17 @@ paths:
 
       operationId: attendSuppliedProduct
       parameters:
-        - $ref: '#/components/parameters/supplyId'
-        - $ref: '#/components/parameters/attendSuppliedProductId'
+        - $ref: "#/components/parameters/supplyId"
+        - $ref: "#/components/parameters/attendSuppliedProductId"
       responses:
-        '200':
+        "200":
           description: Successful operation
-        '400':
+        "400":
           description: Bad request | Check message
-        '404':
+        "404":
           description: Resource not found
       requestBody:
-        $ref: '#/components/requestBodies/attendSuppliedProduct'
+        $ref: "#/components/requestBodies/attendSuppliedProduct"
 components:
   requestBodies:
     Supply:
@@ -164,8 +164,8 @@ components:
             example:
               providerId: 1
               warehouseId: 1
-              observations: 'Ninguna'
-              code: '20200101-1'
+              observations: "Ninguna"
+              code: "20200101-1"
               suppliedProducts:
                 [
                   { productId: 1, boxSize: 20, quantity: 100 },
@@ -230,8 +230,8 @@ components:
             example:
               providerId: 1
               warehouseId: 1
-              observations: 'Ninguna'
-              code: '20200101-1'
+              observations: "Ninguna"
+              code: "20200101-1"
               suppliedProducts:
                 [
                   { productId: 1, boxSize: 20, quantity: 100 },

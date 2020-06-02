@@ -1,41 +1,41 @@
 paths:
-  '/models':
+  "/models":
     post:
       tags:
-        - models
+        - inventory.models
       summary: Crear un nuevo modelo
       operationId: addModel
       responses:
-        '201':
+        "201":
           description: Model created
-        '400':
+        "400":
           description: Bad request
       requestBody:
-        $ref: '#/components/requestBodies/Model'
+        $ref: "#/components/requestBodies/Model"
     get:
       tags:
-        - models
+        - inventory.models
       summary: Listar todos los modelos. Opcionalmente se puede filtrar por elemento
       operationId: listModels
       parameters:
-        - $ref: '#/components/parameters/elementId'
+        - $ref: "#/components/parameters/elementId"
       responses:
-        '200':
+        "200":
           description: Models found
-  '/models/{id}':
+  "/models/{id}":
     get:
       tags:
-        - models
+        - inventory.models
       summary: Encontrar modelo por Id
       operationId: getModelById
       parameters:
-        - $ref: '#/components/parameters/paramId'
+        - $ref: "#/components/parameters/paramId"
       responses:
-        '200':
+        "200":
           description: Successful operation
-        '400':
+        "400":
           description: Invalid ID supplied
-        '404':
+        "404":
           description: Resource not found
 components:
   requestBodies:
@@ -53,7 +53,7 @@ components:
               - name
               - elementId
             example:
-              name: 'Nuevo Modelo'
+              name: "Nuevo Modelo"
               elementId: 1
       required: true
   parameters:
