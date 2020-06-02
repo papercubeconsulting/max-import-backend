@@ -10,6 +10,7 @@ router.use('/providers', require('./provider/providerRoute'));
 router.use('/warehouses', require('./warehouse/warehouseRoute'));
 
 router.use('/products', require('./product/productRoute'));
+router.use('/productboxes', require('./productbox/productboxRoute'));
 router.use('/supplies', require('./supply/supplyRoute'));
 
 module.exports = router;

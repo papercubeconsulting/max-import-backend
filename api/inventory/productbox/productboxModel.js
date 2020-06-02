@@ -42,12 +42,15 @@ const ProductBox = sequelize.define(
         unique: true,
         fields: ['suppliedProductId', 'indexFromSupliedProduct'],
       },
+      {
+        fields: ['trackingCode'],
+      },
     ],
   },
 );
 
 ProductBox.prototype.getTrackingCode = function() {
-  return `${this.suppliedProductId}-${this.productId}-${this.indexFromSupliedProduct}`;
+  return `${this.productId}-${this.supplyId}-${this.suppliedProductId}-${this.indexFromSupliedProduct}`;
 };
 
 ProductBox.afterCreate('generateCode', async (productBox, options) => {

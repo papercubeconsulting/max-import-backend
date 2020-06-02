@@ -1,0 +1,11 @@
+paths:
+  "/productboxes/{code}":
+    get:
+      tags:
+        - inventory.productBox
+      summary: Encontrar productBox por codigo
+      parameters:
+        - $ref: "#/components/parameters/codeId"
+      responses:
+        "200":
+          description: successful operation

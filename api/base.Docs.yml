@@ -27,6 +27,13 @@ components:
         format: int32
         minimum: 1
         default: 1
+    codeId:
+      name: code
+      in: path
+      description: Codigo unico del recurso requerido.
+      required: true
+      schema:
+        type: string
     active:
       name: active
       in: query
