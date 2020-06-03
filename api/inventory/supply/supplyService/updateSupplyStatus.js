@@ -38,4 +38,4 @@ const updateSupplyStatus = async (reqBody, reqParams) => {
   return setResponse(200, 'Supply status updated.');
 };
 
-module.exports = updateSupplyStatus;
+module.exports = { updateSupplyStatus };

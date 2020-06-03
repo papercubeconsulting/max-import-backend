@@ -4,7 +4,7 @@ const Sequelize = require('sequelize');
 const { Op } = Sequelize;
 
 const sequelize = require(`${process.cwd()}/startup/db`);
-const Element = require('../element/elementModel');
+const { Element } = require('../element/elementModel');
 
 const Model = sequelize.define(
   'model',
@@ -54,4 +54,4 @@ Model.afterCreate('setCode', async (model, options) => {
 Element.hasMany(Model);
 Model.belongsTo(Element);
 
-module.exports = Model;
+module.exports = { Model };

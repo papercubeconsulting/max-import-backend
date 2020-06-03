@@ -1,9 +1,9 @@
 const { setResponse } = require('../../utils');
 
-const ProductBox = require('./productboxModel');
-const Product = require('../product/productModel');
-const Provider = require('../provider/providerModel');
-const Warehouse = require('../warehouse/warehouseModel');
+const { ProductBox } = require('./productboxModel');
+const { Product } = require('../product/productModel');
+const { Provider } = require('../provider/providerModel');
+const { Warehouse } = require('../warehouse/warehouseModel');
 
 const getProductBox = async reqParams => {
   const productBox = await ProductBox.findOne({

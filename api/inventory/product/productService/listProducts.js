@@ -5,9 +5,9 @@ const sequelize = require('sequelize');
 
 const { setResponse, paginate } = require('../../../utils');
 
-const Product = require('./../productModel');
-const ProductBox = require('../../productbox/productboxModel');
-const Warehouse = require('../../warehouse/warehouseModel');
+const { Product } = require('./../productModel');
+const { ProductBox } = require('../../productbox/productboxModel');
+const { Warehouse } = require('../../warehouse/warehouseModel');
 
 const { warehouseTypes } = require('../../../utils/constants');
 

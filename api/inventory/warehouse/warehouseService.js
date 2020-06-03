@@ -1,6 +1,6 @@
 const { setResponse } = require('../../utils');
 
-const Warehouse = require('./warehouseModel');
+const { Warehouse } = require('./warehouseModel');
 
 const readWarehouse = async reqParams => {
   const warehouse = await Warehouse.findByPk(reqParams.id);
@@ -11,7 +11,6 @@ const readWarehouse = async reqParams => {
 
 const listWarehouses = async reqQuery => {
   const warehouses = await Warehouse.findAll({ where: reqQuery });
-  console.log(reqQuery);
   return setResponse(200, 'Warehouses found.', warehouses);
 };
 

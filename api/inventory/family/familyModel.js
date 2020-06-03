@@ -24,4 +24,4 @@ const Family = sequelize.define(
   },
 );
 
-module.exports = Family;
+module.exports = { Family };

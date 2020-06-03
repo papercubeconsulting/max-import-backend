@@ -3,13 +3,13 @@ const winston = require('winston');
 
 const sequelize = require(`${process.cwd()}/startup/db`);
 
-const { setResponse, asyncForEach } = require('../../../utils');
+const { setResponse } = require('../../../utils');
 
 const { Supply, SuppliedProduct } = require('../supplyModel');
-const Product = require('../../product/productModel');
-const ProductBox = require('../../productbox/productboxModel');
-const Provider = require('../../provider/providerModel');
-const Warehouse = require('../../warehouse/warehouseModel');
+const { Product } = require('../../product/productModel');
+const { ProductBox } = require('../../productbox/productboxModel');
+const { Provider } = require('../../provider/providerModel');
+const { Warehouse } = require('../../warehouse/warehouseModel');
 
 const {
   updateAttendSuppliedProduct,
@@ -123,4 +123,4 @@ const fullCreateSupply = async reqBody => {
   return setResponse(201, 'Supply created.', supply);
 };
 
-module.exports = fullCreateSupply;
+module.exports = { fullCreateSupply };

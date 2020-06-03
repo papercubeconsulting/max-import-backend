@@ -1,6 +1,8 @@
+const { Op } = require('sequelize');
+
 const { setResponse } = require('../../utils');
 
-const Provider = require('./providerModel');
+const { Provider } = require('./providerModel');
 
 const readProvider = async reqParams => {
   const provider = await Provider.findByPk(reqParams.id);
@@ -17,10 +19,9 @@ const listProviders = async reqQuery => {
 
 const createProvider = async reqBody => {
   let provider = await Provider.findOne({
-    where: { $or: [{ name: reqBody.name }, { code: reqBody.code }] },
+    where: { [Op.or]: [{ name: reqBody.name }, { code: reqBody.code }] },
   });
   if (provider) return setResponse(400, 'Provider already exists.');
-
   provider = await Provider.create(reqBody);
 
   return setResponse(201, 'Provider created.', provider);

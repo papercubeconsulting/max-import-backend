@@ -2,10 +2,10 @@ const { Op } = require('sequelize');
 
 const { setResponse } = require('../../../utils');
 
-const Product = require('./../productModel');
-const Provider = require('../../provider/providerModel');
-const ProductBox = require('../../productbox/productboxModel');
-const Warehouse = require('../../warehouse/warehouseModel');
+const { Product } = require('./../productModel');
+const { Provider } = require('../../provider/providerModel');
+const { ProductBox } = require('../../productbox/productboxModel');
+const { Warehouse } = require('../../warehouse/warehouseModel');
 
 const readProduct = async reqParams => {
   const product = await Product.findByPk(reqParams.id, {

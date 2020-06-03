@@ -1,6 +1,6 @@
 const { setResponse } = require('../../utils');
 
-const Family = require('./familyModel');
+const { Family } = require('./familyModel');
 
 const readFamily = async reqParams => {
   const family = await Family.findByPk(reqParams.id);

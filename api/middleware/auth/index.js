@@ -18,8 +18,8 @@ const authenticateMiddleware = (strategyName, options = {}) => (
     strategyName,
     { ...options, session: false },
     (err, user, info) => {
-      console.log(info);
       if (err) return next(err);
+      // TODO: Uncomment
       // if (!user) {
       //   if (!info.status)
       //     info = {

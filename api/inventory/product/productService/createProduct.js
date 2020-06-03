@@ -3,12 +3,12 @@ const { Op } = require('sequelize');
 
 const { setResponse } = require('../../../utils');
 
-const Product = require('./../productModel');
-const Provider = require('../../provider/providerModel');
-const Family = require('../../family/familyModel');
-const Subfamily = require('../../subfamily/subfamilyModel');
-const Element = require('../../element/elementModel');
-const Model = require('../../model/modelModel');
+const { Product } = require('./../productModel');
+const { Provider } = require('../../provider/providerModel');
+const { Family } = require('../../family/familyModel');
+const { Subfamily } = require('../../subfamily/subfamilyModel');
+const { Element } = require('../../element/elementModel');
+const { Model } = require('../../model/modelModel');
 
 const checkCategory = async (
   Category,

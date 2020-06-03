@@ -1,12 +1,13 @@
+/* eslint-disable import/no-dynamic-require */
 const winston = require('winston');
 const { setResponse } = require('../../../utils');
 
 const sequelize = require(`${process.cwd()}/startup/db`);
 
 const { Supply, SuppliedProduct } = require('../supplyModel');
-const Product = require('../../product/productModel');
-const Provider = require('../../provider/providerModel');
-const Warehouse = require('../../warehouse/warehouseModel');
+const { Product } = require('../../product/productModel');
+const { Provider } = require('../../provider/providerModel');
+const { Warehouse } = require('../../warehouse/warehouseModel');
 
 const createSupply = async reqBody => {
   const t = await sequelize.transaction();
@@ -46,4 +47,4 @@ const createSupply = async reqBody => {
   }
 };
 
-module.exports = createSupply;
+module.exports = { createSupply };

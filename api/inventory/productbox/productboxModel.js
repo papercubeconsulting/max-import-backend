@@ -5,8 +5,8 @@ const Sequelize = require('sequelize');
 
 const sequelize = require(`${process.cwd()}/startup/db`);
 
-const Product = require('../product/productModel');
-const Warehouse = require('../warehouse/warehouseModel');
+const { Product } = require('../product/productModel');
+const { Warehouse } = require('../warehouse/warehouseModel');
 const { Supply, SuppliedProduct } = require('../supply/supplyModel');
 
 const ProductBox = sequelize.define(
@@ -49,6 +49,19 @@ const ProductBox = sequelize.define(
   },
 );
 
+const ProductBoxLog = sequelize.define(
+  'productBoxLog',
+  {
+    // attributes
+    userName: { type: Sequelize.STRING },
+    location: { type: Sequelize.STRING },
+    log: { type: Sequelize.STRING },
+  },
+  {
+    // options
+  },
+);
+
 ProductBox.prototype.getTrackingCode = function() {
   return `${this.productId}-${this.supplyId}-${this.suppliedProductId}-${this.indexFromSupliedProduct}`;
 };
@@ -79,4 +92,4 @@ Supply.hasMany(ProductBox);
 ProductBox.belongsTo(SuppliedProduct);
 SuppliedProduct.hasMany(ProductBox);
 
-module.exports = ProductBox;
+module.exports = { ProductBox };

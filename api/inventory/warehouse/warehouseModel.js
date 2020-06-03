@@ -28,4 +28,4 @@ const Warehouse = sequelize.define(
   },
 );
 
-module.exports = Warehouse;
+module.exports = { Warehouse };

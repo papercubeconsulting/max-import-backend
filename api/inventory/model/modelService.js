@@ -2,8 +2,8 @@ const _ = require('lodash');
 
 const { setResponse } = require('../../utils');
 
-const Model = require('./modelModel');
-const Element = require('../element/elementModel');
+const { Model } = require('./modelModel');
+const { Element } = require('../element/elementModel');
 
 const readModel = async reqParams => {
   const model = await Model.findByPk(reqParams.id);

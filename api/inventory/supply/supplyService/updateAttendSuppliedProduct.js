@@ -7,7 +7,7 @@ const { supplyStatus: status } = require('../../../utils/constants');
 const { setResponse } = require('../../../utils');
 
 const { Supply, SuppliedProduct } = require('../supplyModel');
-const ProductBox = require('../../productbox/productboxModel');
+const { ProductBox } = require('../../productbox/productboxModel');
 
 const validateAttendSuppliedProduct = async (reqBody, reqParams) => {
   const suppliedProduct = await SuppliedProduct.findByPk(

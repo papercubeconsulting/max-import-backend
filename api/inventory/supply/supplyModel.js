@@ -4,9 +4,9 @@ const Sequelize = require('sequelize');
 
 const sequelize = require(`${process.cwd()}/startup/db`);
 
-const Product = require('../product/productModel');
-const Provider = require('../provider/providerModel');
-const Warehouse = require('../warehouse/warehouseModel');
+const { Product } = require('../product/productModel');
+const { Provider } = require('../provider/providerModel');
+const { Warehouse } = require('../warehouse/warehouseModel');
 
 const { supplyStatus: status } = require('../../utils/constants');
 

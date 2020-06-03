@@ -2,7 +2,7 @@
 const Sequelize = require('sequelize');
 
 const sequelize = require(`${process.cwd()}/startup/db`);
-const Family = require('../family/familyModel');
+const { Family } = require('../family/familyModel');
 
 const Subfamily = sequelize.define(
   'subfamily',
@@ -43,4 +43,4 @@ const Subfamily = sequelize.define(
 Family.hasMany(Subfamily);
 Subfamily.belongsTo(Family);
 
-module.exports = Subfamily;
+module.exports = { Subfamily };

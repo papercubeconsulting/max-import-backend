@@ -4,7 +4,7 @@ const { setResponse } = require('../../../utils');
 const { supplyStatus: status } = require('../../../utils/constants');
 
 const { Supply, SuppliedProduct } = require('../supplyModel');
-const Product = require('../../product/productModel');
+const { Product } = require('../../product/productModel');
 
 // ? Servicio para actualiza campos del abastecimiento y añadir/remover productos
 // ? El abastecimiento debe estar sin atender
@@ -108,4 +108,4 @@ const validateUpdateSupply = async (reqBody, reqParams) => {
   });
 };
 
-module.exports = validateUpdateSupply;
+module.exports = { validateUpdateSupply };

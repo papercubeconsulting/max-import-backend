@@ -28,4 +28,4 @@ const Provider = sequelize.define(
   },
 );
 
-module.exports = Provider;
+module.exports = { Provider };

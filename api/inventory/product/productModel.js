@@ -5,12 +5,12 @@ const _ = require('lodash');
 
 const sequelize = require(`${process.cwd()}/startup/db`);
 
-const Provider = require('../provider/providerModel');
+const { Provider } = require('../provider/providerModel');
 
-const Family = require('../family/familyModel');
-const Subfamily = require('../subfamily/subfamilyModel');
-const Element = require('../element/elementModel');
-const Model = require('../model/modelModel');
+const { Family } = require('../family/familyModel');
+const { Subfamily } = require('../subfamily/subfamilyModel');
+const { Element } = require('../element/elementModel');
+const { Model } = require('../model/modelModel');
 
 const Product = sequelize.define(
   'product',
@@ -244,4 +244,4 @@ Product.belongsTo(Element);
 Model.hasMany(Product);
 Product.belongsTo(Model, { foreignKey: 'id' });
 
-module.exports = Product;
+module.exports = { Product };
