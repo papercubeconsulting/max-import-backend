@@ -27,8 +27,21 @@ const createProductBox = async reqBody => {
   return setResponse(201, 'ProductBox created.', productBox);
 };
 
+const putProductBox = async (reqBody, reqParams) => {
+  const productBox = await ProductBox.findByPk(reqParams.id);
+  if (!productBox) return setResponse(404, 'ProductBox not found.');
+  if (reqBody.warehouseId) {
+    const warehouse = await Warehouse.findByPk(reqBody.warehouseId);
+    if (!warehouse) return setResponse(404, 'Warehouse not found.');
+  }
+  await productBox.update(reqBody);
+
+  return setResponse(200, 'ProductBox updated.', productBox);
+};
+
 module.exports = {
   getProductBox,
   listProductBoxes,
   createProductBox,
+  putProductBox,
 };

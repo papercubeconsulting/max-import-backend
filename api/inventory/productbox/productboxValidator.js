@@ -1,4 +1,5 @@
 const { Joi } = require('celebrate');
+const { PRODUCTBOX_UPDATES, getDictValues } = require('../../utils/constants');
 
 const GetCode = {
   params: {
@@ -6,6 +7,32 @@ const GetCode = {
   },
 };
 
+const Get = {
+  params: {
+    id: Joi.number()
+      .integer()
+      .required(),
+  },
+};
+
+const Put = {
+  params: {
+    id: Joi.number()
+      .integer()
+      .required(),
+  },
+  body: {
+    message: Joi.string()
+      .valid(...getDictValues(PRODUCTBOX_UPDATES))
+      .required(),
+    warehouseId: Joi.number()
+      .integer()
+      .required(),
+  },
+};
+
 module.exports = {
   GetCode,
+  Get,
+  Put,
 };

@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 module.exports = {
   supplyStatus: {
     PENDING: 'Pendiente',
@@ -11,4 +12,6 @@ module.exports = {
     STORE: 'Tienda',
     DAMAGED: 'Averiado',
   },
+  PRODUCTBOX_UPDATES: { MOVEMENT: 'Movimiento de caja' },
+  ...require('./utils'),
 };
