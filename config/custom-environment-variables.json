@@ -1,4 +1,5 @@
 {
   "dbConfig": "ENV_DB_URL",
-  "hostname": "ENV_HOSTNAME"
+  "hostname": "ENV_HOSTNAME",
+  "jwtSecret": "JWT_SECRET"
 }

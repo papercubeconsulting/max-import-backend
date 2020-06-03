@@ -8,6 +8,8 @@ const winston = require('winston');
 const celebrateError = require('../api/middleware/celebrateError');
 const error = require('../api/middleware/error');
 
+const { initialiseAuthentication } = require('../api/middleware/auth');
+
 // Routers for applications
 
 module.exports = app => {
@@ -35,6 +37,7 @@ module.exports = app => {
 
   // * Include application routers
 
+  initialiseAuthentication(app);
   require('./routes')(app);
 
   app.use(celebrateError);
