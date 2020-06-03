@@ -49,13 +49,14 @@ const ProductBox = sequelize.define(
   },
 );
 
+// ? Al momento de crear
+// ? Al momento de mover
 const ProductBoxLog = sequelize.define(
   'productBoxLog',
   {
     // attributes
-    userName: { type: Sequelize.STRING },
-    location: { type: Sequelize.STRING },
     log: { type: Sequelize.STRING },
+    user: { type: Sequelize.INTEGER }, // TODO: Retirar al añadir dependencia a usuario
   },
   {
     // options
@@ -66,9 +67,8 @@ ProductBox.prototype.getTrackingCode = function() {
   return `${this.productId}-${this.supplyId}-${this.suppliedProductId}-${this.indexFromSupliedProduct}`;
 };
 
-ProductBox.afterCreate('generateCode', async (productBox, options) => {
+ProductBox.beforeCreate('generateCode', async (productBox, options) => {
   productBox.trackingCode = productBox.getTrackingCode();
-  await productBox.save({ transaction: options.transaction });
 });
 
 ProductBox.beforeBulkCreate('generateCode', async (productBoxes, options) => {
@@ -76,9 +76,35 @@ ProductBox.beforeBulkCreate('generateCode', async (productBoxes, options) => {
     (obj, index, array) =>
       (array[index].trackingCode = array[index].getTrackingCode()),
   );
-  // productBox.trackingCode = productBox.getTrackingCode();
-  // await productBox.save({ transaction: options.transaction });
 });
+
+ProductBox.prototype.registerLog = function(message, user) {
+  ProductBoxLog.create({
+    productBoxId: this.id,
+    log: message,
+    user: user.id,
+    warehouseId: this.warehouseId,
+  });
+};
+
+ProductBox.bulkRegisterLog = function(message, user, data) {
+  ProductBoxLog.bulkCreate(
+    data.map(productBox => ({
+      productBoxId: productBox.id,
+      log: message,
+      user: user.id,
+      warehouseId: productBox.warehouseId,
+    })),
+  );
+};
+
+// TODO: Agregar dependencia a User
+
+ProductBoxLog.belongsTo(ProductBox);
+ProductBox.hasMany(ProductBoxLog);
+
+ProductBoxLog.belongsTo(Warehouse);
+Warehouse.hasMany(ProductBoxLog);
 
 ProductBox.belongsTo(Product);
 Product.hasMany(ProductBox);
@@ -92,4 +118,4 @@ Supply.hasMany(ProductBox);
 ProductBox.belongsTo(SuppliedProduct);
 SuppliedProduct.hasMany(ProductBox);
 
-module.exports = { ProductBox };
+module.exports = { ProductBox, ProductBoxLog };

@@ -1,6 +1,6 @@
 const { setResponse } = require('../../utils');
 
-const { ProductBox } = require('./productboxModel');
+const { ProductBox, ProductBoxLog } = require('./productboxModel');
 const { Product } = require('../product/productModel');
 const { Provider } = require('../provider/providerModel');
 const { Warehouse } = require('../warehouse/warehouseModel');
@@ -8,7 +8,15 @@ const { Warehouse } = require('../warehouse/warehouseModel');
 const getProductBox = async reqParams => {
   const productBox = await ProductBox.findOne({
     where: reqParams,
-    include: [{ model: Product, include: [Provider] }, Warehouse],
+    include: [
+      { model: Product, include: [Provider] },
+      Warehouse,
+      {
+        model: ProductBoxLog,
+        include: [{ model: Warehouse, attributes: ['name'] }],
+      },
+    ],
+    order: [[{ model: ProductBoxLog }, 'createdAt', 'DESC']],
   });
   if (!productBox) return setResponse(404, 'ProductBox not found.');
   // TODO: Agregar log de cajas
@@ -27,7 +35,7 @@ const createProductBox = async reqBody => {
   return setResponse(201, 'ProductBox created.', productBox);
 };
 
-const putProductBox = async (reqBody, reqParams) => {
+const putProductBox = async (reqBody, reqParams, reqUser) => {
   const productBox = await ProductBox.findByPk(reqParams.id);
   if (!productBox) return setResponse(404, 'ProductBox not found.');
   if (reqBody.warehouseId) {
@@ -35,7 +43,7 @@ const putProductBox = async (reqBody, reqParams) => {
     if (!warehouse) return setResponse(404, 'Warehouse not found.');
   }
   await productBox.update(reqBody);
-
+  productBox.registerLog(reqBody.message, reqUser);
   return setResponse(200, 'ProductBox updated.', productBox);
 };
 

@@ -11,7 +11,7 @@ const getProductBoxByCode = async (req, res) => {
 };
 
 const putProductBox = async (req, res) => {
-  const response = await Service.putProductBox(req.body, req.params);
+  const response = await Service.putProductBox(req.body, req.params, req.user);
   return res.status(response.status).send(response);
 };
 

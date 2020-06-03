@@ -3,7 +3,10 @@ const winston = require('winston');
 
 const sequelize = require(`${process.cwd()}/startup/db`);
 
-const { supplyStatus: status } = require('../../../utils/constants');
+const {
+  supplyStatus: status,
+  PRODUCTBOX_UPDATES,
+} = require('../../../utils/constants');
 const { setResponse } = require('../../../utils');
 
 const { Supply, SuppliedProduct } = require('../supplyModel');
@@ -32,7 +35,7 @@ const validateAttendSuppliedProduct = async (reqBody, reqParams) => {
   return setResponse(200, 'Supplied Product attended.');
 };
 
-const updateAttendSuppliedProduct = async (reqBody, reqParams) => {
+const updateAttendSuppliedProduct = async (reqBody, reqParams, reqUser) => {
   const t = await sequelize.transaction();
   try {
     const suppliedProduct = await SuppliedProduct.findByPk(
@@ -83,6 +86,11 @@ const updateAttendSuppliedProduct = async (reqBody, reqParams) => {
     await suppliedProduct.save({ transaction: t });
 
     await t.commit();
+    ProductBox.bulkRegisterLog(
+      PRODUCTBOX_UPDATES.CREATION,
+      reqUser,
+      newProductBoxes,
+    );
     return setResponse(200, 'Supplied Product attended.', newProductBoxes);
   } catch (error) {
     winston.error(error);

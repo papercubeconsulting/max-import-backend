@@ -12,6 +12,9 @@ module.exports = {
     STORE: 'Tienda',
     DAMAGED: 'Averiado',
   },
-  PRODUCTBOX_UPDATES: { MOVEMENT: 'Movimiento de caja' },
+  PRODUCTBOX_UPDATES: {
+    MOVEMENT: 'Movimiento de caja',
+    CREATION: 'Abastecimiento',
+  },
   ...require('./utils'),
 };

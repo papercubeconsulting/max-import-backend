@@ -57,6 +57,7 @@ const updateAttendSuppliedProduct = async (req, res) => {
   const suppliedProduct = await Services.updateAttendSuppliedProduct(
     req.body,
     req.params,
+    req.user,
   );
 
   if (suppliedProduct.status !== 200)

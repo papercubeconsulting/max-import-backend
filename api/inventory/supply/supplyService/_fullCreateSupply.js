@@ -15,7 +15,7 @@ const {
   updateAttendSuppliedProduct,
 } = require('./updateAttendSuppliedProduct');
 
-const updateSupplyStatus = require('./updateSupplyStatus');
+const { updateSupplyStatus } = require('./updateSupplyStatus');
 
 const { supplyStatus } = require('../../../utils/constants');
 
@@ -65,7 +65,7 @@ const foo = async (reqBody, reqParams, t) => {
   await suppliedProduct.save({ transaction: t });
 };
 
-const fullCreateSupply = async reqBody => {
+const _fullCreateSupply = async (reqBody, reqUser) => {
   const t = await sequelize.transaction();
   const { status } = reqBody;
   let supply;
@@ -111,6 +111,7 @@ const fullCreateSupply = async reqBody => {
         return updateAttendSuppliedProduct(
           { boxes: [...Array(obj.quantity).keys()].map(x => ++x) },
           { id: supply.id, idSuppliedProduct: obj.id },
+          reqUser,
         );
       }),
     );
@@ -123,4 +124,4 @@ const fullCreateSupply = async reqBody => {
   return setResponse(201, 'Supply created.', supply);
 };
 
-module.exports = { fullCreateSupply };
+module.exports = { _fullCreateSupply };
