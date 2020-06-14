@@ -9,6 +9,16 @@ const { Product } = require('../../product/productModel');
 const { Provider } = require('../../provider/providerModel');
 const { Warehouse } = require('../../warehouse/warehouseModel');
 
+const validateCreateSupply = async reqBody => {
+  const productIds = Array.from(
+    new Set(reqBody.suppliedProducts.map(obj => obj.productId)),
+  );
+  const products = await Product.findAll({ where: { id: productIds } });
+  if (products.some(prod => prod.providerId !== reqBody.providerId))
+    return setResponse(400, 'Invalid providerId for selected products');
+  return setResponse(200, 'Ok');
+};
+
 const createSupply = async reqBody => {
   const t = await sequelize.transaction();
 
@@ -26,7 +36,10 @@ const createSupply = async reqBody => {
         Provider,
         {
           model: SuppliedProduct,
-          include: Product,
+          include: {
+            model: Product,
+            attributes: { exclude: 'imageBase64' },
+          },
         },
       ],
       transaction: t,
@@ -47,4 +60,4 @@ const createSupply = async reqBody => {
   }
 };
 
-module.exports = { createSupply };
+module.exports = { createSupply, validateCreateSupply };

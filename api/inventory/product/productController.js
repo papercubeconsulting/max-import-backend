@@ -1,7 +1,9 @@
 const Services = require('./productService');
 
 const getProduct = async (req, res) => {
-  const product = await Services.readProduct(req.params);
+  const product = await (req.query.noStock
+    ? Services.readProductNoStock(req.params)
+    : Services.readProduct(req.params));
 
   return res.status(product.status).send(product);
 };

@@ -17,6 +17,7 @@ paths:
       operationId: listSubfamily
       parameters:
         - $ref: "#/components/parameters/familyId"
+        - $ref: "#/components/parameters/providerId"
       responses:
         "200":
           description: Subfamilies found

@@ -1,7 +1,9 @@
 const { Joi } = require('celebrate');
 
 const List = {
-  query: {},
+  query: {
+    providerId: Joi.number().integer(),
+  },
 };
 
 const Get = {

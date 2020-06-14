@@ -27,6 +27,15 @@ components:
         format: int32
         minimum: 1
         default: 1
+    providerId:
+      name: providerId
+      in: query
+      description: Id del proveedor
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
     codeId:
       name: code
       in: path

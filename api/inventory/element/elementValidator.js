@@ -3,6 +3,7 @@ const { Joi } = require('celebrate');
 const List = {
   query: {
     subfamilyId: Joi.number().integer(),
+    providerId: Joi.number().integer(),
   },
 };
 

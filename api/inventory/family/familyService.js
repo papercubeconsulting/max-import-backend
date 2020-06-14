@@ -1,6 +1,7 @@
 const { setResponse } = require('../../utils');
 
 const { Family } = require('./familyModel');
+const { Product } = require('../product/productModel');
 
 const readFamily = async reqParams => {
   const family = await Family.findByPk(reqParams.id);
@@ -10,7 +11,17 @@ const readFamily = async reqParams => {
 };
 
 const listFamilies = async reqQuery => {
-  const families = await Family.findAll({});
+  const query = {};
+  if (reqQuery.providerId)
+    query.include = [
+      {
+        model: Product,
+        attributes: ['id', 'providerId', 'code'],
+        where: { providerId: reqQuery.providerId },
+      },
+    ];
+
+  const families = await Family.findAll(query);
 
   return setResponse(200, 'Families found.', families);
 };

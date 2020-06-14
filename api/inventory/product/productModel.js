@@ -58,6 +58,9 @@ const Product = sequelize.define(
   },
   {
     // options
+    defaultScope: {
+      attributes: { exclude: ['imageBase64'] },
+    },
   },
 );
 

@@ -4,6 +4,7 @@ const { setResponse } = require('../../utils');
 
 const { Model } = require('./modelModel');
 const { Element } = require('../element/elementModel');
+const { Product } = require('../product/productModel');
 
 const readModel = async reqParams => {
   const model = await Model.findByPk(reqParams.id);
@@ -13,9 +14,18 @@ const readModel = async reqParams => {
 };
 
 const listModels = async reqQuery => {
-  const models = await Model.findAll({
+  const query = {
     where: _.pick(reqQuery, ['elementId']),
-  });
+  };
+  if (reqQuery.providerId)
+    query.include = [
+      {
+        model: Product,
+        attributes: ['id', 'providerId', 'code'],
+        where: { providerId: reqQuery.providerId },
+      },
+    ];
+  const models = await Model.findAll(query);
 
   return setResponse(200, 'Models found.', models);
 };

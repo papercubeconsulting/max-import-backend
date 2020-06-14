@@ -19,6 +19,7 @@ paths:
       operationId: listModels
       parameters:
         - $ref: "#/components/parameters/elementId"
+        - $ref: "#/components/parameters/providerId"
       responses:
         "200":
           description: Models found

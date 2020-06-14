@@ -13,6 +13,9 @@ const listSupplies = async (req, res) => {
 };
 
 const postSupply = async (req, res) => {
+  const validate = await Services.validateCreateSupply(req.body);
+  if (validate.status !== 200)
+    return res.status(validate.status).send(validate);
   const supply = await Services.createSupply(req.body);
 
   return res.status(supply.status).send(supply);

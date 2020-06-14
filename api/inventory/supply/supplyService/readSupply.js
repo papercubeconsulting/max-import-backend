@@ -22,6 +22,7 @@ const readSupply = async reqParams => {
         ],
       },
     ],
+    order: [[{ model: SuppliedProduct }, 'id', 'ASC']],
   });
   if (!supply) return setResponse(404, 'Supply not found.');
 

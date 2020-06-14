@@ -34,6 +34,14 @@ const readProduct = async reqParams => {
   );
 };
 
+const readProductNoStock = async reqParams => {
+  const product = await Product.findByPk(reqParams.id, { include: [Provider] });
+  if (!product) return setResponse(404, 'Product not found.');
+
+  return setResponse(200, 'Product found.', product);
+};
+
 module.exports = {
   readProduct,
+  readProductNoStock,
 };

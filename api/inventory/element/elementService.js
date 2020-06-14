@@ -4,6 +4,7 @@ const { setResponse } = require('../../utils');
 
 const { Element } = require('./elementModel');
 const { Subfamily } = require('../subfamily/subfamilyModel');
+const { Product } = require('../product/productModel');
 
 const readElement = async reqParams => {
   const element = await Element.findByPk(reqParams.id);
@@ -13,9 +14,19 @@ const readElement = async reqParams => {
 };
 
 const listElements = async reqQuery => {
-  const elements = await Element.findAll({
+  const query = {
     where: _.pick(reqQuery, ['subfamilyId']),
-  });
+  };
+  if (reqQuery.providerId)
+    query.include = [
+      {
+        model: Product,
+        attributes: ['id', 'providerId', 'code'],
+        where: { providerId: reqQuery.providerId },
+      },
+    ];
+
+  const elements = await Element.findAll(query);
 
   return setResponse(200, 'Elements found.', elements);
 };

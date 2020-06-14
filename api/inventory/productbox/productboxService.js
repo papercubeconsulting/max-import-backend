@@ -9,7 +9,11 @@ const getProductBox = async reqParams => {
   const productBox = await ProductBox.findOne({
     where: reqParams,
     include: [
-      { model: Product, include: [Provider] },
+      {
+        model: Product,
+        include: [Provider],
+        attributes: { exclude: 'imageBase64' },
+      },
       Warehouse,
       {
         model: ProductBoxLog,

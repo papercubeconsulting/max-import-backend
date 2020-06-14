@@ -3,13 +3,14 @@ const { Joi } = require('celebrate');
 const List = {
   query: {
     stock: Joi.string()
-      .valid('yes', 'all')
+      .valid('yes', 'no', 'all')
       .default('all'),
     code: Joi.string(),
     familyId: Joi.number().integer(),
     subfamilyId: Joi.number().integer(),
     elementId: Joi.number().integer(),
     modelId: Joi.number().integer(),
+    providerId: Joi.number().integer(),
 
     page: Joi.number()
       .integer()
@@ -23,6 +24,9 @@ const List = {
 };
 
 const Get = {
+  query: {
+    noStock: Joi.boolean().default(false),
+  },
   params: {
     id: Joi.number()
       .integer()

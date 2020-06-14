@@ -17,6 +17,7 @@ paths:
       operationId: listElements
       parameters:
         - $ref: "#/components/parameters/subfamilyId"
+        - $ref: "#/components/parameters/providerId"
       responses:
         "200":
           description: Elements found
