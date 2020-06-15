@@ -46,19 +46,19 @@ const seedModelByService = async (model, filename, service, params) => {
 };
 
 sequelize.sync({ force: true }).then(async result => {
-  // await seedModel(Family, 'family.json');
-  // await seedModel(Subfamily, 'subfamily.json');
-  // await seedModel(Element, 'element.json');
-  // await seedModelOneByOne(Model, 'model.json');
+  await seedModel(Family, 'family.json');
+  await seedModel(Subfamily, 'subfamily.json');
+  await seedModel(Element, 'element.json');
+  await seedModelOneByOne(Model, 'model.json');
 
-  // await seedModel(Provider, 'provider.json');
-  // await seedModel(Warehouse, 'warehouse.json');
+  await seedModel(Provider, 'provider.json');
+  await seedModel(Warehouse, 'warehouse.json');
 
-  // await seedModelOneByOne(Product, 'product.json');
+  await seedModelOneByOne(Product, 'product.json');
 
-  // await seedModelByService(Supply, 'supply.json', _fullCreateSupply, [
-  //   { id: 1, name: 'Test' },
-  // ]);
+  await seedModelByService(Supply, 'supply.json', _fullCreateSupply, [
+    { id: 1, name: 'Test' },
+  ]);
 
   await sequelize.close();
 });

@@ -63,8 +63,17 @@ const ProductBoxLog = sequelize.define(
   },
 );
 
+function pad(n, width, z) {
+  z = z || '0';
+  n += '';
+  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+}
+
 ProductBox.prototype.getTrackingCode = function() {
-  return `${this.productId}-${this.supplyId}-${this.suppliedProductId}-${this.indexFromSupliedProduct}`;
+  return `${pad(this.productId, 6)}${pad(this.supplyId, 6)}${pad(
+    this.suppliedProductId,
+    6,
+  )}${pad(this.indexFromSupliedProduct, 6)}`;
 };
 
 ProductBox.beforeCreate('generateCode', async (productBox, options) => {

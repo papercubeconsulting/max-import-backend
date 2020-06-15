@@ -9,9 +9,7 @@ const GetCode = {
 
 const Get = {
   params: {
-    id: Joi.number()
-      .integer()
-      .required(),
+    identifier: Joi.string().required(),
   },
 };
 

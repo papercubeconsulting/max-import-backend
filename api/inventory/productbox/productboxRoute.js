@@ -6,12 +6,17 @@ const Validator = require('./productboxValidator');
 
 const router = express.Router();
 
-router.get('/:id([0-9]+)', celebrate(Validator.Get), Controller.getProductBox);
 router.get(
-  `/:trackingCode`,
-  celebrate(Validator.GetCode),
-  Controller.getProductBoxByCode,
+  '/:identifier',
+  celebrate(Validator.Get),
+  Controller.getProductBoxByIdentifier,
 );
+// router.get('/:id([0-9]+)', celebrate(Validator.Get), Controller.getProductBox);
+// router.get(
+//   `/:trackingCode`,
+//   celebrate(Validator.GetCode),
+//   Controller.getProductBoxByCode,
+// );
 
 router.put('/:id', celebrate(Validator.Put), Controller.putProductBox);
 
