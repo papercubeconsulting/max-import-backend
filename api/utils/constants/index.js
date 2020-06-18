@@ -13,8 +13,9 @@ module.exports = {
     DAMAGED: 'Averiado',
   },
   PRODUCTBOX_UPDATES: {
-    MOVEMENT: 'Movimiento de caja',
-    CREATION: 'Abastecimiento',
+    MOVEMENT: { value: 'MOVEMENT', name: 'Movimiento de caja' },
+    CREATION: { value: 'CREATION', name: 'Abastecimiento' },
   },
   ...require('./utils'),
+  ...require('./user'),
 };

@@ -1,0 +1,341 @@
+paths:
+  "/auth/login":
+    post:
+      tags:
+        - auth.authentication
+      summary: Login by password
+      description: |
+        If username is email send email field.
+        If an identity document is used, send idDocumentNumber, idDocumentType
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+                  required:
+                    - email
+                    - password
+                - type: object
+                  properties:
+                    idDocumentType:
+                      type: string
+                      enum: ["DNI", "CE", "PASSPORT"]
+                    idDocumentNumber:
+                      type: string
+                    password:
+                      type: string
+                  required:
+                    - idDocumentNumber
+                    - idDocumentType
+                    - password
+            examples:
+              email:
+                value:
+                  email: admin@correo.com
+                  password: "password"
+              DNI:
+                value:
+                  idDocumentType: DNI
+                  idDocumentNumber: "12345678"
+                  password: "1234567890"
+              CE:
+                value:
+                  idDocumentType: CE
+                  idDocumentNumber: "12345678"
+                  password: "1234567890"
+              PASSPORT:
+                value:
+                  idDocumentType: PASSPORT
+                  idDocumentNumber: "12345678"
+                  password: "1234567890"
+      responses:
+        200:
+          description: Success
+
+  "/auth/signup":
+    post:
+      tags:
+        - auth.authentication
+      summary: Signup by password
+      description: |
+        Signup service to register by password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/registerPayload"
+                - type: object
+                  properties:
+                    password:
+                      type: string
+              required:
+                - password
+                -
+            examples:
+              Usuario normal:
+                value:
+                  idDocumentType: "DNI"
+                  idDocumentNumber: "12345612"
+                  email: "nuevo@correo.com"
+                  password: "password"
+                  name: "Prueba"
+                  lastName: "Test"
+                  phonePrefix: "+51"
+                  phoneNumber: "987654321"
+                  companyName: "Empresa Prueba"
+              Usuario empresa:
+                value:
+                  idDocumentType: "DNI"
+                  idDocumentNumber: "41387803"
+                  email: "usuario1@empresa1.com"
+                  password: "password"
+                  name: "Prueba"
+                  lastName: "Test"
+                  phonePrefix: "+51"
+                  phoneNumber: "987654321"
+                  companyName: "Empresa Prueba"
+                  companyId: "5ee81488e5c62602d2062497"
+              Completo:
+                value:
+                  idDocumentType: "CE"
+                  idDocumentNumber: "65487312"
+                  email: "hola@correo.com"
+                  password: "password"
+                  name: "hola"
+                  lastName: "test"
+                  phonePrefix: "+51"
+                  phoneNumber: "987654321"
+                  companyName: "Empresa Prueba"
+              Minimo:
+                value:
+                  idDocumentType: "DNI"
+                  idDocumentNumber: "65487312"
+                  email: "hola2@correo.com"
+                  password: "password"
+                  name: "hola"
+                  lastName: "test"
+      responses:
+        200:
+          description: Success
+  "/auth/google/signup":
+    post:
+      tags:
+        - auth.authentication
+      summary: Signup by Google auth
+      description: |
+        Signup service to register by Google auth
+
+        [Tutorial](https://www.youtube.com/watch?v=j_31hJtWjlw)
+
+        [Playgroud](https://developers.google.com/oauthplayground/#step3&apisSelect=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%2Chttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&auth_code=4%2FyAHN1JyvvVAufvBxSzm6e7M-Witnj46NLAhFhOXuk-mcICinrQZGoGO01a1nH-hOp4dS6TEe0ShumdOvVaNpe4E&refresh_token=1%2F%2F04RbbtlxcR5joCgYIARAAGAQSNwF-L9Irl7qdGkeHWiwEN45KL6twZgTCkAncYOPRkGh-lOvHyWmURlMHIhhVqTyYJ7NUl9Gz-_M&access_token_field=ya29.a0Ae4lvC38N8JKZXbjaFYHZY3cwNNZDVwrEpJyHFDCfshD3tjniKFYt0CGWwVjDdBvZDQbZIL1Hjx3AfnfiZOkVFSj1K3X_NmoFtRrb1ffC_Bph8RsvM-7XdsI4jw0ED-uiRZr2whD0Hx7isjoFw_x8fNnXa4ceK1GhzE&url=https%3A%2F%2Faccounts.google.com%2Fo%2Foauth2%2Fv2%2Fauth%3Fredirect_uri%3Dhttps%3A%2F%2Fdevelopers.google.com%2Foauthplayground%26prompt%3Dconsent%26response_type%3Dcode%26client_id%3D407408718192.apps.googleusercontent.com%26scope%3Dhttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%2Bhttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%26access_type%3Doffline&content_type=application%2Fjson&http_method=GET&useDefaultOauthCred=checked&oauthEndpointSelect=Google&oauthAuthEndpointValue=https%3A%2F%2Faccounts.google.com%2Fo%2Foauth2%2Fv2%2Fauth&oauthTokenEndpointValue=https%3A%2F%2Foauth2.googleapis.com%2Ftoken&oauthClientId=482601024377-dvsj23a8dk67ogr7v6e08e91gribi5ha.apps.googleusercontent.com&expires_in=3598&oauthClientSecret=6eibkyI0jHADZHiEUa5OACha&access_token_issue_date=1585772160&for_access_token=ya29.a0Ae4lvC38N8JKZXbjaFYHZY3cwNNZDVwrEpJyHFDCfshD3tjniKFYt0CGWwVjDdBvZDQbZIL1Hjx3AfnfiZOkVFSj1K3X_NmoFtRrb1ffC_Bph8RsvM-7XdsI4jw0ED-uiRZr2whD0Hx7isjoFw_x8fNnXa4ceK1GhzE&includeCredentials=checked&accessTokenType=query&autoRefreshToken=unchecked&accessType=offline&prompt=consent&response_type=code&wrapLines=on)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/registerPayload"
+                - type: object
+                  properties:
+                    access_token:
+                      type: string
+                      description: |
+                        Id token provisto por servicio de Google
+                        Para mayor informacion https://www.youtube.com/watch?v=j_31hJtWjlw
+              required:
+                - access_token
+            examples:
+              Completo:
+                value:
+                  idDocumentType: "CE"
+                  idDocumentNumber: "65487312"
+                  email: "hola@correo.com"
+                  name: "hola"
+                  lastName: "test"
+                  phonePrefix: "+51"
+                  phoneNumber: "987654321"
+                  companyName: "Empresa Prueba"
+                  access_token: "eyJhbGciOiJSUzI1NiIsImtpZCI6IjUzYzY2YWFiNTBjZmRkOTFhMTQzNTBhNjY0ODJkYjM4MDBjODNjNjMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI0ODI2MDEwMjQzNzctZHZzajIzYThkazY3b2dyN3Y2ZTA4ZTkxZ3JpYmk1aGEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI0ODI2MDEwMjQzNzctZHZzajIzYThkazY3b2dyN3Y2ZTA4ZTkxZ3JpYmk1aGEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDMwNjM4MjA1NDMzMzEzODc0NjIiLCJoZCI6InBhcGVyY3ViZS5wZSIsImVtYWlsIjoiam9zZS5tYWxsbWFAcGFwZXJjdWJlLnBlIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJJQkFpTGV0UHlVZ3VlTnhPTnJXd2Z3IiwibmFtZSI6Ikpvc2UgQW50b25pbyBNYWxsbWEgTGXDs24iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDUuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1vckZxaDF5YzBtYy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS9BS0YwNW5BQ1d6Si1ad0FPcjBEVVpvakp0eHpwN0NSUGhRL3M5Ni1jL3Bob3RvLmpwZyIsImdpdmVuX25hbWUiOiJKb3NlIEFudG9uaW8iLCJmYW1pbHlfbmFtZSI6Ik1hbGxtYSBMZcOzbiIsImxvY2FsZSI6ImVzIiwiaWF0IjoxNTg1NTM0NjM3LCJleHAiOjE1ODU1MzgyMzd9.QAZl2dH79fDNK8dbn7Z2rqup2jElFhMaAT53Hwg_NfVqDWvJ2zKUOBtJdp6ktsYVVClDzK-N-MMxOorss02XfjgzkP7RbDuozRdvDEP8ivCvKOPICnMQ4Cr-mucMbF0HjNMbG_1fgKXduJVUZtrwwRyM2aJl9vfIZk5mpDjOHEjoamuS2R9P2k37Yvyh9htfCih1C07uK_0ysOnHNp5Dc_VPF3zFI9R-cRI_7UNys4XtZaMSbV5xdmrJv_HoWtTdKn9f8CyAFaqL1nxnB8S0xQ5wEZRZCV0Ee6k28GSSTdIcqc3xShsrzdl00rl1Q0oE7uynyFqgdJ0ze5Nh3zp8eQ"
+              Minimo:
+                value:
+                  idDocumentType: "DNI"
+                  idDocumentNumber: "65487312"
+                  email: "hola2@correo.com"
+                  name: "hola"
+                  lastName: "test"
+                  access_token: "eyJhbGciOiJSUzI1NiIsImtpZCI6IjUzYzY2YWFiNTBjZmRkOTFhMTQzNTBhNjY0ODJkYjM4MDBjODNjNjMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI0ODI2MDEwMjQzNzctZHZzajIzYThkazY3b2dyN3Y2ZTA4ZTkxZ3JpYmk1aGEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI0ODI2MDEwMjQzNzctZHZzajIzYThkazY3b2dyN3Y2ZTA4ZTkxZ3JpYmk1aGEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDMwNjM4MjA1NDMzMzEzODc0NjIiLCJoZCI6InBhcGVyY3ViZS5wZSIsImVtYWlsIjoiam9zZS5tYWxsbWFAcGFwZXJjdWJlLnBlIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJJQkFpTGV0UHlVZ3VlTnhPTnJXd2Z3IiwibmFtZSI6Ikpvc2UgQW50b25pbyBNYWxsbWEgTGXDs24iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDUuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1vckZxaDF5YzBtYy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS9BS0YwNW5BQ1d6Si1ad0FPcjBEVVpvakp0eHpwN0NSUGhRL3M5Ni1jL3Bob3RvLmpwZyIsImdpdmVuX25hbWUiOiJKb3NlIEFudG9uaW8iLCJmYW1pbHlfbmFtZSI6Ik1hbGxtYSBMZcOzbiIsImxvY2FsZSI6ImVzIiwiaWF0IjoxNTg1NTM0NjM3LCJleHAiOjE1ODU1MzgyMzd9.QAZl2dH79fDNK8dbn7Z2rqup2jElFhMaAT53Hwg_NfVqDWvJ2zKUOBtJdp6ktsYVVClDzK-N-MMxOorss02XfjgzkP7RbDuozRdvDEP8ivCvKOPICnMQ4Cr-mucMbF0HjNMbG_1fgKXduJVUZtrwwRyM2aJl9vfIZk5mpDjOHEjoamuS2R9P2k37Yvyh9htfCih1C07uK_0ysOnHNp5Dc_VPF3zFI9R-cRI_7UNys4XtZaMSbV5xdmrJv_HoWtTdKn9f8CyAFaqL1nxnB8S0xQ5wEZRZCV0Ee6k28GSSTdIcqc3xShsrzdl00rl1Q0oE7uynyFqgdJ0ze5Nh3zp8eQ"
+      responses:
+        200:
+          description: Success
+  "/auth/google/login":
+    post:
+      tags:
+        - auth.authentication
+      summary: Login by Google oAuth
+      description: |
+        Login service to identify by google auth
+
+        [Tutorial](https://www.youtube.com/watch?v=j_31hJtWjlw)
+
+        [Playgroud](https://developers.google.com/oauthplayground/#step3&apisSelect=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%2Chttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&auth_code=4%2FyAHN1JyvvVAufvBxSzm6e7M-Witnj46NLAhFhOXuk-mcICinrQZGoGO01a1nH-hOp4dS6TEe0ShumdOvVaNpe4E&refresh_token=1%2F%2F04RbbtlxcR5joCgYIARAAGAQSNwF-L9Irl7qdGkeHWiwEN45KL6twZgTCkAncYOPRkGh-lOvHyWmURlMHIhhVqTyYJ7NUl9Gz-_M&access_token_field=ya29.a0Ae4lvC38N8JKZXbjaFYHZY3cwNNZDVwrEpJyHFDCfshD3tjniKFYt0CGWwVjDdBvZDQbZIL1Hjx3AfnfiZOkVFSj1K3X_NmoFtRrb1ffC_Bph8RsvM-7XdsI4jw0ED-uiRZr2whD0Hx7isjoFw_x8fNnXa4ceK1GhzE&url=https%3A%2F%2Faccounts.google.com%2Fo%2Foauth2%2Fv2%2Fauth%3Fredirect_uri%3Dhttps%3A%2F%2Fdevelopers.google.com%2Foauthplayground%26prompt%3Dconsent%26response_type%3Dcode%26client_id%3D407408718192.apps.googleusercontent.com%26scope%3Dhttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%2Bhttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%26access_type%3Doffline&content_type=application%2Fjson&http_method=GET&useDefaultOauthCred=checked&oauthEndpointSelect=Google&oauthAuthEndpointValue=https%3A%2F%2Faccounts.google.com%2Fo%2Foauth2%2Fv2%2Fauth&oauthTokenEndpointValue=https%3A%2F%2Foauth2.googleapis.com%2Ftoken&oauthClientId=482601024377-dvsj23a8dk67ogr7v6e08e91gribi5ha.apps.googleusercontent.com&expires_in=3598&oauthClientSecret=6eibkyI0jHADZHiEUa5OACha&access_token_issue_date=1585772160&for_access_token=ya29.a0Ae4lvC38N8JKZXbjaFYHZY3cwNNZDVwrEpJyHFDCfshD3tjniKFYt0CGWwVjDdBvZDQbZIL1Hjx3AfnfiZOkVFSj1K3X_NmoFtRrb1ffC_Bph8RsvM-7XdsI4jw0ED-uiRZr2whD0Hx7isjoFw_x8fNnXa4ceK1GhzE&includeCredentials=checked&accessTokenType=query&autoRefreshToken=unchecked&accessType=offline&prompt=consent&response_type=code&wrapLines=on)
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                access_token:
+                  type: string
+              required:
+                - access_token
+            examples:
+              access_token:
+                value:
+                  access_token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjUzYzY2YWFiNTBjZmRkOTFhMTQzNTBhNjY0ODJkYjM4MDBjODNjNjMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI0ODI2MDEwMjQzNzctZHZzajIzYThkazY3b2dyN3Y2ZTA4ZTkxZ3JpYmk1aGEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI0ODI2MDEwMjQzNzctZHZzajIzYThkazY3b2dyN3Y2ZTA4ZTkxZ3JpYmk1aGEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDMwNjM4MjA1NDMzMzEzODc0NjIiLCJoZCI6InBhcGVyY3ViZS5wZSIsImVtYWlsIjoiam9zZS5tYWxsbWFAcGFwZXJjdWJlLnBlIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJJQkFpTGV0UHlVZ3VlTnhPTnJXd2Z3IiwibmFtZSI6Ikpvc2UgQW50b25pbyBNYWxsbWEgTGXDs24iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDUuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1vckZxaDF5YzBtYy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS9BS0YwNW5BQ1d6Si1ad0FPcjBEVVpvakp0eHpwN0NSUGhRL3M5Ni1jL3Bob3RvLmpwZyIsImdpdmVuX25hbWUiOiJKb3NlIEFudG9uaW8iLCJmYW1pbHlfbmFtZSI6Ik1hbGxtYSBMZcOzbiIsImxvY2FsZSI6ImVzIiwiaWF0IjoxNTg1NTM0NjM3LCJleHAiOjE1ODU1MzgyMzd9.QAZl2dH79fDNK8dbn7Z2rqup2jElFhMaAT53Hwg_NfVqDWvJ2zKUOBtJdp6ktsYVVClDzK-N-MMxOorss02XfjgzkP7RbDuozRdvDEP8ivCvKOPICnMQ4Cr-mucMbF0HjNMbG_1fgKXduJVUZtrwwRyM2aJl9vfIZk5mpDjOHEjoamuS2R9P2k37Yvyh9htfCih1C07uK_0ysOnHNp5Dc_VPF3zFI9R-cRI_7UNys4XtZaMSbV5xdmrJv_HoWtTdKn9f8CyAFaqL1nxnB8S0xQ5wEZRZCV0Ee6k28GSSTdIcqc3xShsrzdl00rl1Q0oE7uynyFqgdJ0ze5Nh3zp8eQ
+  "/auth/facebook/signup":
+    post:
+      tags:
+        - auth.authentication
+      summary: Signup by Facebook auth
+      description: |
+        Signup service to register by Facebook auth
+
+        [Tutorial](https://elfsight.com/blog/2017/10/how-to-get-facebook-access-token/)
+
+        [Playgroud](https://developers.facebook.com/tools/explorer)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/registerPayload"
+                - type: object
+                  properties:
+                    access_token:
+                      type: string
+                      description: |
+                        Id token provisto por servicio de Google
+                        Para mayor informacion https://www.youtube.com/watch?v=j_31hJtWjlw
+              required:
+                - access_token
+            examples:
+              Completo:
+                value:
+                  idDocumentType: "CE"
+                  idDocumentNumber: "65487312"
+                  email: "hola@correo.com"
+                  name: "hola"
+                  lastName: "test"
+                  phonePrefix: "+51"
+                  phoneNumber: "987654321"
+                  companyName: "Empresa Prueba"
+                  access_token: "EAAhZATgripZBsBAIQKFjLE1Qm1BfDcY07fXZC1kCS3EtZBeBUZBFfNZBzQ06UQ0Tdlr3lASxYzADXaiCFNnrOOxPWAR4w2idZAfdIZBKSVCX16EMlnjCx4HLQTjYZCZB2SYqgQF3kB58sLNXEuLZARRxFL8TBLmkHhvcbUjIIzaLrVOq42R0hKUQxchtQ6dMjl679EakXwYnVMNgNZBmq9SEhDazB8pTp6liC6oQij3E05tR5GMPk52Hx9FZBwK2UMIZADiZA0ZD"
+              Minimo:
+                value:
+                  idDocumentType: "DNI"
+                  idDocumentNumber: "65487312"
+                  email: "hola2@correo.com"
+                  name: "hola"
+                  lastName: "test"
+                  access_token: "EAAhZATgripZBsBAIQKFjLE1Qm1BfDcY07fXZC1kCS3EtZBeBUZBFfNZBzQ06UQ0Tdlr3lASxYzADXaiCFNnrOOxPWAR4w2idZAfdIZBKSVCX16EMlnjCx4HLQTjYZCZB2SYqgQF3kB58sLNXEuLZARRxFL8TBLmkHhvcbUjIIzaLrVOq42R0hKUQxchtQ6dMjl679EakXwYnVMNgNZBmq9SEhDazB8pTp6liC6oQij3E05tR5GMPk52Hx9FZBwK2UMIZADiZA0ZD"
+      responses:
+        200:
+          description: Success
+  "/auth/facebook/login":
+    post:
+      tags:
+        - auth.authentication
+      summary: Login by Facebook oAuth
+      description: |
+        Login service to identify by Facebook auth
+
+        [Tutorial](https://elfsight.com/blog/2017/10/how-to-get-facebook-access-token/)
+
+        [Playgroud](https://developers.facebook.com/tools/explorer)
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                access_token:
+                  type: string
+              required:
+                - access_token
+            examples:
+              access_token:
+                value:
+                  access_token: "EAAhZATgripZBsBAIQKFjLE1Qm1BfDcY07fXZC1kCS3EtZBeBUZBFfNZBzQ06UQ0Tdlr3lASxYzADXaiCFNnrOOxPWAR4w2idZAfdIZBKSVCX16EMlnjCx4HLQTjYZCZB2SYqgQF3kB58sLNXEuLZARRxFL8TBLmkHhvcbUjIIzaLrVOq42R0hKUQxchtQ6dMjl679EakXwYnVMNgNZBmq9SEhDazB8pTp6liC6oQij3E05tR5GMPk52Hx9FZBwK2UMIZADiZA0ZD"
+      responses:
+        200:
+          description: Success
+
+  "/auth/checkDocument":
+    post:
+      tags:
+        - auth.authentication
+      summary: Validar usuario preregistrado
+      description: |
+        Ver lista de usuarios empresa en https://pastebin.com/Yej8wNFg
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idDocumentType:
+                  type: string
+                  enum: ["DNI", "CE", "PASSPORT"]
+                idDocumentNumber:
+                  type: string
+                email:
+                  type: string
+              required:
+                - idDocumentType
+                - idDocumentNumber
+                - email
+            examples:
+              Completo:
+                value:
+                  idDocumentType: "DNI"
+                  idDocumentNumber: "11111111"
+                  email: "hola@correo.com"
+      responses:
+        200:
+          description: Success
+components:
+  schemas:
+    registerPayload:
+      type: object
+      properties:
+        idDocumentType:
+          type: string
+          enum: ["DNI", "CE", "PASSPORT"]
+        idDocumentNumber:
+          type: string
+        email:
+          type: string
+        name:
+          type: string
+        lastName:
+          type: string
+        phonePrefix:
+          type: string
+        phoneNumber:
+          type: string
+        companyName:
+          type: string
+      required:
+        - idDocumentNumber
+        - idDocumentType
+        - email
+        - name
+        - lastName

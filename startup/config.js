@@ -34,7 +34,7 @@ module.exports = () => {
       const envVariables = JSON.parse(data);
       keyify(envVariables).forEach(varEnv => {
         if (!config.has(varEnv))
-          throw new Error(`FATAL ERROR: ${varEnv} not defined`);
+          winston.error(`FATAL ERROR: ${varEnv} not defined`);
       });
       winston.info('1/4 All env variables setted');
     },

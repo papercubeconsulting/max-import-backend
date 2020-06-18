@@ -1,0 +1,101 @@
+paths:
+  '/users':
+    post:
+      tags:
+        - auth.user
+      summary: Crear un nuevo usuario | Solo admin
+      requestBody:
+        $ref: '#/components/requestBodies/createUserPayload'
+      responses:
+        '201':
+          description: Subfamily created
+    get:
+      tags:
+        - auth.user
+      summary: Listar todas los usuarios
+      parameters:
+        - $ref: '#/components/parameters/name'
+        - $ref: '#/components/parameters/lastname'
+        - $ref: '#/components/parameters/idNumber'
+      responses:
+        '200':
+          description: Subfamilies found
+  '/users/{id}':
+    get:
+      tags:
+        - auth.user
+      summary: Encontrar usuario por Id
+      parameters:
+        - $ref: '#/components/parameters/paramId'
+      responses:
+        '200':
+          description: Successful operation
+components:
+  requestBodies:
+    createUserPayload:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              idNumber:
+                type: string
+              email:
+                type: string
+              name:
+                type: string
+              lastname:
+                type: string
+              phoneNumber:
+                type: string
+              password:
+                type: string
+              role:
+                type: string
+            required:
+              - password
+              - idNumber
+              - email
+              - name
+              - lastname
+          examples:
+            Nuevo usuario:
+              value:
+                idNumber: '11111111'
+                email: 'nuevo@correo.com'
+                password: 'password'
+                name: 'Prueba'
+                lastname: 'Test'
+                phoneNumber: '987654321'
+                role: 'superuser'
+            Nuevo usuario2:
+              value:
+                idNumber: '11111111'
+                email: 'nuevo@correo.com'
+                password: 'password'
+                name: 'Prueba'
+                lastname: 'Test'
+                phoneNumber: '987654321'
+                role: 'superuser'
+  parameters:
+    name:
+      name: name
+      in: query
+      description: Nombre del usuario
+      required: false
+      schema:
+        type: string
+    lastname:
+      name: lastname
+      in: query
+      description: Apellido del usuario
+      required: false
+      schema:
+        type: string
+    idNumber:
+      name: idNumber
+      in: query
+      description: Documento de identidad
+      required: false
+      schema:
+        type: string

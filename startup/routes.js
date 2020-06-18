@@ -1,9 +1,7 @@
-const indexRouter = require('../routes/index');
-const usersRouter = require('../routes/users');
-const InventoryRouter = require('../api/inventory/inventoryRoutes');
+const InventoryRouter = require('../api/inventory/inventoryRouter');
+const AuthRouter = require('../api/auth/authRouter');
 
 module.exports = app => {
-  app.use('/', indexRouter);
-  app.use('/users', usersRouter);
+  app.use('/', AuthRouter);
   app.use('/', InventoryRouter);
 };

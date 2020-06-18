@@ -87,7 +87,7 @@ const updateAttendSuppliedProduct = async (reqBody, reqParams, reqUser) => {
 
     await t.commit();
     ProductBox.bulkRegisterLog(
-      PRODUCTBOX_UPDATES.CREATION,
+      PRODUCTBOX_UPDATES.CREATION.name,
       reqUser,
       newProductBoxes,
     );

@@ -1,3 +1,4 @@
 {
-  "name": "Backend-Server-Production"
+  "name": "Backend-Server-Production",
+  "saltPow": 12
 }
