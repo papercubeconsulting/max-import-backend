@@ -1,4 +1,6 @@
 tags:
+  - name: auth.users
+    description: Servicios asociados a usuarios
   - name: inventory.products
     description: Productos del inventario
   - name: inventory.supplies

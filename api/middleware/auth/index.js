@@ -6,7 +6,7 @@ const pipe = (...functions) => args =>
   functions.reduce((arg, fn) => fn(arg), args);
 
 const initialiseAuthentication = app => {
-  pipe(strategies.JWTStrategy)(app);
+  pipe(strategies.JWTStrategy, strategies.LocalStrategy)(app);
 };
 
 const authenticateMiddleware = (strategyName, options = {}) => (
@@ -19,20 +19,15 @@ const authenticateMiddleware = (strategyName, options = {}) => (
     { ...options, session: false },
     (err, user, info) => {
       if (err) return next(err);
-      // TODO: Uncomment
-      // if (!user) {
-      //   if (!info.status)
-      //     info = {
-      //       status: 401,
-      //       message: 'Authentication failed.',
-      //     };
-      //   return res.status(info.status).send(info);
-      // }
-      // req.user = user;
-      req.user = {
-        id: 1,
-        name: 'Test',
-      };
+      if (!user) {
+        if (!info.status)
+          info = {
+            status: 401,
+            message: 'Authentication failed.',
+          };
+        return res.status(info.status).send(info);
+      }
+      req.user = user;
       return next();
     },
   )(req, res, next);

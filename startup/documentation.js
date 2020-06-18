@@ -4,14 +4,16 @@ const winston = require('winston');
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
+const token =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJudWV2b0Bjb3JyZW8uY29tIiwicm9sZSI6InN1cGVydXNlciIsImlhdCI6MTU5MjQ2NDk4MH0.sdht1-6bMBlSTXz4cSDq_K3lYvTOPvqgeCciQyL-Rg4';
+
 // -- setup up swagger-jsdoc --
 const swaggerDefinition = {
   openapi: '3.0.0',
   info: {
     title: 'Max Import ERP API',
     version: '1.0.0',
-    description:
-      'API desarrollada por el equipo de [PaperCube](http://papercube.pe) para la implementación del ERP de la empresa Max Import.',
+    description: `API desarrollada por el equipo de [PaperCube](http://papercube.pe) para la implementación del ERP de la empresa Max Import.\n${token}`,
     license: {
       name: 'MIT',
       url: 'https://choosealicense.com/licenses/mit/',
@@ -20,6 +22,20 @@ const swaggerDefinition = {
       email: 'soluciones@papercube.pe',
     },
   },
+  components: {
+    securitySchemes: {
+      bearerAuth: {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+      },
+    },
+  },
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
   servers: [
     {
       url: 'http://localhost:3001',

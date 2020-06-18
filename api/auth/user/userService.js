@@ -10,6 +10,12 @@ const readUser = async reqParams => {
   return setResponse(200, 'User found.', user);
 };
 
+const readUserByIds = async reqParams => {
+  const user = await User.findByIds(reqParams);
+  if (!user) return setResponse(404, 'User not found.');
+  return setResponse(200, 'User found.', user);
+};
+
 const listUsers = async reqQuery => {
   const users = await User.findAll({
     where: reqQuery,
@@ -29,4 +35,5 @@ module.exports = {
   readUser,
   listUsers,
   createUser,
+  readUserByIds,
 };

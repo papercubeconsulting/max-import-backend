@@ -12,6 +12,13 @@ const sequelize = require(`${process.cwd()}/startup/db`);
 
 const { ROLES, getDictValues } = require('../../utils/constants');
 
+const JWT_FIELDS = [
+  // ? Identificadores
+  'id',
+  'email',
+  'role',
+];
+
 const User = sequelize.define(
   'user',
   {
@@ -88,5 +95,16 @@ User.beforeCreate('hashPassword', async user => {
   user.password = await User.hashPassword(user.password);
   user.hasPassword = true;
 });
+
+User.prototype.isValidPassword = async function(password) {
+  if (!password) return false;
+  const compare = await bcrypt.compare(password, this.password);
+  return compare;
+};
+
+User.prototype.generateAuthToken = function() {
+  const payload = _.pick(this.get(), JWT_FIELDS);
+  return jwt.sign(payload, config.get('jwtSecret'));
+};
 
 module.exports = { User };

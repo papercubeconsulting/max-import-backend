@@ -3,5 +3,5 @@ const { strategy: LocalStrategy } = require('./local');
 
 module.exports = {
   JWTStrategy,
-  // LocalStrategy,
+  LocalStrategy,
 };
