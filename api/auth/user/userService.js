@@ -1,6 +1,3 @@
-const _ = require('lodash');
-const moment = require('moment-timezone');
-
 const { setResponse } = require('../../utils');
 
 const { User } = require('./userModel');
