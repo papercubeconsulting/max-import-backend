@@ -5,6 +5,8 @@ const jwt = require('jsonwebtoken');
 const _ = require('lodash');
 const bcrypt = require('bcrypt');
 const config = require('config');
+const crypto = require('crypto');
+const moment = require('moment-timezone');
 
 const { Op } = Sequelize;
 
@@ -37,15 +39,15 @@ const User = sequelize.define(
     },
     active: {
       type: Sequelize.BOOLEAN,
-      default: true,
+      defaultValue: true,
     },
     email: {
       type: Sequelize.STRING,
-      default: true,
+      defaultValue: true,
     },
     phoneNumber: {
       type: Sequelize.STRING,
-      default: '',
+      defaultValue: '',
     },
     password: {
       type: Sequelize.STRING,
@@ -55,11 +57,31 @@ const User = sequelize.define(
       type: Sequelize.ENUM(getDictValues(ROLES)),
       defaultValue: ROLES.superuser.value,
     },
+
+    resetPasswordToken: {
+      type: Sequelize.STRING,
+      defaultValue: '',
+    },
+    resetPasswordExpires: {
+      type: Sequelize.DATE,
+      defaultValue: Sequelize.NOW,
+    },
   },
   {
     // options
 
-    attributes: { exclude: ['password'] },
+    defaultScope: {
+      attributes: {
+        exclude: ['password', 'resetPasswordToken', 'resetPasswordExpires'],
+      },
+      where: {
+        active: true,
+      },
+    },
+    scopes: {
+      full: {},
+    },
+
     indexes: [
       {
         unique: true,
@@ -73,10 +95,9 @@ const User = sequelize.define(
   },
 );
 
-User.findByIds = function(ids) {
+User.findByIds = function(ids, scope = 'defaultScope') {
   const idIdentifiers = [['email'], ['idNumber']];
-
-  return this.findOne({
+  return this.scope(scope).findOne({
     where: {
       [Op.or]: idIdentifiers
         .filter(fields => _.every(fields, _.partial(_.has, ids)))
@@ -93,7 +114,10 @@ User.hashPassword = async password => {
 
 User.beforeCreate('hashPassword', async user => {
   user.password = await User.hashPassword(user.password);
-  user.hasPassword = true;
+});
+
+User.afterCreate('hidePassword', async user => {
+  await user.reload();
 });
 
 User.prototype.isValidPassword = async function(password) {
@@ -105,6 +129,39 @@ User.prototype.isValidPassword = async function(password) {
 User.prototype.generateAuthToken = function() {
   const payload = _.pick(this.get(), JWT_FIELDS);
   return jwt.sign(payload, config.get('jwtSecret'));
+};
+
+User.prototype.generatePasswordResetToken = async function() {
+  this.resetPasswordToken = crypto.randomBytes(20).toString('hex');
+  this.resetPasswordExpires = moment
+    .tz('America/Lima')
+    .add(10, 'minutes')
+    .format();
+  await this.save();
+};
+
+User.prototype.updatePasswordByToken = async function(data) {
+  if (data.token !== this.resetPasswordToken)
+    return { success: false, message: 'El token no es válido' };
+  if (moment(this.resetPasswordExpires) < moment())
+    return {
+      success: false,
+      message: 'El token ha expirado.',
+    };
+  this.password = await User.hashPassword(data.password);
+  this.resetPasswordToken = '';
+  this.resetPasswordExpires = moment.tz('America/Lima').subtract(1, 'day');
+  await this.save();
+  return {
+    success: true,
+    message: 'La contraseña ha sido actualizada',
+  };
+};
+
+User.prototype.generateToken = async function(token) {
+  if (!token) return false;
+  const compare = await bcrypt.compare(token, this.password);
+  return compare;
 };
 
 module.exports = { User };

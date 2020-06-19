@@ -15,7 +15,7 @@ const strategy = () => {
         passwordField: 'password',
       },
       async (req, email, password, done) => {
-        const user = await readUserByIds(req.body);
+        const user = await readUserByIds(req.body, 'full');
         if (user.status !== 200) {
           return done(null, false, user);
         }

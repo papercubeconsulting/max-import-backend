@@ -1,5 +1,5 @@
 paths:
-  '/users':
+  "/users":
     post:
       tags:
         - auth.users
@@ -7,9 +7,9 @@ paths:
       security:
         - bearerAuth: []
       requestBody:
-        $ref: '#/components/requestBodies/createUserPayload'
+        $ref: "#/components/requestBodies/createUserPayload"
       responses:
-        '201':
+        "201":
           description: Subfamily created
     get:
       tags:
@@ -18,13 +18,13 @@ paths:
       security:
         - bearerAuth: []
       parameters:
-        - $ref: '#/components/parameters/name'
-        - $ref: '#/components/parameters/lastname'
-        - $ref: '#/components/parameters/idNumber'
+        - $ref: "#/components/parameters/name"
+        - $ref: "#/components/parameters/lastname"
+        - $ref: "#/components/parameters/idNumber"
       responses:
-        '200':
+        "200":
           description: Subfamilies found
-  '/users/{id}':
+  "/users/{id}":
     get:
       tags:
         - auth.users
@@ -32,10 +32,54 @@ paths:
       security:
         - bearerAuth: []
       parameters:
-        - $ref: '#/components/parameters/paramId'
+        - $ref: "#/components/parameters/paramId"
       responses:
-        '200':
+        "200":
           description: Successful operation
+  "/users/forgotpassword":
+    post:
+      tags:
+        - auth.users
+      summary: Request email and token to restore password
+      description: ""
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+              required:
+                - email
+      responses:
+        200:
+          description: Successful
+  "/users/resetpassword":
+    post:
+      tags:
+        - auth.users
+      summary: Reset password by provided code
+      description: ""
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                token:
+                  type: string
+                password:
+                  type: string
+              required:
+                - email
+                - code
+                - password
+      responses:
+        200:
+          description: Successful
 components:
   requestBodies:
     createUserPayload:
@@ -67,13 +111,13 @@ components:
           examples:
             Nuevo usuario:
               value:
-                idNumber: '11111111'
-                email: 'nuevo@correo.com'
-                password: 'password'
-                name: 'Prueba'
-                lastname: 'Test'
-                phoneNumber: '987654321'
-                role: 'superuser'
+                idNumber: "11111111"
+                email: "nuevo@correo.com"
+                password: "password"
+                name: "Prueba"
+                lastname: "Test"
+                phoneNumber: "987654321"
+                role: "superuser"
   parameters:
     name:
       name: name

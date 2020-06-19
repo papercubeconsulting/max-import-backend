@@ -76,6 +76,20 @@ const Get = {
   },
 };
 
+const ForgotPassword = {
+  body: {
+    ...emailValidator,
+  },
+};
+
+const ResetPassword = {
+  body: {
+    ...emailValidator,
+    token: Joi.string().required(),
+    password: passwordValidator.password,
+  },
+};
+
 module.exports = {
   Post,
   List,
@@ -84,4 +98,6 @@ module.exports = {
   emailValidator,
   passwordValidator,
   idNumberValidator,
+  ForgotPassword,
+  ResetPassword,
 };
