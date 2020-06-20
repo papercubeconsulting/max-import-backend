@@ -14,7 +14,7 @@ router.get('/:id', celebrate(Validator.Get), Controller.readUser);
 router.get('/', celebrate(Validator.List), Controller.listUsers);
 router.post('/', celebrate(Validator.Post), Controller.createUser);
 
-secureRouter.use('/', router);
+secureRouter.use('/', authenticateMiddleware('jwt'), router);
 
 secureRouter.post(
   '/forgotpassword',

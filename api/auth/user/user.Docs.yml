@@ -1,4 +1,14 @@
 paths:
+  "/users/me":
+    get:
+      tags:
+        - auth.users
+      summary: Crear un nuevo usuario | Solo admin
+      security:
+        - bearerAuth: []
+      responses:
+        "201":
+          description: Subfamily created
   "/users":
     post:
       tags:

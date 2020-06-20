@@ -1,7 +1,7 @@
 const Service = require('./userService');
 
 const getUserMe = async (req, res) => {
-  const response = await Service.getUserMe(req.user.id);
+  const response = await Service.readUser({ id: req.user.id });
   return res.status(response.status).send(response);
 };
 

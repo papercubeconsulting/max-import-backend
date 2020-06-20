@@ -12,6 +12,7 @@ module.exports = (err, req, res, next) => {
     status: 400,
     error: 'Bad Request',
     message: joi.message,
+    userMessage: joi.message,
     validation: {
       source: meta.source,
       keys: [],
