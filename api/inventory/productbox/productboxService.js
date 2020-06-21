@@ -4,6 +4,7 @@ const { ProductBox, ProductBoxLog } = require('./productboxModel');
 const { Product } = require('../product/productModel');
 const { Provider } = require('../provider/providerModel');
 const { Warehouse } = require('../warehouse/warehouseModel');
+const { User } = require('../../auth/user/userModel');
 
 const getProductBox = async reqParams => {
   const productBox = await ProductBox.findOne({
@@ -17,13 +18,16 @@ const getProductBox = async reqParams => {
       Warehouse,
       {
         model: ProductBoxLog,
-        include: [{ model: Warehouse, attributes: ['name'] }],
+        include: [
+          { model: Warehouse, attributes: ['name'] },
+          { model: User, attributes: ['name', 'lastname'] },
+        ],
       },
     ],
     order: [[{ model: ProductBoxLog }, 'createdAt', 'DESC']],
   });
   if (!productBox) return setResponse(404, 'ProductBox not found.');
-  // TODO: Agregar log de cajas
+
   return setResponse(200, 'ProductBox found.', productBox);
 };
 

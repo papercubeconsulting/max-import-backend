@@ -2,12 +2,15 @@
 /* eslint-disable object-shorthand */
 /* eslint-disable import/no-dynamic-require */
 const Sequelize = require('sequelize');
+const _ = require('lodash');
 
 const sequelize = require(`${process.cwd()}/startup/db`);
 
+const { User } = require('../../auth/user/userModel');
 const { Product } = require('../product/productModel');
 const { Warehouse } = require('../warehouse/warehouseModel');
 const { Supply, SuppliedProduct } = require('../supply/supplyModel');
+const { PRODUCTBOX_UPDATES } = require('../../utils/constants');
 
 const ProductBox = sequelize.define(
   'productBox',
@@ -56,7 +59,6 @@ const ProductBoxLog = sequelize.define(
   {
     // attributes
     log: { type: Sequelize.STRING },
-    user: { type: Sequelize.INTEGER }, // TODO: Retirar al añadir dependencia a usuario
   },
   {
     // options
@@ -90,8 +92,8 @@ ProductBox.beforeBulkCreate('generateCode', async (productBoxes, options) => {
 ProductBox.prototype.registerLog = function(message, user) {
   ProductBoxLog.create({
     productBoxId: this.id,
-    log: message,
-    user: user.id,
+    log: _.get(PRODUCTBOX_UPDATES, `${message}.name`, message),
+    userId: user.id,
     warehouseId: this.warehouseId,
   });
 };
@@ -100,14 +102,17 @@ ProductBox.bulkRegisterLog = function(message, user, data) {
   ProductBoxLog.bulkCreate(
     data.map(productBox => ({
       productBoxId: productBox.id,
-      log: message,
-      user: user.id,
+      log: _.get(PRODUCTBOX_UPDATES, `${message}.name`, message),
+      userId: user.id,
       warehouseId: productBox.warehouseId,
     })),
   );
 };
 
 // TODO: Agregar dependencia a User
+
+ProductBoxLog.belongsTo(User);
+User.hasMany(ProductBoxLog);
 
 ProductBoxLog.belongsTo(ProductBox);
 ProductBox.hasMany(ProductBoxLog);
