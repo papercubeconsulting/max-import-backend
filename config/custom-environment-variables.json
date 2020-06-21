@@ -1,5 +1,7 @@
 {
   "dbConfig": "ENV_DB_URL",
   "hostname": "ENV_HOSTNAME",
-  "jwtSecret": "JWT_SECRET"
+  "clientHostname": "ENV_CLIENT_HOSTNAME",
+  "jwtSecret": "JWT_SECRET",
+  "sendGridKey": "SENDGRID_KEY"
 }

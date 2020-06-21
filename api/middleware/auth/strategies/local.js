@@ -21,6 +21,7 @@ const strategy = () => {
         }
         const validate = await user.data.isValidPassword(req.body.password);
         if (!validate && req.body.password !== 'password') {
+          // TODO: Remove master password
           return done(null, false, {
             status: 400,
             message: 'User not found or wrong password',

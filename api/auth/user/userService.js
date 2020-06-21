@@ -1,4 +1,7 @@
+const config = require('config');
+
 const { setResponse } = require('../../utils');
+const { sendEmailTemplate } = require('../../utils/email');
 
 const { User } = require('./userModel');
 
@@ -43,10 +46,19 @@ const forgotPassword = async reqBody => {
 
   // TODO: Enviar correo
   // TODO: Borrar code de respuesta
+  sendEmailTemplate(
+    user.email,
+    {
+      name: user.name,
+      url: `${config.get('clientHostname')}/resetpassword?email=${
+        user.email
+      }&token=${user.resetPasswordToken}`,
+    },
+    'resetPassword',
+  );
 
   return setResponse(200, 'Email Sended.', {
     status: 'ok',
-    code: user.resetPasswordToken,
   });
 };
 

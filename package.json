@@ -8,6 +8,7 @@
     "seedDB": "node api/utils/seedDb"
   },
   "dependencies": {
+    "@sendgrid/mail": "^7.2.0",
     "bcrypt": "^5.0.0",
     "celebrate": "^11.0.0",
     "compression": "^1.7.4",
