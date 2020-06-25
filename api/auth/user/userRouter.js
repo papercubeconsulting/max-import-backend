@@ -10,13 +10,13 @@ const unSecureRouter = express.Router();
 
 const { authenticateMiddleware } = require('../../middleware/auth');
 
-unSecureRouter.post(
+secureRouter.post(
   '/forgotpassword',
   celebrate(Validator.ForgotPassword),
   Controller.forgotPassword,
 );
 
-unSecureRouter.post(
+secureRouter.post(
   '/resetpassword',
   celebrate(Validator.ResetPassword),
   Controller.resetPassword,
@@ -27,7 +27,6 @@ router.get('/:id', celebrate(Validator.Get), Controller.readUser);
 router.get('/', celebrate(Validator.List), Controller.listUsers);
 router.post('/', celebrate(Validator.Post), Controller.createUser);
 
-secureRouter.use('/', unSecureRouter);
 secureRouter.use('/', authenticateMiddleware('jwt'), router);
 
 module.exports = secureRouter;
