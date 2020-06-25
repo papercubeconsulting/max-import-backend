@@ -5,9 +5,9 @@ const { Op } = require('sequelize');
 const { setResponse, paginate } = require('../../../utils');
 
 const { Supply, SuppliedProduct } = require('../supplyModel');
-const Product = require('../../product/productModel');
-const Provider = require('../../provider/providerModel');
-const Warehouse = require('../../warehouse/warehouseModel');
+const { Product } = require('../../product/productModel');
+const { Provider } = require('../../provider/providerModel');
+const { Warehouse } = require('../../warehouse/warehouseModel');
 
 const listSupplies = async reqQuery => {
   const supplies = await Supply.findAndCountAll({
@@ -43,4 +43,4 @@ const listSupplies = async reqQuery => {
   return setResponse(200, 'Supplies found.', supplies);
 };
 
-module.exports = listSupplies;
+module.exports = { listSupplies };

@@ -2,7 +2,7 @@
 const Sequelize = require('sequelize');
 
 const sequelize = require(`${process.cwd()}/startup/db`);
-const Family = require('../family/familyModel');
+const { Family } = require('../family/familyModel');
 
 const Subfamily = sequelize.define(
   'subfamily',
@@ -12,6 +12,11 @@ const Subfamily = sequelize.define(
       type: Sequelize.STRING,
       allowNull: false,
     },
+    code: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      defaultValue: '',
+    },
   },
   {
     // options
@@ -20,18 +25,22 @@ const Subfamily = sequelize.define(
         unique: true,
         fields: ['name', 'familyId'],
       },
+      {
+        unique: true,
+        fields: ['code', 'familyId'],
+      },
     ],
   },
 );
 
-Family.afterCreate('createDefaultSubfamily', async (family, options) => {
-  await Subfamily.create({
-    name: '-',
-    familyId: family.id,
-  });
-});
+// Family.afterCreate('createDefaultSubfamily', async (family, options) => {
+//   await Subfamily.create({
+//     name: '-',
+//     familyId: family.id,
+//   });
+// });
 
 Family.hasMany(Subfamily);
 Subfamily.belongsTo(Family);
 
-module.exports = Subfamily;
+module.exports = { Subfamily };

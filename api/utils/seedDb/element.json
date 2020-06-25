@@ -1,66 +1,42 @@
 [
   {
-    "name": "duis",
-    "subfamilyId": 1
-  },
-  {
-    "name": "duis",
-    "subfamilyId": 8
-  },
-  {
-    "name": "culpa",
-    "subfamilyId": 7
-  },
-  {
-    "name": "cillum",
-    "subfamilyId": 6
-  },
-  {
-    "name": "pariatur",
-    "subfamilyId": 2
-  },
-  {
-    "name": "ea",
-    "subfamilyId": 4
-  },
-  {
-    "name": "do",
-    "subfamilyId": 3
-  },
-  {
-    "name": "ullamco",
-    "subfamilyId": 5
-  },
-  {
-    "name": "cupidatat",
-    "subfamilyId": 7
-  },
-  {
-    "name": "nostrud",
-    "subfamilyId": 7
-  },
-  {
     "name": "tempor",
+    "code": "A27",
     "subfamilyId": 2
   },
   {
-    "name": "esse",
-    "subfamilyId": 2
-  },
-  {
-    "name": "aliquip",
-    "subfamilyId": 1
-  },
-  {
-    "name": "ullamco",
+    "name": "excepteur",
+    "code": "G4B",
     "subfamilyId": 3
   },
   {
-    "name": "irure",
-    "subfamilyId": 8
+    "name": "ad",
+    "code": "3BF",
+    "subfamilyId": 2
+  },
+  {
+    "name": "non",
+    "code": "14F",
+    "subfamilyId": 1
   },
   {
     "name": "quis",
-    "subfamilyId": 3
+    "code": "E1E",
+    "subfamilyId": 1
+  },
+  {
+    "name": "fugiat",
+    "code": "F25",
+    "subfamilyId": 4
+  },
+  {
+    "name": "ullamco",
+    "code": "74C",
+    "subfamilyId": 4
+  },
+  {
+    "name": "sit",
+    "code": "FEH",
+    "subfamilyId": 4
   }
 ]

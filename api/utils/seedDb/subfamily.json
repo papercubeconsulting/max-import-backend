@@ -1,34 +1,22 @@
 [
   {
-    "name": "ullamco",
+    "name": "nostrud",
+    "code": "CE6",
     "familyId": 1
   },
   {
-    "name": "excepteur",
-    "familyId": 2
-  },
-  {
-    "name": "aute",
+    "name": "occaecat",
+    "code": "5B1",
     "familyId": 1
   },
   {
-    "name": "tempor",
+    "name": "ut",
+    "code": "C4A",
     "familyId": 2
   },
   {
-    "name": "quis",
+    "name": "commodo",
+    "code": "BBF",
     "familyId": 2
-  },
-  {
-    "name": "minim",
-    "familyId": 1
-  },
-  {
-    "name": "ad",
-    "familyId": 2
-  },
-  {
-    "name": "in",
-    "familyId": 1
   }
 ]

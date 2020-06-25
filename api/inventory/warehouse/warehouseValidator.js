@@ -1,7 +1,11 @@
 const { Joi } = require('celebrate');
 
+const { warehouseTypes: types } = require('../../utils/constants');
+
 const List = {
-  query: {},
+  query: {
+    type: Joi.string().valid(types.WAREHOUSE, types.STORE, types.DAMAGED),
+  },
 };
 
 const Get = {

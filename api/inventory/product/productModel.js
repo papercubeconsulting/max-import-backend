@@ -1,13 +1,16 @@
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable no-param-reassign */
 const Sequelize = require('sequelize');
+const _ = require('lodash');
 
 const sequelize = require(`${process.cwd()}/startup/db`);
 
-const Family = require('../family/familyModel');
-const Subfamily = require('../subfamily/subfamilyModel');
-const Element = require('../element/elementModel');
-const Model = require('../model/modelModel');
+const { Provider } = require('../provider/providerModel');
+
+const { Family } = require('../family/familyModel');
+const { Subfamily } = require('../subfamily/subfamilyModel');
+const { Element } = require('../element/elementModel');
+const { Model } = require('../model/modelModel');
 
 const Product = sequelize.define(
   'product',
@@ -36,8 +39,17 @@ const Product = sequelize.define(
       type: Sequelize.TEXT,
       defaultValue: '',
     },
-    imagePath: {
-      type: Sequelize.STRING,
+    tradename: {
+      type: Sequelize.TEXT,
+      defaultValue: '',
+    },
+    imageBase64: {
+      type: Sequelize.DataTypes.BLOB,
+      get() {
+        return this.getDataValue('imageBase64')
+          ? this.getDataValue('imageBase64').toString('utf8')
+          : undefined;
+      },
     },
     suggestedPrice: {
       type: Sequelize.INTEGER,
@@ -46,31 +58,34 @@ const Product = sequelize.define(
   },
   {
     // options
+    defaultScope: {
+      attributes: { exclude: ['imageBase64'] },
+    },
   },
 );
 
 Product.beforeCreate('SetId', async (product, options) => {
   product.id = product.modelId;
-});
-
-Product.beforeSave('SetCategories', async (product, options) => {
-  const categories = await Model.findOne({
-    attributes: ['name', 'elementId'],
-    where: { id: product.modelId },
-    include: [
-      {
-        model: Element,
-        attributes: ['name', 'subfamilyId'],
-        include: [
-          {
-            model: Subfamily,
-            attributes: ['name', 'familyId'],
-            include: [{ model: Family, attributes: ['name'] }],
-          },
-        ],
-      },
-    ],
-  });
+  const [categories, provider] = await Promise.all([
+    Model.findOne({
+      attributes: ['name', 'code', 'elementId'],
+      where: { id: product.modelId },
+      include: [
+        {
+          model: Element,
+          attributes: ['name', 'code', 'subfamilyId'],
+          include: [
+            {
+              model: Subfamily,
+              attributes: ['name', 'code', 'familyId'],
+              include: [{ model: Family, attributes: ['name', 'code'] }],
+            },
+          ],
+        },
+      ],
+    }),
+    Provider.findByPk(product.providerId),
+  ]);
 
   product.modelName = categories.name;
 
@@ -82,7 +97,143 @@ Product.beforeSave('SetCategories', async (product, options) => {
 
   product.familyId = categories.element.subfamily.familyId;
   product.familyName = categories.element.subfamily.family.name;
+
+  product.code = `${categories.element.subfamily.family.code}-${categories.element.subfamily.code}-${categories.element.code}-${provider.code}-${categories.code}`;
 });
+
+// Product.beforeSave('SetCategories', async (product, options) => {
+
+// });
+// Product.prototype.aggregateStock = function(includeBoxSizeDetail = false) {
+//   const that = this.get();
+//   that.totalStock = 0;
+//   console.log(that);
+//   that.stockByWarehouse = Object.values(
+//     that.productBoxes.reduce(
+//       (accumulator, currentValue, currentIndex, array) => {
+//         const key = currentValue.warehouse.id;
+//         if (!_.get(accumulator, [key]))
+//           accumulator[key] = {
+//             warehouseId: currentValue.warehouse.id,
+//             warehouseName: currentValue.warehouse.name,
+//             warehouseType: currentValue.warehouse.type,
+//             stock: 0,
+//           };
+//         accumulator[key].stock += currentValue.stock;
+//         that.totalStock += currentValue.stock;
+//         return accumulator;
+//       },
+//       {},
+//     ),
+//   );
+
+//   that.stockByWarehouseType = Object.values(
+//     that.productBoxes.reduce(
+//       (accumulator, currentValue, currentIndex, array) => {
+//         const key = currentValue.warehouse.type;
+//         if (!_.get(accumulator, [key]))
+//           accumulator[key] = {
+//             warehouseType: currentValue.warehouse.type,
+//             stock: 0,
+//           };
+//         accumulator[key].stock += currentValue.stock;
+//         return accumulator;
+//       },
+//       {},
+//     ),
+//   );
+
+//   if (includeBoxSizeDetail)
+//     that.stockByWarehouseAndBoxSize = Object.values(
+//       that.productBoxes.reduce(
+//         (accumulator, currentValue, currentIndex, array) => {
+//           const key = `${currentValue.warehouseId}-${currentValue.boxSize}`;
+//           if (!_.get(accumulator, [key]))
+//             accumulator[key] = {
+//               warehouseId: currentValue.warehouse.id,
+//               warehouseName: currentValue.warehouse.name,
+//               warehouseType: currentValue.warehouse.type,
+//               boxSize: currentValue.boxSize,
+//               quantityBoxes: 0,
+//               completeBoxes: 0,
+//               stock: 0,
+//             };
+//           accumulator[key].stock += currentValue.stock;
+//           accumulator[key].quantityBoxes += 1;
+//           accumulator[key].completeBoxes +=
+//             currentValue.boxSize === currentValue.stock ? 1 : 0;
+//           return accumulator;
+//         },
+//         {},
+//       ),
+//     );
+
+//   that.productBoxes = undefined;
+//   return that;
+// };
+
+Product.aggregateStock = function(product, includeBoxSizeDetail = false) {
+  product.totalStock = 0;
+  product.stockByWarehouse = Object.values(
+    product.productBoxes.reduce(
+      (accumulator, currentValue, currentIndex, array) => {
+        const key = currentValue.warehouse.id;
+        if (!_.get(accumulator, [key]))
+          accumulator[key] = {
+            warehouseId: currentValue.warehouse.id,
+            warehouseName: currentValue.warehouse.name,
+            warehouseType: currentValue.warehouse.type,
+            stock: 0,
+          };
+        accumulator[key].stock += currentValue.stock;
+        product.totalStock += currentValue.stock;
+        return accumulator;
+      },
+      {},
+    ),
+  );
+
+  product.stockByWarehouseType = Object.values(
+    product.productBoxes.reduce((accumulator, currentValue) => {
+      const key = currentValue.warehouse.type;
+      if (!_.get(accumulator, [key]))
+        accumulator[key] = {
+          warehouseType: currentValue.warehouse.type,
+          stock: 0,
+        };
+      accumulator[key].stock += currentValue.stock;
+      return accumulator;
+    }, {}),
+  );
+
+  if (includeBoxSizeDetail)
+    product.stockByWarehouseAndBoxSize = Object.values(
+      product.productBoxes.reduce((accumulator, currentValue) => {
+        const key = `${currentValue.warehouseId}-${currentValue.boxSize}`;
+        if (!_.get(accumulator, [key]))
+          accumulator[key] = {
+            warehouseId: currentValue.warehouse.id,
+            warehouseName: currentValue.warehouse.name,
+            warehouseType: currentValue.warehouse.type,
+            boxSize: currentValue.boxSize,
+            quantityBoxes: 0,
+            completeBoxes: 0,
+            stock: 0,
+          };
+        accumulator[key].stock += currentValue.stock;
+        accumulator[key].quantityBoxes += 1;
+        accumulator[key].completeBoxes +=
+          currentValue.boxSize === currentValue.stock ? 1 : 0;
+        return accumulator;
+      }, {}),
+    );
+
+  product.productBoxes = undefined;
+  return product;
+};
+
+Provider.hasMany(Product);
+Product.belongsTo(Provider);
 
 Family.hasMany(Product);
 Product.belongsTo(Family);
@@ -96,4 +247,4 @@ Product.belongsTo(Element);
 Model.hasMany(Product);
 Product.belongsTo(Model, { foreignKey: 'id' });
 
-module.exports = Product;
+module.exports = { Product };

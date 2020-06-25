@@ -1,0 +1,17 @@
+[
+  {
+    "resetPasswordToken": "",
+    "resetPasswordExpires": "2020-06-19T06:01:45.186Z",
+    "id": 1,
+    "idNumber": "11111111",
+    "email": "nuevo@correo.com",
+    "password": "$2b$04$matMIe6J6axvSfbliaDCwesvh/ht4tIUJ3tNBbBi6.WtNIrlt/iUi",
+    "name": "Prueba",
+    "lastname": "Test",
+    "phoneNumber": "987654321",
+    "role": "superuser",
+    "active": true,
+    "updatedAt": "2020-06-19T06:01:45.188Z",
+    "createdAt": "2020-06-19T06:01:45.188Z"
+  }
+]

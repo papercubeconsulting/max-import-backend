@@ -13,6 +13,9 @@ const listSupplies = async (req, res) => {
 };
 
 const postSupply = async (req, res) => {
+  const validate = await Services.validateCreateSupply(req.body);
+  if (validate.status !== 200)
+    return res.status(validate.status).send(validate);
   const supply = await Services.createSupply(req.body);
 
   return res.status(supply.status).send(supply);
@@ -33,15 +36,36 @@ const putSupply = async (req, res) => {
   return res.status(supply.status).send(supply);
 };
 
+const deleteSupply = async (req, res) => {
+  const supply = await Services.deleteSupply(req.params);
+
+  return res.status(supply.status).send(supply);
+};
+
 const putSupplyStatus = async (req, res) => {
   const supply = await Services.updateSupplyStatus(req.body, req.params);
 
   return res.status(supply.status).send(supply);
 };
 
-const deleteSupply = async (req, res) => {
-  const supply = await Services.deleteSupply(req.params);
+const updateAttendSuppliedProduct = async (req, res) => {
+  const validate = await Services.validateAttendSuppliedProduct(
+    req.body,
+    req.params,
+  );
 
+  if (validate.status !== 200)
+    return res.status(validate.status).send(validate);
+
+  const suppliedProduct = await Services.updateAttendSuppliedProduct(
+    req.body,
+    req.params,
+    req.user,
+  );
+
+  if (suppliedProduct.status !== 200)
+    return res.status(suppliedProduct.status).send(suppliedProduct);
+  const supply = await Services.readSupply(req.params);
   return res.status(supply.status).send(supply);
 };
 
@@ -50,6 +74,8 @@ module.exports = {
   listSupplies,
   postSupply,
   putSupply,
-  putSupplyStatus,
   deleteSupply,
+  // * Others
+  putSupplyStatus,
+  updateAttendSuppliedProduct,
 };

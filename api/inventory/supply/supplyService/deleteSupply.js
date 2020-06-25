@@ -9,4 +9,4 @@ const deleteSupply = async reqParams => {
   return setResponse(200, 'Supply deleted.');
 };
 
-module.exports = deleteSupply;
+module.exports = { deleteSupply };

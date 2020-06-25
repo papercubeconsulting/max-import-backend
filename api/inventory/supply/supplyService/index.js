@@ -1,10 +1,12 @@
 /* eslint-disable global-require */
 module.exports = {
-  readSupply: require('./readSupply'),
-  listSupplies: require('./listSupplies'),
-  createSupply: require('./createSupply'),
-  validateUpdateSupply: require('./validateUpdateSupply'),
-  updateSupply: require('./updateSupply'),
-  updateSupplyStatus: require('./updateSupplyStatus'),
-  deleteSupply: require('./deleteSupply'),
+  ...require('./createSupply'),
+  ...require('./deleteSupply'),
+  ...require('./_fullCreateSupply'),
+  ...require('./listSupplies'),
+  ...require('./readSupply'),
+  ...require('./updateAttendSuppliedProduct'),
+  ...require('./updateSupply'),
+  ...require('./updateSupplyStatus'),
+  ...require('./validateUpdateSupply'),
 };

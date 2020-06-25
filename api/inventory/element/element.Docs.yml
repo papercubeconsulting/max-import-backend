@@ -1,0 +1,66 @@
+paths:
+  "/elements":
+    post:
+      tags:
+        - inventory.elements
+      summary: Crear un nuevo elemento
+      operationId: addElement
+      responses:
+        "201":
+          description: Element created
+      requestBody:
+        $ref: "#/components/requestBodies/Element"
+    get:
+      tags:
+        - inventory.elements
+      summary: Listar todos los elementos. Opcionalmente se puede filtrar por subfamilia
+      operationId: listElements
+      parameters:
+        - $ref: "#/components/parameters/subfamilyId"
+        - $ref: "#/components/parameters/providerId"
+      responses:
+        "200":
+          description: Elements found
+  "/elements/{id}":
+    get:
+      tags:
+        - inventory.elements
+      summary: Encontrar elemento por Id
+      operationId: getElementById
+      parameters:
+        - $ref: "#/components/parameters/paramId"
+      responses:
+        "200":
+          description: Successful operation
+components:
+  requestBodies:
+    Element:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              code:
+                type: string
+              subfamilyId:
+                type: integer
+            required:
+              - name
+              - subfamilyId
+            example:
+              name: "Nuevo Elemento"
+              code: "X0X"
+              subfamilyId: 1
+      required: true
+  parameters:
+    subfamilyId:
+      name: subfamilyId
+      in: query
+      description: Id de la categoria "subfamilia"
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1

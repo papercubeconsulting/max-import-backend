@@ -8,9 +8,9 @@ const sequelize = require(`${process.cwd()}/startup/db`);
 const { setResponse } = require('../../../utils');
 
 const { Supply, SuppliedProduct } = require('../supplyModel');
-const Product = require('../../product/productModel');
-const Provider = require('../../provider/providerModel');
-const Warehouse = require('../../warehouse/warehouseModel');
+const { Product } = require('../../product/productModel');
+const { Provider } = require('../../provider/providerModel');
+const { Warehouse } = require('../../warehouse/warehouseModel');
 
 // ? Servicio para actualiza campos del abastecimiento y añadir/remover productos
 // ? El abastecimiento debe estar sin atender
@@ -87,4 +87,4 @@ const updateSupply = async (reqBody, reqParams, validatedData) => {
   }
 };
 
-module.exports = updateSupply;
+module.exports = { updateSupply };

@@ -3,6 +3,7 @@ const { Joi } = require('celebrate');
 const List = {
   query: {
     subfamilyId: Joi.number().integer(),
+    providerId: Joi.number().integer(),
   },
 };
 
@@ -17,6 +18,10 @@ const Get = {
 const Post = {
   body: {
     name: Joi.string()
+      .max(255)
+      .min(1)
+      .required(),
+    code: Joi.string()
       .max(255)
       .min(1)
       .required(),

@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "startN": "DEBUG=http nodemon ./bin/www",
-    "seedDb": "node api/utils/seedDb"
+    "startN": "DEBUG=http nodemon -e yml,js ./bin/www",
+    "seedDB": "node api/utils/seedDb"
   },
   "dependencies": {
+    "@sendgrid/mail": "^7.2.0",
+    "bcrypt": "^5.0.0",
     "celebrate": "^11.0.0",
     "compression": "^1.7.4",
     "config": "^3.2.4",
@@ -19,13 +21,19 @@
     "express": "~4.16.1",
     "express-async-errors": "^3.1.1",
     "helmet": "^3.21.2",
+    "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.27",
     "morgan": "^1.9.1",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
     "pg": "^7.18.1",
     "pg-hstore": "^2.3.3",
+    "save": "^2.4.0",
     "sequelize": "^5.21.4",
+    "swagger-jsdoc": "^4.0.0",
     "swagger-ui-express": "^4.1.3",
     "winston": "^3.2.1",
     "yamljs": "^0.3.0"

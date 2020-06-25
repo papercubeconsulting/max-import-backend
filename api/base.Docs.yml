@@ -1,0 +1,86 @@
+tags:
+  - name: auth.users
+    description: Servicios asociados a usuarios
+  - name: inventory.products
+    description: Productos del inventario
+  - name: inventory.supplies
+    description: Abastecimiento - Registro de ingreso de productos
+  - name: inventory.warehouses
+    description: Almacenes donde se guardan los productos
+  - name: inventory.providers
+    description: Proveedores de productos
+  - name: inventory.families
+    description: Familia a la que pertenece un producto
+  - name: inventory.subfamilies
+    description: Subfamilia a la que pertenece un producto
+  - name: inventory.elements
+    description: Elemento al que pertenece un producto
+  - name: inventory.models
+    description: Modelo al que pertenece un producto
+components:
+  parameters:
+    paramId:
+      name: id
+      in: path
+      description: Id del recurso requerido.
+      required: true
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        default: 1
+    providerId:
+      name: providerId
+      in: query
+      description: Id del proveedor
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    codeId:
+      name: code
+      in: path
+      description: Codigo unico del recurso requerido.
+      required: true
+      schema:
+        type: string
+    active:
+      name: active
+      in: query
+      description: Valor booleano para filtrar recursos no deshabilitados
+      required: false
+      schema:
+        type: bool
+    fromDate:
+      name: from
+      in: query
+      description: Fecha inicial de la consulta "YYYY-MM-DD". El valor por defecto es 1 semana antes del dia actual
+      required: false
+      schema:
+        type: string
+        format: date
+    toDate:
+      name: to
+      in: query
+      description: Fecha final de la consulta "YYYY-MM-DD". El valor por defecto es el dia actual
+      required: false
+      schema:
+        type: string
+        format: date
+    pagePagination:
+      name: page
+      in: query
+      description: Numero de pagina a consultar. Indexado en 1
+      required: false
+      schema:
+        type: integer
+        format: int32
+    pageSizePagination:
+      name: pageSize
+      in: query
+      description: Cantidad de items por pagina
+      required: false
+      schema:
+        type: integer
+        format: int32

@@ -1,7 +1,7 @@
 const { Joi } = require('celebrate');
 const moment = require('moment');
 
-const { status } = require('../../utils/constants');
+const { supplyStatus: status } = require('../../utils/constants');
 
 const List = {
   query: {
@@ -12,7 +12,7 @@ const List = {
     pageSize: Joi.number()
       .integer()
       .min(1)
-      .default(100),
+      .default(20),
 
     from: Joi.date()
       .iso()
@@ -131,11 +131,34 @@ const Delete = {
   },
 };
 
+const PostAttendSuppliedProduct = {
+  params: {
+    id: Joi.number()
+      .integer()
+      .required(),
+    idSuppliedProduct: Joi.number()
+      .integer()
+      .required(),
+  },
+  body: {
+    boxes: Joi.array()
+      .items(
+        Joi.number()
+          .integer()
+          .min(1),
+      )
+      .min(1)
+      .required(),
+  },
+};
+
 module.exports = {
   List,
   Get,
   Post,
   Put,
-  PutStatus,
   Delete,
+  // * Other
+  PutStatus,
+  PostAttendSuppliedProduct,
 };

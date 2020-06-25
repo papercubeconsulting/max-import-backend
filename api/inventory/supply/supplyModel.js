@@ -4,11 +4,11 @@ const Sequelize = require('sequelize');
 
 const sequelize = require(`${process.cwd()}/startup/db`);
 
-const Product = require('../product/productModel');
-const Provider = require('../provider/providerModel');
-const Warehouse = require('../warehouse/warehouseModel');
+const { Product } = require('../product/productModel');
+const { Provider } = require('../provider/providerModel');
+const { Warehouse } = require('../warehouse/warehouseModel');
 
-const { status } = require('../../utils/constants');
+const { supplyStatus: status } = require('../../utils/constants');
 
 const statuses = [status.PENDING, status.CANCELLED, status.ATTENDED];
 
@@ -21,6 +21,9 @@ const Supply = sequelize.define(
       defaultValue: '',
     },
     attentionDate: {
+      type: Sequelize.DATE,
+    },
+    cancellationDate: {
       type: Sequelize.DATE,
     },
     observations: {
@@ -53,6 +56,10 @@ const SuppliedProduct = sequelize.define(
       type: Sequelize.INTEGER,
       defaultValue: 0,
     },
+    maxIndexSupplied: {
+      type: Sequelize.INTEGER,
+      defaultValue: 0,
+    },
     boxSize: {
       type: Sequelize.INTEGER,
     },
@@ -72,16 +79,16 @@ const SuppliedProduct = sequelize.define(
   },
 );
 
-Supply.belongsTo(Provider);
-Provider.hasMany(Supply);
-
-Supply.belongsTo(Warehouse);
 Warehouse.hasMany(Supply);
+Supply.belongsTo(Warehouse);
 
-SuppliedProduct.Supply = SuppliedProduct.belongsTo(Supply);
 Supply.SuppliedProducts = Supply.hasMany(SuppliedProduct);
+SuppliedProduct.Supply = SuppliedProduct.belongsTo(Supply);
 
-SuppliedProduct.Product = SuppliedProduct.belongsTo(Product);
 Product.hasMany(SuppliedProduct);
+SuppliedProduct.Product = SuppliedProduct.belongsTo(Product);
+
+Provider.hasMany(Supply);
+Supply.belongsTo(Provider);
 
 module.exports = { Supply, SuppliedProduct };

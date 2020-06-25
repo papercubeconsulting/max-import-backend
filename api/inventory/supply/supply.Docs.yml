@@ -1,0 +1,282 @@
+paths:
+  "/supplies":
+    post:
+      tags:
+        - inventory.supplies
+      summary: Crear un nuevo abastecimiento
+      operationId: addSupply
+      responses:
+        "201":
+          description: Supply created
+        "400":
+          description: Bad request
+      requestBody:
+        $ref: "#/components/requestBodies/Supply"
+    get:
+      tags:
+        - inventory.supplies
+      summary: Listar todos los abastecimientos. Ordenado por fecha de creación. Existen filtros opcionales.
+      operationId: listSupplies
+      parameters:
+        - $ref: "#/components/parameters/fromDate"
+        - $ref: "#/components/parameters/toDate"
+        - $ref: "#/components/parameters/pagePagination"
+        - $ref: "#/components/parameters/pageSizePagination"
+      responses:
+        "200":
+          description: Supplies found
+  "/supplies/{id}":
+    get:
+      tags:
+        - inventory.supplies
+      summary: Encontrar abastecimiento por Id
+      operationId: getSupplyById
+      parameters:
+        - $ref: "#/components/parameters/paramId"
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Resource not found
+    put:
+      tags:
+        - inventory.supplies
+      summary: Actualizar abastecimiento por Id
+      description: |
+        Los campos a actualizar permitidos son:
+          * Id del proveedor
+          * Id del almacen
+          * Observacion
+          * Lista de items del abastecimiento - Obligatorio, *debe indicarse la lista de items incluso si no hay cambios*
+          
+        Para la lista de items se debe tener en cuenta las siguientes reglas
+          * Solo se puede remover un item si no se ha registrado ninguna atención de ese item (campo suppliedQuantity debe ser 0)
+          * Cambiar el tamaño de items por caja es equivalente a eliminar y remover un item
+          * Actualizar un item se da cuando se cambia la cantidad de cajas a recibir. Esto es válido solo cuando la nueva cantidad es mayor o igual a la cantidad de cajas ya recibidas (campo suppliedQuantity)
+
+      operationId: updateSupplyById
+      parameters:
+        - $ref: "#/components/parameters/paramId"
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Bad request | Check message
+        "404":
+          description: Resource not found
+      requestBody:
+        $ref: "#/components/requestBodies/UpdateSupply"
+
+  "/supplies/{id}/status":
+    put:
+      tags:
+        - inventory.supplies
+      summary: Actualizar status de un abastecimiento por Id
+      description: |
+        El campo status puede ser "Cancelado" o "Atendido".
+        El abastecimiento debe tener estado "Pendiente"
+
+        Se realizar las verificaciones
+        - Si se desea cancelar el abastecimiento, no debe haberse atendido ningun producto
+        - Si se desea atender el abastecimientos, todos los productos deben haber sido atendidos
+
+      operationId: updateSupplyStatusById
+      parameters:
+        - $ref: "#/components/parameters/paramId"
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Bad request | Check message
+        "404":
+          description: Resource not found
+      requestBody:
+        $ref: "#/components/requestBodies/SupplyStatus"
+
+  "/supplies/{supplyId}/attend/{suppliedProductId}":
+    post:
+      tags:
+        - inventory.supplies
+      summary: Atender
+      description: |
+        Se "atiende" una lista de cajas de una fila del abastecimiento o suppliedProduct. Devuelve un arreglo con los codigos de las cajas atendidas que deben ser usados para generar los codigos QR.
+
+        Las validaciones que se realiza son
+
+        - El abastecimiento debe estar en estado "Pendiente"
+        - Los indices no pueden ser mayores a la cantidad de cajas que se registraron inicialmente
+
+        El atender crea las entidades productBox en el sistema, lo que significa que estan disponigles en inventario.
+
+      operationId: attendSuppliedProduct
+      parameters:
+        - $ref: "#/components/parameters/supplyId"
+        - $ref: "#/components/parameters/attendSuppliedProductId"
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Bad request | Check message
+        "404":
+          description: Resource not found
+      requestBody:
+        $ref: "#/components/requestBodies/attendSuppliedProduct"
+components:
+  requestBodies:
+    Supply:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              providerId:
+                type: integer
+                format: int32
+                description: Id del proveedor
+              warehouseId:
+                type: integer
+                format: int32
+                description: Id del almacen destino
+              observations:
+                type: string
+              code:
+                type: string
+              suppliedProducts:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    productId:
+                      type: integer
+                      format: int32
+                      description: Id del producto
+                    boxSize:
+                      type: integer
+                      format: int32
+                      description: Cantidad de unidades en la caja
+                    quantity:
+                      type: integer
+                      format: int32
+                      description: Cantidad de cajas a recibir
+                description: Se puede tener elementos del mismo productId pero distinto boxSize
+            example:
+              providerId: 1
+              warehouseId: 1
+              observations: "Ninguna"
+              code: "20200101-1"
+              suppliedProducts:
+                [
+                  { productId: 1, boxSize: 20, quantity: 100 },
+                  { productId: 1, boxSize: 50, quantity: 20 },
+                  { productId: 2, boxSize: 50, quantity: 10 },
+                ]
+            required:
+              - providerId
+              - warehouseId
+              - suppliedProducts
+      required: true
+    SupplyStatus:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                format: int32
+                description: Nuevo estado
+            example:
+              status: Atendido
+    UpdateSupply:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              providerId:
+                type: integer
+                format: int32
+                description: Id del proveedor | Opcional
+              warehouseId:
+                type: integer
+                format: int32
+                description: Id del almacen destino | Opcional
+              code:
+                type: string
+                description: Opcional
+              observations:
+                type: string
+                description: Opcional
+              suppliedProducts:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    productId:
+                      type: integer
+                      format: int32
+                      description: Id del producto
+                    boxSize:
+                      type: integer
+                      format: int32
+                      description: Cantidad de unidades en la caja
+                    quantity:
+                      type: integer
+                      format: int32
+                      description: Cantidad de cajas a recibir
+                description: Se puede tener elementos del mismo productId pero distinto boxSize
+            example:
+              providerId: 1
+              warehouseId: 1
+              observations: "Ninguna"
+              code: "20200101-1"
+              suppliedProducts:
+                [
+                  { productId: 1, boxSize: 20, quantity: 100 },
+                  { productId: 1, boxSize: 50, quantity: 20 },
+                  { productId: 2, boxSize: 50, quantity: 10 },
+                ]
+            required:
+              - suppliedProducts
+      required: true
+    attendSuppliedProduct:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              boxes:
+                type: array
+                items:
+                  type: integer
+                  format: int32
+                  description: Indices de las cajas que se desea atender
+                description: Lista de los indices de las cajas que se desea atender. El valor maximo es la cantidad de cajas del registro
+            example:
+              boxes: [1, 2, 3]
+            required:
+              - boxes
+      required: true
+  parameters:
+    supplyId:
+      name: supplyId
+      in: path
+      description: Id del abastecimiento requerido.
+      required: true
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        default: 7
+    attendSuppliedProductId:
+      name: suppliedProductId
+      in: path
+      description: Id de la fila a atender.
+      required: true
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        default: 15

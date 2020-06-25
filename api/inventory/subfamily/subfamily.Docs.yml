@@ -1,0 +1,66 @@
+paths:
+  "/subfamilies":
+    post:
+      tags:
+        - inventory.subfamilies
+      summary: Crear una nueva subfamilia
+      operationId: addSubfamily
+      responses:
+        "201":
+          description: Subfamily created
+      requestBody:
+        $ref: "#/components/requestBodies/Subfamily"
+    get:
+      tags:
+        - inventory.subfamilies
+      summary: Listar todas las subfamilias. Opcionalmente se puede filtrar por familia
+      operationId: listSubfamily
+      parameters:
+        - $ref: "#/components/parameters/familyId"
+        - $ref: "#/components/parameters/providerId"
+      responses:
+        "200":
+          description: Subfamilies found
+  "/subfamilies/{id}":
+    get:
+      tags:
+        - inventory.subfamilies
+      summary: Encontrar subfamilia por Id
+      operationId: getSubfamilyById
+      parameters:
+        - $ref: "#/components/parameters/paramId"
+      responses:
+        "200":
+          description: successful operation
+components:
+  requestBodies:
+    Subfamily:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              code:
+                type: string
+              familyId:
+                type: integer
+            required:
+              - name
+              - familyId
+            example:
+              name: "Nueva Subfamilia"
+              code: "X0X"
+              familyId: 1
+      required: true
+  parameters:
+    familyId:
+      name: familyId
+      in: query
+      description: Id de la categoria "familia"
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
