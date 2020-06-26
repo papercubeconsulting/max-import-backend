@@ -74,9 +74,6 @@ const User = sequelize.define(
       attributes: {
         exclude: ['password', 'resetPasswordToken', 'resetPasswordExpires'],
       },
-      where: {
-        active: true,
-      },
     },
     scopes: {
       full: {},
