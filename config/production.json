@@ -1,4 +1,10 @@
 {
   "name": "Backend-Server-Production",
-  "saltPow": 12
+  "saltPow": 12,
+  "sendgrid": {
+    "from": "soluciones@papercube.pe",
+    "templateIds": {
+      "resetPassword": "d-3ab0a72b8ac94fd587e88617b4447be5"
+    }
+  }
 }
