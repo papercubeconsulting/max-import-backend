@@ -8,7 +8,7 @@ const { ProductBox } = require('../../productbox/productboxModel');
 const { Warehouse } = require('../../warehouse/warehouseModel');
 
 const readProduct = async reqParams => {
-  const product = await Product.findByPk(reqParams.id, {
+  const product = await Product.scope('full').findByPk(reqParams.id, {
     include: [
       {
         model: ProductBox,

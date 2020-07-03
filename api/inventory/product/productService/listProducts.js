@@ -131,7 +131,7 @@ const listProductsRaw = async reqQuery => {
   const skip = reqQuery.pageSize * (reqQuery.page - 1);
 
   response.rows = products
-    .sort((a, b) => a.createdAt < b.createdAt)
+    .sort((a, b) => b.createdAt - a.createdAt)
     .slice(skip, skip + reqQuery.pageSize)
     .map(product => Product.aggregateStock(product));
   response.count = response.rows.length;
