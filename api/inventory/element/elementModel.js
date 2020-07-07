@@ -15,7 +15,6 @@ const Element = sequelize.define(
     code: {
       type: Sequelize.STRING,
       allowNull: false,
-      unique: true,
       defaultValue: '',
     },
   },

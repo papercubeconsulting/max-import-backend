@@ -1,0 +1,275 @@
+[
+    {
+      "suggestedPrice": 0,
+      "modelId": 1,
+      "providerId": 8,
+      "compatibility": "",
+      "tradename": "TOYOTA ANT RECTO"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 2,
+      "providerId": 8,
+      "compatibility": "",
+      "tradename": "MERCEDES ANTIGUO 24V 35A"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 3,
+      "providerId": 8,
+      "compatibility": "",
+      "tradename": "MERCEDES MODERNO 24V 80A"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 4,
+      "providerId": 8,
+      "compatibility": "",
+      "tradename": "TOYOTA 2L CH 12V 55A"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 5,
+      "providerId": 8,
+      "compatibility": "",
+      "tradename": "TOYOTA 2L GR 12V 80A"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 6,
+      "providerId": 8,
+      "compatibility": "",
+      "tradename": "TOYOTA 2L 2 CANALES"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 7,
+      "providerId": 8,
+      "compatibility": "",
+      "tradename": "VOLVO 55A 2 CANALES"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 8,
+      "providerId": 8,
+      "compatibility": "",
+      "tradename": "VOLVO FM 8 CANALES"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 9,
+      "providerId": 8,
+      "compatibility": "",
+      "tradename": "MITSUBISHI FUSO MOD 2P (OD:82MM)"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 10,
+      "providerId": 8,
+      "compatibility": "",
+      "tradename": "VOLVO 45A"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 11,
+      "providerId": 8,
+      "compatibility": "",
+      "tradename": "DELCO 175A 24V"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 12,
+      "providerId": 6,
+      "compatibility": "",
+      "tradename": "NISSAN TD27 CH"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 13,
+      "providerId": 6,
+      "compatibility": "",
+      "tradename": "ISUZU 4S"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 14,
+      "providerId": 6,
+      "compatibility": "",
+      "tradename": "TOYOTA 3L"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 15,
+      "providerId": 6,
+      "compatibility": "",
+      "tradename": "MITSUBISHI"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 16,
+      "providerId": 2,
+      "compatibility": "",
+      "tradename": "TOYOTA 3L"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 17,
+      "providerId": 2,
+      "compatibility": "",
+      "tradename": "TOYOTA 4E/5E"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 18,
+      "providerId": 6,
+      "compatibility": "",
+      "tradename": "TOYOTA"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 19,
+      "providerId": 6,
+      "compatibility": "",
+      "tradename": "HYUNDAI H1"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 20,
+      "providerId": 2,
+      "compatibility": "",
+      "tradename": "ISUZU 12V (1)"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 21,
+      "providerId": 2,
+      "compatibility": "",
+      "tradename": "ISUZU 12V (2)"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 22,
+      "providerId": 2,
+      "compatibility": "",
+      "tradename": "TOYOTS 2KD CUERPO DINA"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 23,
+      "providerId": 2,
+      "compatibility": "",
+      "tradename": "TOYOTA 2C GR"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 24,
+      "providerId": 2,
+      "compatibility": "",
+      "tradename": "HYUNDAI HD65"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 25,
+      "providerId": 2,
+      "compatibility": "",
+      "tradename": "MITSUBISHI 4D34"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 26,
+      "providerId": 2,
+      "compatibility": "",
+      "tradename": "NISSANN NAVARA"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 27,
+      "providerId": 2,
+      "compatibility": "",
+      "tradename": "NISSAN Z20"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 28,
+      "providerId": 2,
+      "compatibility": "",
+      "tradename": "DELCO 41MT 12V"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 29,
+      "providerId": 2,
+      "compatibility": "",
+      "tradename": "DELCO 42MT 24V"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 30,
+      "providerId": 2,
+      "compatibility": "",
+      "tradename": "DELCO 42MT 12V"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 31,
+      "providerId": 2,
+      "compatibility": "",
+      "tradename": "DELCO 41MT 24V"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 32,
+      "providerId": 2,
+      "compatibility": "",
+      "tradename": "DELCO 40MT 24V"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 33,
+      "providerId": 2,
+      "compatibility": "",
+      "tradename": "NISSAN FRONTIER"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 34,
+      "providerId": 2,
+      "compatibility": "",
+      "tradename": "JAC RED 24V PEUGEOT"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 35,
+      "providerId": 2,
+      "compatibility": "",
+      "tradename": "TOYOTA 3L"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 36,
+      "providerId": 2,
+      "compatibility": "",
+      "tradename": "SCANIA MOD"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 37,
+      "providerId": 2,
+      "compatibility": "",
+      "tradename": "ISKRA CH"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 38,
+      "providerId": 2,
+      "compatibility": "",
+      "tradename": "ISKRA GR"
+    },
+    {
+      "suggestedPrice": 0,
+      "modelId": 39,
+      "providerId": 2,
+      "compatibility": "",
+      "tradename": "ISKRA GR (2)"
+    }
+  ]

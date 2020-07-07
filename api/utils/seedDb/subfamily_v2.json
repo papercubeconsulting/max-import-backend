@@ -1,0 +1,116 @@
+[{
+    "name": "-",
+    "code": "01",
+    "familyId": 1
+  },
+  {
+    "name": "CORONA",
+    "code": "02",
+    "familyId": 1
+  },
+  {
+    "name": "ROTORES",
+    "code": "03",
+    "familyId": 1
+  },
+  {
+    "name": "PORTADIODOS",
+    "code": "04",
+    "familyId": 1
+  },
+  {
+    "name": "RELAY",
+    "code": "05",
+    "familyId": 1
+  },
+  {
+    "name": "VACIO",
+    "code": "06",
+    "familyId": 1
+  },
+  {
+    "name": "POLEA",
+    "code": "07",
+    "familyId": 1
+  },
+  {
+    "name": "REBOBINADO",
+    "code": "08",
+    "familyId": 1
+  },
+  {
+    "name": "TAPA ALT",
+    "code": "09",
+    "familyId": 1
+  },
+  {
+    "name": "ENCHUFES",
+    "code": "10",
+    "familyId": 1
+  },
+  {
+    "name": "PORTA CARBON ALT",
+    "code": "11",
+    "familyId": 1
+  },
+  {
+    "name": "-",
+    "code": "01",
+    "familyId": 2
+  },
+  {
+    "name": "ARMADURA",
+    "code": "02",
+    "familyId": 2
+  },
+  {
+    "name": "CAMPO",
+    "code": "03",
+    "familyId": 2
+  },
+  {
+    "name": "SOLENOIDE",
+    "code": "04",
+    "familyId": 2
+  },
+  {
+    "name": "BENDIX",
+    "code": "05",
+    "familyId": 2
+  },
+  {
+    "name": "PORTA CARBON",
+    "code": "06",
+    "familyId": 2
+  },
+  {
+    "name": "TAPA",
+    "code": "07",
+    "familyId": 2
+  },
+  {
+    "name": "BOBINAS",
+    "code": "08",
+    "familyId": 2
+  },
+  {
+    "name": "KIT DE REPARACION",
+    "code": "09",
+    "familyId": 2
+  },
+  {
+    "name": "BAQUELITA / HORQUILLA",
+    "code": "10",
+    "familyId": 2
+  },
+  {
+    "name": "SATELITE",
+    "code": "11",
+    "familyId": 2
+  },
+  {
+    "name": "BRILLAS",
+    "code": "12",
+    "familyId": 2
+  }
+]

@@ -72,7 +72,7 @@ function pad(n, width, z) {
 }
 
 ProductBox.prototype.getTrackingCode = function() {
-  return `${pad(this.supplyId, 6)}${pad(this.suppliedProductId, 6)}${pad(
+  return `1${pad(this.supplyId, 6)}${pad(this.suppliedProductId, 6)}${pad(
     this.indexFromSupliedProduct,
     3,
   )}`;
