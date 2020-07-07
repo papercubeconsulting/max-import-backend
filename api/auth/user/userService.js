@@ -50,7 +50,7 @@ const forgotPassword = async reqBody => {
     user.email,
     {
       name: user.name,
-      url: `${config.get('clientHostname')}/resetpassword?email=${
+      url: `${config.get('clientHostname')}/resetPassword?email=${
         user.email
       }&token=${user.resetPasswordToken}`,
     },
