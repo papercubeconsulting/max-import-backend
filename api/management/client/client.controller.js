@@ -1,25 +1,20 @@
-const Services = require('./familyService');
+const Service = require('./client.service');
 
-const getFamily = async (req, res) => {
-  const family = await Services.readFamily(req.params);
+const getClient = async (req, res) => {
+  console.log(req.params);
+  let response = await Service.getClient({
+    idNumber: req.params.identifier,
+  });
 
-  return res.status(family.status).send(family);
-};
-
-const listFamilies = async (req, res) => {
-  const families = await Services.listFamilies(req.query);
-
-  return res.status(families.status).send(families);
-};
-
-const postFamily = async (req, res) => {
-  const family = await Services.createFamily(req.body);
-
-  return res.status(family.status).send(family);
+  // ? Revisar si el id es menor a 9 digitos para asegurar el parsing
+  if (response.status !== 200 && req.params.identifier.length < 9) {
+    response = await Service.getClient({
+      id: parseInt(req.params.identifier, 10),
+    });
+  }
+  return res.status(response.status).send(response);
 };
 
 module.exports = {
-  getFamily,
-  listFamilies,
-  postFamily,
+  getClient,
 };

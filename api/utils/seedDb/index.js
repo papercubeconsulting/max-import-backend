@@ -17,6 +17,7 @@ const { Warehouse } = require('../../inventory/warehouse/warehouseModel');
 const { Product } = require('../../inventory/product/productModel');
 const { Supply } = require('../../inventory/supply/supplyModel');
 const { User } = require('../../auth/user/userModel');
+const { Client } = require('../../management/client/client.model');
 
 const { _fullCreateSupply } = require('../../inventory/supply/supplyService');
 const { asyncForEach } = require('../../utils');
@@ -49,15 +50,16 @@ const seedModelByService = async (model, filename, service, params) => {
 sequelize.sync({ force: true }).then(async result => {
   await seedModel(User, 'user.json');
 
-  await seedModel(Family, 'family_v2.json');
-  await seedModel(Subfamily, 'subfamily_v2.json');
-  await seedModel(Element, 'element_v2.json');
-  await seedModelOneByOne(Model, 'model_v2.json');
+  // await seedModel(Family, 'family_v2.json');
+  // await seedModel(Subfamily, 'subfamily_v2.json');
+  // await seedModel(Element, 'element_v2.json');
+  // await seedModelOneByOne(Model, 'model_v2.json');
 
-  await seedModel(Provider, 'provider_v2.json');
+  // await seedModel(Provider, 'provider_v2.json');
   await seedModel(Warehouse, 'warehouse.json');
 
-  await seedModelOneByOne(Product, 'product_v2.json');
+  // await seedModelOneByOne(Product, 'product_v2.json');
+  await seedModelOneByOne(Client, 'client.json');
 
   // await seedModelByService(Supply, 'supply.json', _fullCreateSupply, [
   //   { id: 1, name: 'Test' },

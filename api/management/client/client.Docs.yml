@@ -1,52 +1,21 @@
 paths:
-  "/families":
-    post:
-      tags:
-        - inventory.families
-      summary: Crear una nueva familia
-      operationId: addFamily
-      responses:
-        "201":
-          description: Family created
-      requestBody:
-        $ref: "#/components/requestBodies/Family"
+  "/clients/{id}":
     get:
       tags:
-        - inventory.families
-      summary: Listar todas las familias
-      operationId: listFamily
-      parameters:
-        - $ref: "#/components/parameters/providerId"
-      responses:
-        "200":
-          description: Families found
-  "/families/{id}":
-    get:
-      tags:
-        - inventory.families
-      summary: Encontrar familia por Id
-      operationId: getFamilyById
+        - inventory.client
+      summary: Encontrar cliente por id
       parameters:
         - $ref: "#/components/parameters/paramId"
       responses:
         "200":
           description: Successful operation
-components:
-  requestBodies:
-    Family:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              name:
-                type: string
-              code:
-                type: string
-            example:
-              name: "Nueva Familia"
-              code: "X0X"
-            required:
-              - name
-              - code
-      required: true
+  "/clients/{code}":
+    get:
+      tags:
+        - inventory.client
+      summary: Encontrar cliente por documento de identidad
+      parameters:
+        - $ref: "#/components/parameters/codeId"
+      responses:
+        "200":
+          description: Successful operation
