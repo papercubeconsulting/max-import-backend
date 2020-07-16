@@ -29,6 +29,13 @@ components:
         format: int32
         minimum: 1
         default: 1
+    stringId:
+      name: id
+      in: query
+      description: Id del recurso requerido.
+      required: true
+      schema:
+        type: string
     providerId:
       name: providerId
       in: query

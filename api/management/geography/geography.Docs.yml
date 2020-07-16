@@ -1,0 +1,46 @@
+paths:
+  "/geography/regions":
+    get:
+      tags:
+        - geography
+      summary: Obtener regiones
+      responses:
+        "200":
+          description: Success
+  "/geography/regions/{regionId}/provinces":
+    get:
+      tags:
+        - geography
+      summary: Obtener provincias para una region
+      parameters:
+        - $ref: "#/components/parameters/regionId"
+      responses:
+        "200":
+          description: Success
+  "/geography/regions/{regionId}/provinces/{provinceId}/districts":
+    get:
+      tags:
+        - geography
+      summary: Obtener distritos para una provincia
+      parameters:
+        - $ref: "#/components/parameters/regionId"
+        - $ref: "#/components/parameters/provinceId"
+      responses:
+        "200":
+          description: Success
+components:
+  parameters:
+    regionId:
+      name: regionId
+      in: path
+      description: Id de la region
+      required: true
+      schema:
+        type: string
+    provinceId:
+      name: provinceId
+      in: path
+      description: Id de la provincia
+      required: true
+      schema:
+        type: string
