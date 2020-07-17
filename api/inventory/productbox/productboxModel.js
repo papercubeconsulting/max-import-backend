@@ -4,6 +4,8 @@
 const Sequelize = require('sequelize');
 const _ = require('lodash');
 
+const { Op } = Sequelize;
+
 const sequelize = require(`${process.cwd()}/startup/db`);
 
 const { User } = require('../../auth/user/userModel');
@@ -12,6 +14,7 @@ const { Warehouse } = require('../warehouse/warehouseModel');
 const { Supply, SuppliedProduct } = require('../supply/supplyModel');
 const { PRODUCTBOX_UPDATES } = require('../../utils/constants');
 
+const { warehouseTypes } = require('../../utils/constants');
 const ProductBox = sequelize.define(
   'productBox',
   {
@@ -106,6 +109,41 @@ ProductBox.bulkRegisterLog = function(message, user, data) {
       userId: user.id,
       warehouseId: productBox.warehouseId,
     })),
+  );
+};
+
+Product.updateStock = async (id, options) => {
+  const product = await Product.findByPk(id, {
+    include: [
+      {
+        model: ProductBox,
+        where: { stock: { [Op.gt]: 0 } },
+        attributes: ['id', 'stock', 'boxSize'],
+        include: [
+          {
+            model: Warehouse,
+            attributes: ['type', 'id', 'name'],
+          },
+        ],
+        required: false,
+      },
+    ],
+    ...options,
+  });
+  const summary = Product.aggregateStock(product.get());
+  const damagedStock = _.get(
+    summary.stockByWarehouseType.find(
+      obj => obj.warehouseType === warehouseTypes.DAMAGED,
+    ),
+    'stock',
+    0,
+  );
+  return product.update(
+    {
+      damagedStock,
+      availableStock: summary.totalStock - damagedStock,
+    },
+    { ...options },
   );
 };
 

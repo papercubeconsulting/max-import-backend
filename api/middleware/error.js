@@ -3,7 +3,12 @@
 const winston = require('winston');
 
 module.exports = function(err, req, res, next) {
-    winston.error(err.stack, err);
+  winston.error(err.stack, err);
 
-    res.status(500).send('Something failed.');
+  if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
+    res
+      .status(400)
+      .send({ status: 400, message: 'Syntaxis error: Probably parsing JSON' });
+  }
+  res.status(500).send({ status: 500, message: 'Unexpected error happend' });
 };

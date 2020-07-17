@@ -14,6 +14,8 @@ const validateCreateSupply = async reqBody => {
     new Set(reqBody.suppliedProducts.map(obj => obj.productId)),
   );
   const products = await Product.findAll({ where: { id: productIds } });
+  if (productIds.length !== products.length)
+    return setResponse(400, 'Invalid productIds provided');
   if (products.some(prod => prod.providerId !== reqBody.providerId))
     return setResponse(400, 'Invalid providerId for selected products');
   return setResponse(200, 'Ok');

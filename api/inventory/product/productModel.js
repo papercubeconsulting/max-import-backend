@@ -3,6 +3,7 @@
 const Sequelize = require('sequelize');
 const _ = require('lodash');
 
+// const { Op } = Sequelize;
 const sequelize = require(`${process.cwd()}/startup/db`);
 
 const { Provider } = require('../provider/providerModel');
@@ -55,6 +56,14 @@ const Product = sequelize.define(
       type: Sequelize.INTEGER,
       allowNull: false,
     },
+    availableStock: {
+      type: Sequelize.INTEGER,
+      defaultValue: 0,
+    },
+    damagedStock: {
+      type: Sequelize.INTEGER,
+      defaultValue: 0,
+    },
   },
   {
     // options
@@ -103,77 +112,6 @@ Product.beforeCreate('SetId', async (product, options) => {
 
   product.code = `${categories.element.subfamily.family.code}-${categories.element.subfamily.code}-${categories.element.code}-${provider.code}-${categories.code}`;
 });
-
-// Product.beforeSave('SetCategories', async (product, options) => {
-
-// });
-// Product.prototype.aggregateStock = function(includeBoxSizeDetail = false) {
-//   const that = this.get();
-//   that.totalStock = 0;
-//   console.log(that);
-//   that.stockByWarehouse = Object.values(
-//     that.productBoxes.reduce(
-//       (accumulator, currentValue, currentIndex, array) => {
-//         const key = currentValue.warehouse.id;
-//         if (!_.get(accumulator, [key]))
-//           accumulator[key] = {
-//             warehouseId: currentValue.warehouse.id,
-//             warehouseName: currentValue.warehouse.name,
-//             warehouseType: currentValue.warehouse.type,
-//             stock: 0,
-//           };
-//         accumulator[key].stock += currentValue.stock;
-//         that.totalStock += currentValue.stock;
-//         return accumulator;
-//       },
-//       {},
-//     ),
-//   );
-
-//   that.stockByWarehouseType = Object.values(
-//     that.productBoxes.reduce(
-//       (accumulator, currentValue, currentIndex, array) => {
-//         const key = currentValue.warehouse.type;
-//         if (!_.get(accumulator, [key]))
-//           accumulator[key] = {
-//             warehouseType: currentValue.warehouse.type,
-//             stock: 0,
-//           };
-//         accumulator[key].stock += currentValue.stock;
-//         return accumulator;
-//       },
-//       {},
-//     ),
-//   );
-
-//   if (includeBoxSizeDetail)
-//     that.stockByWarehouseAndBoxSize = Object.values(
-//       that.productBoxes.reduce(
-//         (accumulator, currentValue, currentIndex, array) => {
-//           const key = `${currentValue.warehouseId}-${currentValue.boxSize}`;
-//           if (!_.get(accumulator, [key]))
-//             accumulator[key] = {
-//               warehouseId: currentValue.warehouse.id,
-//               warehouseName: currentValue.warehouse.name,
-//               warehouseType: currentValue.warehouse.type,
-//               boxSize: currentValue.boxSize,
-//               quantityBoxes: 0,
-//               completeBoxes: 0,
-//               stock: 0,
-//             };
-//           accumulator[key].stock += currentValue.stock;
-//           accumulator[key].quantityBoxes += 1;
-//           accumulator[key].completeBoxes +=
-//             currentValue.boxSize === currentValue.stock ? 1 : 0;
-//           return accumulator;
-//         },
-//         {},
-//       ),
-//     );
-
-//   that.productBoxes = undefined;
-//   return that;
-// };
 
 Product.aggregateStock = function(product, includeBoxSizeDetail = false) {
   product.totalStock = 0;

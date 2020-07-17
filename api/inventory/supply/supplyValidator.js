@@ -57,7 +57,7 @@ const Post = {
     observations: Joi.string()
       .allow('')
       .default(''),
-    status: Joi.string(), // TODO: REMOVE
+    status: Joi.string(), // TODO: REMOVE BECAUSE IS JUST FOR SEEDING
     suppliedProducts: Joi.array()
       .items(
         Joi.object({
@@ -70,7 +70,7 @@ const Post = {
           quantity: Joi.number()
             .integer()
             .required(),
-          suppliedQuantity: Joi.number().integer(), // TODO: REMOVE
+          suppliedQuantity: Joi.number().integer(), // TODO: REMOVE BECAUSE IS JUST FOR SEEDING
         }),
       )
       .unique((a, b) => a.productId === b.productId && a.boxSize === b.boxSize)

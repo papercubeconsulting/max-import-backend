@@ -46,6 +46,7 @@ const swaggerDefinition = {
       description: 'Development server',
     },
   ],
+  tags: [{ name: 'sales.proforma' }],
 };
 
 const options = {

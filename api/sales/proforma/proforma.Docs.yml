@@ -1,0 +1,67 @@
+paths:
+  "/proformas":
+    post:
+      tags:
+        - sales.proforma
+      summary: Crear un nueva proforma
+      responses:
+        "201":
+          description: Supply created
+      requestBody:
+        $ref: "#/components/requestBodies/Proforma"
+  "/proformas/{id}":
+    get:
+      tags:
+        - sales.proforma
+      summary: Encontrar proforma por Id
+      parameters:
+        - $ref: "#/components/parameters/paramId"
+      responses:
+        "200":
+          description: Successful operation
+components:
+  requestBodies:
+    Proforma:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              clientId:
+                type: integer
+                format: int32
+                description: Id del cliente
+              discount:
+                type: integer
+                format: int32
+                description: Descuento
+              proformaProducts:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    productId:
+                      type: integer
+                      format: int32
+                      description: Id del producto
+                    unitPrice:
+                      type: integer
+                      format: int32
+                      description: Precio unitario para la proforma
+                    quantity:
+                      type: integer
+                      format: int32
+                      description: Cantidad de productos
+            example:
+              clientId: 1
+              discount: 0
+              proformaProducts:
+                [
+                  { productId: 1, unitPrice: 20, quantity: 100 },
+                  { productId: 2, unitPrice: 50, quantity: 20 },
+                  { productId: 3, unitPrice: 50, quantity: 10 },
+                ]
+            required:
+              - clientId
+              - proformaProducts
+      required: true

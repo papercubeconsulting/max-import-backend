@@ -11,6 +11,8 @@ const { setResponse } = require('../../../utils');
 
 const { Supply, SuppliedProduct } = require('../supplyModel');
 const { ProductBox } = require('../../productbox/productboxModel');
+const { Product } = require('../../product/productModel');
+const { Warehouse } = require('../../warehouse/warehouseModel');
 
 const validateAttendSuppliedProduct = async (reqBody, reqParams) => {
   const suppliedProduct = await SuppliedProduct.findByPk(
@@ -84,8 +86,11 @@ const updateAttendSuppliedProduct = async (reqBody, reqParams, reqUser) => {
       ),
     );
     await suppliedProduct.save({ transaction: t });
+
+    await Product.updateStock(suppliedProduct.productId, { transaction: t });
+
     await t.commit();
-    ProductBox.bulkRegisterLog(
+    await ProductBox.bulkRegisterLog(
       PRODUCTBOX_UPDATES.CREATION.value,
       reqUser,
       newProductBoxes,

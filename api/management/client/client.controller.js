@@ -1,7 +1,6 @@
 const Service = require('./client.service');
 
 const getClient = async (req, res) => {
-  console.log(req.params);
   let response = await Service.getClient({
     idNumber: req.params.identifier,
   });
