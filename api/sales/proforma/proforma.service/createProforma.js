@@ -1,11 +1,10 @@
-const { setResponse } = require('../../utils');
+const { setResponse } = require('../../../utils');
 
-const { Proforma, ProformaProduct } = require('./proforma.model');
-const { Product } = require('../../inventory/product/productModel');
-const { Client } = require('../../management/client/client.model');
+const { Proforma, ProformaProduct } = require('../proforma.model');
+const { Product } = require('../../../inventory/product/productModel');
+const { Client } = require('../../../management/client/client.model');
 
 const validateProforma = async reqBody => {
-  console.log(reqBody.discount);
   const productIds = reqBody.proformaProducts.map(obj => obj.productId);
   const [client, products] = await Promise.all([
     Client.findByPk(reqBody.clientId),
@@ -27,25 +26,7 @@ const postProforma = async (reqBody, reqUser) => {
   return setResponse(200, 'Proforma created.', proforma);
 };
 
-const getProforma = async reqParams => {
-  const proforma = await Proforma.findByPk(reqParams.id, {
-    include: [
-      { all: true },
-      {
-        model: ProformaProduct,
-        include: {
-          model: Product,
-        },
-      },
-    ],
-  });
-
-  if (!proforma) return setResponse(404, 'Proforma not found.');
-  return setResponse(200, 'Proforma found.', proforma);
-};
-
 module.exports = {
   postProforma,
   validateProforma,
-  getProforma,
 };

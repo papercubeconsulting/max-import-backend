@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/no-dynamic-require */
 const Sequelize = require('sequelize');
+const _ = require('lodash');
 
 const sequelize = require(`${process.cwd()}/startup/db`);
 
@@ -24,21 +25,60 @@ const Proforma = sequelize.define(
       type: Sequelize.ENUM(getDictValues(PROFORMA.STATUS)),
       defaultValue: PROFORMA.STATUS.OPEN.value,
     },
+    saleStatus: {
+      type: Sequelize.ENUM(getDictValues(PROFORMA.SALE_STATUS)),
+      defaultValue: PROFORMA.SALE_STATUS.PENDING.value,
+    },
+    dispatchStatus: {
+      type: Sequelize.ENUM(getDictValues(PROFORMA.DISPATCH_STATUS)),
+      defaultValue: PROFORMA.DISPATCH_STATUS.PENDING.value,
+    },
+    // ? Suma de los subtotales de cada elemento de la proforma
     subtotal: {
       type: Sequelize.INTEGER,
       defaultValue: 0,
     },
+    // ? Monto de descuento aplicado a toda la proforma
     discount: {
       type: Sequelize.INTEGER,
       defaultValue: 0,
     },
+    // ? Diferencia entre subtotal y discount
     total: {
       type: Sequelize.INTEGER,
       defaultValue: 0,
     },
+    // ? Monto pagado por adelantado
     credit: {
       type: Sequelize.INTEGER,
       defaultValue: 0,
+    },
+
+    // * Virtual fields
+
+    statusDescription: {
+      type: Sequelize.DataTypes.VIRTUAL,
+      get() {
+        return PROFORMA.STATUS[this.status].name;
+      },
+    },
+    saleStatusDescription: {
+      type: Sequelize.DataTypes.VIRTUAL,
+      get() {
+        return PROFORMA.SALE_STATUS[this.saleStatus].name;
+      },
+    },
+    dispatchStatusDescription: {
+      type: Sequelize.DataTypes.VIRTUAL,
+      get() {
+        return PROFORMA.DISPATCH_STATUS[this.dispatchStatus].name;
+      },
+    },
+    discountPercentage: {
+      type: Sequelize.DataTypes.VIRTUAL,
+      get() {
+        return _.round(this.discount / this.subtotal, 2);
+      },
     },
   },
   {

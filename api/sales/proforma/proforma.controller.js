@@ -15,7 +15,13 @@ const postProforma = async (req, res) => {
   return res.status(proforma.status).send(proforma);
 };
 
+const listProforma = async (req, res) => {
+  const supply = await Service.listProforma(req.query);
+  return res.status(supply.status).send(supply);
+};
+
 module.exports = {
   postProforma,
   getProforma,
+  listProforma,
 };

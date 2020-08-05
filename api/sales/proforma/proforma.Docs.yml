@@ -9,6 +9,25 @@ paths:
           description: Supply created
       requestBody:
         $ref: "#/components/requestBodies/Proforma"
+    get:
+      tags:
+        - sales.proforma
+      summary: Listar proformas
+      parameters:
+        - $ref: "#/components/parameters/fromDate"
+        - $ref: "#/components/parameters/toDate"
+        - $ref: "#/components/parameters/pagePagination"
+        - $ref: "#/components/parameters/pageSizePagination"
+        - $ref: "#/components/parameters/proformaId"
+        - $ref: "#/components/parameters/userId"
+        - $ref: "#/components/parameters/status"
+        - $ref: "#/components/parameters/saleStatus"
+        - $ref: "#/components/parameters/dispatchStatus"
+        - $ref: "#/components/parameters/name"
+        - $ref: "#/components/parameters/lastname"
+      responses:
+        "200":
+          description: Successful operation
   "/proformas/{id}":
     get:
       tags:
@@ -65,3 +84,69 @@ components:
               - clientId
               - proformaProducts
       required: true
+  parameters:
+    proformaId:
+      name: id
+      in: query
+      description: Id de la proforma requerido
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    userId:
+      name: userId
+      in: query
+      description: Id del usuario que creo la proforma
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    status:
+      name: status
+      in: query
+      description: Estado base de la plataforma, si el campo no se envia se devuelve TODOS
+      required: false
+      schema:
+        type: string
+        enum:
+          - OPEN
+          - CLOSED
+    saleStatus:
+      name: saleStatus
+      in: query
+      description: Estado de venta de la plataforma, si el campo no se envia se devuelve TODOS
+      required: false
+      schema:
+        type: string
+        enum:
+          - PENDING
+          - PARTIAL
+          - PAID
+    dispatchStatus:
+      name: dispatchStatus
+      in: query
+      description: Estado de despacho de la plataforma, si el campo no se envia se devuelve TODOS
+      required: false
+      schema:
+        type: string
+        enum:
+          - PENDING
+          - DISPATCHED
+
+    name:
+      name: name
+      in: query
+      description: Nombre del cliente (nombre o razon social) - Case insensitive
+      required: false
+      schema:
+        type: string
+
+    lastname:
+      name: lastname
+      in: query
+      description: Apellido del cliente (solo para personas naturales)
+      required: false
+      schema:
+        type: string

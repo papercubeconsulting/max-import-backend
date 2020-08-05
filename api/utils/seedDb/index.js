@@ -52,20 +52,19 @@ sequelize.sync({ force: true }).then(async result => {
   await seedModel(User, 'user.json');
   await seedModel(Warehouse, 'warehouse.json');
 
-  await seedModel(Provider, 'provider.json');
-  await seedModel(Family, 'family.json');
-  await seedModel(Subfamily, 'subfamily.json');
-  await seedModel(Element, 'element.json');
-  await seedModelOneByOne(Model, 'model.json');
-  await seedModelOneByOne(Product, 'product.json');
+  // await seedModel(Provider, 'provider.json');
+  // await seedModel(Family, 'family.json');
+  // await seedModel(Subfamily, 'subfamily.json');
+  // await seedModel(Element, 'element.json');
+  // await seedModelOneByOne(Model, 'model.json');
+  // await seedModelOneByOne(Product, 'product.json');
 
-  // await seedModel(Provider, 'provider_v2.json');
-  // await seedModel(Family, 'family_v2.json');
-  // await seedModel(Subfamily, 'subfamily_v2.json');
-  // await seedModel(Element, 'element_v2.json');
-  // await seedModelOneByOne(Model, 'model_v2.json');
-
-  // await seedModelOneByOne(Product, 'product_v2.json');
+  await seedModel(Provider, 'provider_v2.json');
+  await seedModel(Family, 'family_v2.json');
+  await seedModel(Subfamily, 'subfamily_v2.json');
+  await seedModel(Element, 'element_v2.json');
+  await seedModelOneByOne(Model, 'model_v2.json');
+  await seedModelOneByOne(Product, 'product_v2.json');
 
   await seedModelOneByOne(Client, 'client.json');
 
