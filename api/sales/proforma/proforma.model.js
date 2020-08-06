@@ -53,6 +53,11 @@ const Proforma = sequelize.define(
       type: Sequelize.INTEGER,
       defaultValue: 0,
     },
+    // ? Cantidad total de unidades
+    totalUnits: {
+      type: Sequelize.INTEGER,
+      defaultValue: 0,
+    },
 
     // * Virtual fields
 
@@ -120,11 +125,16 @@ const ProformaProduct = sequelize.define(
 );
 
 Proforma.beforeUpdate('calculatePrices', async (proforma, options) => {
-  if (proforma.proformaProducts)
+  if (proforma.proformaProducts) {
     proforma.subtotal = proforma.proformaProducts.reduce(
       (a, b) => a + b.subtotal,
       0,
     );
+    proforma.totalUnits = proforma.proformaProducts.reduce(
+      (a, b) => a + b.quantity,
+      0,
+    );
+  }
   proforma.total = proforma.subtotal - proforma.discount;
 });
 

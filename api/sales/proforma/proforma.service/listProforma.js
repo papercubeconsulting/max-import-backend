@@ -56,7 +56,7 @@ const listProforma = async reqQuery => {
         where: clientQuery,
         attributes: ['id', 'name', 'lastname'],
       },
-      { model: User, attributes: ['id', 'name'] },
+      { model: User, attributes: ['id', 'name', 'lastname'] },
     ],
     distinct: true,
     ...paginate(_.pick(reqQuery, ['page', 'pageSize'])),
