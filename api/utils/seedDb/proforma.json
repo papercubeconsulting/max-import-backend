@@ -1,0 +1,435 @@
+[
+  {
+    "userId": 1,
+    "clientId": 2,
+    "createdAt": "2020-06-19T01:31:02+00:00",
+    "status": "CLOSED",
+    "saleStatus": "PARTIAL",
+    "dispatchStatus": "DISPATCHED",
+    "credit": 4900,
+    "proformaProducts": [
+      {
+        "productId": 1,
+        "unitPrice": 6600,
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "userId": 3,
+    "clientId": 4,
+    "createdAt": "2020-06-01T15:42:21+00:00",
+    "status": "CLOSED",
+    "saleStatus": "PARTIAL",
+    "dispatchStatus": "PENDING",
+    "credit": 2500,
+    "proformaProducts": [
+      {
+        "productId": 1,
+        "unitPrice": 7000,
+        "quantity": 20
+      },
+      {
+        "productId": 2,
+        "unitPrice": 8400,
+        "quantity": 8
+      },
+      {
+        "productId": 3,
+        "unitPrice": 9000,
+        "quantity": 13
+      }
+    ]
+  },
+  {
+    "userId": 4,
+    "clientId": 2,
+    "createdAt": "2020-06-06T20:43:03+00:00",
+    "status": "OPEN",
+    "saleStatus": "PENDING",
+    "dispatchStatus": "PENDING",
+    "proformaProducts": [
+      {
+        "productId": 1,
+        "unitPrice": 6200,
+        "quantity": 17
+      }
+    ]
+  },
+  {
+    "userId": 4,
+    "clientId": 3,
+    "createdAt": "2020-07-11T04:37:42+00:00",
+    "status": "OPEN",
+    "saleStatus": "PENDING",
+    "dispatchStatus": "PENDING",
+    "proformaProducts": [
+      {
+        "productId": 1,
+        "unitPrice": 8600,
+        "quantity": 15
+      },
+      {
+        "productId": 2,
+        "unitPrice": 6600,
+        "quantity": 20
+      },
+      {
+        "productId": 3,
+        "unitPrice": 9000,
+        "quantity": 4
+      }
+    ]
+  },
+  {
+    "userId": 3,
+    "clientId": 5,
+    "createdAt": "2020-06-13T21:23:52+00:00",
+    "status": "OPEN",
+    "saleStatus": "PENDING",
+    "dispatchStatus": "PENDING",
+    "proformaProducts": [
+      {
+        "productId": 1,
+        "unitPrice": 5300,
+        "quantity": 15
+      },
+      {
+        "productId": 2,
+        "unitPrice": 8400,
+        "quantity": 11
+      }
+    ]
+  },
+  {
+    "userId": 3,
+    "clientId": 2,
+    "createdAt": "2020-06-15T03:10:16+00:00",
+    "status": "OPEN",
+    "saleStatus": "PENDING",
+    "dispatchStatus": "PENDING",
+    "proformaProducts": [
+      {
+        "productId": 1,
+        "unitPrice": 9200,
+        "quantity": 3
+      },
+      {
+        "productId": 2,
+        "unitPrice": 6600,
+        "quantity": 10
+      },
+      {
+        "productId": 3,
+        "unitPrice": 8900,
+        "quantity": 6
+      }
+    ]
+  },
+  {
+    "userId": 2,
+    "clientId": 2,
+    "createdAt": "2020-06-04T07:40:46+00:00",
+    "status": "CLOSED",
+    "saleStatus": "PARTIAL",
+    "dispatchStatus": "PENDING",
+    "credit": 5600,
+    "proformaProducts": [
+      {
+        "productId": 1,
+        "unitPrice": 6000,
+        "quantity": 11
+      },
+      {
+        "productId": 2,
+        "unitPrice": 6400,
+        "quantity": 15
+      }
+    ]
+  },
+  {
+    "userId": 6,
+    "clientId": 2,
+    "createdAt": "2020-06-13T05:49:00+00:00",
+    "status": "OPEN",
+    "saleStatus": "PENDING",
+    "dispatchStatus": "PENDING",
+    "proformaProducts": [
+      {
+        "productId": 1,
+        "unitPrice": 8300,
+        "quantity": 18
+      }
+    ]
+  },
+  {
+    "userId": 2,
+    "clientId": 3,
+    "createdAt": "2020-06-14T17:39:13+00:00",
+    "status": "OPEN",
+    "saleStatus": "PENDING",
+    "dispatchStatus": "PENDING",
+    "proformaProducts": [
+      {
+        "productId": 1,
+        "unitPrice": 5700,
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "userId": 4,
+    "clientId": 2,
+    "createdAt": "2020-06-07T10:19:42+00:00",
+    "status": "OPEN",
+    "saleStatus": "PENDING",
+    "dispatchStatus": "PENDING",
+    "proformaProducts": [
+      {
+        "productId": 1,
+        "unitPrice": 8000,
+        "quantity": 17
+      }
+    ]
+  },
+  {
+    "userId": 3,
+    "clientId": 3,
+    "createdAt": "2020-06-22T19:51:35+00:00",
+    "status": "CLOSED",
+    "saleStatus": "PARTIAL",
+    "dispatchStatus": "DISPATCHED",
+    "credit": 7300,
+    "proformaProducts": [
+      {
+        "productId": 1,
+        "unitPrice": 6800,
+        "quantity": 5
+      },
+      {
+        "productId": 2,
+        "unitPrice": 7500,
+        "quantity": 4
+      },
+      {
+        "productId": 3,
+        "unitPrice": 8300,
+        "quantity": 20
+      },
+      {
+        "productId": 4,
+        "unitPrice": 9000,
+        "quantity": 12
+      }
+    ]
+  },
+  {
+    "userId": 6,
+    "clientId": 5,
+    "createdAt": "2020-06-05T00:56:14+00:00",
+    "status": "CLOSED",
+    "saleStatus": "PAID",
+    "dispatchStatus": "PENDING",
+    "proformaProducts": [
+      {
+        "productId": 1,
+        "unitPrice": 9300,
+        "quantity": 14
+      },
+      {
+        "productId": 2,
+        "unitPrice": 6800,
+        "quantity": 3
+      }
+    ]
+  },
+  {
+    "userId": 2,
+    "clientId": 5,
+    "createdAt": "2020-07-15T04:36:19+00:00",
+    "status": "OPEN",
+    "saleStatus": "PENDING",
+    "dispatchStatus": "PENDING",
+    "proformaProducts": [
+      {
+        "productId": 1,
+        "unitPrice": 7700,
+        "quantity": 14
+      }
+    ]
+  },
+  {
+    "userId": 2,
+    "clientId": 3,
+    "createdAt": "2020-08-01T22:57:59+00:00",
+    "status": "CLOSED",
+    "saleStatus": "PARTIAL",
+    "dispatchStatus": "PENDING",
+    "credit": 5500,
+    "proformaProducts": [
+      {
+        "productId": 1,
+        "unitPrice": 8100,
+        "quantity": 7
+      },
+      {
+        "productId": 2,
+        "unitPrice": 9600,
+        "quantity": 18
+      },
+      {
+        "productId": 3,
+        "unitPrice": 7300,
+        "quantity": 16
+      }
+    ]
+  },
+  {
+    "userId": 4,
+    "clientId": 1,
+    "createdAt": "2020-07-15T14:03:46+00:00",
+    "status": "OPEN",
+    "saleStatus": "PENDING",
+    "dispatchStatus": "PENDING",
+    "proformaProducts": [
+      {
+        "productId": 1,
+        "unitPrice": 5300,
+        "quantity": 3
+      },
+      {
+        "productId": 2,
+        "unitPrice": 9000,
+        "quantity": 1
+      },
+      {
+        "productId": 3,
+        "unitPrice": 7300,
+        "quantity": 16
+      }
+    ]
+  },
+  {
+    "userId": 4,
+    "clientId": 3,
+    "createdAt": "2020-08-05T18:04:22+00:00",
+    "status": "CLOSED",
+    "saleStatus": "PARTIAL",
+    "dispatchStatus": "PENDING",
+    "credit": 3900,
+    "proformaProducts": [
+      {
+        "productId": 1,
+        "unitPrice": 7200,
+        "quantity": 1
+      },
+      {
+        "productId": 2,
+        "unitPrice": 5900,
+        "quantity": 19
+      },
+      {
+        "productId": 3,
+        "unitPrice": 5100,
+        "quantity": 9
+      },
+      {
+        "productId": 4,
+        "unitPrice": 8000,
+        "quantity": 3
+      }
+    ]
+  },
+  {
+    "userId": 6,
+    "clientId": 4,
+    "createdAt": "2020-07-17T10:17:08+00:00",
+    "status": "CLOSED",
+    "saleStatus": "PAID",
+    "dispatchStatus": "DISPATCHED",
+    "proformaProducts": [
+      {
+        "productId": 1,
+        "unitPrice": 5800,
+        "quantity": 9
+      },
+      {
+        "productId": 2,
+        "unitPrice": 9400,
+        "quantity": 13
+      },
+      {
+        "productId": 3,
+        "unitPrice": 8600,
+        "quantity": 3
+      },
+      {
+        "productId": 4,
+        "unitPrice": 9600,
+        "quantity": 4
+      }
+    ]
+  },
+  {
+    "userId": 5,
+    "clientId": 1,
+    "createdAt": "2020-08-06T19:09:21+00:00",
+    "status": "CLOSED",
+    "saleStatus": "PARTIAL",
+    "dispatchStatus": "DISPATCHED",
+    "credit": 6200,
+    "proformaProducts": [
+      {
+        "productId": 1,
+        "unitPrice": 6600,
+        "quantity": 20
+      },
+      {
+        "productId": 2,
+        "unitPrice": 7100,
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "userId": 1,
+    "clientId": 2,
+    "createdAt": "2020-06-26T06:41:57+00:00",
+    "status": "CLOSED",
+    "saleStatus": "PARTIAL",
+    "dispatchStatus": "PENDING",
+    "credit": 6200,
+    "proformaProducts": [
+      {
+        "productId": 1,
+        "unitPrice": 10000,
+        "quantity": 13
+      },
+      {
+        "productId": 2,
+        "unitPrice": 7800,
+        "quantity": 15
+      }
+    ]
+  },
+  {
+    "userId": 1,
+    "clientId": 3,
+    "createdAt": "2020-06-25T20:15:37+00:00",
+    "status": "OPEN",
+    "saleStatus": "PENDING",
+    "dispatchStatus": "PENDING",
+    "proformaProducts": [
+      {
+        "productId": 1,
+        "unitPrice": 6900,
+        "quantity": 2
+      },
+      {
+        "productId": 2,
+        "unitPrice": 5600,
+        "quantity": 8
+      }
+    ]
+  }
+]

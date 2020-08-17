@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable global-require */
 /* eslint-disable func-names */
 const express = require('express');

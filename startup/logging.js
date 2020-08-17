@@ -1,7 +1,5 @@
 // Setup Winston Logger
-
 const winston = require('winston');
-const config = require('config');
 require('express-async-errors');
 
 const { combine, timestamp, printf, label } = winston.format;
@@ -32,20 +30,10 @@ module.exports = () => {
       new winston.transports.Console({
         level: 'silly',
       }),
-      // new winston.transports.File({
-      //   filename: 'logfile.log',
-      //   level: 'error'
-      // }),
-      // new winston.transports.File({
-      //   filename: 'combined.log'
-      // }),
     ],
   });
 
   winston.exceptions.handle(
-    // new winston.transports.File({
-    //   filename: 'uncaughtExceptions.log',
-    // }),
     new winston.transports.Console({
       colorize: true,
       prettyPrint: true,

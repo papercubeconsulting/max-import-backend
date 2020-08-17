@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const winston = require('winston');
 const fs = require('fs');
 const path = require('path');
@@ -7,20 +8,25 @@ require('../../../startup/logging')();
 
 const sequelize = require('../../../startup/db');
 
-const { Family } = require('../../inventory/family/familyModel');
-const { Subfamily } = require('../../inventory/subfamily/subfamilyModel');
-const { Element } = require('../../inventory/element/elementModel');
-const { Model } = require('../../inventory/model/modelModel');
-const { Provider } = require('../../inventory/provider/providerModel');
-const { Warehouse } = require('../../inventory/warehouse/warehouseModel');
+const { Family } = require('../../inventory/family/family.model');
+const { Subfamily } = require('../../inventory/subfamily/subfamily.model');
+const { Element } = require('../../inventory/element/element.model');
+const { Model } = require('../../inventory/model/model.model');
+const { Provider } = require('../../inventory/provider/provider.model');
+const { Warehouse } = require('../../inventory/warehouse/warehouse.model');
 
-const { Product } = require('../../inventory/product/productModel');
-const { Supply } = require('../../inventory/supply/supplyModel');
-const { User } = require('../../auth/user/userModel');
+const { Product } = require('../../inventory/product/product.model');
+const { Supply } = require('../../inventory/supply/supply.model');
+const { User } = require('../../auth/user/user.model');
 const { Client } = require('../../management/client/client.model');
 const { Proforma } = require('../../sales/proforma/proforma.model');
 
-const { _fullCreateSupply } = require('../../inventory/supply/supplyService');
+const { _fullCreateSupply } = require('../../inventory/supply/supply.service');
+
+const {
+  _seedCreateProforma,
+} = require('../../sales/proforma/proforma.service');
+
 const { asyncForEach } = require('../../utils');
 
 const seedModel = async (model, filename) => {
@@ -38,7 +44,7 @@ const seedModelOneByOne = async (model, filename) => {
   return 1;
 };
 
-const seedModelByService = async (model, filename, service, params) => {
+const seedModelByService = async (model, filename, service, params = []) => {
   const rawData = fs.readFileSync(path.join(__dirname, filename));
 
   await asyncForEach(JSON.parse(rawData), async data =>
@@ -71,6 +77,8 @@ sequelize.sync({ force: true }).then(async result => {
   await seedModelByService(Supply, 'supply.json', _fullCreateSupply, [
     { id: 1, name: 'Test' },
   ]);
+
+  await seedModelByService(Proforma, 'proforma.json', _seedCreateProforma);
 
   await sequelize.close();
 });

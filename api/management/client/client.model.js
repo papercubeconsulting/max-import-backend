@@ -4,7 +4,7 @@ const Sequelize = require('sequelize');
 
 const sequelize = require(`${process.cwd()}/startup/db`);
 
-const { Warehouse } = require('../../inventory/warehouse/warehouseModel');
+const { Warehouse } = require('../../inventory/warehouse/warehouse.model');
 
 const { getDictValues, CLIENT } = require('../../utils/constants');
 
@@ -88,7 +88,7 @@ const { data: provinces } = require('./../geography/province');
 const { data: regions } = require('./../geography/region');
 const { data: districts } = require('./../geography/district');
 
-Client.beforeCreate('setGeography', async (client, options) => {
+Client.beforeCreate('setGeography', async client => {
   client.region = regions.find(obj => obj.id === client.regionId).name;
   client.province = provinces.find(obj => obj.id === client.provinceId).name;
   client.district = districts.find(obj => obj.id === client.districtId).name;

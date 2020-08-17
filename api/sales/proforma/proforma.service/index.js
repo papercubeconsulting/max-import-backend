@@ -3,4 +3,7 @@ module.exports = {
   ...require('./createProforma'),
   ...require('./readProforma'),
   ...require('./listProforma'),
+
+  // * No para produccion
+  ...require('./_seedCreateProforma'),
 };

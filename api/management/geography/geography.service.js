@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const { data: provinces } = require('./province');
 const { data: regions } = require('./region');
 const { data: districts } = require('./district');

@@ -5,9 +5,9 @@ const _ = require('lodash');
 
 const sequelize = require(`${process.cwd()}/startup/db`);
 
-const { User } = require('../../auth/user/userModel');
+const { User } = require('../../auth/user/user.model');
 const { Client } = require('../../management/client/client.model');
-const { Product } = require('../../inventory/product/productModel');
+const { Product } = require('../../inventory/product/product.model');
 
 const { getDictValues, PROFORMA } = require('../../utils/constants');
 
@@ -124,7 +124,7 @@ const ProformaProduct = sequelize.define(
   },
 );
 
-Proforma.beforeUpdate('calculatePrices', async (proforma, options) => {
+Proforma.beforeUpdate('calculatePrices', async proforma => {
   if (proforma.proformaProducts) {
     proforma.subtotal = proforma.proformaProducts.reduce(
       (a, b) => a + b.subtotal,
@@ -138,13 +138,10 @@ Proforma.beforeUpdate('calculatePrices', async (proforma, options) => {
   proforma.total = proforma.subtotal - proforma.discount;
 });
 
-ProformaProduct.beforeValidate(
-  'calculatePrices',
-  async (proformaProduct, options) => {
-    proformaProduct.subtotal =
-      proformaProduct.quantity * proformaProduct.quantity;
-  },
-);
+ProformaProduct.beforeValidate('calculatePrices', async proformaProduct => {
+  proformaProduct.subtotal =
+    proformaProduct.quantity * proformaProduct.unitPrice;
+});
 
 User.hasMany(Proforma);
 Proforma.belongsTo(User);

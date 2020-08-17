@@ -1,7 +1,7 @@
 const { setResponse } = require('../../../utils');
 
 const { Proforma, ProformaProduct } = require('../proforma.model');
-const { Product } = require('../../../inventory/product/productModel');
+const { Product } = require('../../../inventory/product/product.model');
 const { Client } = require('../../../management/client/client.model');
 
 const validateProforma = async reqBody => {
