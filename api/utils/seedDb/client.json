@@ -10,7 +10,7 @@
     "regionId": "15",
     "provinceId": "1501",
     "districtId": "150103",
-    "defaultWarehouseId": 1
+    "defaultDeliveryAgencyId": 1
   },
   {
     "type": "PERSON",
@@ -23,7 +23,7 @@
     "regionId": "15",
     "provinceId": "1501",
     "districtId": "150122",
-    "defaultWarehouseId": 1
+    "defaultDeliveryAgencyId": 4
   },
   {
     "type": "COMPANY",
@@ -36,7 +36,7 @@
     "regionId": "15",
     "provinceId": "1501",
     "districtId": "150103",
-    "defaultWarehouseId": 1
+    "defaultDeliveryAgencyId": 7
   },
   {
     "type": "COMPANY",
@@ -48,8 +48,7 @@
     "address": "Gunther Place 694",
     "regionId": "15",
     "provinceId": "1501",
-    "districtId": "150112",
-    "defaultWarehouseId": 1
+    "districtId": "150112"
   },
   {
     "type": "PERSON",
@@ -61,7 +60,6 @@
     "address": "Albany Avenue 367",
     "regionId": "15",
     "provinceId": "1501",
-    "districtId": "150117",
-    "defaultWarehouseId": 1
+    "districtId": "150117"
   }
 ]

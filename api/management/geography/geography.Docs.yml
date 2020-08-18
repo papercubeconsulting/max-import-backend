@@ -2,7 +2,7 @@ paths:
   "/geography/regions":
     get:
       tags:
-        - geography
+        - management.geography
       summary: Obtener regiones
       responses:
         "200":
@@ -10,7 +10,7 @@ paths:
   "/geography/regions/{regionId}/provinces":
     get:
       tags:
-        - geography
+        - management.geography
       summary: Obtener provincias para una region
       parameters:
         - $ref: "#/components/parameters/regionId"
@@ -20,7 +20,7 @@ paths:
   "/geography/regions/{regionId}/provinces/{provinceId}/districts":
     get:
       tags:
-        - geography
+        - management.geography
       summary: Obtener distritos para una provincia
       parameters:
         - $ref: "#/components/parameters/regionId"

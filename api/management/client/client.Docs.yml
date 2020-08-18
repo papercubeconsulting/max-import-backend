@@ -2,7 +2,7 @@ paths:
   "/clients/{id}":
     get:
       tags:
-        - inventory.client
+        - management.clients
       summary: Encontrar cliente por id
       parameters:
         - $ref: "#/components/parameters/paramId"
@@ -12,7 +12,7 @@ paths:
   "/clients/{code}":
     get:
       tags:
-        - inventory.client
+        - management.clients
       summary: Encontrar cliente por documento de identidad
       parameters:
         - $ref: "#/components/parameters/codeId"

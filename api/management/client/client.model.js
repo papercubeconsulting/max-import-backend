@@ -4,7 +4,7 @@ const Sequelize = require('sequelize');
 
 const sequelize = require(`${process.cwd()}/startup/db`);
 
-const { Warehouse } = require('../../inventory/warehouse/warehouse.model');
+const { DeliveryAgency } = require('../deliveryAgency/deliveryAgency.model');
 
 const { getDictValues, CLIENT } = require('../../utils/constants');
 
@@ -94,12 +94,14 @@ Client.beforeCreate('setGeography', async client => {
   client.district = districts.find(obj => obj.id === client.districtId).name;
 });
 
-Warehouse.hasMany(Client, {
-  foreignKey: 'defaultWarehouseId',
+DeliveryAgency.hasMany(Client, {
+  foreignKey: 'defaultDeliveryAgencyId',
+  allowNull: false,
 });
 
-Client.belongsTo(Warehouse, {
-  foreignKey: 'defaultWarehouseId',
+Client.belongsTo(DeliveryAgency, {
+  foreignKey: 'defaultDeliveryAgencyId',
+  allowNull: false,
 });
 
 module.exports = { Client };

@@ -46,7 +46,12 @@ const swaggerDefinition = {
       description: 'Development server',
     },
   ],
-  tags: [{ name: 'sales.proforma' }],
+  tags: [
+    { name: 'sales.proforma' },
+    { name: 'management.clients' },
+    { name: 'management.deliveryAgency' },
+    { name: 'management.geography' },
+  ],
 };
 
 const options = {
