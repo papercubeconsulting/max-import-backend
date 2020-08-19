@@ -1,0 +1,115 @@
+paths:
+  "/banks/{id}":
+    get:
+      tags:
+        - management.banks
+      summary: Encontrar un banco por id
+      parameters:
+        - $ref: "#/components/parameters/paramId"
+      responses:
+        "200":
+          description: Successful operation
+  "/banks":
+    get:
+      tags:
+        - management.banks
+      summary: Listar bancos (incluye cuentas bancarias de cada banco)
+      responses:
+        "200":
+          description: Successful operation
+    post:
+      tags:
+        - management.banks
+      summary: Crear un banco (incluyendo cuentas bancarias)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                bankAccounts:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: Identificador de la cuenta
+                      account:
+                        type: string
+                        description: Numero de la cuenta
+                      cci:
+                        type: string
+                        description: Numero de la cuenta
+                    required:
+                      - name
+                      - account
+              example:
+                name: "Nuevo banco"
+                bankAccounts:
+                  - name: Cuenta 1
+                    account: "12345678912"
+                    cci: "123456789456123456789"
+              required:
+                - name
+      responses:
+        "200":
+          description: Successful operation
+  "/banks/{bankId}/bankAccounts/{id}":
+    get:
+      tags:
+        - management.banks
+      summary: Encontrar una cuenta bancaria de un banco
+      parameters:
+        - $ref: "#/components/parameters/bankId"
+        - $ref: "#/components/parameters/paramId"
+      responses:
+        "200":
+          description: Successful operation
+  "/banks/{bankId}/bankAccounts":
+    post:
+      tags:
+        - management.banks
+      summary: Crear una cuenta bancaria para un banco
+      parameters:
+        - $ref: "#/components/parameters/bankId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Identificador de la cuenta
+                account:
+                  type: string
+                  description: Numero de la cuenta
+                cci:
+                  type: string
+                  description: Numero de la cuenta
+              required:
+                - name
+                - account
+              example:
+                name: Cuenta 1
+                account: "12345678912"
+                cci: "123456789456123456789"
+      responses:
+        "200":
+          description: Successful operation
+
+components:
+  parameters:
+    bankId:
+      name: bankId
+      in: path
+      description: Id del banco
+      required: true
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        default: 1

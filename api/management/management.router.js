@@ -7,6 +7,7 @@ const { authenticateMiddleware } = require('../middleware/auth');
 
 router.use('/geography', require('./geography/geography.router'));
 router.use('/clients', require('./client/client.router'));
+router.use('/banks', require('./bank/bank.router'));
 router.use(
   '/deliveryagencies',
   require('./deliveryAgency/deliveryAgency.router'),
