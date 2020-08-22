@@ -15,7 +15,12 @@ const Post = {
     dispatchmentType: Joi.string().valid(
       ...getDictValues(SALE.DISPATCHMENT_TYPE),
     ),
-    paymentMethod: Joi.string().valid(...SALE.PAYMENT_METHOD),
+    paymentMethod: Joi.string()
+      .valid(...SALE.PAYMENT_METHOD)
+      .when('type', {
+        is: SALE.TYPE.REMOTE.value,
+        then: Joi.required(),
+      }),
     credit: Joi.number()
       .precision(2)
       .custom(v => v * 100)

@@ -1,0 +1,42 @@
+[
+  {
+    "name": "BBVA Continental",
+    "bankAccounts": [
+      {
+        "name": "Max Import",
+        "account": "111111111",
+        "cci": "AAAAAAAAAAAAAAAAAAA"
+      },
+      {
+        "name": "Importación",
+        "account": "222222222222",
+        "cci": "BBBBBBBBBBBBBBBBB"
+      },
+      {
+        "name": "Junior",
+        "account": "3333333333333",
+        "cci": "CCCCCCCCCCCCCCCCCCC"
+      }
+    ]
+  },
+  {
+    "name": "BCP",
+    "bankAccounts": [
+      {
+        "name": "Max Import",
+        "account": "4444444444444",
+        "cci": "EEEEEEEEEEEEEEEEEE"
+      },
+      {
+        "name": "Importación",
+        "account": "5",
+        "cci": "DDDDDDDDDDDDDDDDDDDDDD"
+      },
+      {
+        "name": "Junior",
+        "account": "66666666666",
+        "cci": "FFFFFFFFFFFFFFFFFFFFF"
+      }
+    ]
+  }
+]

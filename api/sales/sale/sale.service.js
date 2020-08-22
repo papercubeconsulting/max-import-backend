@@ -53,7 +53,7 @@ const closeProforma = async (reqBody, reqUser) => {
     });
 
     await t.commit();
-    return setResponse(200, 'Proforma closed.', sale);
+    return setResponse(200, 'Proforma sold.', sale);
   } catch (error) {
     console.log(error);
     await t.rollback();

@@ -44,15 +44,15 @@ const BankAccount = sequelize.define(
     indexes: [
       {
         unique: true,
-        fields: ['name'],
+        fields: ['name', 'bankId'],
       },
       {
         unique: true,
-        fields: ['account'],
+        fields: ['account', 'bankId'],
       },
       {
         unique: true,
-        fields: ['cci'],
+        fields: ['cci', 'bankId'],
       },
     ],
   },

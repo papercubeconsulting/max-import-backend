@@ -32,6 +32,8 @@ const {
 } = require('../../sales/proforma/proforma.service');
 
 const { asyncForEach } = require('../../utils');
+const { Bank } = require('../../management/bank/bank.model');
+const { postBank } = require('../../management/bank/bank.service');
 
 const seedModel = async (model, filename) => {
   const rawdata = fs.readFileSync(path.join(__dirname, filename));
@@ -63,6 +65,7 @@ sequelize.sync({ force: true }).then(async result => {
   await seedModel(Warehouse, 'warehouse.json');
   await seedModel(DeliveryAgency, 'deliveryAgency.json');
   await seedModelOneByOne(Client, 'client.json');
+  await seedModelByService(Bank, 'bank.json', postBank);
 
   // await seedModel(Provider, 'provider.json');
   // await seedModel(Family, 'family.json');

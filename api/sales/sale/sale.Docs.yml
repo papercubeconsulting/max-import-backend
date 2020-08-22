@@ -52,6 +52,18 @@ components:
               deliveryAgencyId:
                 type: integer
                 description: Id de la agencia en caso el desapacho sea delivery
+              paymentMethod:
+                type: string
+                enum:
+                  - Efectivo
+                  - Tarjeta
+                  - Depósito
+              voucherCode:
+                type: string
+              voucherImage:
+                type: string
+              bankAccountId:
+                type: integer
           examples:
             Venta en tienda, al contado y delivery:
               value:
@@ -60,7 +72,6 @@ components:
                 paymentType: CASH
                 billingType: SALE
                 dispatchmentType: DELIVERY
-                credit: 0
                 deliveryAgencyId: 1
             Venta en tienda, con credito, recojo en tienda:
               value:
@@ -70,6 +81,17 @@ components:
                 billingType: SALE
                 dispatchmentType: PICK_UP
                 credit: 1000
+            Venta no presencial, incluyendo datos de deposito:
+              value:
+                proformaId: 8
+                type: REMOTE
+                paymentType: CASH
+                billingType: SALE
+                dispatchmentType: PICK_UP
+                voucherCode: "123456789"
+                voucherImage: "Aqui va la imagen en base 64"
+                paymentMethod: Depósito
+                bankAccountId: 1
       required: true
   parameters:
     proformaId:
