@@ -146,8 +146,6 @@ Product.updateStock = async (id, options) => {
   );
 };
 
-// TODO: Agregar dependencia a User
-
 ProductBoxLog.belongsTo(User);
 User.hasMany(ProductBoxLog);
 

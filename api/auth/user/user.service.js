@@ -44,8 +44,6 @@ const forgotPassword = async reqBody => {
 
   await user.generatePasswordResetToken();
 
-  // TODO: Enviar correo
-  // TODO: Borrar code de respuesta
   sendEmailTemplate(
     user.email,
     {

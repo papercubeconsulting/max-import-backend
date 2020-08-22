@@ -1,8 +1,8 @@
 const Service = require('./proforma.service');
 
 const getProforma = async (req, res) => {
-  const supply = await Service.getProforma(req.params);
-  return res.status(supply.status).send(supply);
+  const response = await Service.getProforma(req.params);
+  return res.status(response.status).send(response);
 };
 
 const postProforma = async (req, res) => {
@@ -11,13 +11,13 @@ const postProforma = async (req, res) => {
   if (validate.status !== 200)
     return res.status(validate.status).send(validate);
 
-  const proforma = await Service.postProforma(req.body, req.user);
-  return res.status(proforma.status).send(proforma);
+  const response = await Service.postProforma(req.body, req.user);
+  return res.status(response.status).send(response);
 };
 
 const listProforma = async (req, res) => {
-  const supply = await Service.listProforma(req.query);
-  return res.status(supply.status).send(supply);
+  const response = await Service.listProforma(req.query);
+  return res.status(response.status).send(response);
 };
 
 module.exports = {

@@ -8,6 +8,7 @@ const sequelize = require(`${process.cwd()}/startup/db`);
 const { User } = require('../../auth/user/user.model');
 const { Client } = require('../../management/client/client.model');
 const { Product } = require('../../inventory/product/product.model');
+const { Sale, SoldProduct } = require('../sale/sale.model');
 
 const { getDictValues, PROFORMA } = require('../../utils/constants');
 
@@ -143,6 +144,42 @@ ProformaProduct.beforeValidate('calculatePrices', async proformaProduct => {
     proformaProduct.quantity * proformaProduct.unitPrice;
 });
 
+// ? Se valida que NO haya un producto cuya cantidad exceda el stock
+Proforma.prototype.checkStock = async function(options) {
+  return !(
+    await this.getProformaProducts({
+      attributes: ['productId', 'quantity'],
+      include: [{ model: Product, attributes: ['availableStock'] }],
+      ...options,
+    })
+  ).some(obj => obj.quantity > obj.product.availableStock);
+};
+
+Proforma.prototype.closeProforma = async function(saleBody, options) {
+  // ? Se obtiene los productos a vender
+  const soldProducts = await this.getProformaProducts({
+    attributes: ['productId', 'quantity'],
+    ...options,
+  });
+  // ? Se crea la nueva venta, incluyendo la data de los productos vendidos
+  const sale = await this.createSale(
+    { ...saleBody, soldProducts },
+    { include: [SoldProduct], ...options },
+  );
+
+  // TODO:
+  // await Product.updateStock([])
+
+  // ? Se actualiza los estados de la proforma y el estado contable
+  this.status = PROFORMA.STATUS.CLOSED.value;
+
+  // ? En caso sea pago con deuda, el estado de la proforma sera PARTIAL
+  // ? En caso sea pago compelto, el estado de la proforma sera PAID
+  this.saleStatus = PROFORMA.MAP_SALE_STATUS[sale.status];
+
+  await this.save({ ...options });
+};
+
 User.hasMany(Proforma);
 Proforma.belongsTo(User);
 
@@ -154,5 +191,8 @@ ProformaProduct.Proforma = ProformaProduct.belongsTo(Proforma);
 
 Product.hasMany(ProformaProduct);
 ProformaProduct.Product = ProformaProduct.belongsTo(Product);
+
+Proforma.hasOne(Sale);
+Sale.belongsTo(Proforma);
 
 module.exports = { Proforma, ProformaProduct };

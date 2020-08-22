@@ -1,0 +1,139 @@
+paths:
+  "/sales":
+    post:
+      tags:
+        - sales.sales
+      summary: Crear un nueva venta
+      responses:
+        "201":
+          description: Successful operation
+      requestBody:
+        $ref: "#/components/requestBodies/Proforma"
+components:
+  requestBodies:
+    Proforma:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              proformaId:
+                type: integer
+                format: int32
+                description: Id de la proforma
+              type:
+                type: string
+                description: Tipo de venta, si es presencial (STORE) o no presencial (REMOTE)
+                enum:
+                  - STORE
+                  - REMOTE
+              paymentType:
+                type: string
+                description: Tipo de pago de la venta. Si se hace con crédito (CREDIT) o es al contado (CASH)
+                enum:
+                  - CREDIT
+                  - CASH
+              billingType:
+                type: string
+                description: Tipo de facturacion. Si es consignacion (CONSIGNMENT) o venta (SALE)
+                enum:
+                  - CONSIGNMENT
+                  - SALE
+              dispatchmentType:
+                type: string
+                description: Tipo de despacho. Si será recojo en tienda (PICK_UP) o delivery (DELIVERY)
+                enum:
+                  - DELIVERY
+                  - PICK_UP
+              credit:
+                type: integer
+                format: int32
+                description: Monto de credito. El valor debe tener una precision de 2 decimales
+              deliveryAgencyId:
+                type: integer
+                description: Id de la agencia en caso el desapacho sea delivery
+          examples:
+            Venta en tienda, al contado y delivery:
+              value:
+                proformaId: 3
+                type: STORE
+                paymentType: CASH
+                billingType: SALE
+                dispatchmentType: DELIVERY
+                credit: 0
+                deliveryAgencyId: 1
+            Venta en tienda, con credito, recojo en tienda:
+              value:
+                proformaId: 4
+                type: STORE
+                paymentType: CREDIT
+                billingType: SALE
+                dispatchmentType: PICK_UP
+                credit: 1000
+      required: true
+  parameters:
+    proformaId:
+      name: id
+      in: query
+      description: Id de la proforma requerido
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    userId:
+      name: userId
+      in: query
+      description: Id del usuario que creo la proforma
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    status:
+      name: status
+      in: query
+      description: Estado base de la plataforma, si el campo no se envia se devuelve TODOS
+      required: false
+      schema:
+        type: string
+        enum:
+          - OPEN
+          - CLOSED
+    saleStatus:
+      name: saleStatus
+      in: query
+      description: Estado de venta de la plataforma, si el campo no se envia se devuelve TODOS
+      required: false
+      schema:
+        type: string
+        enum:
+          - PENDING
+          - PARTIAL
+          - PAID
+    dispatchStatus:
+      name: dispatchStatus
+      in: query
+      description: Estado de despacho de la plataforma, si el campo no se envia se devuelve TODOS
+      required: false
+      schema:
+        type: string
+        enum:
+          - PENDING
+          - DISPATCHED
+
+    name:
+      name: name
+      in: query
+      description: Nombre del cliente (nombre o razon social) - Case insensitive
+      required: false
+      schema:
+        type: string
+
+    lastname:
+      name: lastname
+      in: query
+      description: Apellido del cliente (solo para personas naturales)
+      required: false
+      schema:
+        type: string

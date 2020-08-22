@@ -23,6 +23,7 @@ const {
   DeliveryAgency,
 } = require('../../management/deliveryAgency/deliveryAgency.model');
 const { Proforma } = require('../../sales/proforma/proforma.model');
+const { Sale } = require('../../sales/sale/sale.model');
 
 const { _fullCreateSupply } = require('../../inventory/supply/supply.service');
 

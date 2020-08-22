@@ -48,6 +48,7 @@ const swaggerDefinition = {
   ],
   tags: [
     { name: 'sales.proforma' },
+    { name: 'sales.sales' },
     { name: 'management.banks' },
     { name: 'management.clients' },
     { name: 'management.deliveryAgency' },
