@@ -9,11 +9,11 @@ const { Op } = Sequelize;
 
 const sequelize = require(`@root/startup/db`);
 
-const { User } = require('../../auth/user/user.model');
+const { User } = require('@/auth/user/user.model');
 const { Product } = require('../product/product.model');
 const { Warehouse } = require('../warehouse/warehouse.model');
 const { Supply, SuppliedProduct } = require('../supply/supply.model');
-const { PRODUCTBOX_UPDATES, warehouseTypes } = require('../../utils/constants');
+const { PRODUCTBOX_UPDATES, warehouseTypes } = require('@/utils/constants');
 
 const ProductBox = sequelize.define(
   'productBox',
@@ -126,9 +126,13 @@ Product.updateStock = async (id, options) => {
         ],
         required: false,
       },
+      {
+        model: sequelize.models.soldProduct,
+      },
     ],
     ...options,
   });
+  if (!product) return;
   const summary = Product.aggregateStock(product.get());
   const damagedStock = _.get(
     summary.stockByWarehouseType.find(
@@ -137,10 +141,20 @@ Product.updateStock = async (id, options) => {
     'stock',
     0,
   );
+  // ? Unidades vendidas
+  const soldStock = product.soldProducts.reduce(
+    (acum, curr) => acum + curr.quantity,
+    0,
+  );
+  // ? Unidades despachadas
+  // TODO: Calcular cuando se implemente despacho
+  const dispatchedStock = 0;
+
   return product.update(
     {
       damagedStock,
-      availableStock: summary.totalStock - damagedStock,
+      availableStock:
+        summary.totalStock - damagedStock - (soldStock - dispatchedStock),
     },
     { ...options },
   );

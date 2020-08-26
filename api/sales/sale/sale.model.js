@@ -86,13 +86,20 @@ const SoldProduct = sequelize.define(
 
 Sale.beforeCreate('SetId', async (sale, options) => {
   const proforma = await sale.getProforma({
-    ..._.get(options, 'transaction', {}),
+    ..._.pick(options, ['transaction']),
   });
   sale.subtotal = proforma.subtotal;
   sale.total = proforma.total;
   sale.discount = proforma.discount;
   sale.due = sale.total - sale.credit;
   sale.status = sale.due ? SALE.STATUS.DUE.value : SALE.STATUS.PAID.value;
+});
+
+// ? Se actualiza el stock del producto al crearse una nueva venta
+SoldProduct.afterCreate('UpdateStock', async (soldProduct, options) => {
+  await Product.updateStock(soldProduct.productId, {
+    ..._.pick(options, ['transaction']),
+  });
 });
 
 Sale.hasMany(SoldProduct);
