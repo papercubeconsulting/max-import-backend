@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 
 const { Op } = Sequelize;
 
-const sequelize = require(`${process.cwd()}/startup/db`);
+const sequelize = require(`@root/startup/db`);
 const { Element } = require('../element/element.model');
 
 const Model = sequelize.define(

@@ -1,6 +1,7 @@
 /* eslint-disable global-require */
 const express = require('express');
 const morgan = require('morgan');
+require('module-alias/register')
 
 const app = express();
 

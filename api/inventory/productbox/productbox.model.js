@@ -7,7 +7,7 @@ const _ = require('lodash');
 
 const { Op } = Sequelize;
 
-const sequelize = require(`${process.cwd()}/startup/db`);
+const sequelize = require(`@root/startup/db`);
 
 const { User } = require('../../auth/user/user.model');
 const { Product } = require('../product/product.model');

@@ -5,7 +5,7 @@ const Sequelize = require('sequelize');
 const _ = require('lodash');
 
 // const { Op } = Sequelize;
-const sequelize = require(`${process.cwd()}/startup/db`);
+const sequelize = require(`@root/startup/db`);
 
 const { Provider } = require('../provider/provider.model');
 

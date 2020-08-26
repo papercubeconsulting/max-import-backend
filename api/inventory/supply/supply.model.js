@@ -2,7 +2,7 @@
 /* eslint-disable no-param-reassign */
 const Sequelize = require('sequelize');
 
-const sequelize = require(`${process.cwd()}/startup/db`);
+const sequelize = require(`@root/startup/db`);
 
 const { Product } = require('../product/product.model');
 const { Provider } = require('../provider/provider.model');

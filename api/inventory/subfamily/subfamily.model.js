@@ -1,7 +1,7 @@
 /* eslint-disable import/no-dynamic-require */
 const Sequelize = require('sequelize');
 
-const sequelize = require(`${process.cwd()}/startup/db`);
+const sequelize = require(`@root/startup/db`);
 const { Family } = require('../family/family.model');
 
 const Subfamily = sequelize.define(

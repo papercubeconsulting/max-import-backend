@@ -4,7 +4,7 @@
 /* eslint-disable import/no-dynamic-require */
 const winston = require('winston');
 
-const sequelize = require(`${process.cwd()}/startup/db`);
+const sequelize = require(`@root/startup/db`);
 
 const { setResponse } = require('../../../utils');
 

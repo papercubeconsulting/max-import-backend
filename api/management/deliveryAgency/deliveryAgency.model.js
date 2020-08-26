@@ -2,7 +2,7 @@
 /* eslint-disable import/no-dynamic-require */
 const Sequelize = require('sequelize');
 
-const sequelize = require(`${process.cwd()}/startup/db`);
+const sequelize = require(`@root/startup/db`);
 
 const DeliveryAgency = sequelize.define(
   'deliveryAgency',

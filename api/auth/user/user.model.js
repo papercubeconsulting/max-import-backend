@@ -10,8 +10,7 @@ const moment = require('moment-timezone');
 
 const { Op } = Sequelize;
 
-const sequelize = require(`${process.cwd()}/startup/db`);
-
+const sequelize = require(`@root/startup/db`);
 const { ROLES, getDictValues } = require('../../utils/constants');
 
 const JWT_FIELDS = [
