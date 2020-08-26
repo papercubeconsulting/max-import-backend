@@ -92,7 +92,7 @@ Sale.beforeCreate('SetId', async (sale, options) => {
   sale.total = proforma.total;
   sale.discount = proforma.discount;
   sale.due = sale.total - sale.credit;
-  sale.status = sale.due ? SALE.STATUS.DUE.value : SALE.STATUS.PAI.valueD;
+  sale.status = sale.due ? SALE.STATUS.DUE.value : SALE.STATUS.PAID.value;
 });
 
 Sale.hasMany(SoldProduct);

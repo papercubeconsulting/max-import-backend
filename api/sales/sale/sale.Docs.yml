@@ -8,10 +8,10 @@ paths:
         "201":
           description: Successful operation
       requestBody:
-        $ref: "#/components/requestBodies/Proforma"
+        $ref: "#/components/requestBodies/Sale"
 components:
   requestBodies:
-    Proforma:
+    Sale:
       content:
         application/json:
           schema:
