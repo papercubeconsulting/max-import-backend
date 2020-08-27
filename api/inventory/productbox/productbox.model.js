@@ -150,7 +150,7 @@ Product.updateStock = async (id, options) => {
   // TODO: Calcular cuando se implemente despacho
   const dispatchedStock = 0;
 
-  return product.update(
+  await product.update(
     {
       damagedStock,
       availableStock:

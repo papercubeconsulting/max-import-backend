@@ -6,7 +6,9 @@
     "start": "node ./bin/www",
     "startN": "DEBUG=http nodemon -e yml,js ./bin/www",
     "seedDB": "node api/utils/seedDb",
-    "lint": "./node_modules/.bin/eslint ."
+    "lint": "./node_modules/.bin/eslint  ./ --ignore-path .gitignore",
+    "lint:fix": "npm run lint -- --fix",
+    "format": "prettier --write \"{,!(node_modules)/**/}*.js\""
   },
   "_moduleAliases": {
     "@root": ".",
