@@ -125,21 +125,16 @@ const ProformaProduct = sequelize.define(
   },
 );
 
-Proforma.beforeUpdate('calculatePrices', async proforma => {
-  if (proforma.proformaProducts) {
-    proforma.subtotal = proforma.proformaProducts.reduce(
-      (a, b) => a + b.subtotal,
-      0,
-    );
-    proforma.totalUnits = proforma.proformaProducts.reduce(
-      (a, b) => a + b.quantity,
-      0,
-    );
-  }
+Proforma.beforeUpdate('calculatePrices', async (proforma, options) => {
+  const proformaProducts = await proforma.getProformaProducts({
+    transaction: options.transaction,
+  });
+  proforma.subtotal = proformaProducts.reduce((a, b) => a + b.subtotal, 0);
+  proforma.totalUnits = proformaProducts.reduce((a, b) => a + b.quantity, 0);
   proforma.total = proforma.subtotal - proforma.discount;
 });
 
-ProformaProduct.beforeValidate('calculatePrices', async proformaProduct => {
+ProformaProduct.beforeSave('calculatePrices', async proformaProduct => {
   proformaProduct.subtotal =
     proformaProduct.quantity * proformaProduct.unitPrice;
 });

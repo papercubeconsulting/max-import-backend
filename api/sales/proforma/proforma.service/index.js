@@ -3,6 +3,7 @@ module.exports = {
   ...require('./createProforma'),
   ...require('./readProforma'),
   ...require('./listProforma'),
+  ...require('./updateProforma'),
 
   // TODO: Comment
   // * No para produccion

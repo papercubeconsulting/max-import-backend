@@ -1,42 +1,53 @@
 paths:
-  "/proformas":
+  '/proformas':
     post:
       tags:
         - sales.proforma
       summary: Crear un nueva proforma
       responses:
-        "201":
+        '201':
           description: Supply created
       requestBody:
-        $ref: "#/components/requestBodies/Proforma"
+        $ref: '#/components/requestBodies/Proforma'
     get:
       tags:
         - sales.proforma
       summary: Listar proformas
       parameters:
-        - $ref: "#/components/parameters/fromDate"
-        - $ref: "#/components/parameters/toDate"
-        - $ref: "#/components/parameters/pagePagination"
-        - $ref: "#/components/parameters/pageSizePagination"
-        - $ref: "#/components/parameters/proformaId"
-        - $ref: "#/components/parameters/userId"
-        - $ref: "#/components/parameters/status"
-        - $ref: "#/components/parameters/saleStatus"
-        - $ref: "#/components/parameters/dispatchStatus"
-        - $ref: "#/components/parameters/name"
-        - $ref: "#/components/parameters/lastname"
+        - $ref: '#/components/parameters/fromDate'
+        - $ref: '#/components/parameters/toDate'
+        - $ref: '#/components/parameters/pagePagination'
+        - $ref: '#/components/parameters/pageSizePagination'
+        - $ref: '#/components/parameters/proformaId'
+        - $ref: '#/components/parameters/userId'
+        - $ref: '#/components/parameters/status'
+        - $ref: '#/components/parameters/saleStatus'
+        - $ref: '#/components/parameters/dispatchStatus'
+        - $ref: '#/components/parameters/name'
+        - $ref: '#/components/parameters/lastname'
       responses:
-        "200":
+        '200':
           description: Successful operation
-  "/proformas/{id}":
+  '/proformas/{id}':
     get:
       tags:
         - sales.proforma
       summary: Encontrar proforma por Id
       parameters:
-        - $ref: "#/components/parameters/paramId"
+        - $ref: '#/components/parameters/paramId'
       responses:
-        "200":
+        '200':
+          description: Successful operation
+    put:
+      tags:
+        - sales.proforma
+      summary: Actualizar la informacion de una proforma> (clientId, discount, listado de productos)
+      parameters:
+        - $ref: '#/components/parameters/paramId'
+      requestBody:
+        $ref: '#/components/requestBodies/Proforma'
+      responses:
+        '200':
           description: Successful operation
 components:
   requestBodies:
