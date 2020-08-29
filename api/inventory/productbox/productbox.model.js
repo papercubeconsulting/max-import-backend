@@ -130,7 +130,7 @@ Product.updateStock = async (id, options) => {
         model: sequelize.models.soldProduct,
       },
     ],
-    ...options,
+    transaction: options.transaction,
   });
   if (!product) return;
   const summary = Product.aggregateStock(product.get());
@@ -156,7 +156,7 @@ Product.updateStock = async (id, options) => {
       availableStock:
         summary.totalStock - damagedStock - (soldStock - dispatchedStock),
     },
-    { ...options },
+    { transaction: options.transaction },
   );
 };
 

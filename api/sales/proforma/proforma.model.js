@@ -145,7 +145,7 @@ Proforma.prototype.checkStock = async function(options) {
     await this.getProformaProducts({
       attributes: ['productId', 'quantity'],
       include: [{ model: Product, attributes: ['availableStock'] }],
-      ...options,
+      transaction: options.transaction,
     })
   ).some(obj => obj.quantity > obj.product.availableStock);
 };
@@ -154,12 +154,15 @@ Proforma.prototype.closeProforma = async function(saleBody, options) {
   // ? Se obtiene los productos a vender
   const soldProducts = await this.getProformaProducts({
     attributes: ['productId', 'quantity'],
-    ...options,
+    transaction: options.transaction,
   });
   // ? Se crea la nueva venta, incluyendo la data de los productos vendidos
   const sale = await this.createSale(
     { ...saleBody, soldProducts },
-    { include: [SoldProduct], ...options },
+    {
+      include: [SoldProduct],
+      transaction: options.transaction,
+    },
   );
 
   // TODO:
@@ -172,7 +175,7 @@ Proforma.prototype.closeProforma = async function(saleBody, options) {
   // ? En caso sea pago compelto, el estado de la proforma sera PAID
   this.saleStatus = PROFORMA.MAP_SALE_STATUS[sale.status];
 
-  await this.save({ ...options });
+  await this.save({ transaction: options.transaction });
 };
 
 User.hasMany(Proforma);
