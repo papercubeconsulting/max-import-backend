@@ -10,6 +10,7 @@ const { Proforma, ProformaProduct } = require('../proforma.model');
 const { Product } = require('../../../inventory/product/product.model');
 const { User } = require('../../../auth/user/user.model');
 const { Client } = require('../../../management/client/client.model');
+const { Sale } = require('../../sale/sale.model');
 
 const noQueryFields = ['page', 'pageSize', 'from', 'to', 'name', 'lastname'];
 
@@ -58,6 +59,7 @@ const listProforma = async reqQuery => {
         attributes: ['id', 'name', 'lastname'],
       },
       { model: User, attributes: ['id', 'name', 'lastname'] },
+      { model: Sale },
     ],
     distinct: true,
     ...paginate(_.pick(reqQuery, ['page', 'pageSize'])),
