@@ -6,7 +6,6 @@
     "status": "CLOSED",
     "saleStatus": "PARTIAL",
     "dispatchStatus": "DISPATCHED",
-    "credit": 4900,
     "proformaProducts": [
       {
         "productId": 1,
@@ -22,7 +21,6 @@
     "status": "CLOSED",
     "saleStatus": "PARTIAL",
     "dispatchStatus": "PENDING",
-    "credit": 2500,
     "proformaProducts": [
       {
         "productId": 1,
@@ -133,7 +131,6 @@
     "status": "CLOSED",
     "saleStatus": "PARTIAL",
     "dispatchStatus": "PENDING",
-    "credit": 5600,
     "proformaProducts": [
       {
         "productId": 1,
@@ -199,7 +196,6 @@
     "status": "CLOSED",
     "saleStatus": "PARTIAL",
     "dispatchStatus": "DISPATCHED",
-    "credit": 7300,
     "proformaProducts": [
       {
         "productId": 1,
@@ -265,7 +261,6 @@
     "status": "CLOSED",
     "saleStatus": "PARTIAL",
     "dispatchStatus": "PENDING",
-    "credit": 5500,
     "proformaProducts": [
       {
         "productId": 1,
@@ -316,7 +311,6 @@
     "status": "CLOSED",
     "saleStatus": "PARTIAL",
     "dispatchStatus": "PENDING",
-    "credit": 3900,
     "proformaProducts": [
       {
         "productId": 1,
@@ -377,7 +371,6 @@
     "status": "CLOSED",
     "saleStatus": "PARTIAL",
     "dispatchStatus": "DISPATCHED",
-    "credit": 6200,
     "proformaProducts": [
       {
         "productId": 1,
@@ -398,7 +391,6 @@
     "status": "CLOSED",
     "saleStatus": "PARTIAL",
     "dispatchStatus": "PENDING",
-    "credit": 6200,
     "proformaProducts": [
       {
         "productId": 1,

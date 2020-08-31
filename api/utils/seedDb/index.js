@@ -2,6 +2,7 @@
 const winston = require('winston');
 const fs = require('fs');
 const path = require('path');
+require('module-alias/register');
 
 require('../../../startup/config')();
 require('../../../startup/logging')();
