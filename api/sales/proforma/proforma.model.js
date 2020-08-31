@@ -49,11 +49,6 @@ const Proforma = sequelize.define(
       type: Sequelize.INTEGER,
       defaultValue: 0,
     },
-    // ? Monto pagado por adelantado
-    credit: {
-      type: Sequelize.INTEGER,
-      defaultValue: 0,
-    },
     // ? Cantidad total de unidades
     totalUnits: {
       type: Sequelize.INTEGER,
