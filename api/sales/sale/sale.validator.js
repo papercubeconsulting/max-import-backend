@@ -2,6 +2,7 @@ const { Joi } = require('celebrate');
 const moment = require('moment');
 
 const { getDictValues, SALE } = require('../../utils/constants');
+const { get } = require('config');
 
 const Post = {
   body: {
@@ -61,7 +62,23 @@ const Get = {
   },
 };
 
+const List = {
+  query: {
+    page: Joi.number()
+      .integer()
+      .min(1)
+      .default(1),
+    pageSize: Joi.number()
+      .integer()
+      .min(1)
+      .default(20),
+
+    status: Joi.string().valid(...getDictValues(SALE.STATUS)),
+  },
+};
+
 module.exports = {
   Post,
   Get,
+  List,
 };

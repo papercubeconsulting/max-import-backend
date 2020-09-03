@@ -1,13 +1,18 @@
 /* eslint-disable import/no-dynamic-require */
-const { sequelize } = require(`@root/startup/db`);
+const _ = require('lodash');
+const sequelize = require(`@root/startup/db`);
 
-const { setResponse } = require('../../utils');
+const { setResponse, paginate } = require('../../utils');
 
 const { Proforma, ProformaProduct } = require('../proforma/proforma.model');
 const { Product } = require('../../inventory/product/product.model');
 const { Client } = require('../../management/client/client.model');
 
+const { Sale } = require('./sale.model');
+
 const { PROFORMA } = require('../../utils/constants');
+
+const noQueryFields = ['page', 'pageSize'];
 
 const closeProforma = async (reqBody, reqUser) => {
   const t = await sequelize.transaction();
@@ -61,6 +66,21 @@ const closeProforma = async (reqBody, reqUser) => {
   }
 };
 
+const listSale = async reqQuery => {
+  const sales = await Sale.findAndCountAll({
+    where: _.omit(reqQuery, noQueryFields),
+    order: [['createdAt', 'ASC']],
+    include: [{ model: Proforma, include: [Client] }],
+    distinct: true,
+    ...paginate(_.pick(reqQuery, ['page', 'pageSize'])),
+  });
+  sales.page = reqQuery.page;
+  sales.pageSize = reqQuery.pageSize;
+  sales.pages = _.ceil(sales.count / sales.pageSize);
+  return setResponse(200, 'Sales found.', sales);
+};
+
 module.exports = {
   closeProforma,
+  listSale,
 };

@@ -8,4 +8,9 @@ const postSale = async (req, res) => {
   return res.status(proformaResponse.status).send(proformaResponse);
 };
 
-module.exports = { postSale };
+const listSale = async (req, res) => {
+  const proformaResponse = await Service.listSale(req.query);
+  return res.status(proformaResponse.status).send(proformaResponse);
+};
+
+module.exports = { postSale, listSale };
