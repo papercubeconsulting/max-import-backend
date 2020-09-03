@@ -1,64 +1,23 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable import/no-dynamic-require */
-const Sequelize = require('sequelize');
+const { Model } = require('sequelize');
 
-const sequelize = require(`@root/startup/db`);
-
-const Bank = sequelize.define(
-  'bank',
-  {
-    name: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-  },
-  {
-    // options
-    indexes: [
-      {
+module.exports = (sequelize, DataTypes) => {
+  class Bank extends Model {
+    static associate(models) {
+      Bank.hasMany(models.BankAccount);
+    }
+  }
+  Bank.init(
+    {
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
         unique: true,
-        fields: ['name'],
       },
-    ],
-  },
-);
-
-const BankAccount = sequelize.define(
-  'bankAccount',
-  {
-    name: {
-      type: Sequelize.STRING,
-      allowNull: false,
     },
-    account: {
-      type: Sequelize.STRING,
-      allowNull: false,
+    {
+      sequelize,
+      modelName: 'bank',
     },
-    cci: {
-      type: Sequelize.STRING,
-      allowNull: true,
-    },
-  },
-  {
-    // options
-    indexes: [
-      {
-        unique: true,
-        fields: ['name', 'bankId'],
-      },
-      {
-        unique: true,
-        fields: ['account', 'bankId'],
-      },
-      {
-        unique: true,
-        fields: ['cci', 'bankId'],
-      },
-    ],
-  },
-);
-
-Bank.hasMany(BankAccount);
-BankAccount.belongsTo(Bank);
-
-module.exports = { Bank, BankAccount };
+  );
+  return Bank;
+};

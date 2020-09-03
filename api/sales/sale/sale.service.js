@@ -1,5 +1,5 @@
 /* eslint-disable import/no-dynamic-require */
-const sequelize = require(`@root/startup/db`);
+const { sequelize } = require(`@root/startup/db`);
 
 const { setResponse } = require('../../utils');
 

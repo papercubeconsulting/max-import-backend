@@ -17,9 +17,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 
-const sequelize = require('./startup/db');
+const db = require('./startup/db');
+
+db.sequelize.sync();
+
+// const sequelize = require('./startup/db');
 
 // sequelize.sync({ force: true });
-sequelize.sync();
 
 module.exports = app;

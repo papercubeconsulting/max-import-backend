@@ -1,10 +1,7 @@
 const _ = require('lodash');
+const { Element, Subfamily, Product } = require('@dbModels');
 
 const { setResponse } = require('../../utils');
-
-const { Element } = require('./element.model');
-const { Subfamily } = require('../subfamily/subfamily.model');
-const { Product } = require('../product/product.model');
 
 const readElement = async reqParams => {
   const element = await Element.findByPk(reqParams.id);

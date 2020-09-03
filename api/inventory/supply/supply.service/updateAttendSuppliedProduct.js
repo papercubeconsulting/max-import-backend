@@ -1,17 +1,14 @@
 /* eslint-disable import/no-dynamic-require */
 const winston = require('winston');
+const { Supply, SuppliedProduct, ProductBox, Product } = require('@dbModels');
 
-const sequelize = require(`@root/startup/db`);
+const { sequelize } = require(`@root/startup/db`);
 
 const {
   supplyStatus: status,
   PRODUCTBOX_UPDATES,
 } = require('../../../utils/constants');
 const { setResponse } = require('../../../utils');
-
-const { Supply, SuppliedProduct } = require('../supply.model');
-const { ProductBox } = require('../../productbox/productbox.model');
-const { Product } = require('../../product/product.model');
 
 const validateAttendSuppliedProduct = async (reqBody, reqParams) => {
   const suppliedProduct = await SuppliedProduct.findByPk(

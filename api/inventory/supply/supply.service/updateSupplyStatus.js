@@ -1,7 +1,7 @@
+const { Supply, SuppliedProduct } = require('@dbModels');
+
 const { setResponse } = require('../../../utils');
 const { supplyStatus: status } = require('../../../utils/constants');
-
-const { Supply, SuppliedProduct } = require('../supply.model');
 
 const updateSupplyStatus = async (reqBody, reqParams) => {
   const supply = await Supply.findByPk(reqParams.id, {

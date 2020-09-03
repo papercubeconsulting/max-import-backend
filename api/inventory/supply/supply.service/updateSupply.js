@@ -3,7 +3,7 @@
 const _ = require('lodash');
 const winston = require('winston');
 
-const sequelize = require(`@root/startup/db`);
+const { sequelize } = require(`@root/startup/db`);
 
 const { setResponse } = require('../../../utils');
 

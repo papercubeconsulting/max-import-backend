@@ -1,8 +1,7 @@
+const { Bank, BankAccount } = require('@dbModels');
 const { Op } = require('sequelize');
 
 const { setResponse } = require('../../utils');
-
-const { Bank, BankAccount } = require('./bank.model');
 
 const getBank = async reqParams => {
   const bank = await Bank.findByPk(reqParams.id, { include: [BankAccount] });

@@ -9,6 +9,9 @@
       ],
       "@root/*": [
         "*"
+      ],
+      "@dbModels": [
+        "startup/db"
       ]
     }
   },

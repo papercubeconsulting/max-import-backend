@@ -1,42 +1,48 @@
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class Element extends Model {
+  class BankAccount extends Model {
     static associate(models) {
-      Element.belongsTo(models.Subfamily);
-      Element.hasMany(models.Model);
+      BankAccount.belongsTo(models.Bank);
 
-      Element.hasMany(models.Product);
+      BankAccount.hasMany(models.Sale);
     }
   }
-
-  Element.init(
+  BankAccount.init(
     {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      code: {
+      account: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: '',
+      },
+      cci: {
+        type: DataTypes.STRING,
+        allowNull: true,
       },
     },
     {
       sequelize,
+
       // options
-      modelName: 'element',
+      modelName: 'bankAccount',
       indexes: [
         {
           unique: true,
-          fields: ['name', 'subfamilyId'],
+          fields: ['name', 'bankId'],
         },
         {
           unique: true,
-          fields: ['code', 'subfamilyId'],
+          fields: ['account', 'bankId'],
+        },
+        {
+          unique: true,
+          fields: ['cci', 'bankId'],
         },
       ],
     },
   );
-  return Element;
+  return BankAccount;
 };

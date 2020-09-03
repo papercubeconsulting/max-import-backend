@@ -3,12 +3,14 @@ const { Op } = require('sequelize');
 
 const { setResponse } = require('../../../utils');
 
-const { Product } = require('../product.model');
-const { Provider } = require('../../provider/provider.model');
-const { Family } = require('../../family/family.model');
-const { Subfamily } = require('../../subfamily/subfamily.model');
-const { Element } = require('../../element/element.model');
-const { Model } = require('../../model/model.model');
+const {
+  Product,
+  Provider,
+  Family,
+  Subfamily,
+  Element,
+  Model,
+} = require('@dbModels');
 
 const checkCategory = async (
   Category,
@@ -178,6 +180,9 @@ const createCategories = async (reqBody, categories) => {
 const createProduct = async reqBody => {
   const model = await Model.findByPk(reqBody.modelId);
   if (!model) return setResponse(404, 'Model not found.');
+  console.log({
+    where: _.pick(reqBody, ['modelId']),
+  });
   let product = await Product.findOne({
     where: _.pick(reqBody, ['modelId']),
   });

@@ -1,26 +1,28 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable import/no-dynamic-require */
-const Sequelize = require('sequelize');
+const { Model } = require('sequelize');
 
-const sequelize = require(`@root/startup/db`);
+module.exports = (sequelize, DataTypes) => {
+  class DeliveryAgency extends Model {
+    static associate(models) {
+      DeliveryAgency.hasMany(models.Client, {
+        foreignKey: 'defaultDeliveryAgencyId',
+        allowNull: false,
+      });
 
-const DeliveryAgency = sequelize.define(
-  'deliveryAgency',
-  {
-    name: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-  },
-  {
-    // options
-    indexes: [
-      {
+      DeliveryAgency.hasMany(models.Sale);
+    }
+  }
+  DeliveryAgency.init(
+    {
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
         unique: true,
-        fields: ['name'],
       },
-    ],
-  },
-);
-
-module.exports = { DeliveryAgency };
+    },
+    {
+      sequelize,
+      modelName: 'deliveryAgency',
+    },
+  );
+  return DeliveryAgency;
+};

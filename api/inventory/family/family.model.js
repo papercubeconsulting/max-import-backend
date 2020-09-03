@@ -1,27 +1,35 @@
-/* eslint-disable import/no-dynamic-require */
-const Sequelize = require('sequelize');
+const { Model } = require('sequelize');
 
-const sequelize = require(`@root/startup/db`);
+module.exports = (sequelize, DataTypes) => {
+  class Family extends Model {
+    static associate(models) {
+      Family.hasMany(models.Subfamily);
 
-const Family = sequelize.define(
-  'family',
-  {
-    // attributes
-    name: {
-      type: Sequelize.STRING,
-      allowNull: false,
-      unique: true,
+      Family.hasMany(models.Product);
+    }
+  }
+
+  Family.init(
+    {
+      // attributes
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      },
+      code: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+        defaultValue: '',
+      },
     },
-    code: {
-      type: Sequelize.STRING,
-      allowNull: false,
-      unique: true,
-      defaultValue: '',
+    {
+      sequelize,
+      // options
+      modelName: 'family',
     },
-  },
-  {
-    // options
-  },
-);
-
-module.exports = { Family };
+  );
+  Family.className = 'Family';
+  return Family;
+};

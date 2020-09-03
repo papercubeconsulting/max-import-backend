@@ -1,31 +1,36 @@
-/* eslint-disable import/no-dynamic-require */
-const Sequelize = require('sequelize');
-
-const sequelize = require(`@root/startup/db`);
+const { Model } = require('sequelize');
 
 const { warehouseTypes: types } = require('../../utils/constants');
 
-const Warehouse = sequelize.define(
-  'warehouse',
-  {
-    // attributes
-    name: {
-      type: Sequelize.STRING,
-      allowNull: false,
-      unique: true,
-    },
-    address: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    type: {
-      type: Sequelize.ENUM([types.WAREHOUSE, types.STORE, types.DAMAGED]),
-      defaultValue: types.WAREHOUSE,
-    },
-  },
-  {
-    // options
-  },
-);
+module.exports = (sequelize, DataTypes) => {
+  class Warehouse extends Model {
+    static associate(models) {
+      Warehouse.hasMany(models.ProductBox);
+      Warehouse.hasMany(models.ProductBoxLog);
 
-module.exports = { Warehouse };
+      Warehouse.hasMany(models.Supply);
+    }
+  }
+  Warehouse.init(
+    {
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      },
+      address: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      type: {
+        type: DataTypes.ENUM([types.WAREHOUSE, types.STORE, types.DAMAGED]),
+        defaultValue: types.WAREHOUSE,
+      },
+    },
+    {
+      sequelize,
+      modelName: 'warehouse',
+    },
+  );
+  return Warehouse;
+};

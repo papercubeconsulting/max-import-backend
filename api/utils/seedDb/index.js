@@ -7,24 +7,23 @@ require('module-alias/register');
 require('../../../startup/config')();
 require('../../../startup/logging')();
 
-const sequelize = require('../../../startup/db');
-
-const { Family } = require('../../inventory/family/family.model');
-const { Subfamily } = require('../../inventory/subfamily/subfamily.model');
-const { Element } = require('../../inventory/element/element.model');
-const { Model } = require('../../inventory/model/model.model');
-const { Provider } = require('../../inventory/provider/provider.model');
-const { Warehouse } = require('../../inventory/warehouse/warehouse.model');
-
-const { Product } = require('../../inventory/product/product.model');
-const { Supply } = require('../../inventory/supply/supply.model');
-const { User } = require('../../auth/user/user.model');
-const { Client } = require('../../management/client/client.model');
 const {
+  sequelize,
+  Family,
+  Subfamily,
+  Element,
+  Model,
+  Provider,
+  Warehouse,
+  Product,
+  Supply,
+  User,
+  Client,
   DeliveryAgency,
-} = require('../../management/deliveryAgency/deliveryAgency.model');
-const { Proforma } = require('../../sales/proforma/proforma.model');
-const { Sale } = require('../../sales/sale/sale.model');
+  Proforma,
+  Sale,
+  Bank,
+} = require('../../../startup/db');
 
 const { _fullCreateSupply } = require('../../inventory/supply/supply.service');
 
@@ -32,9 +31,9 @@ const {
   _seedCreateProforma,
 } = require('../../sales/proforma/proforma.service');
 
-const { asyncForEach } = require('../../utils');
-const { Bank } = require('../../management/bank/bank.model');
 const { postBank } = require('../../management/bank/bank.service');
+
+const { asyncForEach } = require('../../utils');
 
 const seedModel = async (model, filename) => {
   const rawdata = fs.readFileSync(path.join(__dirname, filename));

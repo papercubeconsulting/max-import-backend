@@ -1,6 +1,6 @@
-const { setResponse } = require('../../utils');
+const { clients: Client } = require('@dbModels');
 
-const { Client } = require('./client.model');
+const { setResponse } = require('../../utils');
 
 const getClient = async reqParams => {
   const client = await Client.findOne({ where: reqParams });

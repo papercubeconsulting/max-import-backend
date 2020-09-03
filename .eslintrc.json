@@ -32,6 +32,10 @@
           [
             "@",
             "./api"
+          ],
+          [
+            "@dbModels",
+            "./startup/db"
           ]
         ],
         "extensions": [

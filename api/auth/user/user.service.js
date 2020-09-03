@@ -1,9 +1,8 @@
 const config = require('config');
+const { User } = require('@dbModels');
 
 const { setResponse } = require('../../utils');
 const { sendEmailTemplate } = require('../../utils/email');
-
-const { User } = require('./user.model');
 
 const readUser = async reqParams => {
   const user = await User.findByPk(reqParams.id);

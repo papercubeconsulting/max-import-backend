@@ -2,7 +2,7 @@
 const winston = require('winston');
 const { setResponse } = require('../../../utils');
 
-const sequelize = require(`@root/startup/db`);
+const { sequelize } = require(`@root/startup/db`);
 
 const { Supply, SuppliedProduct } = require('../supply.model');
 const { Product } = require('../../product/product.model');

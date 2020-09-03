@@ -1,31 +1,35 @@
-/* eslint-disable import/no-dynamic-require */
-const Sequelize = require('sequelize');
+const { Model } = require('sequelize');
 
-const sequelize = require(`@root/startup/db`);
+module.exports = (sequelize, DataTypes) => {
+  class Provider extends Model {
+    static associate(models) {
+      Provider.hasMany(models.Product);
 
-const Provider = sequelize.define(
-  'provider',
-  {
-    // attributes
-    name: {
-      type: Sequelize.STRING,
-      allowNull: false,
-      unique: true,
+      Provider.hasMany(models.Supply);
+    }
+  }
+  Provider.init(
+    {
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      },
+      code: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+        defaultValue: '',
+      },
+      active: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+      },
     },
-    code: {
-      type: Sequelize.STRING,
-      allowNull: false,
-      unique: true,
-      defaultValue: '',
+    {
+      sequelize,
+      modelName: 'provider',
     },
-    active: {
-      type: Sequelize.BOOLEAN,
-      defaultValue: true,
-    },
-  },
-  {
-    // options
-  },
-);
-
-module.exports = { Provider };
+  );
+  return Provider;
+};
