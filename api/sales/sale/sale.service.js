@@ -6,7 +6,7 @@ const { Proforma, Client, Sale } = require('@dbModels');
 const { sequelize } = require(`@root/startup/db`);
 const { setResponse, paginate } = require('../../utils');
 
-const { PROFORMA } = require('../../utils/constants');
+const { PROFORMA, SALE } = require('../../utils/constants');
 
 const noQueryFields = ['page', 'pageSize'];
 
@@ -19,7 +19,7 @@ const closeProforma = async (reqBody, reqUser) => {
     });
     // ? Se valida que el estado de la proforma no haya pasado a cerrada
     if (proforma.status === PROFORMA.STATUS.CLOSED.value) {
-      await t.commit();
+      await t.rollback();
       return setResponse(
         400,
         'Proforma already closed',
@@ -28,10 +28,39 @@ const closeProforma = async (reqBody, reqUser) => {
       );
     }
 
+    // ? Se valida que el monto a pagar no exceda el monto de la proforma
+    if (reqBody.initialPayment > proforma.total) {
+      await t.rollback();
+      return setResponse(
+        400,
+        'Invalid initialPayment.',
+        null,
+        'El monto ingresado A Cuenta excede el total de la proforma',
+      );
+    }
+
+    // ? Se valida que el tipo de pago coincida con el monto de credito
+    // ? Si el tipo de pago es CREDIT, el pago inicial NO debe ser igual al total
+    // ? Si el tipo de pago es CASH, el pago inicial debe ser distinto al total
+    if (
+      (reqBody.paymentType === SALE.PAYMENT_TYPE.CREDIT.value &&
+        reqBody.initialPayment === proforma.total) ||
+      (reqBody.paymentType === SALE.PAYMENT_TYPE.CASH.value &&
+        reqBody.initialPayment !== proforma.total)
+    ) {
+      await t.rollback();
+      return setResponse(
+        400,
+        'Invalid paymentType.',
+        null,
+        'El monto ingresado A Cuenta no corresponde al tipo de pago.',
+      );
+    }
+
     // ? Se valida el stock de los productos
     const check = await proforma.checkStock({ transaction: t });
     if (!check) {
-      await t.commit();
+      await t.rollback();
       return setResponse(
         400,
         'No stock available.',

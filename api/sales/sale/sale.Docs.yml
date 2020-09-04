@@ -56,10 +56,10 @@ components:
                 enum:
                   - DELIVERY
                   - PICK_UP
-              credit:
+              initialPayment:
                 type: integer
                 format: int32
-                description: Monto de credito. El valor debe tener una precision de 2 decimales
+                description: Monto de pago a cuenta. Es el valor que el cliente pagara
               deliveryAgencyId:
                 type: integer
                 description: Id de la agencia en caso el desapacho sea delivery
@@ -76,7 +76,7 @@ components:
               bankAccountId:
                 type: integer
           examples:
-            Venta en tienda, al contado y delivery:
+            Venta en tienda, sin credito y delivery:
               value:
                 proformaId: 3
                 type: STORE
@@ -84,6 +84,7 @@ components:
                 billingType: SALE
                 dispatchmentType: DELIVERY
                 deliveryAgencyId: 1
+                initialPayment: 105400
             Venta en tienda, con credito, recojo en tienda:
               value:
                 proformaId: 4
@@ -91,7 +92,7 @@ components:
                 paymentType: CREDIT
                 billingType: SALE
                 dispatchmentType: PICK_UP
-                credit: 1000
+                initialPayment: 100000
             Venta no presencial, incluyendo datos de deposito:
               value:
                 proformaId: 8
@@ -99,6 +100,7 @@ components:
                 paymentType: CASH
                 billingType: SALE
                 dispatchmentType: PICK_UP
+                initialPayment: 100000
                 voucherCode: '123456789'
                 voucherImage: 'Aqui va la imagen en base 64'
                 paymentMethod: Depósito

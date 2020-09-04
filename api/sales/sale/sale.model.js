@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Sale.init(
     {
-      // ? Si el monto a cobrar a sido pagado
+      // ? Tipo de venta, presencial o no presencial
       type: {
         type: DataTypes.ENUM(getDictValues(SALE.TYPE)),
       },
@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.ENUM(getDictValues(SALE.STATUS)),
         defaultValue: SALE.STATUS.DUE.value,
       },
-      // ? Si es pago a cuenta (credito) o pago completo
+      // ? Si es pago recibido es el total (CASH) o tiene parte credito (CREDIT)
       paymentType: {
         type: DataTypes.ENUM(getDictValues(SALE.PAYMENT_TYPE)),
       },
@@ -43,6 +43,7 @@ module.exports = (sequelize, DataTypes) => {
       subtotal: DataTypes.INTEGER, // ? Suma de precios parciales
       discount: DataTypes.INTEGER, // ? Descuento total
       total: DataTypes.INTEGER, // ? subtotal - discount
+      initialPayment: DataTypes.INTEGER, // ? Monto pagado a cuenta (pagado al generar la venta)
       credit: DataTypes.INTEGER, // ? Monto a credito
       due: DataTypes.INTEGER, // ? total - credit
 
@@ -70,15 +71,19 @@ module.exports = (sequelize, DataTypes) => {
         full: {},
       },
       hooks: {
-        // ? Calcular los precios de la venta
+        // ? Calcular los valores monetarios de la venta
         beforeCreate: async (sale, options) => {
           const proforma = await sale.getProforma({
             ..._.pick(options, ['transaction']),
           });
           sale.subtotal = proforma.subtotal;
-          sale.total = proforma.total;
           sale.discount = proforma.discount;
-          sale.due = sale.total - sale.credit;
+          sale.total = proforma.total;
+          sale.credit = sale.total - sale.initialPayment;
+
+          // ? En caso la venta sea no presencial (type REMOTE) no se genera deuda
+          sale.due =
+            sale.type === SALE.TYPE.REMOTE.value ? 0 : sale.initialPayment;
           sale.status = sale.due
             ? SALE.STATUS.DUE.value
             : SALE.STATUS.PAID.value;

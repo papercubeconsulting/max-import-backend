@@ -1,8 +1,6 @@
 const { Joi } = require('celebrate');
-const moment = require('moment');
 
 const { getDictValues, SALE } = require('../../utils/constants');
-const { get } = require('config');
 
 const Post = {
   body: {
@@ -22,15 +20,9 @@ const Post = {
         is: SALE.TYPE.REMOTE.value,
         then: Joi.required(),
       }),
-    credit: Joi.number()
-      .precision(2)
-      .custom(v => v * 100)
+    initialPayment: Joi.number()
       .integer()
-      .when('paymentType', {
-        is: SALE.PAYMENT_TYPE.CREDIT.value,
-        then: Joi.number().min(1),
-      })
-      .default(0),
+      .required(),
     voucherCode: Joi.string().when('type', {
       is: SALE.TYPE.REMOTE.value,
       then: Joi.required(),
