@@ -1,13 +1,9 @@
 const _ = require('lodash');
 const winston = require('winston');
+const { Proforma, ProformaProduct } = require('@dbModels');
 
 const { sequelize } = require(`@root/startup/db`);
 const { setResponse } = require('../../../utils');
-
-const { Proforma, ProformaProduct } = require('../proforma.model');
-const { Product } = require('../../../inventory/product/product.model');
-const { Client } = require('../../../management/client/client.model');
-const { SoldProduct } = require('@/sales/sale/sale.model');
 
 const validatePutProforma = async reqParams => {
   const proforma = await Proforma.findByPk(reqParams.id);
@@ -20,7 +16,7 @@ const putProforma = async (reqParams, reqBody, reqUser) => {
   const t = await sequelize.transaction();
 
   try {
-    let proforma = await Proforma.findByPk(reqParams.id, {
+    const proforma = await Proforma.findByPk(reqParams.id, {
       include: [ProformaProduct],
       transaction: t,
     });
@@ -62,9 +58,7 @@ const putProforma = async (reqParams, reqBody, reqUser) => {
     });
 
     await t.commit();
-    proforma = await Proforma.findByPk(reqParams.id, {
-      include: [ProformaProduct],
-    });
+    await proforma.reload();
     return setResponse(200, 'Proforma created.', proforma);
   } catch (error) {
     winston.error(error);

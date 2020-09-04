@@ -1,8 +1,5 @@
 const _ = require('lodash');
 const { Op } = require('sequelize');
-
-const { setResponse } = require('../../../utils');
-
 const {
   Product,
   Provider,
@@ -11,6 +8,8 @@ const {
   Element,
   Model,
 } = require('@dbModels');
+
+const { setResponse } = require('../../../utils');
 
 const checkCategory = async (
   Category,
@@ -180,9 +179,7 @@ const createCategories = async (reqBody, categories) => {
 const createProduct = async reqBody => {
   const model = await Model.findByPk(reqBody.modelId);
   if (!model) return setResponse(404, 'Model not found.');
-  console.log({
-    where: _.pick(reqBody, ['modelId']),
-  });
+
   let product = await Product.findOne({
     where: _.pick(reqBody, ['modelId']),
   });

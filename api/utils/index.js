@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-await-in-loop */
 
@@ -26,4 +27,5 @@ module.exports = {
   setResponse,
   asyncForEach,
   paginate,
+  ...require('./email'),
 };

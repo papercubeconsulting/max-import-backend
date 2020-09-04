@@ -1,6 +1,6 @@
-const { setResponse } = require('../../../utils');
+const { Supply } = require('@dbModels');
 
-const { Supply } = require('../supply.model');
+const { setResponse } = require('../../../utils');
 
 const deleteSupply = async reqParams => {
   const supply = await Supply.destroy({ where: { id: reqParams.id } });

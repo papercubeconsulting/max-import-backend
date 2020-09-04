@@ -1,10 +1,7 @@
 const _ = require('lodash');
+const { Subfamily, Family, Product } = require('@dbModels');
 
 const { setResponse } = require('../../utils');
-
-const { Subfamily } = require('./subfamily.model');
-const { Family } = require('../family/family.model');
-const { Product } = require('../product/product.model');
 
 const readSubfamily = async reqParams => {
   const subfamily = await Subfamily.findByPk(reqParams.id);
@@ -32,13 +29,13 @@ const listSubfamilies = async reqQuery => {
 };
 
 const createSubfamily = async reqBody => {
+  const family = await Family.findByPk(reqBody.familyId);
+  if (!family) return setResponse(400, 'Family does not exists.');
+
   let subfamily = await Subfamily.findOne({
     where: { name: reqBody.name, familyId: reqBody.familyId },
   });
   if (subfamily) return setResponse(400, 'Subfamily already exists.');
-
-  const family = await Family.findByPk(reqBody.familyId);
-  if (!family) return setResponse(400, 'Family does not exists.');
 
   subfamily = await Subfamily.create(reqBody);
 

@@ -1,16 +1,11 @@
-/* eslint-disable no-unused-vars */
 const _ = require('lodash');
 const moment = require('moment-timezone');
 const sequelize = require('sequelize');
 const { Op } = require('sequelize');
 
-const { setResponse, paginate } = require('../../../utils');
+const { Proforma, User, Client, Sale } = require('@dbModels');
 
-const { Proforma, ProformaProduct } = require('../proforma.model');
-const { Product } = require('../../../inventory/product/product.model');
-const { User } = require('../../../auth/user/user.model');
-const { Client } = require('../../../management/client/client.model');
-const { Sale } = require('../../sale/sale.model');
+const { setResponse, paginate } = require('../../../utils');
 
 const noQueryFields = ['page', 'pageSize', 'from', 'to', 'name', 'lastname'];
 

@@ -5,7 +5,6 @@ module.exports = {
   ...require('./listProforma'),
   ...require('./updateProforma'),
 
-  // TODO: Comment
-  // * No para produccion
+  // TODO: REMOVE BECAUSE IS JUST FOR SEEDING
   ...require('./_seedCreateProforma'),
 };

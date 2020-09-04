@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+const _ = require('lodash');
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
@@ -18,16 +19,17 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: 'soldProduct',
+      hooks: {
+        // ? Se actualiza el stock del producto al crearse una nueva venta
+        afterCreate: async (soldProduct, options) => {
+          const { product: Product } = soldProduct.sequelize.models;
+          await Product.updateStock(soldProduct.productId, {
+            transaction: _.get(options, 'transaction'),
+          });
+        },
+      },
     },
   );
-
-  // ? Se actualiza el stock del producto al crearse una nueva venta
-  SoldProduct.afterCreate('UpdateStock', async (soldProduct, options) => {
-    const { Product } = soldProduct.sequelize.models;
-    await Product.updateStock(soldProduct.productId, {
-      transaction: options.transaction,
-    });
-  });
 
   return SoldProduct;
 };

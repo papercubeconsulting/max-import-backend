@@ -3,14 +3,17 @@
 const _ = require('lodash');
 const winston = require('winston');
 
+const {
+  Supply,
+  SuppliedProduct,
+  Product,
+  Provider,
+  Warehouse,
+} = require('@dbModels');
+
 const { sequelize } = require(`@root/startup/db`);
 
 const { setResponse } = require('../../../utils');
-
-const { Supply, SuppliedProduct } = require('../supply.model');
-const { Product } = require('../../product/product.model');
-const { Provider } = require('../../provider/provider.model');
-const { Warehouse } = require('../../warehouse/warehouse.model');
 
 // ? Servicio para actualiza campos del abastecimiento y añadir/remover productos
 // ? El abastecimiento debe estar sin atender

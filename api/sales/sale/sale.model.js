@@ -12,6 +12,8 @@ module.exports = (sequelize, DataTypes) => {
       Sale.belongsTo(models.User, { as: 'seller', foreignKey: 'sellerId' });
       Sale.belongsTo(models.DeliveryAgency);
       Sale.belongsTo(models.BankAccount);
+
+      Sale.belongsTo(models.Proforma);
     }
   }
   Sale.init(
@@ -67,18 +69,23 @@ module.exports = (sequelize, DataTypes) => {
       scopes: {
         full: {},
       },
+      hooks: {
+        // ? Calcular los precios de la venta
+        beforeCreate: async (sale, options) => {
+          const proforma = await sale.getProforma({
+            ..._.pick(options, ['transaction']),
+          });
+          sale.subtotal = proforma.subtotal;
+          sale.total = proforma.total;
+          sale.discount = proforma.discount;
+          sale.due = sale.total - sale.credit;
+          sale.status = sale.due
+            ? SALE.STATUS.DUE.value
+            : SALE.STATUS.PAID.value;
+        },
+      },
     },
   );
 
-  Sale.beforeCreate('SetId', async (sale, options) => {
-    const proforma = await sale.getProforma({
-      ..._.pick(options, ['transaction']),
-    });
-    sale.subtotal = proforma.subtotal;
-    sale.total = proforma.total;
-    sale.discount = proforma.discount;
-    sale.due = sale.total - sale.credit;
-    sale.status = sale.due ? SALE.STATUS.DUE.value : SALE.STATUS.PAID.value;
-  });
   return Sale;
 };

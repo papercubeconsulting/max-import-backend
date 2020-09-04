@@ -1,8 +1,6 @@
-const { setResponse } = require('../../../utils');
+const { Proforma, ProformaProduct, Product, Client } = require('@dbModels');
 
-const { Proforma, ProformaProduct } = require('../proforma.model');
-const { Product } = require('../../../inventory/product/product.model');
-const { Client } = require('../../../management/client/client.model');
+const { setResponse } = require('../../../utils');
 
 const validateProforma = async reqBody => {
   const productIds = reqBody.proformaProducts.map(obj => obj.productId);

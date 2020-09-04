@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
   class Supply extends Model {
     static associate(models) {
       Supply.hasMany(models.SuppliedProduct);
+      Supply.hasMany(models.ProductBox);
 
       Supply.belongsTo(models.Warehouse);
       Supply.belongsTo(models.Provider);

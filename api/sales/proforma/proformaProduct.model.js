@@ -33,13 +33,14 @@ module.exports = (sequelize, DataTypes) => {
           fields: ['productId', 'proformaId'],
         },
       ],
+      hooks: {
+        beforeSave: async proformaProduct => {
+          proformaProduct.subtotal =
+            proformaProduct.quantity * proformaProduct.unitPrice;
+        },
+      },
     },
   );
-
-  ProformaProduct.beforeSave('calculatePrices', async proformaProduct => {
-    proformaProduct.subtotal =
-      proformaProduct.quantity * proformaProduct.unitPrice;
-  });
 
   return ProformaProduct;
 };

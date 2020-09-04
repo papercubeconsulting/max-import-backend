@@ -3,7 +3,7 @@ const passport = require('passport');
 
 const { Strategy: LocalStrategy } = require('passport-local');
 
-const { readUserByIds } = require('../../../auth/user/user.service');
+const { readUserByIds } = require('@/auth/user/user.service');
 
 const strategy = () => {
   passport.use(

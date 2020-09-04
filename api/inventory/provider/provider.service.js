@@ -1,8 +1,7 @@
+const { Provider } = require('@dbModels');
 const { Op } = require('sequelize');
 
 const { setResponse } = require('../../utils');
-
-const { Provider } = require('./provider.model');
 
 const readProvider = async reqParams => {
   const provider = await Provider.findByPk(reqParams.id);

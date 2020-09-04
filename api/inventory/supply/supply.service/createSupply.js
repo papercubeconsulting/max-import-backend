@@ -1,13 +1,17 @@
 /* eslint-disable import/no-dynamic-require */
 const winston = require('winston');
-const { setResponse } = require('../../../utils');
+
+const {
+  Supply,
+  SuppliedProduct,
+  Product,
+  Provider,
+  Warehouse,
+} = require('@dbModels');
 
 const { sequelize } = require(`@root/startup/db`);
 
-const { Supply, SuppliedProduct } = require('../supply.model');
-const { Product } = require('../../product/product.model');
-const { Provider } = require('../../provider/provider.model');
-const { Warehouse } = require('../../warehouse/warehouse.model');
+const { setResponse } = require('../../../utils');
 
 const validateCreateSupply = async reqBody => {
   const productIds = Array.from(
@@ -58,7 +62,7 @@ const createSupply = async reqBody => {
     // We rollback the transaction.
     await t.rollback();
 
-    return setResponse(400, 'Supply updated failed.');
+    return setResponse(400, 'Supply creation failed.');
   }
 };
 

@@ -7,9 +7,10 @@ const statuses = [status.PENDING, status.CANCELLED, status.ATTENDED]; // TODO: R
 module.exports = (sequelize, DataTypes) => {
   class SuppliedProduct extends Model {
     static associate(models) {
-      SuppliedProduct.Supply = SuppliedProduct.belongsTo(models.Supply);
+      SuppliedProduct.belongsTo(models.Supply);
+      SuppliedProduct.belongsTo(models.Product);
 
-      SuppliedProduct.Product = SuppliedProduct.belongsTo(models.Product);
+      SuppliedProduct.hasMany(models.ProductBox);
     }
   }
   SuppliedProduct.init(

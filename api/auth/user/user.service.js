@@ -1,11 +1,10 @@
 const config = require('config');
 const { User } = require('@dbModels');
 
-const { setResponse } = require('../../utils');
-const { sendEmailTemplate } = require('../../utils/email');
+const { setResponse, sendEmailTemplate } = require('../../utils');
 
-const readUser = async reqParams => {
-  const user = await User.findByPk(reqParams.id);
+const readUser = async (reqParams, options) => {
+  const user = await User.findByPk(reqParams.id, options);
   if (!user) return setResponse(404, 'User not found.');
   return setResponse(200, 'User found.', user);
 };

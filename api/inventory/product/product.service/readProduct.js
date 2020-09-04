@@ -1,11 +1,7 @@
 const { Op } = require('sequelize');
+const { Product, Provider, ProductBox, Warehouse } = require('@dbModels');
 
 const { setResponse } = require('../../../utils');
-
-const { Product } = require('./../product.model');
-const { Provider } = require('../../provider/provider.model');
-const { ProductBox } = require('../../productbox/productbox.model');
-const { Warehouse } = require('../../warehouse/warehouse.model');
 
 const readProduct = async reqParams => {
   const product = await Product.scope('full').findByPk(reqParams.id, {

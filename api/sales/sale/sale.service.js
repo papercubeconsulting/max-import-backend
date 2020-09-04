@@ -1,14 +1,10 @@
 /* eslint-disable import/no-dynamic-require */
 const _ = require('lodash');
-const sequelize = require(`@root/startup/db`);
+const winston = require('winston');
+const { Proforma, Client, Sale } = require('@dbModels');
 
+const { sequelize } = require(`@root/startup/db`);
 const { setResponse, paginate } = require('../../utils');
-
-const { Proforma, ProformaProduct } = require('../proforma/proforma.model');
-const { Product } = require('../../inventory/product/product.model');
-const { Client } = require('../../management/client/client.model');
-
-const { Sale } = require('./sale.model');
 
 const { PROFORMA } = require('../../utils/constants');
 
@@ -51,7 +47,6 @@ const closeProforma = async (reqBody, reqUser) => {
       { transaction: t },
     );
 
-    // TODO: Remover
     const sale = await proforma.getSale({
       include: { all: true },
       transaction: t,
@@ -60,7 +55,7 @@ const closeProforma = async (reqBody, reqUser) => {
     await t.commit();
     return setResponse(200, 'Proforma sold.', sale);
   } catch (error) {
-    console.log(error);
+    winston.error(error);
     await t.rollback();
     return setResponse(400, 'Proforma sale failed.');
   }

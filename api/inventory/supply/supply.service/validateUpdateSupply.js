@@ -1,8 +1,7 @@
+const { Supply, SuppliedProduct, Product } = require('@dbModels');
+
 const { setResponse } = require('../../../utils');
 const { supplyStatus: status } = require('../../../utils/constants');
-
-const { Supply, SuppliedProduct } = require('../supply.model');
-const { Product } = require('../../product/product.model');
 
 // ? Servicio para actualiza campos del abastecimiento y añadir/remover productos
 // ? El abastecimiento debe estar sin atender

@@ -1,14 +1,9 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-param-reassign */
 const _ = require('lodash');
-const { Op } = require('sequelize');
 const sequelize = require('sequelize');
+const { Product, ProductBox, Warehouse } = require('@dbModels');
 
-const { setResponse, paginate } = require('../../../utils');
-
-const { Product } = require('./../product.model');
-const { ProductBox } = require('../../productbox/productbox.model');
-const { Warehouse } = require('../../warehouse/warehouse.model');
+const { setResponse } = require('../../../utils');
 
 const { warehouseTypes } = require('../../../utils/constants');
 
@@ -56,7 +51,7 @@ const listProducts = async reqQuery => {
 
   let j = 0;
   products = products
-    .map((product, i) => {
+    .map(product => {
       product.productBoxes = [];
       product.totalStock = 0;
       product.activeStock = 0;

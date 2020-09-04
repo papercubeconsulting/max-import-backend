@@ -1,4 +1,4 @@
-const { clients: Client } = require('@dbModels');
+const { Client } = require('@dbModels');
 
 const { setResponse } = require('../../utils');
 

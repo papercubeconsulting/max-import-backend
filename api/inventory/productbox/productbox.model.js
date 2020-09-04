@@ -1,5 +1,8 @@
 /* eslint-disable no-param-reassign */
+const _ = require('lodash');
 const { Model } = require('sequelize');
+
+const { PRODUCTBOX_UPDATES } = require('@/utils/constants');
 
 function pad(n, width, z) {
   z = z || '0';
@@ -8,11 +11,12 @@ function pad(n, width, z) {
 }
 
 // TODO
-// Supply.hasMany(ProductBox);
-// SuppliedProduct.hasMany(ProductBox);
+//
+//
 
 module.exports = (sequelize, DataTypes) => {
   class ProductBox extends Model {
+    // * CLASS METHODS
     static associate(models) {
       ProductBox.hasMany(models.ProductBoxLog);
 
@@ -20,6 +24,36 @@ module.exports = (sequelize, DataTypes) => {
       ProductBox.belongsTo(models.Warehouse);
       ProductBox.belongsTo(models.Supply);
       ProductBox.belongsTo(models.SuppliedProduct);
+    }
+
+    static bulkRegisterLog(message, user, data) {
+      const { productBoxLog: ProductBoxLog } = this.sequelize.models;
+      ProductBoxLog.bulkCreate(
+        data.map(productBox => ({
+          productBoxId: productBox.id,
+          log: _.get(PRODUCTBOX_UPDATES, `${message}.name`, message),
+          userId: user.id,
+          warehouseId: productBox.warehouseId,
+        })),
+      );
+    }
+
+    // * INSTANCE METHODS
+    getTrackingCode() {
+      return `1${pad(this.supplyId, 6)}${pad(this.suppliedProductId, 6)}${pad(
+        this.indexFromSupliedProduct,
+        3,
+      )}`;
+    }
+
+    registerLog(message, user) {
+      const { productBoxLog: ProductBoxLog } = this.sequelize.models;
+      ProductBoxLog.create({
+        productBoxId: this.id,
+        log: _.get(PRODUCTBOX_UPDATES, `${message}.name`, message),
+        userId: user.id,
+        warehouseId: this.warehouseId,
+      });
     }
   }
   ProductBox.init(
@@ -60,46 +94,19 @@ module.exports = (sequelize, DataTypes) => {
           fields: ['trackingCode'],
         },
       ],
+      hooks: {
+        // ? Generar codigo de identificacion de la caja
+        beforeCreate: async productBox => {
+          productBox.trackingCode = productBox.getTrackingCode();
+        },
+        beforeBulkCreate: async productBoxes => {
+          productBoxes.forEach((obj, index, array) => {
+            array[index].trackingCode = array[index].getTrackingCode();
+          });
+        },
+      },
     },
   );
-
-  ProductBox.prototype.getTrackingCode = function() {
-    return `1${pad(this.supplyId, 6)}${pad(this.suppliedProductId, 6)}${pad(
-      this.indexFromSupliedProduct,
-      3,
-    )}`;
-  };
-
-  ProductBox.beforeCreate('generateCode', async (productBox, options) => {
-    productBox.trackingCode = productBox.getTrackingCode();
-  });
-
-  ProductBox.beforeBulkCreate('generateCode', async (productBoxes, options) => {
-    productBoxes.forEach((obj, index, array) => {
-      array[index].trackingCode = array[index].getTrackingCode();
-    });
-  });
-
-  // TODO: Update
-  // ProductBox.prototype.registerLog = function(message, user) {
-  //   ProductBoxLog.create({
-  //     productBoxId: this.id,
-  //     log: _.get(PRODUCTBOX_UPDATES, `${message}.name`, message),
-  //     userId: user.id,
-  //     warehouseId: this.warehouseId,
-  //   });
-  // };
-
-  // ProductBox.bulkRegisterLog = function(message, user, data) {
-  //   ProductBoxLog.bulkCreate(
-  //     data.map(productBox => ({
-  //       productBoxId: productBox.id,
-  //       log: _.get(PRODUCTBOX_UPDATES, `${message}.name`, message),
-  //       userId: user.id,
-  //       warehouseId: productBox.warehouseId,
-  //     })),
-  //   );
-  // };
 
   return ProductBox;
 };

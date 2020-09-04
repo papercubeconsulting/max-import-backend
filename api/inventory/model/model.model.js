@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Model.belongsTo(models.Element);
 
-      Model.hasOne(models.Product); // TODO: Deberia ser 1-1
+      Model.hasOne(models.Product);
     }
   }
 

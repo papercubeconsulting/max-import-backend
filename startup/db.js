@@ -41,7 +41,6 @@ recFindByExt(path.join('./api'), 'model.js')
     return file.indexOf('.') !== 0 && file.slice(-3) === '.js';
   })
   .forEach(file => {
-    console.log(file);
     const model = require(path.join('../', file))(
       sequelize,
       Sequelize.DataTypes,

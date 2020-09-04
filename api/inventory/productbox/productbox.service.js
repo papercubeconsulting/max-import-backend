@@ -1,10 +1,13 @@
-const { setResponse } = require('../../utils');
+const {
+  ProductBox,
+  ProductBoxLog,
+  Product,
+  Provider,
+  Warehouse,
+  User,
+} = require('@dbModels');
 
-const { ProductBox, ProductBoxLog } = require('./productbox.model');
-const { Product } = require('../product/product.model');
-const { Provider } = require('../provider/provider.model');
-const { Warehouse } = require('../warehouse/warehouse.model');
-const { User } = require('../../auth/user/user.model');
+const { setResponse } = require('../../utils');
 
 const getProductBox = async reqParams => {
   const productBox = await ProductBox.findOne({

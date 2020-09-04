@@ -1,13 +1,17 @@
 const _ = require('lodash');
 const moment = require('moment-timezone');
+
+const {
+  Supply,
+  SuppliedProduct,
+  Product,
+  Provider,
+  Warehouse,
+} = require('@dbModels');
+
 const { Op } = require('sequelize');
 
 const { setResponse, paginate } = require('../../../utils');
-
-const { Supply, SuppliedProduct } = require('../supply.model');
-const { Product } = require('../../product/product.model');
-const { Provider } = require('../../provider/provider.model');
-const { Warehouse } = require('../../warehouse/warehouse.model');
 
 const listSupplies = async reqQuery => {
   const supplies = await Supply.findAndCountAll({

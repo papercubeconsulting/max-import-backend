@@ -1,10 +1,13 @@
-const { setResponse } = require('../../../utils');
+const {
+  Supply,
+  SuppliedProduct,
+  Product,
+  Provider,
+  Warehouse,
+  ProductBox,
+} = require('@dbModels');
 
-const { Supply, SuppliedProduct } = require('../supply.model');
-const { Product } = require('../../product/product.model');
-const { Provider } = require('../../provider/provider.model');
-const { Warehouse } = require('../../warehouse/warehouse.model');
-const { ProductBox } = require('../../productbox/productbox.model');
+const { setResponse } = require('../../../utils');
 
 const readSupply = async reqParams => {
   const supply = await Supply.findByPk(reqParams.id, {

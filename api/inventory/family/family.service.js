@@ -1,7 +1,6 @@
-const { setResponse } = require('../../utils');
+const { Family, Product } = require('@dbModels');
 
-const { Family } = require('./family.model');
-const { Product } = require('../product/product.model');
+const { setResponse } = require('../../utils');
 
 const readFamily = async reqParams => {
   const family = await Family.findByPk(reqParams.id);

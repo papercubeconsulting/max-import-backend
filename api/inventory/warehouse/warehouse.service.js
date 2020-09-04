@@ -1,6 +1,6 @@
-const { setResponse } = require('../../utils');
+const { Warehouse } = require('@dbModels');
 
-const { Warehouse } = require('./warehouse.model');
+const { setResponse } = require('../../utils');
 
 const readWarehouse = async reqParams => {
   const warehouse = await Warehouse.findByPk(reqParams.id);
