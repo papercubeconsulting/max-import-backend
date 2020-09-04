@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
-const { setResponse } = require('../../../utils');
-
 const { Proforma, ProformaProduct, Product, Client } = require('@dbModels');
+const { setResponse } = require('../../../utils');
 
 const getProforma = async reqParams => {
   const proforma = await Proforma.findByPk(reqParams.id, {

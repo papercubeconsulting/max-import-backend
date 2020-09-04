@@ -5,6 +5,7 @@ const config = require('config');
 const { Strategy: JWTStrategy, ExtractJwt } = require('passport-jwt');
 
 const { readUser } = require('@/auth/user/user.service');
+
 const userAttributes = ['id', 'role', 'name'];
 
 const strategy = () => {

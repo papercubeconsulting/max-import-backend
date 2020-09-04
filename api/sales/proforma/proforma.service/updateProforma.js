@@ -12,7 +12,7 @@ const validatePutProforma = async reqParams => {
   return setResponse(200, 'OK');
 };
 
-const putProforma = async (reqParams, reqBody, reqUser) => {
+const putProforma = async (reqParams, reqBody) => {
   const t = await sequelize.transaction();
 
   try {
