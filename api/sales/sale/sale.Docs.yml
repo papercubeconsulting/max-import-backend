@@ -1,25 +1,37 @@
 paths:
-  '/sales':
+  "/sales":
     post:
       tags:
         - sales.sales
       summary: Crear un nueva venta
       responses:
-        '201':
+        "201":
           description: Successful operation
       requestBody:
-        $ref: '#/components/requestBodies/Sale'
+        $ref: "#/components/requestBodies/Sale"
     get:
       tags:
         - sales.sales
       summary: Listar ventas
       parameters:
-        - $ref: '#/components/parameters/pagePagination'
-        - $ref: '#/components/parameters/pageSizePagination'
-        - $ref: '#/components/parameters/status'
+        - $ref: "#/components/parameters/pagePagination"
+        - $ref: "#/components/parameters/pageSizePagination"
+        - $ref: "#/components/parameters/status"
       responses:
-        '200':
+        "200":
           description: Successful operation
+  "/sales/{id}/pay":
+    put:
+      tags:
+        - sales.sales
+      summary: Pagar un nueva venta
+      parameters:
+        - $ref: "#/components/parameters/paramId"
+      responses:
+        "201":
+          description: Successful operation
+      requestBody:
+        $ref: "#/components/requestBodies/PutSale"
 components:
   requestBodies:
     Sale:
@@ -78,21 +90,21 @@ components:
           examples:
             Venta en tienda, sin credito y delivery:
               value:
-                proformaId: 3
+                proformaId: 21
                 type: STORE
                 paymentType: CASH
                 billingType: SALE
                 dispatchmentType: DELIVERY
                 deliveryAgencyId: 1
-                initialPayment: 105400
+                initialPayment: 1000
             Venta en tienda, con credito, recojo en tienda:
               value:
-                proformaId: 4
+                proformaId: 21
                 type: STORE
                 paymentType: CREDIT
                 billingType: SALE
                 dispatchmentType: PICK_UP
-                initialPayment: 100000
+                initialPayment: 700
             Venta no presencial, incluyendo datos de deposito:
               value:
                 proformaId: 8
@@ -101,10 +113,51 @@ components:
                 billingType: SALE
                 dispatchmentType: PICK_UP
                 initialPayment: 100000
-                voucherCode: '123456789'
-                voucherImage: 'Aqui va la imagen en base 64'
+                voucherCode: "123456789"
+                voucherImage: "Aqui va la imagen en base 64"
                 paymentMethod: Depósito
                 bankAccountId: 1
+      required: true
+
+    PutSale:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              billingType:
+                type: string
+                description: Tipo de facturacion. Si es consignacion (CONSIGNMENT) o venta (SALE)
+                enum:
+                  - CONSIGNMENT
+                  - SALE
+              initialPayment:
+                type: integer
+                format: int32
+                description: Monto de pago a cuenta. Es el valor que el cliente pagara
+              paymentMethod:
+                type: string
+                enum:
+                  - Efectivo
+                  - Tarjeta
+                  - Depósito
+              referenceNumber:
+                type: string
+              receivedAmount:
+                type: integer
+          examples:
+            Pago en efectivo:
+              value:
+                billingType: SALE
+                paymentMethod: Efectivo
+                initialPayment: 1000000
+                receivedAmount: 1200000
+            Pago con tarjeta:
+              value:
+                billingType: SALE
+                paymentMethod: Tarjeta
+                initialPayment: 1000000
+                referenceNumber: "CODE-123"
       required: true
   parameters:
     status:

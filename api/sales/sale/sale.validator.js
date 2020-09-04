@@ -22,6 +22,7 @@ const Post = {
       }),
     initialPayment: Joi.number()
       .integer()
+      .min(0)
       .required(),
     voucherCode: Joi.string().when('type', {
       is: SALE.TYPE.REMOTE.value,
@@ -69,8 +70,34 @@ const List = {
   },
 };
 
+const PutPay = {
+  params: {
+    id: Joi.number()
+      .integer()
+      .required(),
+  },
+  body: {
+    billingType: Joi.string().valid(...getDictValues(SALE.BILLING_TYPE)),
+    paymentMethod: Joi.string()
+      .valid(...SALE.PAYMENT_METHOD)
+      .when('type', {
+        is: SALE.TYPE.REMOTE.value,
+        then: Joi.required(),
+      }),
+    initialPayment: Joi.number()
+      .integer()
+      .min(1)
+      .required(),
+    referenceNumber: Joi.string(),
+    receivedAmount: Joi.number()
+      .integer()
+      .min(Joi.ref('initialPayment')),
+  },
+};
+
 module.exports = {
   Post,
   Get,
   List,
+  PutPay,
 };

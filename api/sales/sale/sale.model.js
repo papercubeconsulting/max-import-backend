@@ -1,11 +1,13 @@
 /* eslint-disable no-param-reassign */
 const { Model } = require('sequelize');
 const _ = require('lodash');
+const moment = require('moment');
 
-const { SALE, getDictValues } = require('../../utils/constants');
+const { SALE, getDictValues, PROFORMA } = require('../../utils/constants');
 
 module.exports = (sequelize, DataTypes) => {
   class Sale extends Model {
+    // * CLASS METHODS
     static associate(models) {
       Sale.hasMany(models.SoldProduct);
       Sale.belongsTo(models.User, { as: 'cashier', foreignKey: 'cashierId' });
@@ -14,6 +16,18 @@ module.exports = (sequelize, DataTypes) => {
       Sale.belongsTo(models.BankAccount);
 
       Sale.belongsTo(models.Proforma);
+    }
+    // * INSTANCE METHODS
+
+    async pay(reqBody) {
+      await this.update({
+        ...reqBody,
+        status: SALE.STATUS.PAID.value,
+        due: 0,
+        paidAt: moment(),
+      });
+      const proforma = await this.getProforma();
+      await proforma.update({ saleStatus: PROFORMA.SALE_STATUS.PAID.value });
     }
   }
   Sale.init(
@@ -59,6 +73,10 @@ module.exports = (sequelize, DataTypes) => {
             : undefined;
         },
       },
+
+      // ? Campos para proceso de venta
+      referenceNumber: DataTypes.STRING, // ? Para el caso de pagos con tarjeta
+      receivedAmount: DataTypes.INTEGER, // ? Para el caso de pagos en efectivo
     },
     {
       sequelize,
