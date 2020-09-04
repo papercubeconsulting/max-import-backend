@@ -24,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
         ...reqBody,
         status: SALE.STATUS.PAID.value,
         due: 0,
+        credit: this.total - reqBody.initialPayment,
         paidAt: moment(),
       });
       const proforma = await this.getProforma();
