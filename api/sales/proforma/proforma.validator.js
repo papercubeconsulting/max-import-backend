@@ -9,10 +9,8 @@ const Post = {
       .integer()
       .required(),
     discount: Joi.number()
-      .precision(2)
-      .custom(v => v * 100)
       .integer()
-      .default(0),
+      .required(),
     proformaProducts: Joi.array()
       .items(
         Joi.object({
@@ -20,10 +18,8 @@ const Post = {
             .integer()
             .required(),
           unitPrice: Joi.number()
-            .precision(2)
-            .required()
-            .custom(v => v * 100)
-            .integer(),
+            .integer()
+            .required(),
           quantity: Joi.number()
             .integer()
             .min(1)
@@ -47,10 +43,8 @@ const Put = {
       .integer()
       .required(),
     discount: Joi.number()
-      .precision(2)
-      .custom(v => v * 100)
       .integer()
-      .default(0),
+      .required(),
     proformaProducts: Joi.array()
       .items(
         Joi.object({
@@ -58,10 +52,8 @@ const Put = {
             .integer()
             .required(),
           unitPrice: Joi.number()
-            .precision(2)
-            .required()
-            .custom(v => v * 100)
-            .integer(),
+            .integer()
+            .required(),
           quantity: Joi.number()
             .integer()
             .min(1)

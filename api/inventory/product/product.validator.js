@@ -65,10 +65,8 @@ const Post = {
     compatibility: Joi.string(),
     tradename: Joi.string(),
     suggestedPrice: Joi.number()
-      .precision(2)
-      .required()
-      .custom(v => v * 100)
-      .integer(),
+      .integer()
+      .required(),
   },
 };
 module.exports = {
