@@ -101,8 +101,11 @@ module.exports = (sequelize, DataTypes) => {
           sale.credit = sale.total - sale.initialPayment;
 
           // ? En caso la venta sea no presencial (type REMOTE) no se genera deuda
+          // ? Se guarda la fecha de pago como la fecha de la operacion
           sale.due =
             sale.type === SALE.TYPE.REMOTE.value ? 0 : sale.initialPayment;
+          sale.paidAt =
+            sale.type === SALE.TYPE.REMOTE.value ? moment() : undefined;
           sale.status = sale.due
             ? SALE.STATUS.DUE.value
             : SALE.STATUS.PAID.value;
