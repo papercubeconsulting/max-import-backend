@@ -17,6 +17,7 @@ paths:
         - $ref: "#/components/parameters/pagePagination"
         - $ref: "#/components/parameters/pageSizePagination"
         - $ref: "#/components/parameters/status"
+        - $ref: "#/components/parameters/type"
       responses:
         "200":
           description: Successful operation
@@ -170,3 +171,13 @@ components:
         enum:
           - DUE
           - PAID
+    type:
+      name: type
+      in: query
+      description: Tipo de la venta, si fue presencial o no presencial
+      required: false
+      schema:
+        type: string
+        enum:
+          - STORE
+          - REMOTE

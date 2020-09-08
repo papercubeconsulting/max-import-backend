@@ -67,6 +67,7 @@ const List = {
       .default(20),
 
     status: Joi.string().valid(...getDictValues(SALE.STATUS)),
+    type: Joi.string().valid(...getDictValues(SALE.TYPE)),
   },
 };
 
