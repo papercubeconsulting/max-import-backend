@@ -18,6 +18,10 @@ paths:
         - $ref: "#/components/parameters/pageSizePagination"
         - $ref: "#/components/parameters/status"
         - $ref: "#/components/parameters/type"
+        - $ref: "#/components/parameters/paidAtFromDate"
+        - $ref: "#/components/parameters/paidAtToDate"
+        - $ref: "#/components/parameters/cashierId"
+        - $ref: "#/components/parameters/proformaId"
       responses:
         "200":
           description: Successful operation
@@ -181,3 +185,40 @@ components:
         enum:
           - STORE
           - REMOTE
+
+    paidAtFromDate:
+      name: paidAtFrom
+      in: query
+      description: Fecha inicial de la consulta "YYYY-MM-DD".
+      required: false
+      schema:
+        type: string
+        format: date
+    paidAtToDate:
+      name: paidAtTo
+      in: query
+      description: Fecha final de la consulta "YYYY-MM-DD".
+      required: false
+      schema:
+        type: string
+        format: date
+
+    cashierId:
+      name: cashierId
+      in: query
+      description: Id del cajero que realizo la operacion
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+
+    proformaId:
+      name: proformaId
+      in: query
+      description: Id de la proforma
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1

@@ -1,14 +1,26 @@
 /* eslint-disable import/no-dynamic-require */
 const _ = require('lodash');
+const moment = require('moment-timezone');
 const winston = require('winston');
+
 const { Proforma, Client, Sale } = require('@dbModels');
+const { Op } = require('sequelize');
 
 const { sequelize } = require(`@root/startup/db`);
 const { setResponse, paginate } = require('../../utils');
 
 const { PROFORMA, SALE } = require('../../utils/constants');
 
-const noQueryFields = ['page', 'pageSize'];
+const noQueryFields = [
+  // ? Para paginacion
+  'page',
+  'pageSize',
+  // ? Para filtro de fechas
+  'paidAtFrom',
+  'paidAtTo',
+  // ? Filtro enlazado
+  'proformaId',
+];
 
 const closeProforma = async (reqBody, reqUser) => {
   const t = await sequelize.transaction();
@@ -91,9 +103,45 @@ const closeProforma = async (reqBody, reqUser) => {
 };
 
 const listSale = async reqQuery => {
+  // ? Query para la venta
+  const mainQuery = { ..._.omit(reqQuery, noQueryFields) };
+
+  // ? Por defecto se ordenan las ventas de manera ascendente segun fecha de creacion
+  // ? Para vista de pagos en caja
+  let orderBy = [['createdAt', 'ASC']];
+
+  // ? Se filtra la fecha de pago solo si los campos estan presentes
+  if (reqQuery.paidAtFrom) {
+    mainQuery.paidAt = {
+      [Op.between]: [
+        moment
+          .tz(
+            moment.utc(reqQuery.paidAtFrom).format('YYYY-MM-DD'),
+            'America/Lima',
+          )
+          .startOf('day')
+          .toDate(),
+        moment
+          .tz(
+            moment.utc(reqQuery.paidAtTo).format('YYYY-MM-DD'),
+            'America/Lima',
+          )
+          .endOf('day')
+          .toDate(),
+      ],
+    };
+
+    // ? El orden cambia a descendente segun fecha de pago
+    // ? Para vista de historial de pagos
+    orderBy = [['paidAt', 'DESC']];
+  }
+
+  // ? En caso se solicte una proforma, se agregar el filtro enlazado
+  if (reqQuery.proformaId) mainQuery['$proforma.id$'] = reqQuery.proformaId;
+
   const sales = await Sale.findAndCountAll({
-    where: _.omit(reqQuery, noQueryFields),
-    order: [['createdAt', 'ASC']],
+    where: mainQuery,
+    order: orderBy,
     include: [{ model: Proforma, include: [Client] }],
     distinct: true,
     ...paginate(_.pick(reqQuery, ['page', 'pageSize'])),

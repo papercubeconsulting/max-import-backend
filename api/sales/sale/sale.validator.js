@@ -56,19 +56,33 @@ const Get = {
 };
 
 const List = {
-  query: {
-    page: Joi.number()
-      .integer()
-      .min(1)
-      .default(1),
-    pageSize: Joi.number()
-      .integer()
-      .min(1)
-      .default(20),
+  query: Joi.object()
+    .keys({
+      page: Joi.number()
+        .integer()
+        .min(1)
+        .default(1),
+      pageSize: Joi.number()
+        .integer()
+        .min(1)
+        .default(20),
 
-    status: Joi.string().valid(...getDictValues(SALE.STATUS)),
-    type: Joi.string().valid(...getDictValues(SALE.TYPE)),
-  },
+      // ? Filtrado por fecha de pago
+      paidAtFrom: Joi.date().iso(),
+      paidAtTo: Joi.date()
+        .iso()
+        .min(Joi.ref('paidAtFrom')),
+
+      status: Joi.string().valid(...getDictValues(SALE.STATUS)),
+      type: Joi.string().valid(...getDictValues(SALE.TYPE)),
+
+      // ? Filtrado por cajero
+      cashierId: Joi.number().integer(),
+
+      // ? Filtrado por proforma
+      proformaId: Joi.number().integer(),
+    })
+    .and('paidAtFrom', 'paidAtTo'),
 };
 
 const PutPay = {
