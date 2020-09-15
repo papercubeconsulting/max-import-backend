@@ -176,9 +176,9 @@ const validatePaySale = async (reqParams, reqBody) => {
 
   // ? Se valida que el monto de pago no contradiga el tipo de pago
   if (
-    (sale.paymentType === SALE.PAYMENT_TYPE.CREDIT.value &&
+    (reqBody.paymentType === SALE.PAYMENT_TYPE.CREDIT.value &&
       reqBody.initialPayment === sale.total) ||
-    (sale.paymentType === SALE.PAYMENT_TYPE.CASH.value &&
+    (reqBody.paymentType === SALE.PAYMENT_TYPE.CASH.value &&
       reqBody.initialPayment !== sale.total)
   ) {
     return setResponse(

@@ -136,6 +136,12 @@ components:
                 enum:
                   - CONSIGNMENT
                   - SALE
+              paymentType:
+                type: string
+                description: Tipo de pago de la venta. Si se hace con crédito (CREDIT) o es al contado (CASH)
+                enum:
+                  - CREDIT
+                  - CASH
               initialPayment:
                 type: integer
                 format: int32
@@ -155,13 +161,15 @@ components:
               value:
                 billingType: SALE
                 paymentMethod: Efectivo
-                initialPayment: 1000000
-                receivedAmount: 1200000
+                paymentType: CASH
+                initialPayment: 1000
+                receivedAmount: 1200
             Pago con tarjeta:
               value:
                 billingType: SALE
                 paymentMethod: Tarjeta
-                initialPayment: 1000000
+                paymentType: CASH
+                initialPayment: 1000
                 referenceNumber: "CODE-123"
       required: true
   parameters:

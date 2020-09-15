@@ -8,12 +8,18 @@ const Post = {
       .integer()
       .required(),
 
-    type: Joi.string().valid(...getDictValues(SALE.TYPE)),
-    paymentType: Joi.string().valid(...getDictValues(SALE.PAYMENT_TYPE)),
-    billingType: Joi.string().valid(...getDictValues(SALE.BILLING_TYPE)),
-    dispatchmentType: Joi.string().valid(
-      ...getDictValues(SALE.DISPATCHMENT_TYPE),
-    ),
+    type: Joi.string()
+      .valid(...getDictValues(SALE.TYPE))
+      .required(),
+    paymentType: Joi.string()
+      .valid(...getDictValues(SALE.PAYMENT_TYPE))
+      .required(),
+    billingType: Joi.string()
+      .valid(...getDictValues(SALE.BILLING_TYPE))
+      .required(),
+    dispatchmentType: Joi.string()
+      .valid(...getDictValues(SALE.DISPATCHMENT_TYPE))
+      .required(),
     paymentMethod: Joi.string()
       .valid(...SALE.PAYMENT_METHOD)
       .when('type', {
@@ -92,13 +98,15 @@ const PutPay = {
       .required(),
   },
   body: {
-    billingType: Joi.string().valid(...getDictValues(SALE.BILLING_TYPE)),
+    billingType: Joi.string()
+      .valid(...getDictValues(SALE.BILLING_TYPE))
+      .required(),
+    paymentType: Joi.string()
+      .valid(...getDictValues(SALE.PAYMENT_TYPE))
+      .required(),
     paymentMethod: Joi.string()
       .valid(...SALE.PAYMENT_METHOD)
-      .when('type', {
-        is: SALE.TYPE.REMOTE.value,
-        then: Joi.required(),
-      }),
+      .required(),
     initialPayment: Joi.number()
       .integer()
       .min(1)
