@@ -69,8 +69,23 @@ const Post = {
       .required(),
   },
 };
+
+const Put = {
+  params: {
+    id: Joi.number()
+      .integer()
+      .required(),
+  },
+  body: {
+    imageBase64: Joi.string(),
+    compatibility: Joi.string(),
+    tradename: Joi.string(),
+    suggestedPrice: Joi.number().integer(),
+  },
+};
 module.exports = {
   List,
   Get,
   Post,
+  Put,
 };

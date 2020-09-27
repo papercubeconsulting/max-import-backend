@@ -33,6 +33,12 @@ const postProduct = async (req, res) => {
   return res.status(product.status).send(product);
 };
 
+const putProduct = async (req, res) => {
+  const product = await Services.updateProduct(req.params, req.body);
+
+  return res.status(product.status).send(product);
+};
+
 const postProductBase = async (req, res) => {
   const product = await Services.createProduct(req.body);
 
@@ -43,5 +49,6 @@ module.exports = {
   getProduct,
   listProducts,
   postProduct,
+  putProduct,
   postProductBase,
 };
