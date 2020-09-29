@@ -7,7 +7,25 @@ const { setResponse } = require('../../../utils');
 
 const { warehouseTypes } = require('../../../utils/constants');
 
+const productFields = [
+  'code',
+  'familyId',
+  'subfamilyId',
+  'elementId',
+  'modelId',
+  'providerId',
+  'tradename',
+];
+
 const listProducts = async reqQuery => {
+  if (reqQuery.tradename) {
+    reqQuery.tradename = sequelize.where(
+      sequelize.fn('LOWER', sequelize.col('tradename')),
+      'LIKE',
+      `%${reqQuery.tradename}%`,
+    );
+  }
+
   const productBoxes = await ProductBox.findAll({
     attributes: [
       'productId',
@@ -21,13 +39,7 @@ const listProducts = async reqQuery => {
       { model: Warehouse },
       {
         model: Product,
-        where: _.pick(reqQuery, [
-          'code',
-          'familyId',
-          'subfamilyId',
-          'elementId',
-          'modelId',
-        ]),
+        where: _.pick(reqQuery, productFields),
         attributes: { exclude: 'imageBase64' },
       },
     ],
@@ -36,14 +48,7 @@ const listProducts = async reqQuery => {
   });
 
   let products = await Product.findAll({
-    where: _.pick(reqQuery, [
-      'code',
-      'familyId',
-      'subfamilyId',
-      'elementId',
-      'modelId',
-      'providerId',
-    ]),
+    where: _.pick(reqQuery, productFields),
     attributes: { exclude: 'imageBase64' },
     order: ['id'],
     raw: true,

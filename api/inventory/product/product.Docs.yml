@@ -45,6 +45,8 @@ paths:
         - $ref: '#/components/parameters/providerId'
         - $ref: '#/components/parameters/pagePagination'
         - $ref: '#/components/parameters/pageSizePagination'
+
+        - $ref: '#/components/parameters/tradename'
       operationId: listProducts
       responses:
         '200':
@@ -134,6 +136,13 @@ components:
         type: integer
         format: int32
         minimum: 1
+    tradename:
+      name: tradename
+      in: query
+      description: Nombre comercial del producto | La búsqueda no es literal, sino de substring
+      required: false
+      schema:
+        type: substring
 
   requestBodies:
     Product:

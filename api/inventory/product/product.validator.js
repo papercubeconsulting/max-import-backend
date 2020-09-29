@@ -20,6 +20,10 @@ const List = {
       .integer()
       .min(1)
       .default(20),
+
+    tradename: Joi.string()
+      .lowercase()
+      .trim(),
   },
 };
 
