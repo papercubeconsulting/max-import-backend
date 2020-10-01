@@ -1,0 +1,48 @@
+paths:
+  "/productboxes/{id}":
+    get:
+      tags:
+        - inventory.productBox
+      summary: Encontrar productBox por id
+      parameters:
+        - $ref: "#/components/parameters/paramId"
+      responses:
+        "200":
+          description: successful operation
+    put:
+      tags:
+        - inventory.productBox
+      summary: Actualizar productBox
+      parameters:
+        - $ref: "#/components/parameters/paramId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                warehouseId:
+                  type: number
+              required:
+                - message
+            examples:
+              Mover:
+                value:
+                  message: Movimiento de caja
+                  warehouseId: 1
+      responses:
+        "200":
+          description: successful operation
+
+  "/productboxes/{code}":
+    get:
+      tags:
+        - inventory.productBox
+      summary: Encontrar productBox por codigo
+      parameters:
+        - $ref: "#/components/parameters/codeId"
+      responses:
+        "200":
+          description: successful operation

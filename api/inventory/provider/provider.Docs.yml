@@ -1,0 +1,52 @@
+paths:
+  "/providers":
+    post:
+      tags:
+        - inventory.providers
+      summary: Crear un nuevo proveedor
+      operationId: addProvider
+      responses:
+        "201":
+          description: Provider created
+      requestBody:
+        $ref: "#/components/requestBodies/Provider"
+    get:
+      tags:
+        - inventory.providers
+      summary: Listar todos los proveedores
+      operationId: listProviders
+      parameters:
+        - $ref: "#/components/parameters/active"
+      responses:
+        "200":
+          description: Providers found
+  "/providers/{id}":
+    get:
+      tags:
+        - inventory.providers
+      summary: Encontrar proveedor por Id
+      operationId: getProviderById
+      parameters:
+        - $ref: "#/components/parameters/paramId"
+      responses:
+        "200":
+          description: Successful operation
+components:
+  requestBodies:
+    Provider:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              code:
+                type: string
+            example:
+              name: "Nuevo proveedor"
+              code: "X0X"
+            required:
+              - name
+              - code
+      required: true

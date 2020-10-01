@@ -1,0 +1,47 @@
+{
+  "extends": [
+    "airbnb-base",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": [
+    "prettier"
+  ],
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "spaceBeforeFunctionParen": false
+      }
+    ],
+    "no-console": "warn",
+    "func-names": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [
+          [
+            "@root",
+            "."
+          ],
+          [
+            "@",
+            "./api"
+          ],
+          [
+            "@dbModels",
+            "./startup/db"
+          ]
+        ],
+        "extensions": [
+          ".js"
+        ]
+      }
+    }
+  }
+}

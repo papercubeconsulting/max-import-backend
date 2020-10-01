@@ -1,0 +1,232 @@
+paths:
+  "/sales":
+    post:
+      tags:
+        - sales.sales
+      summary: Crear un nueva venta
+      responses:
+        "201":
+          description: Successful operation
+      requestBody:
+        $ref: "#/components/requestBodies/Sale"
+    get:
+      tags:
+        - sales.sales
+      summary: Listar ventas
+      parameters:
+        - $ref: "#/components/parameters/pagePagination"
+        - $ref: "#/components/parameters/pageSizePagination"
+        - $ref: "#/components/parameters/status"
+        - $ref: "#/components/parameters/type"
+        - $ref: "#/components/parameters/paidAtFromDate"
+        - $ref: "#/components/parameters/paidAtToDate"
+        - $ref: "#/components/parameters/cashierId"
+        - $ref: "#/components/parameters/proformaId"
+      responses:
+        "200":
+          description: Successful operation
+  "/sales/{id}/pay":
+    put:
+      tags:
+        - sales.sales
+      summary: Pagar un nueva venta
+      parameters:
+        - $ref: "#/components/parameters/paramId"
+      responses:
+        "201":
+          description: Successful operation
+      requestBody:
+        $ref: "#/components/requestBodies/PutSale"
+components:
+  requestBodies:
+    Sale:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              proformaId:
+                type: integer
+                format: int32
+                description: Id de la proforma
+              type:
+                type: string
+                description: Tipo de venta, si es presencial (STORE) o no presencial (REMOTE)
+                enum:
+                  - STORE
+                  - REMOTE
+              paymentType:
+                type: string
+                description: Tipo de pago de la venta. Si se hace con crédito (CREDIT) o es al contado (CASH)
+                enum:
+                  - CREDIT
+                  - CASH
+              billingType:
+                type: string
+                description: Tipo de facturacion. Si es consignacion (CONSIGNMENT) o venta (SALE)
+                enum:
+                  - CONSIGNMENT
+                  - SALE
+              dispatchmentType:
+                type: string
+                description: Tipo de despacho. Si será recojo en tienda (PICK_UP) o delivery (DELIVERY)
+                enum:
+                  - DELIVERY
+                  - PICK_UP
+              initialPayment:
+                type: integer
+                format: int32
+                description: Monto de pago a cuenta. Es el valor que el cliente pagara
+              deliveryAgencyId:
+                type: integer
+                description: Id de la agencia en caso el desapacho sea delivery
+              paymentMethod:
+                type: string
+                enum:
+                  - Efectivo
+                  - Tarjeta
+                  - Depósito
+              voucherCode:
+                type: string
+              voucherImage:
+                type: string
+              bankAccountId:
+                type: integer
+          examples:
+            Venta en tienda, sin credito y delivery:
+              value:
+                proformaId: 21
+                type: STORE
+                paymentType: CASH
+                billingType: SALE
+                dispatchmentType: DELIVERY
+                deliveryAgencyId: 1
+                initialPayment: 1000
+            Venta en tienda, con credito, recojo en tienda:
+              value:
+                proformaId: 21
+                type: STORE
+                paymentType: CREDIT
+                billingType: SALE
+                dispatchmentType: PICK_UP
+                initialPayment: 700
+            Venta no presencial, incluyendo datos de deposito:
+              value:
+                proformaId: 8
+                type: REMOTE
+                paymentType: CASH
+                billingType: SALE
+                dispatchmentType: PICK_UP
+                initialPayment: 100000
+                voucherCode: "123456789"
+                voucherImage: "Aqui va la imagen en base 64"
+                paymentMethod: Depósito
+                bankAccountId: 1
+      required: true
+
+    PutSale:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              billingType:
+                type: string
+                description: Tipo de facturacion. Si es consignacion (CONSIGNMENT) o venta (SALE)
+                enum:
+                  - CONSIGNMENT
+                  - SALE
+              paymentType:
+                type: string
+                description: Tipo de pago de la venta. Si se hace con crédito (CREDIT) o es al contado (CASH)
+                enum:
+                  - CREDIT
+                  - CASH
+              initialPayment:
+                type: integer
+                format: int32
+                description: Monto de pago a cuenta. Es el valor que el cliente pagara
+              paymentMethod:
+                type: string
+                enum:
+                  - Efectivo
+                  - Tarjeta
+                  - Depósito
+              referenceNumber:
+                type: string
+              receivedAmount:
+                type: integer
+          examples:
+            Pago en efectivo:
+              value:
+                billingType: SALE
+                paymentMethod: Efectivo
+                paymentType: CASH
+                initialPayment: 1000
+                receivedAmount: 1200
+            Pago con tarjeta:
+              value:
+                billingType: SALE
+                paymentMethod: Tarjeta
+                paymentType: CASH
+                initialPayment: 1000
+                referenceNumber: "CODE-123"
+      required: true
+  parameters:
+    status:
+      name: status
+      in: query
+      description: Estado de la venta, si adeuda o esta pagada
+      required: false
+      schema:
+        type: string
+        enum:
+          - DUE
+          - PAID
+    type:
+      name: type
+      in: query
+      description: Tipo de la venta, si fue presencial o no presencial
+      required: false
+      schema:
+        type: string
+        enum:
+          - STORE
+          - REMOTE
+
+    paidAtFromDate:
+      name: paidAtFrom
+      in: query
+      description: Fecha inicial de la consulta "YYYY-MM-DD".
+      required: false
+      schema:
+        type: string
+        format: date
+    paidAtToDate:
+      name: paidAtTo
+      in: query
+      description: Fecha final de la consulta "YYYY-MM-DD".
+      required: false
+      schema:
+        type: string
+        format: date
+
+    cashierId:
+      name: cashierId
+      in: query
+      description: Id del cajero que realizo la operacion
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+
+    proformaId:
+      name: proformaId
+      in: query
+      description: Id de la proforma
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1

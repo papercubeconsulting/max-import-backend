@@ -1,0 +1,50 @@
+[
+  {
+    "index": 0,
+    "name": "Tienda 1",
+    "type": "Tienda",
+    "address": "Irving Avenue"
+  },
+  {
+    "index": 1,
+    "name": "Tienda 2",
+    "type": "Tienda",
+    "address": "Sumner Place"
+  },
+  {
+    "index": 2,
+    "name": "Tienda 3",
+    "type": "Tienda",
+    "address": "Pierrepont Place"
+  },
+  {
+    "index": 3,
+    "name": "Tienda 4",
+    "type": "Tienda",
+    "address": "Flatbush Avenue"
+  },
+  {
+    "index": 4,
+    "name": "Tienda 5",
+    "type": "Tienda",
+    "address": "Bliss Terrace"
+  },
+  {
+    "index": 5,
+    "name": "Almacén 6",
+    "type": "Almacén",
+    "address": "Gotham Avenue"
+  },
+  {
+    "index": 6,
+    "name": "Almacén 7",
+    "type": "Almacén",
+    "address": "Thomas Street"
+  },
+  {
+    "index": 7,
+    "name": "Averiado 8",
+    "type": "Averiado",
+    "address": "Anchorage Place"
+  }
+]

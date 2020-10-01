@@ -1,0 +1,21 @@
+paths:
+  "/clients/{id}":
+    get:
+      tags:
+        - management.clients
+      summary: Encontrar cliente por id
+      parameters:
+        - $ref: "#/components/parameters/paramId"
+      responses:
+        "200":
+          description: Successful operation
+  "/clients/{code}":
+    get:
+      tags:
+        - management.clients
+      summary: Encontrar cliente por documento de identidad
+      parameters:
+        - $ref: "#/components/parameters/codeId"
+      responses:
+        "200":
+          description: Successful operation

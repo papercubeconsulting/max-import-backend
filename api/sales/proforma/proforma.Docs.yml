@@ -1,0 +1,173 @@
+paths:
+  "/proformas":
+    post:
+      tags:
+        - sales.proforma
+      summary: Crear un nueva proforma
+      responses:
+        "201":
+          description: Supply created
+      requestBody:
+        $ref: "#/components/requestBodies/Proforma"
+    get:
+      tags:
+        - sales.proforma
+      summary: Listar proformas
+      parameters:
+        - $ref: "#/components/parameters/fromDate"
+        - $ref: "#/components/parameters/toDate"
+        - $ref: "#/components/parameters/pagePagination"
+        - $ref: "#/components/parameters/pageSizePagination"
+        - $ref: "#/components/parameters/proformaId"
+        - $ref: "#/components/parameters/userId"
+        - $ref: "#/components/parameters/status"
+        - $ref: "#/components/parameters/saleStatus"
+        - $ref: "#/components/parameters/dispatchStatus"
+        - $ref: "#/components/parameters/name"
+        - $ref: "#/components/parameters/lastname"
+      responses:
+        "200":
+          description: Successful operation
+  "/proformas/{id}":
+    get:
+      tags:
+        - sales.proforma
+      summary: Encontrar proforma por Id
+      parameters:
+        - $ref: "#/components/parameters/paramId"
+      responses:
+        "200":
+          description: Successful operation
+    put:
+      tags:
+        - sales.proforma
+      summary: Actualizar la informacion de una proforma> (clientId, discount, listado de productos)
+      parameters:
+        - $ref: "#/components/parameters/paramId"
+      requestBody:
+        $ref: "#/components/requestBodies/Proforma"
+      responses:
+        "200":
+          description: Successful operation
+components:
+  requestBodies:
+    Proforma:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              clientId:
+                type: integer
+                format: int32
+                description: Id del cliente
+              discount:
+                type: integer
+                format: int32
+                description: Descuento
+              proformaProducts:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    productId:
+                      type: integer
+                      format: int32
+                      description: Id del producto
+                    unitPrice:
+                      type: integer
+                      format: int32
+                      description: Precio unitario para la proforma
+                    quantity:
+                      type: integer
+                      format: int32
+                      description: Cantidad de productos
+            example:
+          examples:
+            Proforma 1:
+              value:
+                clientId: 1
+                discount: 0
+                proformaProducts:
+                  [{ productId: 1, unitPrice: 1000, quantity: 1 }]
+            Proforma 2:
+              value:
+                clientId: 1
+                discount: 0
+                proformaProducts:
+                  [
+                    { productId: 1, unitPrice: 20, quantity: 100 },
+                    { productId: 2, unitPrice: 50, quantity: 20 },
+                    { productId: 3, unitPrice: 50, quantity: 10 },
+                  ]
+
+            required:
+              - clientId
+              - proformaProducts
+      required: true
+  parameters:
+    proformaId:
+      name: id
+      in: query
+      description: Id de la proforma requerido
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    userId:
+      name: userId
+      in: query
+      description: Id del usuario que creo la proforma
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    status:
+      name: status
+      in: query
+      description: Estado base de la plataforma, si el campo no se envia se devuelve TODOS
+      required: false
+      schema:
+        type: string
+        enum:
+          - OPEN
+          - CLOSED
+    saleStatus:
+      name: saleStatus
+      in: query
+      description: Estado de venta de la plataforma, si el campo no se envia se devuelve TODOS
+      required: false
+      schema:
+        type: string
+        enum:
+          - PENDING
+          - PARTIAL
+          - PAID
+    dispatchStatus:
+      name: dispatchStatus
+      in: query
+      description: Estado de despacho de la plataforma, si el campo no se envia se devuelve TODOS
+      required: false
+      schema:
+        type: string
+        enum:
+          - PENDING
+          - DISPATCHED
+
+    name:
+      name: name
+      in: query
+      description: Nombre del cliente (nombre o razon social) - Case insensitive
+      required: false
+      schema:
+        type: string
+
+    lastname:
+      name: lastname
+      in: query
+      description: Apellido del cliente (solo para personas naturales)
+      required: false
+      schema:
+        type: string

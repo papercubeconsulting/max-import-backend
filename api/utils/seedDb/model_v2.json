@@ -1,0 +1,158 @@
+[
+    {
+        "name": "LS16306",
+        "elementId": 1
+    },
+    {
+        "name": "LS12108",
+        "elementId": 1
+    },
+    {
+        "name": "LS12318",
+        "elementId": 1
+    },
+    {
+        "name": "LS16127",
+        "elementId": 2
+    },
+    {
+        "name": "LS16130",
+        "elementId": 2
+    },
+    {
+        "name": "LS16130",
+        "elementId": 3
+    },
+    {
+        "name": "LS12203",
+        "elementId": 3
+    },
+    {
+        "name": "LS11317",
+        "elementId": 3
+    },
+    {
+        "name": "LS12164",
+        "elementId": 2
+    },
+    {
+        "name": "LS20106",
+        "elementId": 2
+    },
+    {
+        "name": "HX070 / TD27",
+        "elementId": 4
+    },
+    {
+        "name": "HX046 / 4JA1",
+        "elementId": 4
+    },
+    {
+        "name": "HX133 / 3L",
+        "elementId": 2
+    },
+    {
+        "name": "HX073-4 / 6D15",
+        "elementId": 2
+    },
+    {
+        "name": "ND1498004 / 204-004",
+        "elementId": 2
+    },
+    {
+        "name": "ND1498005 / 204-024",
+        "elementId": 2
+    },
+    {
+        "name": "23215 / 12V 90A ",
+        "elementId": 3
+    },
+    {
+        "name": "HX019 / D4BH",
+        "elementId": 2
+    },
+    {
+        "name": "IZ1480022 / 18067",
+        "elementId": 5
+    },
+    {
+        "name": "IZ1480010 / 8973658240",
+        "elementId": 5
+    },
+    {
+        "name": "QD1580",
+        "elementId": 5
+    },
+    {
+        "name": "TY1480006 / 1280009590 / TR-FK022 / 28100-6130",
+        "elementId": 6
+    },
+    {
+        "name": "MT1482004 / 6D17",
+        "elementId": 6
+    },
+    {
+        "name": "TR-FK001 / M800X70787 24V",
+        "elementId": 6
+    },
+    {
+        "name": "RS-M0071",
+        "elementId": 6
+    },
+    {
+        "name": "M1T1482007 / 16793",
+        "elementId": 6
+    },
+    {
+        "name": "DELCO 41MT 12V",
+        "elementId": 6
+    },
+    {
+        "name": "DELCO 42MT 24V",
+        "elementId": 6
+    },
+    {
+        "name": "DELCO 42MT 12V",
+        "elementId": 6
+    },
+    {
+        "name": "DELCO 41MT 24V",
+        "elementId": 6
+    },
+    {
+        "name": "DELCO 40MT 24V",
+        "elementId": 6
+    },
+    {
+        "name": "S14-413C",
+        "elementId": 6
+    },
+    {
+        "name": "PLT1482002 / KD1481",
+        "elementId": 6
+    },
+    {
+        "name": "TY1480003 / 2810005030",
+        "elementId": 6
+    },
+    {
+        "name": "YOKE 263 24V",
+        "elementId": 6
+    },
+    {
+        "name": "YOKE IS1195",
+        "elementId": 6
+    },
+    {
+        "name": "YOKE IS1105",
+        "elementId": 6
+    },
+    {
+        "name": "YOKE IS1106",
+        "elementId": 6
+    },
+    {
+        "name": "TY1480011 / 28100-0D030",
+        "elementId": 6
+    }
+]

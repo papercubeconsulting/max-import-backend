@@ -1,0 +1,39 @@
+paths:
+  "/deliveryagencies/{id}":
+    get:
+      tags:
+        - management.deliveryAgency
+      summary: Encontrar una agencia de despacho por id
+      parameters:
+        - $ref: "#/components/parameters/paramId"
+      responses:
+        "200":
+          description: Successful operation
+  "/deliveryagencies":
+    get:
+      tags:
+        - management.deliveryAgency
+      summary: Listar agencias de despacho
+      responses:
+        "200":
+          description: Successful operation
+    post:
+      tags:
+        - management.deliveryAgency
+      summary: Crear una agencia de despacho
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              example:
+                name: "Nueva agencia"
+              required:
+                - name
+      responses:
+        "200":
+          description: Successful operation

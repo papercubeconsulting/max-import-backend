@@ -1,0 +1,65 @@
+[
+  {
+    "type": "COMPANY",
+    "name": "Zentility",
+    "lastname": "",
+    "idNumber": "59041930627",
+    "email": "dolore0@gmail.com",
+    "phoneNumber": "315086251",
+    "address": "Elm Place 930",
+    "regionId": "15",
+    "provinceId": "1501",
+    "districtId": "150103",
+    "defaultDeliveryAgencyId": 1
+  },
+  {
+    "type": "PERSON",
+    "name": "Horne",
+    "lastname": "Merrill",
+    "idNumber": "11111111",
+    "email": "quis1@gmail.com",
+    "phoneNumber": "781827665",
+    "address": "Regent Place 585",
+    "regionId": "15",
+    "provinceId": "1501",
+    "districtId": "150122",
+    "defaultDeliveryAgencyId": 4
+  },
+  {
+    "type": "COMPANY",
+    "name": "Uberlux",
+    "lastname": "",
+    "idNumber": "52144325533",
+    "email": "sit2@gmail.com",
+    "phoneNumber": "742496243",
+    "address": "Gardner Avenue 554",
+    "regionId": "15",
+    "provinceId": "1501",
+    "districtId": "150103",
+    "defaultDeliveryAgencyId": 7
+  },
+  {
+    "type": "COMPANY",
+    "name": "Protodyne",
+    "lastname": "",
+    "idNumber": "55417973330",
+    "email": "ea3@gmail.com",
+    "phoneNumber": "845070033",
+    "address": "Gunther Place 694",
+    "regionId": "15",
+    "provinceId": "1501",
+    "districtId": "150112"
+  },
+  {
+    "type": "PERSON",
+    "name": "Dejesus",
+    "lastname": "Holland",
+    "idNumber": "86082416",
+    "email": "consequat4@gmail.com",
+    "phoneNumber": "638543860",
+    "address": "Albany Avenue 367",
+    "regionId": "15",
+    "provinceId": "1501",
+    "districtId": "150117"
+  }
+]
