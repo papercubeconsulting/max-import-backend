@@ -43,32 +43,41 @@ module.exports = (sequelize, DataTypes) => {
         },
       );
 
-      // TODO:
-      // await Product.updateStock([])
+      // ? Se crea una nueva entidad de DISPATCH
+      // TODO
+      // const disptach = await this.createDispatch();
 
       // ? Se actualiza los estados de la proforma y el estado contable
       this.status = PROFORMA.STATUS.CLOSED.value;
 
       // ? En caso sea pago con deuda, el estado de la proforma sera PARTIAL
-      // ? En caso sea pago compelto, el estado de la proforma sera PAID
+      // ? En caso sea pago completo, el estado de la proforma sera PAID
       this.saleStatus = PROFORMA.MAP_SALE_STATUS[sale.status];
+
+      // ? Se actualiza el estado de la proforma para indicar que el despacho esta habilitado
+      this.dispatchStatus = PROFORMA.DISPATCH_STATUS.OPEN.value;
 
       await this.save({ transaction: _.get(options, 'transaction') });
     }
   }
   Proforma.init(
     {
+      // ? Representa si la proforma aun puede editarse, pasa a cerrarse cuando se genera la venta
       status: {
         type: DataTypes.ENUM(getDictValues(PROFORMA.STATUS)),
         defaultValue: PROFORMA.STATUS.OPEN.value,
       },
+      // ? Representa el estado de la venta, pendiente si aun no se ha generado
+      // ? En caso se genere hay dos posibilidades, que haya deuda (PARTIAL) o que se haya pagado (PAID)
       saleStatus: {
         type: DataTypes.ENUM(getDictValues(PROFORMA.SALE_STATUS)),
         defaultValue: PROFORMA.SALE_STATUS.PENDING.value,
       },
+      // ? Representa el estado del despacho, bloqueado por defecto
+      // ? Abierto cuando se habilita y se empiezan a despachar, completado al despachar todos los productos
       dispatchStatus: {
         type: DataTypes.ENUM(getDictValues(PROFORMA.DISPATCH_STATUS)),
-        defaultValue: PROFORMA.DISPATCH_STATUS.PENDING.value,
+        defaultValue: PROFORMA.DISPATCH_STATUS.LOCKED.value,
       },
       // ? Suma de los subtotales de cada elemento de la proforma
       subtotal: {

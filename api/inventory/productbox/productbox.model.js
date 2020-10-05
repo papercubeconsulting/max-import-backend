@@ -10,10 +10,6 @@ function pad(n, width, z) {
   return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
 }
 
-// TODO
-//
-//
-
 module.exports = (sequelize, DataTypes) => {
   class ProductBox extends Model {
     // * CLASS METHODS

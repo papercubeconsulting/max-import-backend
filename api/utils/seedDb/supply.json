@@ -8,9 +8,9 @@
     "attentionDate": "2020-06-01T20:28:36.078Z",
     "suppliedProducts": [
       {
-        "productId": 3,
-        "boxSize": 720,
-        "quantity": 34
+        "productId": 1,
+        "boxSize": 100,
+        "quantity": 10
       }
     ]
   },
@@ -33,7 +33,7 @@
         "quantity": 44
       },
       {
-        "productId": 1,
+        "productId": 2,
         "boxSize": 377,
         "quantity": 99
       },
@@ -73,7 +73,7 @@
         "quantity": 20
       },
       {
-        "productId": 1,
+        "productId": 2,
         "boxSize": 140,
         "quantity": 88
       },

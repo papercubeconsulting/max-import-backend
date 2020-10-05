@@ -2,7 +2,7 @@ const { Model } = require('sequelize');
 
 const { supplyStatus: status } = require('../../utils/constants');
 
-const statuses = [status.PENDING, status.CANCELLED, status.ATTENDED]; // TODO: Refactor
+const statuses = [status.PENDING, status.CANCELLED, status.ATTENDED];
 
 module.exports = (sequelize, DataTypes) => {
   class SuppliedProduct extends Model {

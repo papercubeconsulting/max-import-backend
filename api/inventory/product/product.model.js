@@ -85,7 +85,7 @@ module.exports = (sequelize, DataTypes) => {
         productBox: ProductBox,
         warehouse: Warehouse,
         soldProduct: SoldProduct,
-      } = this.sequelize.models; // TODO: Check
+      } = this.sequelize.models;
 
       const product = await Product.findByPk(id, {
         include: [
