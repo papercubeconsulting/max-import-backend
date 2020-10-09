@@ -2,7 +2,7 @@
 const _ = require('lodash');
 const { Model } = require('sequelize');
 
-const { getDictValues, PROFORMA } = require('../../utils/constants');
+const { getDictValues, PROFORMA, DISPATCH } = require('../../utils/constants');
 
 module.exports = (sequelize, DataTypes) => {
   class Proforma extends Model {
@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       Proforma.belongsTo(models.Client);
       Proforma.hasMany(models.ProformaProduct);
       Proforma.hasOne(models.Sale);
+      Proforma.hasOne(models.Dispatch);
     }
 
     // * INSTANCE METHODS
@@ -28,7 +29,10 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     async closeProforma(saleBody, options) {
-      const { soldProduct: SoldProduct } = this.sequelize.models;
+      const {
+        soldProduct: SoldProduct,
+        dispatchedProduct: DispatchedProduct,
+      } = this.sequelize.models;
       // ? Se obtiene los productos a vender
       const soldProducts = await this.getProformaProducts({
         attributes: ['productId', 'quantity'],
@@ -44,7 +48,19 @@ module.exports = (sequelize, DataTypes) => {
       );
 
       // ? Se crea una nueva entidad de DISPATCH
-      // TODO
+      const dispatch = await this.createDispatch(
+        {
+          ...saleBody,
+          status: DISPATCH.STATUS.OPEN.value,
+          saleId: sale.id,
+          dispatchedProducts: soldProducts,
+        },
+        {
+          include: [DispatchedProduct],
+          transaction: _.get(options, 'transaction'),
+        },
+      );
+      console.log(dispatch);
       // const disptach = await this.createDispatch();
 
       // ? Se actualiza los estados de la proforma y el estado contable

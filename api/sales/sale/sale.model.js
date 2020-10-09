@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       Sale.belongsTo(models.BankAccount);
 
       Sale.belongsTo(models.Proforma);
+      Sale.hasOne(models.Dispatch);
     }
     // * INSTANCE METHODS
 

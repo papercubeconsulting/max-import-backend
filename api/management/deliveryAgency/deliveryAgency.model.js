@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       });
 
       DeliveryAgency.hasMany(models.Sale);
+      DeliveryAgency.hasMany(models.Dispatch);
     }
   }
   DeliveryAgency.init(

@@ -44,4 +44,15 @@ module.exports = {
     },
     PAYMENT_METHOD: ['Efectivo', 'Tarjeta', 'Depósito'],
   },
+  DISPATCH: {
+    STATUS: {
+      LOCKED: { value: 'LOCKED', name: 'Bloqueado' },
+      OPEN: { value: 'OPEN', name: 'Habilitado' },
+      COMPLETED: { value: 'COMPLETED', name: 'Completado' },
+    },
+    DISPATCHMENT_TYPE: {
+      DELIVERY: { value: 'DELIVERY', name: 'Envío' },
+      PICK_UP: { value: 'PICK_UP', name: 'Recojo en tienda' },
+    },
+  },
 };

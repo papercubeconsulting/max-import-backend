@@ -47,6 +47,7 @@ const swaggerDefinition = {
     },
   ],
   tags: [
+    { name: 'sales.dispatch' },
     { name: 'sales.proforma' },
     { name: 'sales.sales' },
     { name: 'management.banks' },

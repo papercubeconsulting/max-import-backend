@@ -1,0 +1,62 @@
+paths:
+  '/dispatches':
+    get:
+      tags:
+        - sales.dispatch
+      summary: Listar despachos
+      parameters:
+        - $ref: '#/components/parameters/fromDate'
+        - $ref: '#/components/parameters/toDate'
+        - $ref: '#/components/parameters/pagePagination'
+        - $ref: '#/components/parameters/pageSizePagination'
+        - $ref: '#/components/parameters/d_status'
+        - $ref: '#/components/parameters/dispatchmentType'
+        - $ref: '#/components/parameters/proformaId'
+        - $ref: '#/components/parameters/name'
+        - $ref: '#/components/parameters/lastname'
+      responses:
+        '200':
+          description: Successful operation
+  '/dispatches/{id}':
+    get:
+      tags:
+        - sales.dispatch
+      summary: Encontrar despacho por Id
+      parameters:
+        - $ref: '#/components/parameters/paramId'
+      responses:
+        '200':
+          description: Successful operation
+components:
+  parameters:
+    d_status:
+      name: status
+      in: query
+      description: Estado del despacho, si esta bloqueado, abierto o cerrado
+      required: false
+      schema:
+        type: string
+        enum:
+          - LOCKED
+          - OPEN
+          - CLOSED
+    dispatchmentType:
+      name: dispatchmentType
+      in: query
+      description: Tipo de despacho
+      required: false
+      schema:
+        type: string
+        enum:
+          - DELIVERY
+          - PICK_UP
+
+    proformaId:
+      name: proformaId
+      in: query
+      description: Id de la proforma
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1

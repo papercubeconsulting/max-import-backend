@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       Product.hasMany(models.SuppliedProduct);
       Product.hasMany(models.ProformaProduct);
       Product.hasMany(models.SoldProduct);
+      Product.hasMany(models.DispatchedProduct);
     }
 
     // ? Calcula stocks parciales por almacenes, tipos de almacenes y (almacenes-tamaño de caja)

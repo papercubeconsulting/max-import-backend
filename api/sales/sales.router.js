@@ -15,4 +15,10 @@ router.use(
   require('./sale/sale.router'),
 );
 
+router.use(
+  '/dispatches',
+  authenticateMiddleware('jwt'),
+  require('./dispatch/dispatch.router'),
+);
+
 module.exports = router;
