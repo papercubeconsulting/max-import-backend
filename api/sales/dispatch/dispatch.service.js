@@ -9,6 +9,7 @@ const {
   Sale,
   Dispatch,
   DispatchedProduct,
+  DispatchedProductBox,
   Product,
 } = require('@dbModels');
 const { Op } = require('sequelize');
@@ -111,7 +112,29 @@ const getDispatch = async reqParams => {
   return setResponse(200, 'Dispatch found.', dispatch);
 };
 
+const validatePostDispatchProductBox = async reqParams => {
+  return setResponse(200, 'Dispatch found.');
+};
+
+const postDispatchProductBox = async (reqParams, reqBody) => {
+  const dispatchedProduct = await DispatchedProduct.findByPk(
+    reqParams.dispatchedProductId,
+    {
+      where: { dispatchId: reqParams.id },
+      include: [Dispatch, DispatchedProductBox],
+    },
+  );
+
+  await dispatchedProduct.createDispatchedProductBox(reqBody);
+
+  await dispatchedProduct.reload();
+
+  return setResponse(200, 'Product dispatched.', dispatchedProduct);
+};
+
 module.exports = {
   listDispatch,
   getDispatch,
+  validatePostDispatchProductBox,
+  postDispatchProductBox,
 };

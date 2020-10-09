@@ -47,7 +47,27 @@ const List = {
     .and('paidAtFrom', 'paidAtTo'),
 };
 
+const PostDispatchProductBox = {
+  params: {
+    id: Joi.number()
+      .integer()
+      .required(),
+    dispatchedProductId: Joi.number()
+      .integer()
+      .required(),
+  },
+  body: {
+    productBoxId: Joi.number()
+      .integer()
+      .required(),
+    quantity: Joi.number()
+      .integer()
+      .required(),
+  },
+};
+
 module.exports = {
   Get,
   List,
+  PostDispatchProductBox,
 };

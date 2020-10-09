@@ -7,6 +7,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       DispatchedProduct.belongsTo(models.Dispatch);
       DispatchedProduct.belongsTo(models.Product);
+
+      DispatchedProduct.hasMany(models.DispatchedProductBox);
     }
   }
   DispatchedProduct.init(

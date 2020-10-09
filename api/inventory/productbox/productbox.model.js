@@ -20,6 +20,8 @@ module.exports = (sequelize, DataTypes) => {
       ProductBox.belongsTo(models.Warehouse);
       ProductBox.belongsTo(models.Supply);
       ProductBox.belongsTo(models.SuppliedProduct);
+
+      ProductBox.hasMany(models.DispatchedProductBox);
     }
 
     static bulkRegisterLog(message, user, data) {

@@ -27,7 +27,42 @@ paths:
       responses:
         '200':
           description: Successful operation
+  '/dispatches/{dispatchId}/dispatchedProducts/{dispatchedProductId}/dispatch':
+    post:
+      tags:
+        - sales.dispatch
+      summary: Despachar producto
+      parameters:
+        - $ref: '#/components/parameters/dispatchId'
+        - $ref: '#/components/parameters/dispatchedProductId'
+      requestBody:
+        $ref: '#/components/requestBodies/dispatchProductBox'
+      responses:
+        '200':
+          description: Successful operation
 components:
+  requestBodies:
+    dispatchProductBox:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              quantity:
+                type: integer
+                format: int32
+                description: Cantidad de productos a despachar
+              productBoxId:
+                type: integer
+                format: int32
+                description: Id de la caja del producto
+            example:
+              productBoxId: 1
+              quantity: 1
+            required:
+              - quantity
+              - productBoxId
+      required: true
   parameters:
     d_status:
       name: status
@@ -60,3 +95,24 @@ components:
         type: integer
         format: int32
         minimum: 1
+
+    dispatchId:
+      name: dispatchId
+      in: path
+      description: Id del despacho
+      required: true
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        default: 1
+    dispatchedProductId:
+      name: dispatchedProductId
+      in: path
+      description: Id del producto despachado
+      required: true
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        default: 1

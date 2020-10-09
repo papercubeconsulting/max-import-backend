@@ -10,4 +10,17 @@ const getDispatch = async (req, res) => {
   return res.status(response.status).send(response);
 };
 
-module.exports = { listDispatch, getDispatch };
+const postDispatchProductBox = async (req, res) => {
+  const validate = await Service.validatePostDispatchProductBox(
+    req.params,
+    req.body,
+  );
+
+  if (validate.status !== 200)
+    return res.status(validate.status).send(validate);
+
+  const response = await Service.postDispatchProductBox(req.params, req.body);
+  return res.status(response.status).send(response);
+};
+
+module.exports = { listDispatch, getDispatch, postDispatchProductBox };
