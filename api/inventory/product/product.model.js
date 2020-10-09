@@ -132,6 +132,7 @@ module.exports = (sequelize, DataTypes) => {
           damagedStock,
           availableStock:
             summary.totalStock - damagedStock - (soldStock - dispatchedStock),
+          dispatchStock: summary.totalStock - damagedStock,
         },
         { transaction: _.get(options, 'transaction') },
       );
@@ -185,6 +186,10 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: 0,
       },
       damagedStock: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
+      dispatchStock: {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },
