@@ -157,13 +157,13 @@ const validatePaySale = async (reqParams, reqBody) => {
   if (!sale) return setResponse(404, 'Sale not found.');
 
   // ? Se valida que la venta no haya sido pagada
-  // if (sale.status === SALE.STATUS.PAID.value)
-  //   return setResponse(
-  //     400,
-  //     'Sale already paid.',
-  //     null,
-  //     'La venta ya ha sido pagada',
-  //   );
+  if (sale.status === SALE.STATUS.PAID.value)
+    return setResponse(
+      400,
+      'Sale already paid.',
+      null,
+      'La venta ya ha sido pagada',
+    );
 
   // ? Se valida que el monto por pagar no exceda el total
   if (reqBody.initialPayment > sale.total)

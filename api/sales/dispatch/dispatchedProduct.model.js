@@ -26,15 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: 'dispatchedProduct',
-      hooks: {
-        // ? Se actualiza el stock del producto al crearse una nueva venta
-        afterUpdate: async (dispatchedProduct, options) => {
-          const { product: Product } = dispatchedProduct.sequelize.models;
-          await Product.updateStock(dispatchedProduct.productId, {
-            transaction: _.get(options, 'transaction'),
-          });
-        },
-      },
+      hooks: {},
     },
   );
 

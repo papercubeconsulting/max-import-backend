@@ -11,6 +11,7 @@ const {
   DispatchedProduct,
   DispatchedProductBox,
   Product,
+  ProductBox,
 } = require('@dbModels');
 const { Op } = require('sequelize');
 
@@ -112,24 +113,75 @@ const getDispatch = async reqParams => {
   return setResponse(200, 'Dispatch found.', dispatch);
 };
 
-const validatePostDispatchProductBox = async reqParams => {
-  return setResponse(200, 'Dispatch found.');
-};
-
-const postDispatchProductBox = async (reqParams, reqBody) => {
+// ? Se valida las componentes no transaccionales de la solicitud
+const validatePostDispatchProductBox = async (reqParams, reqBody) => {
   const dispatchedProduct = await DispatchedProduct.findByPk(
     reqParams.dispatchedProductId,
     {
       where: { dispatchId: reqParams.id },
-      include: [Dispatch, DispatchedProductBox],
     },
   );
 
-  await dispatchedProduct.createDispatchedProductBox(reqBody);
+  if (!dispatchedProduct)
+    return setResponse(404, 'Dispatched product not found.');
 
-  await dispatchedProduct.reload();
+  const productBox = await ProductBox.findByPk(reqBody.productBoxId);
 
-  return setResponse(200, 'Product dispatched.', dispatchedProduct);
+  if (!productBox) return setResponse(404, 'ProductBox not found.');
+
+  if (productBox.productId !== dispatchedProduct.productId)
+    return setResponse(
+      400,
+      'Product of product box different from dispatched product.',
+      'La caja contiene productos distintos a los requeridos',
+    );
+
+  if (productBox.stock < reqBody.quantity)
+    return setResponse(
+      400,
+      'ProductBox stock is less than required.',
+      'La caja no cuenta con productos suficientes.',
+    );
+  if (
+    dispatchedProduct.quantity - dispatchedProduct.dispatched <
+    reqBody.quantity
+  )
+    return setResponse(
+      400,
+      'DispatchedProduct remaining quantity is less than provided.',
+      'La cantidad de unidades a despachar es mayor a la requerida.',
+    );
+
+  return setResponse(200, 'Ok.');
+};
+
+const postDispatchProductBox = async (reqParams, reqBody) => {
+  const t = await sequelize.transaction();
+
+  try {
+    const dispatchedProduct = await DispatchedProduct.findByPk(
+      reqParams.dispatchedProductId,
+      {
+        where: { dispatchId: reqParams.id },
+        include: [Dispatch, DispatchedProductBox],
+
+        transaction: t,
+      },
+    );
+
+    await dispatchedProduct.createDispatchedProductBox(reqBody, {
+      transaction: t,
+    });
+
+    await t.commit();
+    await dispatchedProduct.reload();
+
+    return setResponse(200, 'Product dispatched.', dispatchedProduct);
+  } catch (error) {
+    winston.error(error);
+    await t.rollback();
+    return setResponse(400, 'Dispatchment failed.');
+  }
 };
 
 module.exports = {

@@ -19,7 +19,36 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: 'dispatchedProductBox',
-      hooks: {},
+      hooks: {
+        // ? Se actualiza el stock del producto al crearse una nueva venta
+        afterCreate: async (dispatchedProductBox, options) => {
+          const {
+            product: Product,
+            dispatchedProduct: DispatchedProduct,
+            productBox: ProductBox,
+          } = dispatchedProductBox.sequelize.models;
+
+          await DispatchedProduct.increment(
+            { dispatched: dispatchedProductBox.quantity },
+            {
+              where: { id: dispatchedProductBox.dispatchedProductId },
+              transaction: _.get(options, 'transaction'),
+            },
+          );
+
+          await ProductBox.increment(
+            { stock: -dispatchedProductBox.quantity },
+            {
+              where: { id: dispatchedProductBox.productBoxId },
+              transaction: _.get(options, 'transaction'),
+            },
+          );
+
+          await await Product.updateStock(dispatchedProductBox.productId, {
+            transaction: _.get(options, 'transaction'),
+          });
+        },
+      },
     },
   );
 

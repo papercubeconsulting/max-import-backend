@@ -3,6 +3,7 @@ const _ = require('lodash');
 const { Model: SeqModel, Op } = require('sequelize');
 
 const { warehouseTypes } = require('@/utils/constants');
+const { log } = require('debug');
 
 module.exports = (sequelize, DataTypes) => {
   class Product extends SeqModel {
@@ -86,6 +87,7 @@ module.exports = (sequelize, DataTypes) => {
         productBox: ProductBox,
         warehouse: Warehouse,
         soldProduct: SoldProduct,
+        dispatchedProduct: DispatchedProduct,
       } = this.sequelize.models;
 
       const product = await Product.findByPk(id, {
@@ -102,9 +104,6 @@ module.exports = (sequelize, DataTypes) => {
             ],
             required: false,
           },
-          {
-            model: SoldProduct,
-          },
         ],
         transaction: _.get(options, 'transaction'),
       });
@@ -119,14 +118,16 @@ module.exports = (sequelize, DataTypes) => {
         0,
       );
       // ? Unidades vendidas
-      const soldStock = product.soldProducts.reduce(
-        (acum, curr) => acum + curr.quantity,
-        0,
-      );
-      // ? Unidades despachadas
-      // TODO: Calcular cuando se implemente despacho
-      const dispatchedStock = 0;
+      const soldStock =
+        (await SoldProduct.sum('quantity', {
+          where: { productId: id },
+        })) || 0;
 
+      // ? Unidades despachadas
+      const dispatchedStock =
+        (await DispatchedProduct.sum('dispatched', {
+          where: { productId: id },
+        })) || 0;
       await product.update(
         {
           damagedStock,
