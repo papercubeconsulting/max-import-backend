@@ -7,6 +7,10 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       DispatchedProductBox.belongsTo(models.DispatchedProduct);
       DispatchedProductBox.belongsTo(models.ProductBox);
+      DispatchedProductBox.belongsTo(models.User, {
+        as: 'dispatcher',
+        foreignKey: 'dispatcherId',
+      });
     }
   }
   DispatchedProductBox.init(
@@ -44,7 +48,14 @@ module.exports = (sequelize, DataTypes) => {
             },
           );
 
-          await await Product.updateStock(dispatchedProductBox.productId, {
+          const productBox = await dispatchedProductBox.getProductBox();
+
+          productBox.registerLog(
+            `Despachado ${dispatchedProductBox.quantity} unidades`,
+            dispatchedProductBox.dispatcherId,
+          );
+
+          await Product.updateStock(dispatchedProductBox.productId, {
             transaction: _.get(options, 'transaction'),
           });
         },

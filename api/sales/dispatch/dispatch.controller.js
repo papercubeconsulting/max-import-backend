@@ -19,7 +19,11 @@ const postDispatchProductBox = async (req, res) => {
   if (validate.status !== 200)
     return res.status(validate.status).send(validate);
 
-  const response = await Service.postDispatchProductBox(req.params, req.body);
+  const response = await Service.postDispatchProductBox(
+    req.params,
+    req.body,
+    req.user,
+  );
   return res.status(response.status).send(response);
 };
 

@@ -9,7 +9,7 @@ const postFinishDispatch = async (reqParams, reqUser) => {
   });
   if (!dispatch) return setResponse(404, 'Dispatch not found.');
 
-  if (dispatch.status !== DISPATCH.STATUS.OPEN)
+  if (dispatch.status !== DISPATCH.STATUS.OPEN.value)
     return setResponse(
       400,
       'Dispatch status is not open.',

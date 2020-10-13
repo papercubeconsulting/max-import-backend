@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
         data.map(productBox => ({
           productBoxId: productBox.id,
           log: _.get(PRODUCTBOX_UPDATES, `${message}.name`, message),
-          userId: user.id,
+          userId: _.get(user, 'id', user),
           warehouseId: productBox.warehouseId,
         })),
       );
@@ -46,10 +46,10 @@ module.exports = (sequelize, DataTypes) => {
 
     registerLog(message, user) {
       const { productBoxLog: ProductBoxLog } = this.sequelize.models;
-      ProductBoxLog.create({
+      return ProductBoxLog.create({
         productBoxId: this.id,
         log: _.get(PRODUCTBOX_UPDATES, `${message}.name`, message),
-        userId: user.id,
+        userId: _.get(user, 'id', user),
         warehouseId: this.warehouseId,
       });
     }

@@ -24,7 +24,7 @@ const validatePostDispatchProductBox = async (reqParams, reqBody) => {
   if (!dispatchedProduct)
     return setResponse(404, 'Dispatched product not found.');
 
-  if (dispatchedProduct.dispatch.status !== DISPATCH.STATUS.OPEN)
+  if (dispatchedProduct.dispatch.status !== DISPATCH.STATUS.OPEN.value)
     return setResponse(
       400,
       'Dispatch status is not open.',
@@ -65,7 +65,7 @@ const validatePostDispatchProductBox = async (reqParams, reqBody) => {
   return setResponse(200, 'Ok.');
 };
 
-const postDispatchProductBox = async (reqParams, reqBody) => {
+const postDispatchProductBox = async (reqParams, reqBody, reqUser) => {
   const t = await sequelize.transaction();
 
   try {
@@ -79,9 +79,12 @@ const postDispatchProductBox = async (reqParams, reqBody) => {
       },
     );
 
-    await dispatchedProduct.createDispatchedProductBox(reqBody, {
-      transaction: t,
-    });
+    await dispatchedProduct.createDispatchedProductBox(
+      { ...reqBody, dispatcherId: reqUser.id },
+      {
+        transaction: t,
+      },
+    );
 
     await t.commit();
     await dispatchedProduct.reload();
