@@ -15,4 +15,6 @@ router.post(
   Controller.postDispatchProductBox,
 );
 
+router.post('/:id/finish', Controller.postFinishDispatch);
+
 module.exports = router;

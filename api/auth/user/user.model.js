@@ -30,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
 
       User.hasMany(models.Sale, { foreignKey: 'cashierId' });
       User.hasMany(models.Sale, { foreignKey: 'sellerId' });
+      User.hasMany(models.Dispatch, { foreignKey: 'dispatcherId' });
     }
 
     // ? To find users based on different pk's

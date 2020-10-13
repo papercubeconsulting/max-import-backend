@@ -40,6 +40,16 @@ paths:
       responses:
         '200':
           description: Successful operation
+  '/dispatches/{id}/finish':
+    post:
+      tags:
+        - sales.dispatch
+      summary: Completar despacho
+      parameters:
+        - $ref: '#/components/parameters/paramId'
+      responses:
+        '200':
+          description: Successful operation
 components:
   requestBodies:
     dispatchProductBox:

@@ -23,4 +23,14 @@ const postDispatchProductBox = async (req, res) => {
   return res.status(response.status).send(response);
 };
 
-module.exports = { listDispatch, getDispatch, postDispatchProductBox };
+const postFinishDispatch = async (req, res) => {
+  const response = await Service.postFinishDispatch(req.params, req.user);
+  return res.status(response.status).send(response);
+};
+
+module.exports = {
+  listDispatch,
+  getDispatch,
+  postDispatchProductBox,
+  postFinishDispatch,
+};
