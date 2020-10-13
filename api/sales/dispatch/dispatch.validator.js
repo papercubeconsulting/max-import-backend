@@ -26,7 +26,7 @@ const List = {
       from: Joi.date().iso(),
       to: Joi.date()
         .iso()
-        .min(Joi.ref('paidAtFrom')),
+        .min(Joi.ref('from')),
 
       status: Joi.string().valid(...getDictValues(DISPATCH.STATUS)),
       dispatchmentType: Joi.string().valid(
@@ -44,7 +44,7 @@ const List = {
         .lowercase()
         .trim(),
     })
-    .and('paidAtFrom', 'paidAtTo'),
+    .and('from', 'to'),
 };
 
 const PostDispatchProductBox = {
