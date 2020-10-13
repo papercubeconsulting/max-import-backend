@@ -1,4 +1,10 @@
-const { Dispatch, DispatchedProduct, Product } = require('@dbModels');
+const {
+  Dispatch,
+  DispatchedProduct,
+  Product,
+  Proforma,
+  Client,
+} = require('@dbModels');
 const { setResponse } = require('@/utils');
 
 const getDispatch = async reqParams => {
@@ -9,6 +15,12 @@ const getDispatch = async reqParams => {
         model: DispatchedProduct,
         include: {
           model: Product,
+        },
+      },
+      {
+        model: Proforma,
+        include: {
+          model: Client,
         },
       },
     ],
