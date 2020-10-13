@@ -2,7 +2,13 @@
 const _ = require('lodash');
 const moment = require('moment-timezone');
 
-const { Proforma, Client, Sale, Dispatch } = require('@dbModels');
+const {
+  Proforma,
+  Client,
+  Sale,
+  Dispatch,
+  DeliveryAgency,
+} = require('@dbModels');
 const { Op } = require('sequelize');
 
 const { sequelize } = require(`@root/startup/db`);
@@ -74,6 +80,7 @@ const listDispatch = async reqQuery => {
         required: true,
       },
       Sale,
+      DeliveryAgency,
     ],
     distinct: true,
     ...paginate(_.pick(reqQuery, ['page', 'pageSize'])),
