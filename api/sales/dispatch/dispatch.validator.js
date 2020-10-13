@@ -1,4 +1,5 @@
 const { Joi } = require('celebrate');
+const moment = require('moment');
 
 const { getDictValues, DISPATCH } = require('../../utils/constants');
 
@@ -23,10 +24,24 @@ const List = {
         .default(20),
 
       // ? Filtrado por fecha de pago
-      from: Joi.date().iso(),
+      from: Joi.date()
+        .iso()
+        .default(
+          moment
+            .utc()
+            .startOf('day')
+            .subtract(7, 'd')
+            .toDate(),
+        ),
       to: Joi.date()
         .iso()
-        .min(Joi.ref('from')),
+        .min(Joi.ref('from'))
+        .default(
+          moment
+            .utc()
+            .endOf('day')
+            .toDate(),
+        ),
 
       status: Joi.string().valid(...getDictValues(DISPATCH.STATUS)),
       dispatchmentType: Joi.string().valid(
