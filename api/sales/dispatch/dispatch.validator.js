@@ -51,6 +51,9 @@ const List = {
       // ? Filtrado por proforma
       proformaId: Joi.number().integer(),
 
+      // ? Filtrado por despachador
+      dispatcherId: Joi.number().integer(),
+
       // ? Filtrado por cliente
       name: Joi.string()
         .lowercase()

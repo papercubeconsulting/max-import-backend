@@ -21,8 +21,7 @@ const noQueryFields = [
   // ? Para filtro de fechas
   'from',
   'to',
-  // ? Filtro enlazado
-  'proformaId',
+
   // ? Filtro cliente
   'name',
   'lastname',
@@ -63,7 +62,7 @@ const listDispatch = async reqQuery => {
     );
 
   // ? En caso se solicte una proforma, se agregar el filtro enlazado
-  if (reqQuery.proformaId) mainQuery['$proforma.id$'] = reqQuery.proformaId;
+  // if (reqQuery.proformaId) mainQuery['$proforma.id$'] = reqQuery.proformaId;
 
   const dispatches = await Dispatch.findAndCountAll({
     where: mainQuery,

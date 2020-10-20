@@ -12,6 +12,7 @@ paths:
         - $ref: '#/components/parameters/d_status'
         - $ref: '#/components/parameters/dispatchmentType'
         - $ref: '#/components/parameters/proformaId'
+        - $ref: '#/components/parameters/dispatcherId'
         - $ref: '#/components/parameters/name'
         - $ref: '#/components/parameters/lastname'
       responses:
@@ -100,6 +101,15 @@ components:
       name: proformaId
       in: query
       description: Id de la proforma
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    dispatcherId:
+      name: dispatcherId
+      in: query
+      description: Id del despachador
       required: false
       schema:
         type: integer
