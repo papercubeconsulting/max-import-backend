@@ -23,9 +23,21 @@ const paginate = ({ page, pageSize }) => {
   };
 };
 
+const orderByField = allowed => {
+  return (value, helpers) => {
+    const criteria =
+      value[0] === '-' ? [value.substring(1), 'DESC'] : [value, 'ASC'];
+    if (!allowed.includes(criteria[0]))
+      return helpers.error('any.only', { valids: allowed });
+    return [criteria];
+  };
+};
+
 module.exports = {
   setResponse,
   asyncForEach,
   paginate,
+  orderByField,
   ...require('./email'),
+  ...require('./constants'),
 };

@@ -10,7 +10,6 @@ const { sequelize } = require(`@root/startup/db`);
 const { setResponse, paginate } = require('../../utils');
 
 const { PROFORMA, SALE } = require('../../utils/constants');
-const user = require('@/utils/constants/user');
 
 const noQueryFields = [
   // ? Para paginacion
@@ -19,6 +18,9 @@ const noQueryFields = [
   // ? Para filtro de fechas
   'paidAtFrom',
   'paidAtTo',
+
+  // ? Para creterio de ordenamiento
+  'orderBy',
 ];
 
 const closeProforma = async (reqBody, reqUser) => {
@@ -105,10 +107,6 @@ const listSale = async reqQuery => {
   // ? Query para la venta
   const mainQuery = { ..._.omit(reqQuery, noQueryFields) };
 
-  // ? Por defecto se ordenan las ventas de manera ascendente segun fecha de creacion
-  // ? Para vista de pagos en caja
-  let orderBy = [['createdAt', 'ASC']];
-
   // ? Se filtra la fecha de pago solo si los campos estan presentes
   if (reqQuery.paidAtFrom) {
     mainQuery.paidAt = {
@@ -129,10 +127,6 @@ const listSale = async reqQuery => {
           .toDate(),
       ],
     };
-
-    // ? El orden cambia a descendente segun fecha de pago
-    // ? Para vista de historial de pagos
-    orderBy = [['paidAt', 'DESC']];
   }
 
   // // ? En caso se solicte una proforma, se agregar el filtro enlazado
@@ -140,7 +134,7 @@ const listSale = async reqQuery => {
 
   const sales = await Sale.findAndCountAll({
     where: mainQuery,
-    order: orderBy,
+    order: reqQuery.orderBy,
     include: [
       { model: Proforma, include: [Client] },
       { model: User, as: 'cashier' },

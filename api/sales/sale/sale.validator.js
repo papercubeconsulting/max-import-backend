@@ -1,6 +1,7 @@
+/* eslint-disable no-param-reassign */
 const { Joi } = require('celebrate');
 
-const { getDictValues, SALE } = require('../../utils/constants');
+const { getDictValues, orderByField, SALE } = require('@/utils');
 
 const Post = {
   body: {
@@ -72,6 +73,9 @@ const List = {
         .integer()
         .min(1)
         .default(20),
+
+      // ?
+      orderBy: Joi.string().custom(orderByField(['createdAt', 'paidAt'])),
 
       // ? Filtrado por fecha de pago
       paidAtFrom: Joi.date().iso(),

@@ -91,3 +91,10 @@ components:
       schema:
         type: integer
         format: int32
+    orderBy:
+      name: orderBy
+      in: query
+      description: Criterio para ordenar
+      required: false
+      schema:
+        type: string
