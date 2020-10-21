@@ -32,11 +32,13 @@ module.exports = (sequelize, DataTypes) => {
             productBox: ProductBox,
           } = dispatchedProductBox.sequelize.models;
 
+          const t = _.get(options, 'transaction');
+
           await DispatchedProduct.increment(
             { dispatched: dispatchedProductBox.quantity },
             {
               where: { id: dispatchedProductBox.dispatchedProductId },
-              transaction: _.get(options, 'transaction'),
+              transaction: t,
             },
           );
 
@@ -44,19 +46,22 @@ module.exports = (sequelize, DataTypes) => {
             { stock: -dispatchedProductBox.quantity },
             {
               where: { id: dispatchedProductBox.productBoxId },
-              transaction: _.get(options, 'transaction'),
+              transaction: t,
             },
           );
 
-          const productBox = await dispatchedProductBox.getProductBox();
+          const productBox = await dispatchedProductBox.getProductBox({
+            transaction: t,
+          });
 
           productBox.registerLog(
             `Despachado ${dispatchedProductBox.quantity} unidades`,
             dispatchedProductBox.dispatcherId,
+            { transaction: t },
           );
 
           await Product.updateStock(dispatchedProductBox.productId, {
-            transaction: _.get(options, 'transaction'),
+            transaction: t,
           });
         },
       },

@@ -28,6 +28,20 @@ module.exports = (sequelize, DataTypes) => {
       dispatchmentType: {
         type: DataTypes.ENUM(getDictValues(DISPATCH.DISPATCHMENT_TYPE)),
       },
+      // * Virtual fields
+
+      statusDescription: {
+        type: DataTypes.VIRTUAL,
+        get() {
+          return DISPATCH.STATUS[this.status].name;
+        },
+      },
+      dispatchmentTypeDescription: {
+        type: DataTypes.VIRTUAL,
+        get() {
+          return DISPATCH.DISPATCHMENT_TYPE[this.dispatchmentType].name;
+        },
+      },
       completedAt: DataTypes.DATE,
     },
     {

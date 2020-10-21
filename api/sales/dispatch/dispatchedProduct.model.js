@@ -8,6 +8,11 @@ module.exports = (sequelize, DataTypes) => {
       DispatchedProduct.belongsTo(models.Dispatch);
       DispatchedProduct.belongsTo(models.Product);
 
+      DispatchedProduct.belongsTo(models.User, {
+        as: 'lastDispatcher',
+        foreignKey: 'lastDispatcherId',
+      });
+
       DispatchedProduct.hasMany(models.DispatchedProductBox);
     }
   }

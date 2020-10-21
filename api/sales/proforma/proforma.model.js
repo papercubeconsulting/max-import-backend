@@ -60,8 +60,6 @@ module.exports = (sequelize, DataTypes) => {
           transaction: _.get(options, 'transaction'),
         },
       );
-      console.log(dispatch);
-      // const disptach = await this.createDispatch();
 
       // ? Se actualiza los estados de la proforma y el estado contable
       this.status = PROFORMA.STATUS.CLOSED.value;

@@ -32,6 +32,9 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Sale, { foreignKey: 'sellerId' });
       User.hasMany(models.Dispatch, { foreignKey: 'dispatcherId' });
       User.hasMany(models.DispatchedProductBox, { foreignKey: 'dispatcherId' });
+      User.hasMany(models.DispatchedProduct, {
+        foreignKey: 'lastDispatcherId',
+      });
     }
 
     // ? To find users based on different pk's

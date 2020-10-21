@@ -16,8 +16,12 @@ const validatePostDispatchProductBox = async (reqParams, reqBody) => {
   const dispatchedProduct = await DispatchedProduct.findByPk(
     reqParams.dispatchedProductId,
     {
-      where: { dispatchId: reqParams.id },
-      include: [Dispatch],
+      include: [
+        {
+          model: Dispatch,
+          where: { id: reqParams.id },
+        },
+      ],
     },
   );
 
@@ -85,6 +89,9 @@ const postDispatchProductBox = async (reqParams, reqBody, reqUser) => {
         transaction: t,
       },
     );
+
+    await dispatchedProduct.setLastDispatcher(reqUser, { transaction: t });
+    await dispatchedProduct.dispatch.setDispatcher(reqUser, { transaction: t });
 
     await t.commit();
     await dispatchedProduct.reload();

@@ -44,14 +44,17 @@ module.exports = (sequelize, DataTypes) => {
       )}`;
     }
 
-    registerLog(message, user) {
+    registerLog(message, user, options) {
       const { productBoxLog: ProductBoxLog } = this.sequelize.models;
-      return ProductBoxLog.create({
-        productBoxId: this.id,
-        log: _.get(PRODUCTBOX_UPDATES, `${message}.name`, message),
-        userId: _.get(user, 'id', user),
-        warehouseId: this.warehouseId,
-      });
+      return ProductBoxLog.create(
+        {
+          productBoxId: this.id,
+          log: _.get(PRODUCTBOX_UPDATES, `${message}.name`, message),
+          userId: _.get(user, 'id', user),
+          warehouseId: this.warehouseId,
+        },
+        { transaction: _.get(options, 'transaction') },
+      );
     }
   }
   ProductBox.init(
