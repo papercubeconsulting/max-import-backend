@@ -3,13 +3,14 @@ const _ = require('lodash');
 const moment = require('moment-timezone');
 const winston = require('winston');
 
-const { Proforma, Client, Sale } = require('@dbModels');
+const { Proforma, Client, Sale, User } = require('@dbModels');
 const { Op } = require('sequelize');
 
 const { sequelize } = require(`@root/startup/db`);
 const { setResponse, paginate } = require('../../utils');
 
 const { PROFORMA, SALE } = require('../../utils/constants');
+const user = require('@/utils/constants/user');
 
 const noQueryFields = [
   // ? Para paginacion
@@ -18,8 +19,6 @@ const noQueryFields = [
   // ? Para filtro de fechas
   'paidAtFrom',
   'paidAtTo',
-  // ? Filtro enlazado
-  'proformaId',
 ];
 
 const closeProforma = async (reqBody, reqUser) => {
@@ -136,13 +135,17 @@ const listSale = async reqQuery => {
     orderBy = [['paidAt', 'DESC']];
   }
 
-  // ? En caso se solicte una proforma, se agregar el filtro enlazado
-  if (reqQuery.proformaId) mainQuery['$proforma.id$'] = reqQuery.proformaId;
+  // // ? En caso se solicte una proforma, se agregar el filtro enlazado
+  // if (reqQuery.proformaId) mainQuery['$proforma.id$'] = reqQuery.proformaId;
 
   const sales = await Sale.findAndCountAll({
     where: mainQuery,
     order: orderBy,
-    include: [{ model: Proforma, include: [Client] }],
+    include: [
+      { model: Proforma, include: [Client] },
+      { model: User, as: 'cashier' },
+      { model: User, as: 'seller' },
+    ],
     distinct: true,
     ...paginate(_.pick(reqQuery, ['page', 'pageSize'])),
   });

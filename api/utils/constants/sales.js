@@ -39,7 +39,7 @@ module.exports = {
       SALE: { value: 'SALE', name: 'Venta' },
     },
     DISPATCHMENT_TYPE: {
-      DELIVERY: { value: 'DELIVERY', name: 'Envío' },
+      DELIVERY: { value: 'DELIVERY', name: 'Delivery' },
       PICK_UP: { value: 'PICK_UP', name: 'Recojo en tienda' },
     },
     PAYMENT_METHOD: ['Efectivo', 'Tarjeta', 'Depósito'],
@@ -51,7 +51,7 @@ module.exports = {
       COMPLETED: { value: 'COMPLETED', name: 'Completado' },
     },
     DISPATCHMENT_TYPE: {
-      DELIVERY: { value: 'DELIVERY', name: 'Envío' },
+      DELIVERY: { value: 'DELIVERY', name: 'Delivery' },
       PICK_UP: { value: 'PICK_UP', name: 'Recojo en tienda' },
     },
   },
