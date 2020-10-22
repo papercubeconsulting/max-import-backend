@@ -91,6 +91,7 @@ const List = {
 
       status: Joi.string().valid(...getDictValues(SALE.STATUS)),
       type: Joi.string().valid(...getDictValues(SALE.TYPE)),
+      billingType: Joi.string().valid(...getDictValues(SALE.BILLING_TYPE)),
 
       // ? Filtrado por cajero
       cashierId: Joi.number().integer(),

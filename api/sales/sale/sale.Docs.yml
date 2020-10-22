@@ -22,6 +22,7 @@ paths:
         - $ref: "#/components/parameters/toDate"
         - $ref: "#/components/parameters/status"
         - $ref: "#/components/parameters/type"
+        - $ref: "#/components/parameters/billingType"
         - $ref: "#/components/parameters/paidAtFromDate"
         - $ref: "#/components/parameters/paidAtToDate"
         - $ref: "#/components/parameters/cashierId"
@@ -197,6 +198,16 @@ components:
         enum:
           - STORE
           - REMOTE
+    billingType:
+      name: billingType
+      in: query
+      description: Tipo de comprobante (si es consignación y venta)
+      required: false
+      schema:
+        type: string
+        enum:
+          - CONSIGNMENT
+          - SALE
 
     paidAtFromDate:
       name: paidAtFrom
