@@ -18,6 +18,8 @@ const noQueryFields = [
   // ? Para filtro de fechas
   'paidAtFrom',
   'paidAtTo',
+  'from',
+  'to',
 
   // ? Para creterio de ordenamiento
   'orderBy',
@@ -129,8 +131,21 @@ const listSale = async reqQuery => {
     };
   }
 
-  // // ? En caso se solicte una proforma, se agregar el filtro enlazado
-  // if (reqQuery.proformaId) mainQuery['$proforma.id$'] = reqQuery.proformaId;
+  // ? Se filtra la fecha de creacion solo si los campos estan presentes
+  if (reqQuery.from) {
+    mainQuery.createdAt = {
+      [Op.between]: [
+        moment
+          .tz(moment.utc(reqQuery.from).format('YYYY-MM-DD'), 'America/Lima')
+          .startOf('day')
+          .toDate(),
+        moment
+          .tz(moment.utc(reqQuery.to).format('YYYY-MM-DD'), 'America/Lima')
+          .endOf('day')
+          .toDate(),
+      ],
+    };
+  }
 
   const sales = await Sale.findAndCountAll({
     where: mainQuery,

@@ -17,6 +17,9 @@ paths:
         - $ref: "#/components/parameters/pagePagination"
         - $ref: "#/components/parameters/pageSizePagination"
         - $ref: "#/components/parameters/orderBy"
+        
+        - $ref: "#/components/parameters/fromDate"
+        - $ref: "#/components/parameters/toDate"
         - $ref: "#/components/parameters/status"
         - $ref: "#/components/parameters/type"
         - $ref: "#/components/parameters/paidAtFromDate"

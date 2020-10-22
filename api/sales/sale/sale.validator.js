@@ -77,6 +77,12 @@ const List = {
       // ?
       orderBy: Joi.string().custom(orderByField(['createdAt', 'paidAt'])),
 
+      // ? Filtrado por fecha de creacion
+      from: Joi.date().iso(),
+      to: Joi.date()
+        .iso()
+        .min(Joi.ref('from')),
+
       // ? Filtrado por fecha de pago
       paidAtFrom: Joi.date().iso(),
       paidAtTo: Joi.date()
@@ -92,7 +98,8 @@ const List = {
       // ? Filtrado por proforma
       proformaId: Joi.number().integer(),
     })
-    .and('paidAtFrom', 'paidAtTo'),
+    .and('paidAtFrom', 'paidAtTo')
+    .and('from', 'to'),
 };
 
 const PutPay = {
