@@ -23,6 +23,7 @@ paths:
         - $ref: "#/components/parameters/status"
         - $ref: "#/components/parameters/type"
         - $ref: "#/components/parameters/billingType"
+        - $ref: "#/components/parameters/paymentType"
         - $ref: "#/components/parameters/paidAtFromDate"
         - $ref: "#/components/parameters/paidAtToDate"
         - $ref: "#/components/parameters/cashierId"
@@ -208,6 +209,16 @@ components:
         enum:
           - CONSIGNMENT
           - SALE
+    paymentType:
+      name: paymentType
+      in: query
+      description: Tipo de pago (si es al contado o credito)
+      required: false
+      schema:
+        type: string
+        enum:
+          - CASH
+          - CREDIT
 
     paidAtFromDate:
       name: paidAtFrom
