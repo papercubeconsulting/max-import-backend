@@ -43,6 +43,16 @@ paths:
           description: Successful operation
       requestBody:
         $ref: "#/components/requestBodies/PutSale"
+  "/sales/{id}":
+    get:
+      tags:
+        - sales.sales
+      summary: Obtener una venta
+      parameters:
+        - $ref: "#/components/parameters/paramId"
+      responses:
+        "201":
+          description: Successful operation
 components:
   requestBodies:
     Sale:

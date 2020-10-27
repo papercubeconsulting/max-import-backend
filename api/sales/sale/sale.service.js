@@ -3,7 +3,14 @@ const _ = require('lodash');
 const moment = require('moment-timezone');
 const winston = require('winston');
 
-const { Proforma, Client, Sale, User } = require('@dbModels');
+const {
+  Proforma,
+  Client,
+  Sale,
+  User,
+  SoldProduct,
+  Product,
+} = require('@dbModels');
 const { Op } = require('sequelize');
 
 const { sequelize } = require(`@root/startup/db`);
@@ -211,7 +218,18 @@ const paySale = async (reqParams, reqBody, reqUser) => {
   return setResponse(200, 'Sale paid.', sale);
 };
 
+const getSale = async reqParams => {
+  const sale = await Sale.scope('full').findByPk(reqParams.id, {
+    include: [{ all: true }, { model: SoldProduct, include: [Product] }],
+  });
+
+  if (!sale) return setResponse(404, 'Sale not found.');
+
+  return setResponse(200, 'Sale found.', sale);
+};
+
 module.exports = {
+  getSale,
   closeProforma,
   listSale,
   validatePaySale,

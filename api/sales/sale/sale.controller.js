@@ -5,6 +5,11 @@ const listSale = async (req, res) => {
   return res.status(response.status).send(response);
 };
 
+const getSale = async (req, res) => {
+  const response = await Service.getSale(req.params);
+  return res.status(response.status).send(response);
+};
+
 const postSale = async (req, res) => {
   // ? 1A. Se valida si el stock esta disponible
   // ? 1B. Se cierra la proforma
@@ -22,4 +27,4 @@ const paySale = async (req, res) => {
   return res.status(response.status).send(response);
 };
 
-module.exports = { postSale, listSale, paySale };
+module.exports = { postSale, listSale, paySale, getSale };
