@@ -13,8 +13,10 @@ const listProforma = async reqQuery => {
   // ? Query para la proforma
   const mainQuery = {
     ..._.omit(reqQuery, noQueryFields),
+  };
 
-    createdAt: {
+  if (reqQuery.from) {
+    mainQuery.createdAt = {
       [Op.between]: [
         moment
           .tz(moment.utc(reqQuery.from).format('YYYY-MM-DD'), 'America/Lima')
@@ -25,9 +27,8 @@ const listProforma = async reqQuery => {
           .endOf('day')
           .toDate(),
       ],
-    },
-  };
-
+    };
+  }
   // ? Query para el cliente
   const clientQuery = {};
   if (reqQuery.name)

@@ -31,7 +31,10 @@ const listDispatch = async reqQuery => {
   // ? Query para el despacho
   const mainQuery = {
     ..._.omit(reqQuery, noQueryFields),
-    createdAt: {
+  };
+
+  if (reqQuery.from) {
+    mainQuery.createdAt = {
       [Op.between]: [
         moment
           .tz(moment.utc(reqQuery.from).format('YYYY-MM-DD'), 'America/Lima')
@@ -42,8 +45,8 @@ const listDispatch = async reqQuery => {
           .endOf('day')
           .toDate(),
       ],
-    },
-  };
+    };
+  }
 
   // ? Query para el cliente
   const clientQuery = {};
@@ -60,9 +63,6 @@ const listDispatch = async reqQuery => {
       'LIKE',
       `%${reqQuery.lastname}%`,
     );
-
-  // ? En caso se solicte una proforma, se agregar el filtro enlazado
-  // if (reqQuery.proformaId) mainQuery['$proforma.id$'] = reqQuery.proformaId;
 
   const dispatches = await Dispatch.findAndCountAll({
     where: mainQuery,

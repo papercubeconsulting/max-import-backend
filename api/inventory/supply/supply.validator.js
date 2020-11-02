@@ -14,24 +14,10 @@ const List = {
       .min(1)
       .default(20),
 
-    from: Joi.date()
-      .iso()
-      .default(
-        moment
-          .utc()
-          .startOf('day')
-          .subtract(7, 'd')
-          .toDate(),
-      ),
+    from: Joi.date().iso(),
     to: Joi.date()
       .iso()
-      .min(Joi.ref('from'))
-      .default(
-        moment
-          .utc()
-          .endOf('day')
-          .toDate(),
-      ),
+      .min(Joi.ref('from')),
   },
 };
 
