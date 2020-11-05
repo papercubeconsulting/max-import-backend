@@ -131,9 +131,29 @@ const PutPay = {
   },
 };
 
+const GetSIGO = {
+  query: {
+    id: Joi.alternatives().try(
+      Joi.array()
+        .items(
+          Joi.number()
+            .integer()
+            .min(1),
+        )
+        .unique()
+        .min(1)
+        .required(),
+      Joi.number()
+        .integer()
+        .min(1)
+        .required(),
+    ),
+  },
+};
 module.exports = {
   Post,
   Get,
   List,
   PutPay,
+  GetSIGO,
 };

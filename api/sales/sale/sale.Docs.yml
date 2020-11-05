@@ -31,6 +31,16 @@ paths:
       responses:
         "200":
           description: Successful operation
+  "/sales/sigo":
+    get:
+      tags:
+        - sales.sales
+      summary: Obtener reporte de ventas en formato SIGO
+      parameters:
+        - $ref: "#/components/parameters/multipleIds"
+      responses:
+        "200":
+          description: Successful operation
   "/sales/{id}/pay":
     put:
       tags:
@@ -266,3 +276,13 @@ components:
         type: integer
         format: int32
         minimum: 1
+    multipleIds:
+      name: id
+      in: query
+      required: true
+      schema:
+        type: array
+        items:
+          schema:
+            type: integer
+        collectionFormat: multi

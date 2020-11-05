@@ -40,4 +40,5 @@ module.exports = {
   orderByField,
   ...require('./email'),
   ...require('./constants'),
+  ...require('./jsonParser'),
 };

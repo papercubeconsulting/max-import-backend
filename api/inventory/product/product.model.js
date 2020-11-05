@@ -3,7 +3,6 @@ const _ = require('lodash');
 const { Model: SeqModel, Op } = require('sequelize');
 
 const { warehouseTypes } = require('@/utils/constants');
-const { log } = require('debug');
 
 module.exports = (sequelize, DataTypes) => {
   class Product extends SeqModel {

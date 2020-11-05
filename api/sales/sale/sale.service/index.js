@@ -4,4 +4,5 @@ module.exports = {
   ...require('./listSale'),
   ...require('./paySale'),
   ...require('./closeProforma'),
+  ...require('./getSIGOReport'),
 };
