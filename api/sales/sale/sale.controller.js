@@ -32,7 +32,7 @@ const paySale = async (req, res) => {
 const getSIGOSaleReport = async (req, res) => {
   const response = await Service.getSIGOSaleReport(req.query);
 
-  return excelParser(res, 'SIGO.csv', response.data.fields, response.data.data);
+  return excelParser(res, 'SIGO', response.data.fields, response.data.data);
 };
 
 module.exports = { postSale, listSale, paySale, getSale, getSIGOSaleReport };
