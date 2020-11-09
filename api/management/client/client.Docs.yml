@@ -19,3 +19,65 @@ paths:
       responses:
         "200":
           description: Successful operation
+  "/clients":
+    get:
+      tags:
+        - management.clients
+      summary: Listar clientes
+      responses:
+        "200":
+          description: Successful operation
+    post:
+      tags:
+        - management.clients
+      summary: Crear un cliente
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - PERSON
+                    - COMPANY
+                idNumber:
+                  type: string
+                name:
+                  type: string
+                lastname:
+                  type: string
+                email:
+                  type: string
+                phoneNumber:
+                  type: string
+                address:
+                  type: string
+                regionId:
+                  type: string
+                provinceId:
+                  type: string
+                districtId:
+                  type: string
+                defaultDeliveryAgencyId:
+                  type: integer
+              example:
+                type: PERSON
+                idNumber: "12345678"
+                name: "Nombre o Razon Social"
+                lastname: "Apellido"
+                email: "correo@mail.com"
+                phoneNumber: "987654321"
+                address: ""
+                regionId: "15"
+                provinceId: "1501"
+                districtId: "150101"
+                defaultDeliveryAgencyId: 1
+              required:
+                - type
+                - idNumber
+                - name
+      responses:
+        "200":
+          description: Successful operation

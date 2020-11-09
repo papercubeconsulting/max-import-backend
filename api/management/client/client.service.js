@@ -8,6 +8,18 @@ const getClient = async reqParams => {
   return setResponse(200, 'Client found.', client);
 };
 
+const listClient = async reqQuery => {
+  const clients = await Client.findAll(reqQuery);
+  return setResponse(200, 'Clients found.', clients);
+};
+
+const postClient = async reqBody => {
+  const client = await Client.create(reqBody);
+  return setResponse(200, 'Client created.', client);
+};
+
 module.exports = {
   getClient,
+  listClient,
+  postClient,
 };
