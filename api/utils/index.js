@@ -41,4 +41,5 @@ module.exports = {
   ...require('./email'),
   ...require('./constants'),
   ...require('./jsonParser'),
+  ...require('./excelParser'),
 };

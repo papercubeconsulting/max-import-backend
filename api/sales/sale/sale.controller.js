@@ -1,6 +1,6 @@
 const Service = require('./sale.service');
 
-const { jsonParser } = require('@/utils');
+const { excelParser } = require('@/utils');
 
 const listSale = async (req, res) => {
   const response = await Service.listSale(req.query);
@@ -32,7 +32,7 @@ const paySale = async (req, res) => {
 const getSIGOSaleReport = async (req, res) => {
   const response = await Service.getSIGOSaleReport(req.query);
 
-  return jsonParser(res, 'SIGO.csv', response.data.fields, response.data.data);
+  return excelParser(res, 'SIGO.csv', response.data.fields, response.data.data);
 };
 
 module.exports = { postSale, listSale, paySale, getSale, getSIGOSaleReport };

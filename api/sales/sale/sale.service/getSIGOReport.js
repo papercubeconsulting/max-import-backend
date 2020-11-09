@@ -20,6 +20,9 @@ const { setResponse } = require('@root/api/utils');
 
 const formatDate = (date, prefix) => {
   const ans = {};
+  ans[`${prefix}Year`] = '';
+  ans[`${prefix}Month`] = '';
+  ans[`${prefix}Day`] = '';
   if (!date) return ans;
   const localDate = moment.tz(date, 'America/Lima');
   ans[`${prefix}Year`] = localDate.year();
