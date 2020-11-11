@@ -2,6 +2,7 @@ const ExcelJS = require('exceljs');
 const fs = require('fs');
 const moment = require('moment');
 const path = require('path');
+var tempfile = require('tempfile');
 
 const asyncForEach = async (array, callback) => {
   for (let index = 0; index < array.length; index += 1) {
@@ -21,6 +22,7 @@ module.exports = {
   excelParser: async (res, fileName, fields, data) => {
     const source = path.resolve(basePath, 'baseSigoSales.xlsx');
     const initRow = 6;
+    var tempFilePath = tempfile('.xlsx');
     // try {
     //   fs.unlinkSync(destination);
     // } catch (error) {}
@@ -54,14 +56,23 @@ module.exports = {
     // await workbook.xlsx.writeFile(destination);
     // fs.unlinkSync(destination);
     // res is a Stream object
-    res.setHeader(
-      'Content-Type',
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-    );
-    res.setHeader('Content-Disposition', `attachment; filename=${fileName}`);
 
-    return workbook.xlsx.write(res).then(function() {
-      res.status(200).end();
+    // res.setHeader(
+    //   'Content-Type',
+    //   'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    // );
+    // res.setHeader('Content-Disposition', `attachment; filename=${fileName}`);
+
+    // return workbook.xlsx.write(res).then(function() {
+    //   res.status(200).end();
+    // });
+
+    workbook.xlsx.writeFile(tempFilePath).then(function() {
+      res.status(200).sendFile(tempFilePath, function(err){
+          if(err) {
+              console.log('---------- error downloading file: ' + err);
+          }
+      });
     });
   },
 };
