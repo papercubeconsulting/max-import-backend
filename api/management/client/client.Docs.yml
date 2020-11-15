@@ -24,6 +24,9 @@ paths:
       tags:
         - management.clients
       summary: Listar clientes
+      parameters:
+        - $ref: '#/components/parameters/pagePagination'
+        - $ref: '#/components/parameters/pageSizePagination'
       responses:
         "200":
           description: Successful operation
@@ -62,22 +65,47 @@ paths:
                   type: string
                 defaultDeliveryAgencyId:
                   type: integer
-              example:
-                type: PERSON
-                idNumber: "12345678"
-                name: "Nombre o Razon Social"
-                lastname: "Apellido"
-                email: "correo@mail.com"
-                phoneNumber: "987654321"
-                address: ""
-                regionId: "15"
-                provinceId: "1501"
-                districtId: "150101"
-                defaultDeliveryAgencyId: 1
               required:
                 - type
                 - idNumber
-                - name
+                - name                
+            examples:
+              basicPerson:
+                value:
+                  type: PERSON
+                  idNumber: "12345678"
+                  name: "Nombre"
+                  lastname: "Apellido"
+                  email: "correo@mail.com"
+                  phoneNumber: "987654321"
+                  address: ""
+                  regionId: "15"
+                  provinceId: "1501"
+                  districtId: "150101"
+              basicCompany:
+                value:
+                  type: COMPANY
+                  idNumber: "12345678901"
+                  name: "Razon Social"
+                  email: "correo@mail.com"
+                  phoneNumber: "987654321"
+                  address: ""
+                  regionId: "15"
+                  provinceId: "1501"
+                  districtId: "150101"
+              full:
+                value:
+                  type: PERSON
+                  idNumber: "12345678"
+                  name: "Nombre o Razon Social"
+                  lastname: "Apellido"
+                  email: "correo@mail.com"
+                  phoneNumber: "987654321"
+                  address: ""
+                  regionId: "15"
+                  provinceId: "1501"
+                  districtId: "150101"
+                  defaultDeliveryAgencyId: 1
       responses:
         "200":
           description: Successful operation

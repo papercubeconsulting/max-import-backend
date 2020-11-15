@@ -1,5 +1,3 @@
-/* eslint-disable import/no-dynamic-require */
-const _ = require('lodash');
 const moment = require('moment-timezone');
 const Dinero = require('dinero.js');
 
@@ -7,14 +5,12 @@ const {
   Proforma,
   Client,
   Sale,
-  User,
   ProformaProduct,
   SoldProduct,
   Dispatch,
   Product,
   Model,
 } = require('@dbModels');
-const { Op } = require('sequelize');
 
 const { setResponse } = require('@root/api/utils');
 
@@ -96,8 +92,6 @@ const getSIGOSaleReport = async reqQuery => {
     include: [
       { model: SoldProduct, include: [{ model: Product, include: [Model] }] },
       { model: Proforma, include: [Client, ProformaProduct, Dispatch] },
-      { model: User, as: 'cashier' },
-      { model: User, as: 'seller' },
     ],
     distinct: true,
   });
@@ -122,7 +116,7 @@ const getSIGOSaleReport = async reqQuery => {
           documentCode: '5',
           documentNumber: sale.proformaId,
           ...creationDate,
-          ...dispatchDate,
+          ...dispatchDate, // ! To review
           sellerId: sale.sellerId,
           clientId: sale.proforma.clientId,
           zoneCode: 0,
@@ -165,7 +159,7 @@ const getSIGOSaleReport = async reqQuery => {
           conversionFactorOperator: 0,
           conversionFactorValue: 0,
           currencyCode: 1,
-          foreignPrice: 0, // ! To validate if is 0
+          foreignPrice: 0,
           purchaseOrderReceipt: '',
           purchaseOrderNumber: '',
           affectationType: 0,

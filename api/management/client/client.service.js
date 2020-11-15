@@ -1,6 +1,7 @@
+const _ = require('lodash');
 const { Client } = require('@dbModels');
 
-const { setResponse } = require('../../utils');
+const { setResponse, paginate } = require('../../utils');
 
 const getClient = async reqParams => {
   const client = await Client.findOne({ where: reqParams });
@@ -8,8 +9,23 @@ const getClient = async reqParams => {
   return setResponse(200, 'Client found.', client);
 };
 
+const noQueryFields = ['page', 'pageSize', 'from', 'to'];
+
 const listClient = async reqQuery => {
-  const clients = await Client.findAll(reqQuery);
+  const mainQuery = {
+    ..._.omit(reqQuery, noQueryFields),
+  };
+
+  const clients = await Client.findAndCountAll({
+    where: mainQuery,
+    order: [['createdAt', 'DESC']],
+    ...paginate(_.pick(reqQuery, ['page', 'pageSize'])),
+  });
+
+  clients.page = reqQuery.page;
+  clients.pageSize = reqQuery.pageSize;
+  clients.pages = _.ceil(clients.count / clients.pageSize);
+
   return setResponse(200, 'Clients found.', clients);
 };
 

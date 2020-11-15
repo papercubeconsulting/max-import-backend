@@ -35,7 +35,21 @@ const Post = {
   },
 };
 
+const List = {
+  query: {
+    page: Joi.number()
+      .integer()
+      .min(1)
+      .default(1),
+    pageSize: Joi.number()
+      .integer()
+      .min(1)
+      .default(20),
+  },
+};
+
 module.exports = {
   Get,
   Post,
+  List,
 };
