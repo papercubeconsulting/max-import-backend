@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const moment = require('moment-timezone');
 const Dinero = require('dinero.js');
 
@@ -8,6 +9,8 @@ const {
   ProformaProduct,
   SoldProduct,
   Dispatch,
+  DispatchedProduct,
+  DispatchedProductBox,
   Product,
   Model,
 } = require('@dbModels');
@@ -89,36 +92,108 @@ const columns = [
 const getSIGOSaleReport = async reqQuery => {
   const sales = await Sale.findAll({
     where: reqQuery,
+    attributes: [
+      'id',
+      'paymentType',
+      'paymentTypeDescription',
+      'sellerId',
+      'discount',
+      'subtotal',
+    ],
     include: [
-      { model: SoldProduct, include: [{ model: Product, include: [Model] }] },
-      { model: Proforma, include: [Client, ProformaProduct, Dispatch] },
+      {
+        model: SoldProduct,
+        attributes: ['productId'],
+        include: [
+          Product,
+          {
+            model: Product,
+            attributes: ['tradename', 'familyId', 'subfamilyId'],
+            include: [
+              {
+                model: Model,
+                attributes: ['code'],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        model: Proforma,
+        attributes: ['id', 'createdAt', 'discount'],
+        include: [
+          {
+            model: Client,
+            attributes: ['id', 'idNumber'],
+          },
+          {
+            model: ProformaProduct,
+            attributes: ['quantity', 'productId', 'subtotal'],
+          },
+        ],
+      },
+      {
+        model: Dispatch,
+        attributes: ['id'],
+        include: [
+          {
+            model: DispatchedProduct,
+            attributes: ['productId'],
+            include: [
+              {
+                model: DispatchedProductBox,
+                attributes: ['id', 'warehouseId', 'createdAt'],
+              },
+            ],
+          },
+        ],
+      },
     ],
     distinct: true,
   });
 
+  // return setResponse(200, 'OK', sales);
+
   const rows = [].concat(
     ...sales.map(sale => {
-      const creationDate = formatDate(sale.proforma.createdAt, 'creation');
-      const dispatchDate = formatDate(
-        sale.proforma.dispatch.completedAt,
-        'dispatch',
+      const discounts = Dinero({ amount: sale.discount }).allocate(
+        sale.proforma.proformaProducts.map(obj => obj.subtotal),
       );
+
+      const creationDate = formatDate(sale.proforma.createdAt, 'creation');
+
       return sale.soldProducts.map((soldProduct, i) => {
         const proformaProduct = sale.proforma.proformaProducts.find(
           obj => obj.productId === soldProduct.productId,
         );
 
-        const price = Dinero({ amount: proformaProduct.subtotal });
-        const [igv, subtotal] = price.allocate([0.18, 0.82]);
+        const dispatchedProduct = sale.dispatch.dispatchedProducts.find(
+          obj => obj.productId === soldProduct.productId,
+        );
 
+        const lastDispatchedProductBox = dispatchedProduct.dispatchedProductBoxes
+          ? dispatchedProduct.dispatchedProductBoxes[
+              dispatchedProduct.dispatchedProductBoxes.length - 1
+            ]
+          : null;
+        const dispatchDate = formatDate(
+          _.get(lastDispatchedProductBox, 'createdAt', null),
+          'dispatch',
+        );
+
+        const price = Dinero({ amount: proformaProduct.subtotal }).subtract(
+          discounts[i],
+        );
+
+        const [igv, subtotal] = price.allocate([0.18, 0.82]);
         return {
           documentType: 'Z',
           documentCode: '5',
-          documentNumber: sale.proformaId,
+          documentNumber: sale.proforma.id,
           ...creationDate,
-          ...dispatchDate, // ! To review
+          ...dispatchDate,
           sellerId: sale.sellerId,
-          clientId: sale.proforma.clientId,
+          clientId: sale.proforma.client.id,
           zoneCode: 0,
           index: i + 1,
           costCenter: 1,
@@ -126,7 +201,7 @@ const getSIGOSaleReport = async reqQuery => {
           NIT: sale.proforma.client.idNumber,
           branchOffice: 0,
           tradename: soldProduct.product.tradename,
-          paymentWay: sale.type,
+          paymentWay: sale.paymentTypeDescription,
 
           impoconsumoPercentage: 0,
           impoconsumoValue: 0,
@@ -153,7 +228,7 @@ const getSIGOSaleReport = async reqQuery => {
           quantity: proformaProduct.quantity,
           price: subtotal.toUnit(),
 
-          warehouseId: 1, // ! To review
+          warehouseId: _.get(lastDispatchedProductBox, 'warehouseId', ''),
           locationId: 0,
           conversionFactor: 0,
           conversionFactorOperator: 0,

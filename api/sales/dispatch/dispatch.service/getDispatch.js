@@ -1,13 +1,13 @@
 const {
   Dispatch,
   DispatchedProduct,
+  DispatchedProductBox,
   Product,
   Proforma,
   Client,
   User,
 } = require('@dbModels');
 const { setResponse } = require('@/utils');
-const user = require('@/utils/constants/user');
 
 const getDispatch = async reqParams => {
   const dispatch = await Dispatch.findByPk(reqParams.id, {
@@ -15,7 +15,11 @@ const getDispatch = async reqParams => {
       { all: true },
       {
         model: DispatchedProduct,
-        include: [Product, { model: User, as: 'lastDispatcher' }],
+        include: [
+          DispatchedProductBox,
+          Product,
+          { model: User, as: 'lastDispatcher' },
+        ],
       },
       {
         model: Proforma,

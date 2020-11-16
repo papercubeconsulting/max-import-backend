@@ -66,10 +66,15 @@ const validatePostDispatchProductBox = async (reqParams, reqBody) => {
       'La cantidad de unidades a despachar es mayor a la requerida.',
     );
 
-  return setResponse(200, 'Ok.');
+  return setResponse(200, 'Ok.', { productBox });
 };
 
-const postDispatchProductBox = async (reqParams, reqBody, reqUser) => {
+const postDispatchProductBox = async (
+  reqParams,
+  reqBody,
+  reqUser,
+  validateData,
+) => {
   const t = await sequelize.transaction();
 
   try {
@@ -84,7 +89,11 @@ const postDispatchProductBox = async (reqParams, reqBody, reqUser) => {
     );
 
     await dispatchedProduct.createDispatchedProductBox(
-      { ...reqBody, dispatcherId: reqUser.id },
+      {
+        ...reqBody,
+        dispatcherId: reqUser.id,
+        warehouseId: validateData.productBox.warehouseId,
+      },
       {
         transaction: t,
       },

@@ -23,6 +23,7 @@ const postDispatchProductBox = async (req, res) => {
     req.params,
     req.body,
     req.user,
+    validate.data,
   );
   return res.status(response.status).send(response);
 };

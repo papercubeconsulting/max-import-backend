@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
         as: 'dispatcher',
         foreignKey: 'dispatcherId',
       });
+      DispatchedProductBox.belongsTo(models.Warehouse);
     }
   }
   DispatchedProductBox.init(
