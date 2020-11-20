@@ -28,6 +28,9 @@ paths:
       security:
         - bearerAuth: []
       parameters:
+        - $ref: "#/components/parameters/pagePagination"
+        - $ref: "#/components/parameters/pageSizePagination"
+        
         - $ref: "#/components/parameters/name"
         - $ref: "#/components/parameters/lastname"
         - $ref: "#/components/parameters/idNumber"

@@ -56,6 +56,15 @@ const Post = {
 
 const List = {
   query: {
+    page: Joi.number()
+      .integer()
+      .min(1)
+      .default(1),
+    pageSize: Joi.number()
+      .integer()
+      .min(1)
+      .default(20),
+
     name: Joi.string()
       .trim()
       .min(1)
