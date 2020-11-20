@@ -27,6 +27,14 @@ paths:
       parameters:
         - $ref: '#/components/parameters/pagePagination'
         - $ref: '#/components/parameters/pageSizePagination'
+        - $ref: '#/components/parameters/fromDate'
+        - $ref: '#/components/parameters/toDate'
+
+        - $ref: '#/components/parameters/active'
+        - $ref: '#/components/parameters/idNumber'
+        - $ref: '#/components/parameters/name'
+        - $ref: '#/components/parameters/lastname'
+
       responses:
         "200":
           description: Successful operation
@@ -109,3 +117,4 @@ paths:
       responses:
         "200":
           description: Successful operation
+

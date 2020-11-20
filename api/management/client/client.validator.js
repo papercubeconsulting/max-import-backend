@@ -36,16 +36,33 @@ const Post = {
 };
 
 const List = {
-  query: {
-    page: Joi.number()
-      .integer()
-      .min(1)
-      .default(1),
-    pageSize: Joi.number()
-      .integer()
-      .min(1)
-      .default(20),
-  },
+  query: Joi.object()
+    .keys({
+      page: Joi.number()
+        .integer()
+        .min(1)
+        .default(1),
+      pageSize: Joi.number()
+        .integer()
+        .min(1)
+        .default(20),
+
+      from: Joi.date().iso(),
+      to: Joi.date()
+        .iso()
+        .min(Joi.ref('from')),
+
+      active: Joi.bool(),
+
+      name: Joi.string()
+        .lowercase()
+        .trim(),
+      lastname: Joi.string()
+        .lowercase()
+        .trim(),
+      idNumber: Joi.string(),
+    })
+    .and('from', 'to'),
 };
 
 module.exports = {
