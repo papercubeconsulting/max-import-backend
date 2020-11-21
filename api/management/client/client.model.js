@@ -87,7 +87,7 @@ module.exports = (sequelize, DataTypes) => {
       // options
       modelName: 'client',
       hooks: {
-        async beforeCreate(client) {
+        async beforeSave(client) {
           client.region = regions.find(obj => obj.id === client.regionId).name;
           client.province = provinces.find(
             obj => obj.id === client.provinceId,

@@ -1,5 +1,4 @@
 const { Joi } = require('celebrate');
-const moment = require('moment');
 
 const { getDictValues, DISPATCH } = require('../../utils/constants');
 

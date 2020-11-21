@@ -19,8 +19,15 @@ const listClient = async (req, res) => {
 
   return res.status(response.status).send(response);
 };
+
 const postClient = async (req, res) => {
   const response = await Service.postClient(req.body);
+
+  return res.status(response.status).send(response);
+};
+
+const updateClient = async (req, res) => {
+  const response = await Service.updateClient(req.body, req.params);
 
   return res.status(response.status).send(response);
 };
@@ -29,4 +36,5 @@ module.exports = {
   getClient,
   listClient,
   postClient,
+  updateClient,
 };

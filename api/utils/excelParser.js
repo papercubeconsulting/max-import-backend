@@ -1,5 +1,5 @@
+/* eslint-disable no-await-in-loop */
 const ExcelJS = require('exceljs');
-const fs = require('fs');
 const moment = require('moment');
 const path = require('path');
 const tempfile = require('tempfile');

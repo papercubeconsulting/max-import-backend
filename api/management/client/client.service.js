@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 const _ = require('lodash');
 const moment = require('moment-timezone');
 const { Client } = require('@dbModels');
@@ -61,13 +62,43 @@ const listClient = async reqQuery => {
   return setResponse(200, 'Clients found.', clients);
 };
 
+const updateClient = async (reqBody, reqParams) => {
+  const client = await Client.findByPk(reqParams.id);
+  if (!client) return setResponse(404, 'Client not found.', client);
+
+  if (reqBody.idNumber && reqBody.idNumber !== client.idNumber) {
+    const duplicateClient = await Client.findOne({
+      where: { idNumber: reqBody.idNumber },
+    });
+    if (duplicateClient)
+      return setResponse(
+        404,
+        'Client with new idNumber already exists',
+        {},
+        'El número de identificación ya existe.',
+      );
+  }
+
+  for (const key in reqBody)
+    if ({}.hasOwnProperty.call(reqBody, key)) client[key] = reqBody[key];
+
+  await client.save();
+
+  return setResponse(200, 'Client updated.', client);
+};
+
 const postClient = async reqBody => {
+  const exists = await Client.findOne({
+    where: { idNumber: reqBody.idNumber },
+  });
+  if (exists) return setResponse(400, 'Client already exists.');
   const client = await Client.create(reqBody);
-  return setResponse(200, 'Client created.', client);
+  return setResponse(201, 'Client created.', client);
 };
 
 module.exports = {
   getClient,
   listClient,
   postClient,
+  updateClient,
 };

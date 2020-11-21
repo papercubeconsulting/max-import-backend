@@ -1,5 +1,5 @@
-const { getDictValues, CLIENT } = require('@/utils');
 const { Joi } = require('celebrate');
+const { getDictValues, CLIENT } = require('@/utils');
 
 const Get = {
   params: {
@@ -20,6 +20,33 @@ const Post = {
       })
       .required(),
     name: Joi.string().required(),
+    lastname: Joi.string().allow(''),
+    email: Joi.string()
+      .email()
+      .allow(''),
+    phoneNumber: Joi.string().allow(''),
+    address: Joi.string().allow(''),
+
+    regionId: Joi.string(),
+    provinceId: Joi.string(),
+    districtId: Joi.string(),
+
+    defaultDeliveryAgencyId: Joi.number().integer(),
+  },
+};
+
+const Update = {
+  params: {
+    id: Joi.number()
+      .integer()
+      .required(),
+  },
+  body: {
+    active: Joi.bool(),
+
+    type: Joi.string().valid(...getDictValues(CLIENT.TYPES)),
+    idNumber: Joi.string(),
+    name: Joi.string(),
     lastname: Joi.string().allow(''),
     email: Joi.string()
       .email()
@@ -69,4 +96,5 @@ module.exports = {
   Get,
   Post,
   List,
+  Update,
 };

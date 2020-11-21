@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-param-reassign */
 const _ = require('lodash');
 const { Model } = require('sequelize');
