@@ -161,6 +161,11 @@ module.exports = (sequelize, DataTypes) => {
           );
           proforma.total = proforma.subtotal - proforma.discount;
         },
+        afterCreate: async (proforma, options) => {
+          const client = await proforma.getClient();
+          client.active = true;
+          await client.save();
+        },
       },
     },
   );
