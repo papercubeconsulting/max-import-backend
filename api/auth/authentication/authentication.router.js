@@ -1,7 +1,7 @@
 const express = require('express');
 const { celebrate } = require('celebrate');
 
-const { authenticateMiddleware } = require('../../middleware/auth');
+const { authenticateMiddleware } = require('@/middleware/authentication');
 const Validator = require('./authentication.validator');
 
 const router = express.Router();

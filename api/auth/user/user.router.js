@@ -7,7 +7,7 @@ const Validator = require('./user.validator');
 const router = express.Router();
 const secureRouter = express.Router();
 
-const { authenticateMiddleware } = require('../../middleware/auth');
+const { authenticateMiddleware } = require('@/middleware/authentication');
 
 secureRouter.post(
   '/forgotpassword',
