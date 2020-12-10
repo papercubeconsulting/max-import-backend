@@ -17,6 +17,7 @@
     "@dbModels": "startup/db"
   },
   "dependencies": {
+    "@casl/ability": "^4.1.6",
     "@sendgrid/mail": "^7.2.0",
     "bcrypt": "^5.0.0",
     "celebrate": "^11.0.0",
