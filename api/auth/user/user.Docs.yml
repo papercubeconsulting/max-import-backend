@@ -34,6 +34,8 @@ paths:
         - $ref: "#/components/parameters/name"
         - $ref: "#/components/parameters/lastname"
         - $ref: "#/components/parameters/idNumber"
+        - $ref: "#/components/parameters/active"
+        - $ref: "#/components/parameters/role"
       responses:
         "200":
           description: Subfamilies found
@@ -42,13 +44,22 @@ paths:
       tags:
         - auth.users
       summary: Encontrar usuario por Id
-      security:
-        - bearerAuth: []
       parameters:
         - $ref: "#/components/parameters/paramId"
       responses:
         "200":
           description: Successful operation
+    put:
+      tags:
+        - auth.users
+      summary: Actualizar un usuario existente
+      parameters:
+        - $ref: "#/components/parameters/paramId"
+      requestBody:
+        $ref: "#/components/requestBodies/updateUserPayload"
+      responses:
+        "201":
+          description: User updated
   "/users/forgotpassword":
     post:
       tags:
@@ -131,6 +142,34 @@ components:
                 lastname: "Test"
                 phoneNumber: "987654321"
                 role: "superuser"
+    updateUserPayload:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              idNumber:
+                type: string
+              email:
+                type: string
+              name:
+                type: string
+              lastname:
+                type: string
+              phoneNumber:
+                type: string
+              role:
+                type: string
+          examples:
+            Actualizar todo:
+              value:
+                idNumber: "22222222"
+                email: "nuevo22@correo.com"
+                name: "Prueba"
+                lastname: "Test"
+                phoneNumber: "987654321"
+                role: "superuser"
+                active: false
   parameters:
     name:
       name: name
@@ -153,3 +192,23 @@ components:
       required: false
       schema:
         type: string
+    role:
+      name: role
+      in: query
+      description: Rol del usuario
+      required: false
+      schema:
+        type: string
+        enum: 
+          - superuser
+          - seller
+          - logistic
+          - manager
+    active:
+      name: active
+      in: query
+      description: Estado del usuario, si esta activo o deshabilitado
+      required: false
+      schema:
+        type: boolean
+      

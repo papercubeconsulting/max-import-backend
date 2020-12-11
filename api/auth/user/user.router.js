@@ -25,6 +25,7 @@ router.get('/me', Controller.getUserMe);
 router.get('/:id', celebrate(Validator.Get), Controller.readUser);
 router.get('/', celebrate(Validator.List), Controller.listUsers);
 router.post('/', celebrate(Validator.Post), Controller.createUser);
+router.put('/:id', celebrate(Validator.Put), Controller.updateUser);
 
 secureRouter.use('/', authenticateMiddleware('jwt'), router);
 

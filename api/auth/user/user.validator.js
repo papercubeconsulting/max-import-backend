@@ -10,6 +10,7 @@ const idNumberValidator = {
     .regex(/^\d+$/)
     .required(),
 };
+
 const emailValidator = {
   email: Joi.string()
     .lowercase()
@@ -74,6 +75,8 @@ const List = {
       .min(1)
       .max(255),
     idNumber: idNumberValidator.idNumber.optional(),
+    role: Joi.string().valid(...getDictValues(ROLES)),
+    active: Joi.boolean(),
   },
 };
 
@@ -99,11 +102,32 @@ const ResetPassword = {
   },
 };
 
+const Put = {
+  body: {
+    idNumber: idNumberValidator.idNumber.optional(),
+    email: emailValidator.email.optional(),
+    name: Joi.string()
+      .trim()
+      .min(1)
+      .max(255),
+    lastname: Joi.string()
+      .trim()
+      .min(1)
+      .max(255),
+    phoneNumber: Joi.string()
+      .trim()
+      .min(1)
+      .max(255),
+    role: Joi.string().valid(...getDictValues(ROLES)),
+    active: Joi.boolean(),
+  },
+};
+
 module.exports = {
   Post,
   List,
   Get,
-
+  Put,
   emailValidator,
   passwordValidator,
   idNumberValidator,
