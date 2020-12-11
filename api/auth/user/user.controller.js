@@ -20,6 +20,11 @@ const createUser = async (req, res) => {
   return res.status(response.status).send(response);
 };
 
+const updateUser = async (req, res) => {
+  const response = await Service.updateUser(req.params, req.body);
+  return res.status(response.status).send(response);
+};
+
 const forgotPassword = async (req, res) => {
   const response = await Service.forgotPassword(req.body);
 
@@ -39,4 +44,5 @@ module.exports = {
   createUser,
   forgotPassword,
   resetPassword,
+  updateUser,
 };
