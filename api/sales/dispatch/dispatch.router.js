@@ -3,10 +3,16 @@ const { celebrate } = require('celebrate');
 
 const Controller = require('./dispatch.controller');
 const Validator = require('./dispatch.validator');
+const { validPermission } = require('@/middleware/authorization');
 
 const router = express.Router();
 
-router.get('/', celebrate(Validator.List), Controller.listDispatch);
+router.get(
+  '/',
+  validPermission('list', 'dispatch'),
+  celebrate(Validator.List),
+  Controller.listDispatch,
+);
 router.get('/:id', celebrate(Validator.Get), Controller.getDispatch);
 
 router.post(

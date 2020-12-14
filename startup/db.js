@@ -12,8 +12,8 @@ const winston = require('winston');
 const db = {};
 
 const sequelize = new Sequelize(config.get('dbConfig'), {
-  logging: process.env.NODE_ENV !== 'production' ? console.log : null,
-  // logging: false ? console.log : null,
+  // logging: process.env.NODE_ENV !== 'production' ? console.log : null,
+  logging: false ? console.log : null,
 });
 
 function recFindByExt(base, ext, files, result) {

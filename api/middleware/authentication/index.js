@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 const passport = require('passport');
+const { defineAbilityFor } = require('../authorization');
 const strategies = require('./strategies');
 
 const pipe = (...functions) => args =>
@@ -28,6 +29,7 @@ const authenticateMiddleware = (strategyName, options = {}) => (
         return res.status(info.status).send(info);
       }
       req.user = user;
+      req.permissions = defineAbilityFor(user.role);
       return next();
     },
   )(req, res, next);
