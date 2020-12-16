@@ -82,5 +82,61 @@
     "active": true,
     "updatedAt": "2020-06-19T06:01:45.188Z",
     "createdAt": "2020-06-19T06:01:45.188Z"
+  },
+  {
+    "resetPasswordToken": "",
+    "resetPasswordExpires": "2020-06-19T06:01:45.186Z",
+    "idNumber": "00001000",
+    "email": "admin@correo.com",
+    "password": "$2b$04$matMIe6J6axvSfbliaDCwesvh/ht4tIUJ3tNBbBi6.WtNIrlt/iUi",
+    "name": "Admin",
+    "lastname": "Admin",
+    "phoneNumber": "987654321",
+    "role": "superuser",
+    "active": true,
+    "updatedAt": "2020-06-19T06:01:45.188Z",
+    "createdAt": "2020-06-19T06:01:45.188Z"
+  },
+  {
+    "resetPasswordToken": "",
+    "resetPasswordExpires": "2020-06-19T06:01:45.186Z",
+    "idNumber": "00002000",
+    "email": "logistico@correo.com",
+    "password": "$2b$04$matMIe6J6axvSfbliaDCwesvh/ht4tIUJ3tNBbBi6.WtNIrlt/iUi",
+    "name": "logistico",
+    "lastname": "logistico",
+    "phoneNumber": "987654321",
+    "role": "logistic",
+    "active": true,
+    "updatedAt": "2020-06-19T06:01:45.188Z",
+    "createdAt": "2020-06-19T06:01:45.188Z"
+  },
+  {
+    "resetPasswordToken": "",
+    "resetPasswordExpires": "2020-06-19T06:01:45.186Z",
+    "idNumber": "00003000",
+    "email": "vendedor@correo.com",
+    "password": "$2b$04$matMIe6J6axvSfbliaDCwesvh/ht4tIUJ3tNBbBi6.WtNIrlt/iUi",
+    "name": "Vendedor",
+    "lastname": "Vendedor",
+    "phoneNumber": "987654321",
+    "role": "seller",
+    "active": true,
+    "updatedAt": "2020-06-19T06:01:45.188Z",
+    "createdAt": "2020-06-19T06:01:45.188Z"
+  },
+  {
+    "resetPasswordToken": "",
+    "resetPasswordExpires": "2020-06-19T06:01:45.186Z",
+    "idNumber": "00004000",
+    "email": "administrador@correo.com",
+    "password": "$2b$04$matMIe6J6axvSfbliaDCwesvh/ht4tIUJ3tNBbBi6.WtNIrlt/iUi",
+    "name": "administrador",
+    "lastname": "administrador",
+    "phoneNumber": "987654321",
+    "role": "manager",
+    "active": true,
+    "updatedAt": "2020-06-19T06:01:45.188Z",
+    "createdAt": "2020-06-19T06:01:45.188Z"
   }
 ]
