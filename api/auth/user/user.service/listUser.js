@@ -32,6 +32,7 @@ const listUsers = async reqQuery => {
 
   const users = await User.findAndCountAll({
     where: mainQuery,
+    order: [['createdAt', 'DESC']],
     ...paginate(_.pick(reqQuery, ['page', 'pageSize'])),
   });
 
