@@ -67,10 +67,12 @@ const List = {
       .default(20),
 
     name: Joi.string()
+      .lowercase()
       .trim()
       .min(1)
       .max(255),
     lastname: Joi.string()
+      .lowercase()
       .trim()
       .min(1)
       .max(255),

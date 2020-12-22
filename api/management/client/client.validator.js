@@ -14,7 +14,7 @@ const Post = {
       .required(),
     idNumber: Joi.string()
       .when('type', {
-        is: CLIENT.TYPES.COMPANY,
+        is: CLIENT.TYPES.COMPANY.value,
         then: Joi.string().length(11),
         otherwise: Joi.string().length(8),
       })
