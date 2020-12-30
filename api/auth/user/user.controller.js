@@ -37,6 +37,12 @@ const resetPassword = async (req, res) => {
   return res.status(response.status).send(response);
 };
 
+const updatePassword = async (req, res) => {
+  const response = await Service.updatePassword(req.body, req.user);
+
+  return res.status(response.status).send(response);
+};
+
 module.exports = {
   getUserMe,
   listUsers,
@@ -45,4 +51,5 @@ module.exports = {
   forgotPassword,
   resetPassword,
   updateUser,
+  updatePassword,
 };

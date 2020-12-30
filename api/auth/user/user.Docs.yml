@@ -104,6 +104,28 @@ paths:
       responses:
         200:
           description: Successful
+  "/users/updatepassword":
+    post:
+      tags:
+        - auth.users
+      summary: Reset password by current password
+      description: ""
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                oldPassword:
+                  type: string
+                password:
+                  type: string
+              required:
+                - oldPassword
+                - password
+      responses:
+        200:
+          description: Successful
 components:
   requestBodies:
     createUserPayload:

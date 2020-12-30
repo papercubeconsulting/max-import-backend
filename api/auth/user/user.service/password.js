@@ -46,7 +46,16 @@ const resetPassword = async reqBody => {
   return setResponse(200, 'Password updated.', { status: 'ok' });
 };
 
+const updatePassword = async (reqBody, reqUser) => {
+  const user = await User.scope('full').findByPk(reqUser.id);
+  const { success, message } = await user.updatePasswordByPassword(reqBody);
+  if (!success) return setResponse(400, message);
+
+  return setResponse(200, 'Password updated.', { status: 'ok' });
+};
+
 module.exports = {
   forgotPassword,
   resetPassword,
+  updatePassword,
 };

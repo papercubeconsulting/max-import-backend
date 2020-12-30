@@ -22,6 +22,12 @@ secureRouter.post(
   Controller.resetPassword,
 );
 
+router.post(
+  '/updatepassword',
+  celebrate(Validator.UpdatePassword),
+  Controller.updatePassword,
+);
+
 router.get('/me', Controller.getUserMe);
 router.get(
   '/:id',

@@ -104,6 +104,13 @@ const ResetPassword = {
   },
 };
 
+const UpdatePassword = {
+  body: {
+    oldPassword: passwordValidator.password,
+    password: passwordValidator.password,
+  },
+};
+
 const Put = {
   body: {
     idNumber: idNumberValidator.idNumber.optional(),
@@ -135,4 +142,5 @@ module.exports = {
   idNumberValidator,
   ForgotPassword,
   ResetPassword,
+  UpdatePassword,
 };

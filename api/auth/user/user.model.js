@@ -94,6 +94,19 @@ module.exports = (sequelize, DataTypes) => {
       };
     }
 
+    async updatePasswordByPassword(data) {
+      const valid = await this.isValidPassword(data.oldPassword);
+      if (!valid)
+        return { success: false, message: 'La contraseña no es válida' };
+
+      this.password = await User.hashPassword(data.password);
+      await this.save();
+      return {
+        success: true,
+        message: 'La contraseña ha sido actualizada',
+      };
+    }
+
     async generateToken(token) {
       if (!token) return false;
       const compare = await bcrypt.compare(token, this.password);
