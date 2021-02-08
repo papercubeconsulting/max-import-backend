@@ -31,20 +31,9 @@ const Post = {
       .integer()
       .min(0)
       .required(),
-    voucherCode: Joi.string().when('type', {
-      is: SALE.TYPE.REMOTE.value,
-      then: Joi.required(),
-    }),
-    voucherImage: Joi.string().when('type', {
-      is: SALE.TYPE.REMOTE.value,
-      then: Joi.required(),
-    }),
-    bankAccountId: Joi.number()
-      .integer()
-      .when('type', {
-        is: SALE.TYPE.REMOTE.value,
-        then: Joi.required(),
-      }),
+    voucherCode: Joi.string().allow(''),
+    voucherImage: Joi.string().allow(''),
+    bankAccountId: Joi.number().integer(),
     deliveryAgencyId: Joi.number()
       .integer()
       .when('dispatchmentType', {
