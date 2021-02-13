@@ -120,12 +120,14 @@ module.exports = (sequelize, DataTypes) => {
       const soldStock =
         (await SoldProduct.sum('quantity', {
           where: { productId: id },
+          transaction: _.get(options, 'transaction'),
         })) || 0;
 
       // ? Unidades despachadas
       const dispatchedStock =
         (await DispatchedProduct.sum('dispatched', {
           where: { productId: id },
+          transaction: _.get(options, 'transaction'),
         })) || 0;
       await product.update(
         {
