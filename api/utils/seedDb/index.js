@@ -76,17 +76,17 @@ sequelize.sync({ force: true }).then(async result => {
     // await seedModelOneByOne(Product, 'product.json');
 
     await seedModel(Provider, 'provider_v2.json');
-    await seedModel(Family, 'family_v2.json');
-    await seedModel(Subfamily, 'subfamily_v2.json');
-    await seedModel(Element, 'element_v2.json');
-    await seedModelOneByOne(Model, 'model_v2.json');
-    await seedModelOneByOne(Product, 'product_v2.json');
+    // await seedModel(Family, 'family_v2.json');
+    // await seedModel(Subfamily, 'subfamily_v2.json');
+    // await seedModel(Element, 'element_v2.json');
+    // await seedModelOneByOne(Model, 'model_v2.json');
+    // await seedModelOneByOne(Product, 'product_v2.json');
 
-    await seedModelByService(Supply, 'supply.json', _fullCreateSupply, [
-      { id: 1, name: 'Test' },
-    ]);
+    // await seedModelByService(Supply, 'supply.json', _fullCreateSupply, [
+    //   { id: 1, name: 'Test' },
+    // ]);
 
-    await seedModelByService(Proforma, 'proforma.json', _seedCreateProforma);
+    // await seedModelByService(Proforma, 'proforma.json', _seedCreateProforma);
 
     await sequelize.close();
   } catch (error) {

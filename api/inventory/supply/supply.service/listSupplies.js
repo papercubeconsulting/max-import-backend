@@ -16,7 +16,7 @@ const { setResponse, paginate } = require('../../../utils');
 const listSupplies = async reqQuery => {
   const supplies = await Supply.findAndCountAll({
     where: {
-      createdAt: {
+      arrivalDate: {
         [Op.between]: [
           moment
             .tz(moment.utc(reqQuery.from).format('YYYY-MM-DD'), 'America/Lima')
@@ -29,7 +29,7 @@ const listSupplies = async reqQuery => {
         ],
       },
     },
-    order: [['createdAt', 'DESC']],
+    order: [['arrivalDate', 'DESC']],
     include: [
       Warehouse,
       Provider,
