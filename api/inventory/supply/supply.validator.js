@@ -39,6 +39,8 @@ const Post = {
     code: Joi.string()
       .allow('')
       .default(''),
+    arrivalDate: Joi.date()
+      .optional(),
     observations: Joi.string()
       .allow('')
       .default(''),
