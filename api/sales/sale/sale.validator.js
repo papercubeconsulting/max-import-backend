@@ -1,6 +1,7 @@
+/* eslint-disable no-param-reassign */
 const { Joi } = require('celebrate');
 
-const { getDictValues, SALE } = require('../../utils/constants');
+const { getDictValues, orderByField, SALE } = require('@/utils');
 
 const Post = {
   body: {
@@ -30,20 +31,9 @@ const Post = {
       .integer()
       .min(0)
       .required(),
-    voucherCode: Joi.string().when('type', {
-      is: SALE.TYPE.REMOTE.value,
-      then: Joi.required(),
-    }),
-    voucherImage: Joi.string().when('type', {
-      is: SALE.TYPE.REMOTE.value,
-      then: Joi.required(),
-    }),
-    bankAccountId: Joi.number()
-      .integer()
-      .when('type', {
-        is: SALE.TYPE.REMOTE.value,
-        then: Joi.required(),
-      }),
+    voucherCode: Joi.string().allow(''),
+    voucherImage: Joi.string().allow(''),
+    bankAccountId: Joi.number().integer(),
     deliveryAgencyId: Joi.number()
       .integer()
       .when('dispatchmentType', {
@@ -73,6 +63,15 @@ const List = {
         .min(1)
         .default(20),
 
+      // ?
+      orderBy: Joi.string().custom(orderByField(['createdAt', 'paidAt'])),
+
+      // ? Filtrado por fecha de creacion
+      from: Joi.date().iso(),
+      to: Joi.date()
+        .iso()
+        .min(Joi.ref('from')),
+
       // ? Filtrado por fecha de pago
       paidAtFrom: Joi.date().iso(),
       paidAtTo: Joi.date()
@@ -81,6 +80,8 @@ const List = {
 
       status: Joi.string().valid(...getDictValues(SALE.STATUS)),
       type: Joi.string().valid(...getDictValues(SALE.TYPE)),
+      billingType: Joi.string().valid(...getDictValues(SALE.BILLING_TYPE)),
+      paymentType: Joi.string().valid(...getDictValues(SALE.PAYMENT_TYPE)),
 
       // ? Filtrado por cajero
       cashierId: Joi.number().integer(),
@@ -88,7 +89,8 @@ const List = {
       // ? Filtrado por proforma
       proformaId: Joi.number().integer(),
     })
-    .and('paidAtFrom', 'paidAtTo'),
+    .and('paidAtFrom', 'paidAtTo')
+    .and('from', 'to'),
 };
 
 const PutPay = {
@@ -118,9 +120,29 @@ const PutPay = {
   },
 };
 
+const GetSIGO = {
+  query: {
+    id: Joi.alternatives().try(
+      Joi.array()
+        .items(
+          Joi.number()
+            .integer()
+            .min(1),
+        )
+        .unique()
+        .min(1)
+        .required(),
+      Joi.number()
+        .integer()
+        .min(1)
+        .required(),
+    ),
+  },
+};
 module.exports = {
   Post,
   Get,
   List,
   PutPay,
+  GetSIGO,
 };

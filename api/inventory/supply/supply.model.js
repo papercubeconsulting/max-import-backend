@@ -1,5 +1,6 @@
+const { Sequelize } = require('@root/startup/db');
 const { Model } = require('sequelize');
-
+const SequelizeLib = require('sequelize');
 const { supplyStatus: status } = require('../../utils/constants');
 
 const statuses = [status.PENDING, status.CANCELLED, status.ATTENDED];
@@ -25,6 +26,10 @@ module.exports = (sequelize, DataTypes) => {
       },
       cancellationDate: {
         type: DataTypes.DATE,
+      },
+      arrivalDate: {
+        type: DataTypes.DATE,
+        defaultValue: SequelizeLib.NOW,
       },
       observations: {
         type: DataTypes.TEXT,

@@ -7,7 +7,8 @@ const Validator = require('./user.validator');
 const router = express.Router();
 const secureRouter = express.Router();
 
-const { authenticateMiddleware } = require('../../middleware/auth');
+const { authenticateMiddleware } = require('@/middleware/authentication');
+const { isAble } = require('@/middleware/authorization');
 
 secureRouter.post(
   '/forgotpassword',
@@ -21,10 +22,37 @@ secureRouter.post(
   Controller.resetPassword,
 );
 
+router.post(
+  '/updatepassword',
+  celebrate(Validator.UpdatePassword),
+  Controller.updatePassword,
+);
+
 router.get('/me', Controller.getUserMe);
-router.get('/:id', celebrate(Validator.Get), Controller.readUser);
-router.get('/', celebrate(Validator.List), Controller.listUsers);
-router.post('/', celebrate(Validator.Post), Controller.createUser);
+router.get(
+  '/:id',
+  isAble('read', 'user'),
+  celebrate(Validator.Get),
+  Controller.readUser,
+);
+router.get(
+  '/',
+  isAble('read', 'user'),
+  celebrate(Validator.List),
+  Controller.listUsers,
+);
+router.post(
+  '/',
+  isAble('create', 'user'),
+  celebrate(Validator.Post),
+  Controller.createUser,
+);
+router.put(
+  '/:id',
+  isAble('udpdate', 'user'),
+  celebrate(Validator.Put),
+  Controller.updateUser,
+);
 
 secureRouter.use('/', authenticateMiddleware('jwt'), router);
 

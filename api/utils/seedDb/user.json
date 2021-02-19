@@ -2,7 +2,6 @@
   {
     "resetPasswordToken": "",
     "resetPasswordExpires": "2020-06-19T06:01:45.186Z",
-    "id": 1,
     "idNumber": "11111111",
     "email": "nuevo@correo.com",
     "password": "$2b$04$matMIe6J6axvSfbliaDCwesvh/ht4tIUJ3tNBbBi6.WtNIrlt/iUi",
@@ -17,7 +16,6 @@
   {
     "resetPasswordToken": "",
     "resetPasswordExpires": "2020-06-19T06:01:45.186Z",
-    "id": 2,
     "idNumber": "11111112",
     "email": "hufedebe@gmail.com",
     "password": "$2b$04$matMIe6J6axvSfbliaDCwesvh/ht4tIUJ3tNBbBi6.WtNIrlt/iUi",
@@ -32,7 +30,6 @@
   {
     "resetPasswordToken": "",
     "resetPasswordExpires": "2020-06-19T06:01:45.186Z",
-    "id": 3,
     "idNumber": "11111113",
     "email": "alexander@digitx.pe",
     "password": "$2b$04$matMIe6J6axvSfbliaDCwesvh/ht4tIUJ3tNBbBi6.WtNIrlt/iUi",
@@ -47,7 +44,6 @@
   {
     "resetPasswordToken": "",
     "resetPasswordExpires": "2020-06-19T06:01:45.186Z",
-    "id": 4,
     "idNumber": "00000000",
     "email": "joseaml90@gmail.com",
     "password": "$2b$04$matMIe6J6axvSfbliaDCwesvh/ht4tIUJ3tNBbBi6.WtNIrlt/iUi",
@@ -62,7 +58,6 @@
   {
     "resetPasswordToken": "",
     "resetPasswordExpires": "2020-06-19T06:01:45.186Z",
-    "id": 5,
     "idNumber": "11111114",
     "email": "jesvs2001@hotmail.com",
     "password": "$2b$04$tntn4P0UNKk8qdWLv0fCwOiJA/MDmU8nqCSWUqzyUuBW3ZbTESgEe",
@@ -77,7 +72,6 @@
   {
     "resetPasswordToken": "",
     "resetPasswordExpires": "2020-06-19T06:01:45.186Z",
-    "id": 6,
     "idNumber": "11111115",
     "email": "junior_1407@hotmail.com",
     "password": "$2b$04$matMIe6J6axvSfbliaDCwesvh/ht4tIUJ3tNBbBi6.WtNIrlt/iUi",
@@ -85,6 +79,62 @@
     "lastname": "Test",
     "phoneNumber": "987654321",
     "role": "superuser",
+    "active": true,
+    "updatedAt": "2020-06-19T06:01:45.188Z",
+    "createdAt": "2020-06-19T06:01:45.188Z"
+  },
+  {
+    "resetPasswordToken": "",
+    "resetPasswordExpires": "2020-06-19T06:01:45.186Z",
+    "idNumber": "00001000",
+    "email": "admin@correo.com",
+    "password": "$2b$04$matMIe6J6axvSfbliaDCwesvh/ht4tIUJ3tNBbBi6.WtNIrlt/iUi",
+    "name": "Admin",
+    "lastname": "Admin",
+    "phoneNumber": "987654321",
+    "role": "superuser",
+    "active": true,
+    "updatedAt": "2020-06-19T06:01:45.188Z",
+    "createdAt": "2020-06-19T06:01:45.188Z"
+  },
+  {
+    "resetPasswordToken": "",
+    "resetPasswordExpires": "2020-06-19T06:01:45.186Z",
+    "idNumber": "00002000",
+    "email": "logistico@correo.com",
+    "password": "$2b$04$matMIe6J6axvSfbliaDCwesvh/ht4tIUJ3tNBbBi6.WtNIrlt/iUi",
+    "name": "logistico",
+    "lastname": "logistico",
+    "phoneNumber": "987654321",
+    "role": "logistic",
+    "active": true,
+    "updatedAt": "2020-06-19T06:01:45.188Z",
+    "createdAt": "2020-06-19T06:01:45.188Z"
+  },
+  {
+    "resetPasswordToken": "",
+    "resetPasswordExpires": "2020-06-19T06:01:45.186Z",
+    "idNumber": "00003000",
+    "email": "vendedor@correo.com",
+    "password": "$2b$04$matMIe6J6axvSfbliaDCwesvh/ht4tIUJ3tNBbBi6.WtNIrlt/iUi",
+    "name": "Vendedor",
+    "lastname": "Vendedor",
+    "phoneNumber": "987654321",
+    "role": "seller",
+    "active": true,
+    "updatedAt": "2020-06-19T06:01:45.188Z",
+    "createdAt": "2020-06-19T06:01:45.188Z"
+  },
+  {
+    "resetPasswordToken": "",
+    "resetPasswordExpires": "2020-06-19T06:01:45.186Z",
+    "idNumber": "00004000",
+    "email": "administrador@correo.com",
+    "password": "$2b$04$matMIe6J6axvSfbliaDCwesvh/ht4tIUJ3tNBbBi6.WtNIrlt/iUi",
+    "name": "administrador",
+    "lastname": "administrador",
+    "phoneNumber": "987654321",
+    "role": "manager",
     "active": true,
     "updatedAt": "2020-06-19T06:01:45.188Z",
     "createdAt": "2020-06-19T06:01:45.188Z"

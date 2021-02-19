@@ -3,13 +3,34 @@ const { celebrate } = require('celebrate');
 
 const Controller = require('./product.controller');
 const Validator = require('./product.validator');
+const { isAble } = require('@/middleware/authorization');
 
 const router = express.Router();
 
-router.get('/:id', celebrate(Validator.Get), Controller.getProduct);
-router.get('/', celebrate(Validator.List), Controller.listProducts);
+router.get(
+  '/:id',
+  isAble('read', 'product'),
+  celebrate(Validator.Get),
+  Controller.getProduct,
+);
+router.get(
+  '/',
+  isAble('read', 'product'),
+  celebrate(Validator.List),
+  Controller.listProducts,
+);
 router.post('/base', Controller.postProductBase); // TODO: Remove
-router.post('/', celebrate(Validator.Post), Controller.postProduct);
-router.put('/:id', celebrate(Validator.Put), Controller.putProduct);
+router.post(
+  '/',
+  isAble('create', 'product'),
+  celebrate(Validator.Post),
+  Controller.postProduct,
+);
+router.put(
+  '/:id',
+  isAble('update', 'product'),
+  celebrate(Validator.Put),
+  Controller.putProduct,
+);
 
 module.exports = router;

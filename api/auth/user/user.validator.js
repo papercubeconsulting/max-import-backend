@@ -10,6 +10,7 @@ const idNumberValidator = {
     .regex(/^\d+$/)
     .required(),
 };
+
 const emailValidator = {
   email: Joi.string()
     .lowercase()
@@ -56,15 +57,28 @@ const Post = {
 
 const List = {
   query: {
+    page: Joi.number()
+      .integer()
+      .min(1)
+      .default(1),
+    pageSize: Joi.number()
+      .integer()
+      .min(1)
+      .default(20),
+
     name: Joi.string()
+      .lowercase()
       .trim()
       .min(1)
       .max(255),
     lastname: Joi.string()
+      .lowercase()
       .trim()
       .min(1)
       .max(255),
     idNumber: idNumberValidator.idNumber.optional(),
+    role: Joi.string().valid(...getDictValues(ROLES)),
+    active: Joi.boolean(),
   },
 };
 
@@ -90,14 +104,43 @@ const ResetPassword = {
   },
 };
 
+const UpdatePassword = {
+  body: {
+    oldPassword: passwordValidator.password,
+    password: passwordValidator.password,
+  },
+};
+
+const Put = {
+  body: {
+    idNumber: idNumberValidator.idNumber.optional(),
+    email: emailValidator.email.optional(),
+    name: Joi.string()
+      .trim()
+      .min(1)
+      .max(255),
+    lastname: Joi.string()
+      .trim()
+      .min(1)
+      .max(255),
+    phoneNumber: Joi.string()
+      .trim()
+      .min(1)
+      .max(255),
+    role: Joi.string().valid(...getDictValues(ROLES)),
+    active: Joi.boolean(),
+  },
+};
+
 module.exports = {
   Post,
   List,
   Get,
-
+  Put,
   emailValidator,
   passwordValidator,
   idNumberValidator,
   ForgotPassword,
   ResetPassword,
+  UpdatePassword,
 };

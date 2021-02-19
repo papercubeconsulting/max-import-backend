@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       Product.hasMany(models.SuppliedProduct);
       Product.hasMany(models.ProformaProduct);
       Product.hasMany(models.SoldProduct);
+      Product.hasMany(models.DispatchedProduct);
     }
 
     // ? Calcula stocks parciales por almacenes, tipos de almacenes y (almacenes-tamaño de caja)
@@ -85,7 +86,8 @@ module.exports = (sequelize, DataTypes) => {
         productBox: ProductBox,
         warehouse: Warehouse,
         soldProduct: SoldProduct,
-      } = this.sequelize.models; // TODO: Check
+        dispatchedProduct: DispatchedProduct,
+      } = this.sequelize.models;
 
       const product = await Product.findByPk(id, {
         include: [
@@ -101,9 +103,6 @@ module.exports = (sequelize, DataTypes) => {
             ],
             required: false,
           },
-          {
-            model: SoldProduct,
-          },
         ],
         transaction: _.get(options, 'transaction'),
       });
@@ -118,19 +117,24 @@ module.exports = (sequelize, DataTypes) => {
         0,
       );
       // ? Unidades vendidas
-      const soldStock = product.soldProducts.reduce(
-        (acum, curr) => acum + curr.quantity,
-        0,
-      );
-      // ? Unidades despachadas
-      // TODO: Calcular cuando se implemente despacho
-      const dispatchedStock = 0;
+      const soldStock =
+        (await SoldProduct.sum('quantity', {
+          where: { productId: id },
+          transaction: _.get(options, 'transaction'),
+        })) || 0;
 
+      // ? Unidades despachadas
+      const dispatchedStock =
+        (await DispatchedProduct.sum('dispatched', {
+          where: { productId: id },
+          transaction: _.get(options, 'transaction'),
+        })) || 0;
       await product.update(
         {
           damagedStock,
           availableStock:
             summary.totalStock - damagedStock - (soldStock - dispatchedStock),
+          dispatchStock: summary.totalStock - damagedStock,
         },
         { transaction: _.get(options, 'transaction') },
       );
@@ -184,6 +188,10 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: 0,
       },
       damagedStock: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
+      dispatchStock: {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },

@@ -1,7 +1,14 @@
 const Service = require('./sale.service');
 
+const { excelParser } = require('@/utils');
+
 const listSale = async (req, res) => {
   const response = await Service.listSale(req.query);
+  return res.status(response.status).send(response);
+};
+
+const getSale = async (req, res) => {
+  const response = await Service.getSale(req.params);
   return res.status(response.status).send(response);
 };
 
@@ -22,4 +29,10 @@ const paySale = async (req, res) => {
   return res.status(response.status).send(response);
 };
 
-module.exports = { postSale, listSale, paySale };
+const getSIGOSaleReport = async (req, res) => {
+  const response = await Service.getSIGOSaleReport(req.query);
+
+  return excelParser(res, 'SIGO', response.data.fields, response.data.data);
+};
+
+module.exports = { postSale, listSale, paySale, getSale, getSIGOSaleReport };

@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       Sale.belongsTo(models.BankAccount);
 
       Sale.belongsTo(models.Proforma);
+      Sale.hasOne(models.Dispatch);
     }
     // * INSTANCE METHODS
 
@@ -78,6 +79,39 @@ module.exports = (sequelize, DataTypes) => {
       // ? Campos para proceso de venta
       referenceNumber: DataTypes.STRING, // ? Para el caso de pagos con tarjeta
       receivedAmount: DataTypes.INTEGER, // ? Para el caso de pagos en efectivo
+
+      // * Virtual fields
+
+      typeDescription: {
+        type: DataTypes.VIRTUAL,
+        get() {
+          return SALE.TYPE[this.type].name;
+        },
+      },
+      statusDescription: {
+        type: DataTypes.VIRTUAL,
+        get() {
+          return SALE.STATUS[this.status].name;
+        },
+      },
+      paymentTypeDescription: {
+        type: DataTypes.VIRTUAL,
+        get() {
+          return SALE.PAYMENT_TYPE[this.paymentType].name;
+        },
+      },
+      billingTypeDescription: {
+        type: DataTypes.VIRTUAL,
+        get() {
+          return SALE.BILLING_TYPE[this.billingType].name;
+        },
+      },
+      dispatchmentTypeDescription: {
+        type: DataTypes.VIRTUAL,
+        get() {
+          return SALE.DISPATCHMENT_TYPE[this.dispatchmentType].name;
+        },
+      },
     },
     {
       sequelize,

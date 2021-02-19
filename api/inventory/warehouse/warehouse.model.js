@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       Warehouse.hasMany(models.ProductBoxLog);
 
       Warehouse.hasMany(models.Supply);
+      Warehouse.hasMany(models.DispatchedProductBox);
     }
   }
   Warehouse.init(

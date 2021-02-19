@@ -10,10 +10,6 @@ function pad(n, width, z) {
   return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
 }
 
-// TODO
-//
-//
-
 module.exports = (sequelize, DataTypes) => {
   class ProductBox extends Model {
     // * CLASS METHODS
@@ -24,6 +20,8 @@ module.exports = (sequelize, DataTypes) => {
       ProductBox.belongsTo(models.Warehouse);
       ProductBox.belongsTo(models.Supply);
       ProductBox.belongsTo(models.SuppliedProduct);
+
+      ProductBox.hasMany(models.DispatchedProductBox);
     }
 
     static bulkRegisterLog(message, user, data) {
@@ -32,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
         data.map(productBox => ({
           productBoxId: productBox.id,
           log: _.get(PRODUCTBOX_UPDATES, `${message}.name`, message),
-          userId: user.id,
+          userId: _.get(user, 'id', user),
           warehouseId: productBox.warehouseId,
         })),
       );
@@ -46,14 +44,17 @@ module.exports = (sequelize, DataTypes) => {
       )}`;
     }
 
-    registerLog(message, user) {
+    registerLog(message, user, options) {
       const { productBoxLog: ProductBoxLog } = this.sequelize.models;
-      ProductBoxLog.create({
-        productBoxId: this.id,
-        log: _.get(PRODUCTBOX_UPDATES, `${message}.name`, message),
-        userId: user.id,
-        warehouseId: this.warehouseId,
-      });
+      return ProductBoxLog.create(
+        {
+          productBoxId: this.id,
+          log: _.get(PRODUCTBOX_UPDATES, `${message}.name`, message),
+          userId: _.get(user, 'id', user),
+          warehouseId: this.warehouseId,
+        },
+        { transaction: _.get(options, 'transaction') },
+      );
     }
   }
   ProductBox.init(

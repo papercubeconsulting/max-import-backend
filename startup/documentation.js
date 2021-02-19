@@ -42,11 +42,12 @@ const swaggerDefinition = {
       description: 'Local server',
     },
     {
-      url: 'http://maximport-backend.q3d2pmiqsz.us-east-1.elasticbeanstalk.com',
+      url: 'https://apimaximport.papercube.pe',
       description: 'Development server',
     },
   ],
   tags: [
+    { name: 'sales.dispatch' },
     { name: 'sales.proforma' },
     { name: 'sales.sales' },
     { name: 'management.banks' },

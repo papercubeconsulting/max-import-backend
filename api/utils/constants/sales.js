@@ -11,14 +11,12 @@ module.exports = {
       PAID: { value: 'PAID', name: 'Pagado cancelado' },
     },
     DISPATCH_STATUS: {
-      PENDING: { value: 'PENDING', name: 'Pendiente' },
-      PARTIAL_DISPATCHED: {
-        value: 'PARTIAL_DISPATCHED',
-        name: 'Despacho parcial',
-      },
-      DISPATCHED: { value: 'DISPATCHED', name: 'Despachado' },
+      LOCKED: { value: 'LOCKED', name: 'Bloqueado' },
+      OPEN: { value: 'OPEN', name: 'Habilitado' },
+      COMPLETED: { value: 'COMPLETED', name: 'Completado' },
     },
     MAP_SALE_STATUS: {
+      // ? Mapeo a utilizar en servicio de cierre de proforma
       DUE: 'PARTIAL',
       PAID: 'PAID',
     },
@@ -41,9 +39,20 @@ module.exports = {
       SALE: { value: 'SALE', name: 'Venta' },
     },
     DISPATCHMENT_TYPE: {
-      DELIVERY: { value: 'DELIVERY', name: 'Envío' },
+      DELIVERY: { value: 'DELIVERY', name: 'Delivery' },
       PICK_UP: { value: 'PICK_UP', name: 'Recojo en tienda' },
     },
     PAYMENT_METHOD: ['Efectivo', 'Tarjeta', 'Depósito'],
+  },
+  DISPATCH: {
+    STATUS: {
+      LOCKED: { value: 'LOCKED', name: 'Bloqueado' },
+      OPEN: { value: 'OPEN', name: 'Habilitado' },
+      COMPLETED: { value: 'COMPLETED', name: 'Completado' },
+    },
+    DISPATCHMENT_TYPE: {
+      DELIVERY: { value: 'DELIVERY', name: 'Delivery' },
+      PICK_UP: { value: 'PICK_UP', name: 'Recojo en tienda' },
+    },
   },
 };

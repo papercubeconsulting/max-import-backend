@@ -30,6 +30,11 @@ module.exports = (sequelize, DataTypes) => {
 
       User.hasMany(models.Sale, { foreignKey: 'cashierId' });
       User.hasMany(models.Sale, { foreignKey: 'sellerId' });
+      User.hasMany(models.Dispatch, { foreignKey: 'dispatcherId' });
+      User.hasMany(models.DispatchedProductBox, { foreignKey: 'dispatcherId' });
+      User.hasMany(models.DispatchedProduct, {
+        foreignKey: 'lastDispatcherId',
+      });
     }
 
     // ? To find users based on different pk's
@@ -82,6 +87,19 @@ module.exports = (sequelize, DataTypes) => {
       this.password = await User.hashPassword(data.password);
       this.resetPasswordToken = '';
       this.resetPasswordExpires = moment.tz('America/Lima').subtract(1, 'day');
+      await this.save();
+      return {
+        success: true,
+        message: 'La contraseña ha sido actualizada',
+      };
+    }
+
+    async updatePasswordByPassword(data) {
+      const valid = await this.isValidPassword(data.oldPassword);
+      if (!valid)
+        return { success: false, message: 'La contraseña no es válida' };
+
+      this.password = await User.hashPassword(data.password);
       await this.save();
       return {
         success: true,

@@ -9,7 +9,7 @@ const winston = require('winston');
 const celebrateError = require('../api/middleware/celebrateError');
 const error = require('../api/middleware/error');
 
-const { initialiseAuthentication } = require('../api/middleware/auth');
+const { initialiseAuthentication } = require('@/middleware/authentication');
 
 // Routers for applications
 

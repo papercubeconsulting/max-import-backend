@@ -16,12 +16,28 @@ paths:
       parameters:
         - $ref: "#/components/parameters/pagePagination"
         - $ref: "#/components/parameters/pageSizePagination"
+        - $ref: "#/components/parameters/orderBy"
+        
+        - $ref: "#/components/parameters/fromDate"
+        - $ref: "#/components/parameters/toDate"
         - $ref: "#/components/parameters/status"
         - $ref: "#/components/parameters/type"
+        - $ref: "#/components/parameters/billingType"
+        - $ref: "#/components/parameters/paymentType"
         - $ref: "#/components/parameters/paidAtFromDate"
         - $ref: "#/components/parameters/paidAtToDate"
         - $ref: "#/components/parameters/cashierId"
         - $ref: "#/components/parameters/proformaId"
+      responses:
+        "200":
+          description: Successful operation
+  "/sales/sigo":
+    get:
+      tags:
+        - sales.sales
+      summary: Obtener reporte de ventas en formato SIGO
+      parameters:
+        - $ref: "#/components/parameters/multipleIds"
       responses:
         "200":
           description: Successful operation
@@ -37,6 +53,16 @@ paths:
           description: Successful operation
       requestBody:
         $ref: "#/components/requestBodies/PutSale"
+  "/sales/{id}":
+    get:
+      tags:
+        - sales.sales
+      summary: Obtener una venta
+      parameters:
+        - $ref: "#/components/parameters/paramId"
+      responses:
+        "201":
+          description: Successful operation
 components:
   requestBodies:
     Sale:
@@ -193,6 +219,26 @@ components:
         enum:
           - STORE
           - REMOTE
+    billingType:
+      name: billingType
+      in: query
+      description: Tipo de comprobante (si es consignación y venta)
+      required: false
+      schema:
+        type: string
+        enum:
+          - CONSIGNMENT
+          - SALE
+    paymentType:
+      name: paymentType
+      in: query
+      description: Tipo de pago (si es al contado o credito)
+      required: false
+      schema:
+        type: string
+        enum:
+          - CASH
+          - CREDIT
 
     paidAtFromDate:
       name: paidAtFrom
@@ -230,3 +276,13 @@ components:
         type: integer
         format: int32
         minimum: 1
+    multipleIds:
+      name: id
+      in: query
+      required: true
+      schema:
+        type: array
+        items:
+          schema:
+            type: integer
+        collectionFormat: multi

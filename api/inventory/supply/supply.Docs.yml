@@ -143,6 +143,9 @@ components:
                 type: string
               code:
                 type: string
+              arrivalDate:
+                type: string
+                format: date
               suppliedProducts:
                 type: array
                 items:
@@ -166,6 +169,7 @@ components:
               warehouseId: 1
               observations: "Ninguna"
               code: "20200101-1"
+              arrivalDate: "2020-11-24T23:39:31.133Z"
               suppliedProducts:
                 [
                   { productId: 1, boxSize: 20, quantity: 100 },

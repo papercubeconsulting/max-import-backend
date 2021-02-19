@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const { authenticateMiddleware } = require('../middleware/auth');
+const { authenticateMiddleware } = require('@/middleware/authentication');
 
 router.use(
   '/geography',

@@ -9,6 +9,75 @@ paths:
       responses:
         "200":
           description: Successful operation
+    put:
+      tags:
+        - management.clients
+      summary: Actualizar un cliente
+      parameters:
+        - $ref: "#/components/parameters/paramId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - PERSON
+                    - COMPANY
+                idNumber:
+                  type: string
+                name:
+                  type: string
+                lastname:
+                  type: string
+                email:
+                  type: string
+                phoneNumber:
+                  type: string
+                address:
+                  type: string
+                regionId:
+                  type: string
+                provinceId:
+                  type: string
+                districtId:
+                  type: string
+                defaultDeliveryAgencyId:
+                  type: integer          
+            examples:
+              deactivateStatus:
+                value:
+                  active: false
+              activateStatus:
+                value:
+                  active: true
+              names:
+                value:
+                  name: "Nombre"
+                  lastname: "Apellido"
+              newId:
+                value:
+                  idNumber: "00001111"
+              full:
+                value:
+                  type: PERSON
+                  idNumber: "12345678"
+                  name: "Nombre o Razon Social"
+                  lastname: "Apellido"
+                  email: "correo@mail.com"
+                  phoneNumber: "987654321"
+                  address: ""
+                  regionId: "15"
+                  provinceId: "1501"
+                  districtId: "150101"
+                  defaultDeliveryAgencyId: 1
+      responses:
+        "200":
+          description: Successful operation
+
+
   "/clients/{code}":
     get:
       tags:
@@ -19,3 +88,102 @@ paths:
       responses:
         "200":
           description: Successful operation
+  "/clients":
+    get:
+      tags:
+        - management.clients
+      summary: Listar clientes
+      parameters:
+        - $ref: '#/components/parameters/pagePagination'
+        - $ref: '#/components/parameters/pageSizePagination'
+        - $ref: '#/components/parameters/fromDate'
+        - $ref: '#/components/parameters/toDate'
+
+        - $ref: '#/components/parameters/active'
+        - $ref: '#/components/parameters/idNumber'
+        - $ref: '#/components/parameters/name'
+        - $ref: '#/components/parameters/lastname'
+
+      responses:
+        "200":
+          description: Successful operation
+    post:
+      tags:
+        - management.clients
+      summary: Crear un cliente
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - PERSON
+                    - COMPANY
+                idNumber:
+                  type: string
+                name:
+                  type: string
+                lastname:
+                  type: string
+                email:
+                  type: string
+                phoneNumber:
+                  type: string
+                address:
+                  type: string
+                regionId:
+                  type: string
+                provinceId:
+                  type: string
+                districtId:
+                  type: string
+                defaultDeliveryAgencyId:
+                  type: integer
+              required:
+                - type
+                - idNumber
+                - name                
+            examples:
+              basicPerson:
+                value:
+                  type: PERSON
+                  idNumber: "12345678"
+                  name: "Nombre"
+                  lastname: "Apellido"
+                  email: "correo@mail.com"
+                  phoneNumber: "987654321"
+                  address: ""
+                  regionId: "15"
+                  provinceId: "1501"
+                  districtId: "150101"
+              basicCompany:
+                value:
+                  type: COMPANY
+                  idNumber: "12345678901"
+                  name: "Razon Social"
+                  email: "correo@mail.com"
+                  phoneNumber: "987654321"
+                  address: ""
+                  regionId: "15"
+                  provinceId: "1501"
+                  districtId: "150101"
+              full:
+                value:
+                  type: PERSON
+                  idNumber: "12345678"
+                  name: "Nombre o Razon Social"
+                  lastname: "Apellido"
+                  email: "correo@mail.com"
+                  phoneNumber: "987654321"
+                  address: ""
+                  regionId: "15"
+                  provinceId: "1501"
+                  districtId: "150101"
+                  defaultDeliveryAgencyId: 1
+      responses:
+        "200":
+          description: Successful operation
+    

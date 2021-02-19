@@ -2,10 +2,10 @@
   {
     "userId": 1,
     "clientId": 2,
-    "createdAt": "2020-06-19T01:31:02+00:00",
+    "createdAt": "2020-10-01T01:31:02+00:00",
     "status": "CLOSED",
     "saleStatus": "PARTIAL",
-    "dispatchStatus": "DISPATCHED",
+    "dispatchStatus": "COMPLETED",
     "proformaProducts": [
       {
         "productId": 1,
@@ -17,10 +17,10 @@
   {
     "userId": 3,
     "clientId": 4,
-    "createdAt": "2020-06-01T15:42:21+00:00",
+    "createdAt": "2020-10-01T15:42:21+00:00",
     "status": "CLOSED",
     "saleStatus": "PARTIAL",
-    "dispatchStatus": "PENDING",
+    "dispatchStatus": "LOCKED",
     "proformaProducts": [
       {
         "productId": 1,
@@ -42,10 +42,10 @@
   {
     "userId": 4,
     "clientId": 2,
-    "createdAt": "2020-06-06T20:43:03+00:00",
+    "createdAt": "2020-10-01T20:43:03+00:00",
     "status": "OPEN",
     "saleStatus": "PENDING",
-    "dispatchStatus": "PENDING",
+    "dispatchStatus": "LOCKED",
     "proformaProducts": [
       {
         "productId": 1,
@@ -60,7 +60,7 @@
     "createdAt": "2020-07-11T04:37:42+00:00",
     "status": "OPEN",
     "saleStatus": "PENDING",
-    "dispatchStatus": "PENDING",
+    "dispatchStatus": "LOCKED",
     "proformaProducts": [
       {
         "productId": 1,
@@ -82,10 +82,10 @@
   {
     "userId": 3,
     "clientId": 5,
-    "createdAt": "2020-06-13T21:23:52+00:00",
+    "createdAt": "2020-10-01T21:23:52+00:00",
     "status": "OPEN",
     "saleStatus": "PENDING",
-    "dispatchStatus": "PENDING",
+    "dispatchStatus": "LOCKED",
     "proformaProducts": [
       {
         "productId": 1,
@@ -102,10 +102,10 @@
   {
     "userId": 3,
     "clientId": 2,
-    "createdAt": "2020-06-15T03:10:16+00:00",
+    "createdAt": "2020-10-01T03:10:16+00:00",
     "status": "OPEN",
     "saleStatus": "PENDING",
-    "dispatchStatus": "PENDING",
+    "dispatchStatus": "LOCKED",
     "proformaProducts": [
       {
         "productId": 1,
@@ -127,10 +127,10 @@
   {
     "userId": 2,
     "clientId": 2,
-    "createdAt": "2020-06-04T07:40:46+00:00",
+    "createdAt": "2020-10-01T07:40:46+00:00",
     "status": "CLOSED",
     "saleStatus": "PARTIAL",
-    "dispatchStatus": "PENDING",
+    "dispatchStatus": "LOCKED",
     "proformaProducts": [
       {
         "productId": 1,
@@ -147,10 +147,10 @@
   {
     "userId": 6,
     "clientId": 2,
-    "createdAt": "2020-06-13T05:49:00+00:00",
+    "createdAt": "2020-10-01T05:49:00+00:00",
     "status": "OPEN",
     "saleStatus": "PENDING",
-    "dispatchStatus": "PENDING",
+    "dispatchStatus": "LOCKED",
     "proformaProducts": [
       {
         "productId": 1,
@@ -162,10 +162,10 @@
   {
     "userId": 2,
     "clientId": 3,
-    "createdAt": "2020-06-14T17:39:13+00:00",
+    "createdAt": "2020-10-01T17:39:13+00:00",
     "status": "OPEN",
     "saleStatus": "PENDING",
-    "dispatchStatus": "PENDING",
+    "dispatchStatus": "LOCKED",
     "proformaProducts": [
       {
         "productId": 1,
@@ -177,10 +177,10 @@
   {
     "userId": 4,
     "clientId": 2,
-    "createdAt": "2020-06-07T10:19:42+00:00",
+    "createdAt": "2020-10-01T10:19:42+00:00",
     "status": "OPEN",
     "saleStatus": "PENDING",
-    "dispatchStatus": "PENDING",
+    "dispatchStatus": "LOCKED",
     "proformaProducts": [
       {
         "productId": 1,
@@ -192,10 +192,10 @@
   {
     "userId": 3,
     "clientId": 3,
-    "createdAt": "2020-06-22T19:51:35+00:00",
+    "createdAt": "2020-10-01T19:51:35+00:00",
     "status": "CLOSED",
     "saleStatus": "PARTIAL",
-    "dispatchStatus": "DISPATCHED",
+    "dispatchStatus": "COMPLETED",
     "proformaProducts": [
       {
         "productId": 1,
@@ -222,10 +222,10 @@
   {
     "userId": 6,
     "clientId": 5,
-    "createdAt": "2020-06-05T00:56:14+00:00",
+    "createdAt": "2020-10-01T00:56:14+00:00",
     "status": "CLOSED",
     "saleStatus": "PAID",
-    "dispatchStatus": "PENDING",
+    "dispatchStatus": "LOCKED",
     "proformaProducts": [
       {
         "productId": 1,
@@ -245,7 +245,7 @@
     "createdAt": "2020-07-15T04:36:19+00:00",
     "status": "OPEN",
     "saleStatus": "PENDING",
-    "dispatchStatus": "PENDING",
+    "dispatchStatus": "LOCKED",
     "proformaProducts": [
       {
         "productId": 1,
@@ -260,7 +260,7 @@
     "createdAt": "2020-08-01T22:57:59+00:00",
     "status": "CLOSED",
     "saleStatus": "PARTIAL",
-    "dispatchStatus": "PENDING",
+    "dispatchStatus": "LOCKED",
     "proformaProducts": [
       {
         "productId": 1,
@@ -285,7 +285,7 @@
     "createdAt": "2020-07-15T14:03:46+00:00",
     "status": "OPEN",
     "saleStatus": "PENDING",
-    "dispatchStatus": "PENDING",
+    "dispatchStatus": "LOCKED",
     "proformaProducts": [
       {
         "productId": 1,
@@ -310,7 +310,7 @@
     "createdAt": "2020-08-05T18:04:22+00:00",
     "status": "CLOSED",
     "saleStatus": "PARTIAL",
-    "dispatchStatus": "PENDING",
+    "dispatchStatus": "LOCKED",
     "proformaProducts": [
       {
         "productId": 1,
@@ -340,7 +340,7 @@
     "createdAt": "2020-07-17T10:17:08+00:00",
     "status": "CLOSED",
     "saleStatus": "PAID",
-    "dispatchStatus": "DISPATCHED",
+    "dispatchStatus": "COMPLETED",
     "proformaProducts": [
       {
         "productId": 1,
@@ -370,7 +370,7 @@
     "createdAt": "2020-08-06T19:09:21+00:00",
     "status": "CLOSED",
     "saleStatus": "PARTIAL",
-    "dispatchStatus": "DISPATCHED",
+    "dispatchStatus": "COMPLETED",
     "proformaProducts": [
       {
         "productId": 1,
@@ -387,10 +387,10 @@
   {
     "userId": 1,
     "clientId": 2,
-    "createdAt": "2020-06-26T06:41:57+00:00",
+    "createdAt": "2020-10-01T06:41:57+00:00",
     "status": "CLOSED",
     "saleStatus": "PARTIAL",
-    "dispatchStatus": "PENDING",
+    "dispatchStatus": "LOCKED",
     "proformaProducts": [
       {
         "productId": 1,
@@ -407,10 +407,10 @@
   {
     "userId": 1,
     "clientId": 3,
-    "createdAt": "2020-06-25T20:15:37+00:00",
+    "createdAt": "2020-10-01T20:15:37+00:00",
     "status": "OPEN",
     "saleStatus": "PENDING",
-    "dispatchStatus": "PENDING",
+    "dispatchStatus": "LOCKED",
     "proformaProducts": [
       {
         "productId": 1,

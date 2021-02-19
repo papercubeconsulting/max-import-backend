@@ -3,21 +3,22 @@ const { celebrate } = require('celebrate');
 
 const Controller = require('./productbox.controller');
 const Validator = require('./productbox.validator');
+const { isAble } = require('@/middleware/authorization');
 
 const router = express.Router();
 
 router.get(
   '/:identifier',
+  isAble('read', 'productBox'),
   celebrate(Validator.Get),
   Controller.getProductBoxByIdentifier,
 );
-// router.get('/:id([0-9]+)', celebrate(Validator.Get), Controller.getProductBox);
-// router.get(
-//   `/:trackingCode`,
-//   celebrate(Validator.GetCode),
-//   Controller.getProductBoxByCode,
-// );
 
-router.put('/:id', celebrate(Validator.Put), Controller.putProductBox);
+router.put(
+  '/:id',
+  isAble('read', 'productBox'),
+  celebrate(Validator.Put),
+  Controller.putProductBox,
+);
 
 module.exports = router;

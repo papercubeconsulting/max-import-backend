@@ -1,50 +1,122 @@
 [
   {
-    "index": 0,
-    "name": "Tienda 1",
-    "type": "Tienda",
-    "address": "Irving Avenue"
-  },
-  {
-    "index": 1,
-    "name": "Tienda 2",
-    "type": "Tienda",
-    "address": "Sumner Place"
-  },
-  {
-    "index": 2,
-    "name": "Tienda 3",
-    "type": "Tienda",
-    "address": "Pierrepont Place"
-  },
-  {
-    "index": 3,
-    "name": "Tienda 4",
-    "type": "Tienda",
-    "address": "Flatbush Avenue"
-  },
-  {
-    "index": 4,
-    "name": "Tienda 5",
-    "type": "Tienda",
-    "address": "Bliss Terrace"
-  },
-  {
-    "index": 5,
-    "name": "Almacén 6",
+    "name": "ALMACEN",
     "type": "Almacén",
-    "address": "Gotham Avenue"
+    "address": ""
   },
   {
-    "index": 6,
-    "name": "Almacén 7",
+    "name": "GIMANSIO 1ER PISO",
     "type": "Almacén",
-    "address": "Thomas Street"
+    "address": ""
   },
   {
-    "index": 7,
-    "name": "Averiado 8",
+    "name": "GIMANSIO 2DO PISO",
+    "type": "Almacén",
+    "address": ""
+  },
+  {
+    "name": "GIMANSIO 3ER PISO",
+    "type": "Almacén",
+    "address": ""
+  },
+  {
+    "name": "CASA ZAMBO",
+    "type": "Almacén",
+    "address": ""
+  },
+  {
+    "name": "CASA PAPA",
+    "type": "Almacén",
+    "address": ""
+  },
+  {
+    "name": "CASA GIANINA",
+    "type": "Almacén",
+    "address": ""
+  },
+  {
+    "name": "CANTO GRANDE 1ER PISO",
+    "type": "Almacén",
+    "address": ""
+  },
+  {
+    "name": "CANTO GRANDE 2DO PISO",
+    "type": "Almacén",
+    "address": ""
+  },
+  {
+    "name": "CANTO GRANDE 3ER PISO",
+    "type": "Almacén",
+    "address": ""
+  },
+  {
+    "name": "CANTO GRANDE 4TO PISO",
+    "type": "Almacén",
+    "address": ""
+  },
+  {
+    "name": "CANTO GRANDE 5TO PISO",
+    "type": "Almacén",
+    "address": ""
+  },
+  {
+    "name": "CANTO GRANDE 6TO PISO",
+    "type": "Almacén",
+    "address": ""
+  },
+  {
+    "name": "348 AZAPA 1ER PISO",
+    "type": "Almacén",
+    "address": ""
+  },
+  {
+    "name": "348 AZAPA 2DO PISO",
+    "type": "Almacén",
+    "address": ""
+  },
+  {
+    "name": "348 AZAPA 3ER PISO",
+    "type": "Almacén",
+    "address": ""
+  },
+  {
+    "name": "348 AZAPA 4TO PISO",
+    "type": "Almacén",
+    "address": ""
+  },
+  {
+    "name": "348 AZAPA 5TO PISO",
     "type": "Averiado",
-    "address": "Anchorage Place"
+    "address": ""
+  },
+  {
+    "name": "364 AZAPA 1ER PISO",
+    "type": "Almacén",
+    "address": ""
+  },
+  {
+    "name": "364 AZAPA 2DO PISO",
+    "type": "Almacén",
+    "address": ""
+  },
+  {
+    "name": "364 AZAPA 3ER PISO",
+    "type": "Almacén",
+    "address": ""
+  },
+  {
+    "name": "364 AZAPA 4TO PISO",
+    "type": "Almacén",
+    "address": ""
+  },
+  {
+    "name": "364 AZAPA 5TO PISO",
+    "type": "Averiado",
+    "address": ""
+  },
+  {
+    "name": "353 AZAPA",
+    "type": "Almacén",
+    "address": ""
   }
 ]
