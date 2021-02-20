@@ -1,0 +1,127 @@
+[
+    {
+      "name": "-",
+      "code": "00",
+      "subfamilyId": 1
+    },
+    {
+        "name": "-",
+        "code": "00",
+        "subfamilyId": 2
+    },
+    {
+        "name": "-",
+        "code": "00",
+        "subfamilyId": 3
+    },
+    {
+        "name": "-",
+        "code": "00",
+        "subfamilyId": 4
+    },
+    {
+        "name": "-",
+        "code": "00",
+        "subfamilyId": 5
+    },
+    {
+        "name": "COLECTOR DEL ROTOR ",
+        "code": "01",
+        "subfamilyId": 5
+    },
+    {
+        "name": "-",
+        "code": "00",
+        "subfamilyId": 6
+    },
+    {
+        "name": "-",
+        "code": "00",
+        "subfamilyId": 7
+    },
+    {
+        "name": "COLECTOR DE ARMADURA",
+        "code": "01",
+        "subfamilyId": 7
+    },
+    {
+        "name": "-",
+        "code": "00",
+        "subfamilyId": 8
+    },
+    {
+        "name": "PIÑON",
+        "code": "01",
+        "subfamilyId": 8
+    },
+    {
+        "name": "-",
+        "code": "00",
+        "subfamilyId": 9
+    },
+    {
+        "name": "-",
+        "code": "00",
+        "subfamilyId": 10
+    },
+    {
+        "name": "TERMINAL",
+        "code": "01",
+        "subfamilyId": 10
+    },
+    {
+        "name": "-",
+        "code": "00",
+        "subfamilyId": 11
+    },
+    {
+        "name": "-",
+        "code": "00",
+        "subfamilyId": 12
+    },
+    {
+        "name": "-",
+        "code": "00",
+        "subfamilyId": 13
+    },
+    {
+        "name": "-",
+        "code": "00",
+        "subfamilyId": 14
+    },
+    {
+        "name": "BOCINA",
+        "code": "01",
+        "subfamilyId": 14
+    },
+    {
+        "name": "CONTACTO",
+        "code": "02",
+        "subfamilyId": 14
+    },
+    {
+        "name": "EMBOLO",
+        "code": "03",
+        "subfamilyId": 14
+    },
+    {
+        "name": "-",
+        "code": "00",
+        "subfamilyId": 15
+    },
+    {
+        "name": "TAPA DELANTERA",
+        "code": "01",
+        "subfamilyId": 15
+    },
+    {
+        "name": "TAPA INTERMEDIA",
+        "code": "02",
+        "subfamilyId": 15
+    },
+    {
+        "name": "TAPA TRASERA",
+        "code": "03",
+        "subfamilyId": 15
+    }
+  ]

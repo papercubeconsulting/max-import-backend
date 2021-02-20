@@ -76,11 +76,11 @@ sequelize.sync({ force: true }).then(async result => {
     // await seedModelOneByOne(Product, 'product.json');
 
     await seedModel(Provider, 'provider_v2.json');
-    // await seedModel(Family, 'family_v2.json');
-    // await seedModel(Subfamily, 'subfamily_v2.json');
-    // await seedModel(Element, 'element_v2.json');
-    // await seedModelOneByOne(Model, 'model_v2.json');
-    // await seedModelOneByOne(Product, 'product_v2.json');
+    await seedModel(Family, 'family_v3.json');
+    await seedModel(Subfamily, 'subfamily_v3.json');
+    await seedModel(Element, 'element_v3.json');
+    await seedModelOneByOne(Model, 'model_v3.json');
+    await seedModelOneByOne(Product, 'product_v3.json');
 
     // await seedModelByService(Supply, 'supply.json', _fullCreateSupply, [
     //   { id: 1, name: 'Test' },

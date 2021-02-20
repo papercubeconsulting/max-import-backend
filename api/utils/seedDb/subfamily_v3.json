@@ -1,0 +1,76 @@
+[{
+    "name": "-",
+    "code": "00",
+    "familyId": 1
+  },
+  {
+    "name": "CORONA",
+    "code": "01",
+    "familyId": 1
+  },
+  {
+    "name": "PORTADIODO",
+    "code": "02",
+    "familyId": 1
+  },
+  {
+    "name": "RELAY",
+    "code": "03",
+    "familyId": 1
+  },
+  {
+    "name": "ROTOR",
+    "code": "05",
+    "familyId": 1
+  },
+  {
+    "name": "-",
+    "code": "00",
+    "familyId": 2
+  },
+  {
+    "name": "ARMADURA",
+    "code": "01",
+    "familyId": 2
+  },
+  {
+    "name": "BENDIX",
+    "code": "02",
+    "familyId": 2
+  },
+  {
+    "name": "BOBINA",
+    "code": "03",
+    "familyId": 2
+  },
+  {
+    "name": "CAMPO",
+    "code": "04",
+    "familyId": 2
+  },
+  {
+    "name": "HORQUILLA",
+    "code": "05",
+    "familyId": 2
+  },
+  {
+    "name": "KIT DE REPARACION",
+    "code": "06",
+    "familyId": 2
+  },
+  {
+    "name": "PORTA CARBON",
+    "code": "07",
+    "familyId": 2
+  },
+  {
+    "name": "SOLENOIDE",
+    "code": "08",
+    "familyId": 2
+  },
+  {
+    "name": "TAPA",
+    "code": "09",
+    "familyId": 2
+  }
+]
