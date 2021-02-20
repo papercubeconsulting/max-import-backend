@@ -1,0 +1,2341 @@
+[{
+    "suggestedPrice": 28000,
+    "modelId": 1,
+    "providerId": 6,
+    "compatibility": "Alternador Toyota Derecha  Mediano (4E,5E) 12v 70A (Ovalado)",
+    "tradename": "Toyota Derecha Mediano (4E,5E) 12v 70A (Ovalado)"
+}, {
+    "suggestedPrice": 28000,
+    "modelId": 2,
+    "providerId": 6,
+    "compatibility": "Alternador Toyota Derecha  Mediano (4E,5E) 12v 70A (Redondo)",
+    "tradename": "Toyota Derecha Mediano (4E,5E) 12v 70A (Redondo)"
+}, {
+    "suggestedPrice": 32000,
+    "modelId": 3,
+    "providerId": 6,
+    "compatibility": "Alternador Hyundai H1 12v 110A(D4BH)",
+    "tradename": "Hyundai H1 12v 110A(D4BH)"
+}, {
+    "suggestedPrice": 30000,
+    "modelId": 4,
+    "providerId": 6,
+    "compatibility": "Alternador Nissan TD27 12v 70A Vacio/ Grande",
+    "tradename": "Nissan TD27 12v 70A Vacio/ Grande"
+}, {
+    "suggestedPrice": 40000,
+    "modelId": 5,
+    "providerId": 6,
+    "compatibility": "Alternador Nissan UDFE6 24V 50A",
+    "tradename": "Nissan UDFE6 24V 50A"
+}, {
+    "suggestedPrice": 29000,
+    "modelId": 6,
+    "providerId": 6,
+    "compatibility": "Alternador Hyundai Porter 1P 12v 65A (D4BX)",
+    "tradename": "Hyundai Porter 1P 12v 65A (D4BX)"
+}, {
+    "suggestedPrice": 30000,
+    "modelId": 7,
+    "providerId": 6,
+    "compatibility": "Alternador Hyundai Porter 2P 12v 65A (4D55)",
+    "tradename": "Hyundai Porter 2P 12v 65A (4D55)"
+}, {
+    "suggestedPrice": 30000,
+    "modelId": 8,
+    "providerId": 6,
+    "compatibility": "Alternador Nissan Frontier 2P (QD32) 12v 90A",
+    "tradename": "Nissan Frontier 2P (QD32) 12v 90A"
+}, {
+    "suggestedPrice": 32000,
+    "modelId": 9,
+    "providerId": 6,
+    "compatibility": "Alternador Isuzu 4S (4JA1) 12v 90A",
+    "tradename": "Isuzu 4S (4JA1) 12v 90A"
+}, {
+    "suggestedPrice": 30000,
+    "modelId": 10,
+    "providerId": 6,
+    "compatibility": "Alternador Mitsubishi Pajero (4D56) 12v 90A",
+    "tradename": "Mitsubishi Pajero (4D56) 12v 90A"
+}, {
+    "suggestedPrice": 35000,
+    "modelId": 11,
+    "providerId": 6,
+    "compatibility": "Alternador Honda/ Susuki 4S civic 1.6L 12v 70A",
+    "tradename": "Honda/ Susuki 4S Civic 1.6L 12v 70A"
+}, {
+    "suggestedPrice": 30000,
+    "modelId": 12,
+    "providerId": 6,
+    "compatibility": "Alternador Mitsubishi 4D34 24v 45A C/Vacio",
+    "tradename": "Mitsubishi 4D34 24v 45A"
+}, {
+    "suggestedPrice": 30000,
+    "modelId": 13,
+    "providerId": 6,
+    "compatibility": "Alternador Mitsubishi 4D33 Fuso S/Vacio 24v 45A",
+    "tradename": "Mitsubishi 4D33 Fuso S/Vacio 24v 45A"
+}, {
+    "suggestedPrice": 30000,
+    "modelId": 14,
+    "providerId": 6,
+    "compatibility": "Alternador Nissan TD27 12v 70A Vacio/ Chico",
+    "tradename": "Nissan TD27 12v 70A Vacio/ Chico"
+}, {
+    "suggestedPrice": 28000,
+    "modelId": 15,
+    "providerId": 6,
+    "compatibility": "Alternador Mitsubishi Canter 4D30 24v 35A 2 Poleas",
+    "tradename": "Mitsubishi Canter 4D30 24v 35A 2 Poleas"
+}, {
+    "suggestedPrice": 36000,
+    "modelId": 16,
+    "providerId": 6,
+    "compatibility": "Alternador Nissan Frontier Zd30 12v 70A",
+    "tradename": "Nissan Frontier Zd30 12v 70A"
+}, {
+    "suggestedPrice": 38000,
+    "modelId": 17,
+    "providerId": 6,
+    "compatibility": "Alternador Hyundai Santa Fe Valeo 12v 110A",
+    "tradename": "Hyundai Santa Fe Valeo 12v 110A"
+}, {
+    "suggestedPrice": 38000,
+    "modelId": 18,
+    "providerId": 6,
+    "compatibility": "Alternador  Hyundai Santa Fe Valeo 12v 110A (2)",
+    "tradename": "Hyundai Santa Fe Valeo 12v 110A (2)"
+}, {
+    "suggestedPrice": 28000,
+    "modelId": 19,
+    "providerId": 6,
+    "compatibility": "Alternador Nissan TD27 s/Vacio 12v 50A",
+    "tradename": "Nissan TD27 s/Vacio 12v 50A"
+}, {
+    "suggestedPrice": 28000,
+    "modelId": 20,
+    "providerId": 6,
+    "compatibility": "Alternador Nissan Sentra (SR20DE) 12v 80A",
+    "tradename": "Nissan Sentra (SR20DE) 12v 80A"
+}, {
+    "suggestedPrice": 25000,
+    "modelId": 21,
+    "providerId": 6,
+    "compatibility": "Alternador Nissan 1P Ch 24v 20A",
+    "tradename": "Nissan 1P Ch 24v 20A"
+}, {
+    "suggestedPrice": 25000,
+    "modelId": 22,
+    "providerId": 6,
+    "compatibility": "Alternador Nissan Sunny Chico Motor H20 1 polea 12V 35A",
+    "tradename": "Nissan Sunny Chico Motor H20 1 polea 12V 35A"
+}, {
+    "suggestedPrice": 34000,
+    "modelId": 23,
+    "providerId": 6,
+    "compatibility": "Alternador Kia K2700 V/Chico 12v 55A",
+    "tradename": "Kia K2700 V/Chico 12v 55A"
+}, {
+    "suggestedPrice": 25000,
+    "modelId": 24,
+    "providerId": 6,
+    "compatibility": "Alternador Nissan Sentra IH242 12v 60A",
+    "tradename": "Nissan Sentra IH242 12v 60A"
+}, {
+    "suggestedPrice": 49000,
+    "modelId": 25,
+    "providerId": 6,
+    "compatibility": "Alternador Isuzu 4HF1 c/Vacio de fierro 24v 60A (3) Poleas",
+    "tradename": "Isuzu 4HF1 c/Vacio de fierro 24v 60A (3) Poleas"
+}, {
+    "suggestedPrice": 40000,
+    "modelId": 26,
+    "providerId": 6,
+    "compatibility": "Alternador Toyota 3L 12v 70A (Redondo)",
+    "tradename": "Toyota 3L 12v 70A (Redondo)"
+}, {
+    "suggestedPrice": 40000,
+    "modelId": 27,
+    "providerId": 6,
+    "compatibility": "Alternador Nissan Pathfinder (VG33E) 12v 90A",
+    "tradename": "Nissan Pathfinder (VG33E) 12v 90A"
+}, {
+    "suggestedPrice": 40000,
+    "modelId": 28,
+    "providerId": 6,
+    "compatibility": "Alternador Toyota 3L 12v 70A (Ovalado)",
+    "tradename": "Toyota 3L 12v 70A (Ovalado)"
+}, {
+    "suggestedPrice": 28000,
+    "modelId": 29,
+    "providerId": 6,
+    "compatibility": "Alternador Suzuki 1P 12v 50A Enchufe (T)",
+    "tradename": "Suzuki 1P 12v 50A Enchufe (T)"
+}, {
+    "suggestedPrice": 39000,
+    "modelId": 30,
+    "providerId": 6,
+    "compatibility": "Alternador Nissan Maxima Nissan VQ30DE 12v 110A",
+    "tradename": "Nissan Maxima Nissan VQ30DE 12v 110A"
+}, {
+    "suggestedPrice": 28000,
+    "modelId": 31,
+    "providerId": 6,
+    "compatibility": "Alternador Nissan 1P (KA24) 12v 70A",
+    "tradename": "Nissan 1P (KA24) 12v 70A"
+}, {
+    "suggestedPrice": 28000,
+    "modelId": 32,
+    "providerId": 6,
+    "compatibility": "Alternador Toyota lift truck 4Y 5K 12v 50A",
+    "tradename": "Toyota lift truck 4Y 5K 12v 50A"
+}, {
+    "suggestedPrice": 39000,
+    "modelId": 33,
+    "providerId": 6,
+    "compatibility": "Alternador Mitsubishi Fuso C/Vacio 24v 70A",
+    "tradename": "Mitsubishi Fuso C/Vacio 24v 70A"
+}, {
+    "suggestedPrice": 28000,
+    "modelId": 34,
+    "providerId": 6,
+    "compatibility": "Alternador Toyota Lift Truck 1DZ, 3F 12v 40A enchufe (O)",
+    "tradename": "Toyota Lift Truck 1DZ, 3F 12v 40A"
+}, {
+    "suggestedPrice": 32000,
+    "modelId": 35,
+    "providerId": 6,
+    "compatibility": "Alternador Toyota Dina 14B (O) 24v 35A",
+    "tradename": "Toyota Dina 14B (O) 24v 35A"
+}, {
+    "suggestedPrice": 32000,
+    "modelId": 36,
+    "providerId": 6,
+    "compatibility": "Alternador Toyota 11B 24v 35A (Ovalado)",
+    "tradename": "Toyota 11B 24v 35A (Ovalado)"
+}, {
+    "suggestedPrice": 28000,
+    "modelId": 37,
+    "providerId": 6,
+    "compatibility": "Alternador Suzuki Swift 12v 50A",
+    "tradename": "Suzuki Swift 12v 50A"
+}, {
+    "suggestedPrice": 39000,
+    "modelId": 38,
+    "providerId": 6,
+    "compatibility": "Alternador Nissan Maxima VQ35 12V 110A",
+    "tradename": "Nissan Maxima VQ35 12V 110A"
+}, {
+    "suggestedPrice": 49000,
+    "modelId": 39,
+    "providerId": 6,
+    "compatibility": "Alternador Isuzu 4HF1 c/Vacio de aluminio 24v 60A (3) Poleas",
+    "tradename": "Isuzu 4HF1 c/Vacio de aluminio 24v 60A (3) Poleas"
+}, {
+    "suggestedPrice": 38000,
+    "modelId": 40,
+    "providerId": 6,
+    "compatibility": "Alternador Komatsu Volvo 24v 45A Base Larga",
+    "tradename": "Komatsu Volvo 24v 45A Base Larga"
+}, {
+    "suggestedPrice": 38000,
+    "modelId": 41,
+    "providerId": 6,
+    "compatibility": "Alternador Komatsu Volvo 12v 90A Base Larga",
+    "tradename": "Komatsu Volvo 12v 90A Base Larga"
+}, {
+    "suggestedPrice": 33000,
+    "modelId": 42,
+    "providerId": 6,
+    "compatibility": "Alternador Mitsubishi 6D34 s/Vacio 24v 50A",
+    "tradename": "Mitsubishi 6D34 s/Vacio 24v 50A"
+}, {
+    "suggestedPrice": 29000,
+    "modelId": 43,
+    "providerId": 6,
+    "compatibility": "Alternador Nissan Pickup 1P 12v 60A",
+    "tradename": "Nissan Pickup 1P 12v 60A"
+}, {
+    "suggestedPrice": 32000,
+    "modelId": 44,
+    "providerId": 6,
+    "compatibility": "Alternador Yale Nissan Maquinaria enchufe en (T) 12v 40A",
+    "tradename": "Nissan Maquinaria enchufe en (T) 12v 40A"
+}, {
+    "suggestedPrice": 48000,
+    "modelId": 45,
+    "providerId": 6,
+    "compatibility": "Alternador Isuzu 4HK1 s/Vacio 24v 50A",
+    "tradename": "Isuzu 4HK1 s/Vacio 24v 50A"
+}, {
+    "suggestedPrice": 30000,
+    "modelId": 46,
+    "providerId": 6,
+    "compatibility": "Alternador Nissan Sentra (QG18DE) 12v 100A",
+    "tradename": "Nissan Sentra (QG18DE) 12v 100A"
+}, {
+    "suggestedPrice": 29000,
+    "modelId": 47,
+    "providerId": 6,
+    "compatibility": "Alternador Honda Izquierda (4S) Accord 12v 80A",
+    "tradename": "Honda Izquierda (4S) Accord 12v 80A"
+}, {
+    "suggestedPrice": 38000,
+    "modelId": 48,
+    "providerId": 6,
+    "compatibility": "Alternador Nissan Frontier ZD30 12v 90A",
+    "tradename": "Nissan Frontier ZD30 12v 90A"
+}, {
+    "suggestedPrice": 28000,
+    "modelId": 49,
+    "providerId": 6,
+    "compatibility": "Alternador Toyota Camry 3S Derecha 12v 70a (redondo) (2)",
+    "tradename": "Toyota Camry 3S Derecha 12v 70a (redondo) (2)"
+}, {
+    "suggestedPrice": 28000,
+    "modelId": 50,
+    "providerId": 6,
+    "compatibility": "Alternador Toyota Corolla 4A 12v 70A",
+    "tradename": "Toyota Corolla 4A 12v 70A"
+}, {
+    "suggestedPrice": 33000,
+    "modelId": 51,
+    "providerId": 6,
+    "compatibility": "Alternador Toyota Camry 2AZ 12v 80A",
+    "tradename": "Toyota Camry 2AZ 12v 80A"
+}, {
+    "suggestedPrice": 29000,
+    "modelId": 52,
+    "providerId": 6,
+    "compatibility": "Alternador Toyota 4Runner (3RZ) 12v 80A",
+    "tradename": "Toyota 4Runner (3RZ) 12v 80A"
+}, {
+    "suggestedPrice": 42000,
+    "modelId": 53,
+    "providerId": 6,
+    "compatibility": "Alternador Hyundai Santa Fe/Veracruz sistema Denso 12V 130A",
+    "tradename": "Hyundai Santa Fe/Veracruz sistema Denso 12V 130A"
+}, {
+    "suggestedPrice": 30000,
+    "modelId": 54,
+    "providerId": 6,
+    "compatibility": "Alternador Nissan YD22 Nissan Almera 1P 12v 90A (Polea simple)",
+    "tradename": "Nissan YD22 Nissan Almera 1P 12v 90A (Polea simple)"
+}, {
+    "suggestedPrice": 35000,
+    "modelId": 55,
+    "providerId": 6,
+    "compatibility": "Aternador Subaru Impreza, Forester 12v 90A",
+    "tradename": "Subaru Impreza, Forester 12v 90A"
+}, {
+    "suggestedPrice": 40000,
+    "modelId": 56,
+    "providerId": 6,
+    "compatibility": "Alternador Toyota 3L 12v 100A (Ovalado)",
+    "tradename": "Toyota 3L 12v 100A (Ovalado)"
+}, {
+    "suggestedPrice": 45000,
+    "modelId": 57,
+    "providerId": 6,
+    "compatibility": "Alternador Toyota 5L 12v 120A",
+    "tradename": "Toyota 5L 12v 120A"
+}, {
+    "suggestedPrice": 40000,
+    "modelId": 58,
+    "providerId": 6,
+    "compatibility": "Alternador Kia Sportage C/Vacio 12v 120A",
+    "tradename": "Kia Sportage C/Vacio 12v 120A"
+}, {
+    "suggestedPrice": 35000,
+    "modelId": 59,
+    "providerId": 6,
+    "compatibility": "Alternador Mitsubishi 4S Lancer, Outlander 12v 110A",
+    "tradename": "Mitsubishi 4S Lancer, Outlander 12v 110A"
+}, {
+    "suggestedPrice": 49000,
+    "modelId": 60,
+    "providerId": 6,
+    "compatibility": "Alternador Honda Odyssey 3.5L 12v 130A",
+    "tradename": "Honda Odyssey 3.5L 12v 130A"
+}, {
+    "suggestedPrice": 38000,
+    "modelId": 61,
+    "providerId": 6,
+    "compatibility": "Alternador Nissan Tiida 1.6L (HR16DE) 12v 90A",
+    "tradename": "Nissan Tiida 1.6L (HR16DE) 12v 90A"
+}, {
+    "suggestedPrice": 35000,
+    "modelId": 62,
+    "providerId": 6,
+    "compatibility": "Alternador Honda Acura 12v 110A (Redondo)",
+    "tradename": "Honda Acura 12v 110A (Redondo)"
+}, {
+    "suggestedPrice": 40000,
+    "modelId": 63,
+    "providerId": 6,
+    "compatibility": "Alternador Toyota Hino Mod ND (J05C) 24v 60A",
+    "tradename": "Toyota Hino Mod ND (J05C) 24v 60A"
+}, {
+    "suggestedPrice": 45000,
+    "modelId": 64,
+    "providerId": 6,
+    "compatibility": "Alternador John Deere ND Recto 12v 140A (Redondo) Ranurado",
+    "tradename": "John Deere ND Recto 12v 140A (Redondo) Ranurado"
+}, {
+    "suggestedPrice": 34000,
+    "modelId": 65,
+    "providerId": 6,
+    "compatibility": "Alternador Mitsubishi Montero 4M41 12v 125A",
+    "tradename": "Mitsubishi Montero 4M41 12v 125A"
+}, {
+    "suggestedPrice": 40000,
+    "modelId": 66,
+    "providerId": 6,
+    "compatibility": "Alternador Toyota Hilux 2KD 12v 80A",
+    "tradename": "Toyota Hilux 2KD 12v 80A"
+}, {
+    "suggestedPrice": 42000,
+    "modelId": 67,
+    "providerId": 6,
+    "compatibility": "Alternador Toyota RAV4 12v 130A",
+    "tradename": "Toyota RAV4 12v 130A"
+}, {
+    "suggestedPrice": 49000,
+    "modelId": 68,
+    "providerId": 6,
+    "compatibility": "Alternador Honda Tipo 2KD Acura, Odyssey (J35Z6) 12v 130A",
+    "tradename": "Honda Tipo 2KD Acura, Odyssey (J35Z6) 12v 130A"
+}, {
+    "suggestedPrice": 49000,
+    "modelId": 69,
+    "providerId": 6,
+    "compatibility": "Alternador Toyota Yaris (08-11) 1NR 12v 80A",
+    "tradename": "Toyota Yaris (08-11) 1NR 12v 80A"
+}, {
+    "suggestedPrice": 49000,
+    "modelId": 70,
+    "providerId": 6,
+    "compatibility": "Alternador Toyota Corolla 1.6L (14-18) 1ZR 12v 125A",
+    "tradename": "Toyota Corolla 1.6L (14-18) 1ZR 12v 125A"
+}, {
+    "suggestedPrice": 40000,
+    "modelId": 71,
+    "providerId": 6,
+    "compatibility": "Alternador Hyundai Accent 120,i30 12v 90A",
+    "tradename": "Hyundai Accent 120,i30 12v 90A"
+}, {
+    "suggestedPrice": 55000,
+    "modelId": 72,
+    "providerId": 6,
+    "compatibility": "Alternador Nissan Rogue 2.5 (2016) HRA2DDT 12v 120A",
+    "tradename": "Nissan Rogue 2.5 (2016) HRA2DDT 12v 120A"
+}, {
+    "suggestedPrice": 55000,
+    "modelId": 73,
+    "providerId": 6,
+    "compatibility": "Alternador Volswagen Touareg 12v 180A",
+    "tradename": "Volswagen Touareg 12v 180A"
+}, {
+    "suggestedPrice": 55000,
+    "modelId": 74,
+    "providerId": 6,
+    "compatibility": "Alternador Chevrolet Captiva 12v 140A",
+    "tradename": "Chevrolet Captiva 12v 140A"
+}, {
+    "suggestedPrice": 40000,
+    "modelId": 75,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR NISSAN NAVARA 2.5 DCI (D40) 2005-/NISSAN PATHFINDER 2.5 DCI (R51) 2005-/NISSAN FRONTIER MOTOR: YD25 12V - 130A",
+    "tradename": "NISSAN NAVARA/PATHFINDER/FRONTIER - MOTOR: YD25, 12V - 130A"
+}, {
+    "suggestedPrice": 65000,
+    "modelId": 76,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR IVECO EUROTRACKER KUHNER/ SISTEMA MITSUBISHI 24V 90A (POLEA RANURADA 12PK)",
+    "tradename": "IVECO/ SISTEMA MITSUBISHI 24V 90A"
+}, {
+    "suggestedPrice": 22000,
+    "modelId": 77,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR NISSAN SUNNY 1200 1500/ DATSUN ANTIGUO 12V 45A (1 POLEA)",
+    "tradename": "NISSAN SUNNY 1200 1500/ DATSUN 12V 45A"
+}, {
+    "suggestedPrice": 28000,
+    "modelId": 78,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR MITSUBISHI FUSO SIN VACIO/ MOTOR 6D14/6D15 24V 35A (DOBLE POLEA)",
+    "tradename": "MITSUBISHI FUSO/ SIN VACIO ANTIGUO 24V 35A"
+}, {
+    "suggestedPrice": 32000,
+    "modelId": 79,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR MITSUBISHI FUSO SIN VACIO 24V - 50A MOTOR 6D14/6D15 MODELO 230 - DOBLE POLEA",
+    "tradename": "MITSUBISHI FUSO SIN VACIO - MOTOR 6D14/6D15, 24V - 50A"
+}, {
+    "suggestedPrice": 49000,
+    "modelId": 80,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR CATERPILLAR EXCAVATORS MODELO 320 / 3066 SISTEMA MITSUBISHI 24V 35A (POLEA 12R)",
+    "tradename": "CATERPILLAR EXCAVATORS/ SISTEMA MIT 24V 55A"
+}, {
+    "suggestedPrice": 30000,
+    "modelId": 81,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR MITSUBISHI CANTER - MOTOR 4D30/4D31D/4D32 12V - 60A CON VACIO 1 POLEA",
+    "tradename": "MITSUBISHI CANTER - MOTOR 4D30/4D31, 12V - 60A"
+}, {
+    "suggestedPrice": 30000,
+    "modelId": 82,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR MITSUBISHI MOTOR 4D34- NISSAN MOTOR FD35 CON VACIO 24V 45A - DOBLE POLEA",
+    "tradename": "MITSUBISHI- MOTOR 4D34 / NISSAN - MOTOR FD35 CON VACIO, 24V - 45A"
+}, {
+    "suggestedPrice": 33000,
+    "modelId": 83,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR MITSUBISHI MOTOR 4D34- NISSAN MOTOR FD35 CON VACIO 12V 90A - DOBLE POLEA",
+    "tradename": "MITSUBISHI- MOTOR 4D34 / NISSAN - MOTOR FD35 CON VACIO, 12V - 90A"
+}, {
+    "suggestedPrice": 30000,
+    "modelId": 84,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR HYUNDAI PORTER/PAJERO/L200-L300 1 POLEA 12V - 65A",
+    "tradename": "HYUNDAI PORTER / MITSUBISHI PAJERO / L200, 12V - 65A"
+}, {
+    "suggestedPrice": 32000,
+    "modelId": 85,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR HYUNDAI PORTER/GRACE - MITSUBISHI PAJERO/L200-L300 2 POLEAS, 12V - 65V",
+    "tradename": "HYUNDAI PORTER - MOTOR 4D55/4D56 - MITSUBISHI PAJERO, 12V - 65A"
+}, {
+    "suggestedPrice": 42000,
+    "modelId": 86,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR MITSUBISHI FUSO CON VACIO MOTOR 6D15/6D16 HYUNDAI MOTOR HD65/HD72/HD78 DOBLE POLEA 24V - 60A",
+    "tradename": "MITSUBISHI FUSO CON VACIO/ HYUNDAI - MOTOR HD65/HD72/HD78, 24V - 60A"
+}, {
+    "suggestedPrice": 32000,
+    "modelId": 87,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR MITSUBISHI CANTER - MOTOR 4D30/4D31D/4D32 12V - 70A CON VACIO 1 POLEA",
+    "tradename": "MITSUBISHI CANTER - MOTOR 4D30/4D31, 12V - 70A"
+}, {
+    "suggestedPrice": 35000,
+    "modelId": 88,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR HYUNDAI STAREX / H100 - H1 2 POLEAS PERNO COSTADO 12V - 110V",
+    "tradename": "HYUNDAI STAREX, 12V - 110A"
+}, {
+    "suggestedPrice": 32000,
+    "modelId": 89,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR MERCEDES BENZ ANTIGUO /DEUTZ/ MAN 24V 35A SISTEMA BOSCH",
+    "tradename": "MERCEDES BENZ ANTIGUO / DEUTZ/ MAN 24V 35A"
+}, {
+    "suggestedPrice": 30000,
+    "modelId": 90,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR JHON DEERE /CUMMINS SISTEMA BOSCH RECTO 12V 120A (DOBLE POLEA)",
+    "tradename": "JHON DEERE/ BOSCH RECTO 12V 120A"
+}, {
+    "suggestedPrice": 32000,
+    "modelId": 91,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR JOHN DEERE TRACTOR (6100-6200) BASE RECTA POLEA RANURADA - SISTEMA BOSCH 12V - 120A",
+    "tradename": "JOHN DEERE - BOSCH BASE RECTA, 12V - 120A"
+}, {
+    "suggestedPrice": 32000,
+    "modelId": 92,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR VOLVO / DEUTZ BASE LARGA 24V 55A (DOBLE POLEA) CATERPILLAR EXCAVATOR",
+    "tradename": "VOLVO / DEUTZ BASE LARGA 24V 55A"
+}, {
+    "suggestedPrice": 28000,
+    "modelId": 93,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR VOLVO CAMION N10/N12/TD10 DOBLE POLEA 24V - 55A",
+    "tradename": "VOLVO - MOTOR N10/N12/TD10, 24V - 55A"
+}, {
+    "suggestedPrice": 35000,
+    "modelId": 94,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR VOLVO CAMION N10/N12 12V - 90A",
+    "tradename": "VOLVO - MOTOR N10/N12, 12V - 90A"
+}, {
+    "suggestedPrice": 35000,
+    "modelId": 95,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR MERCESDEZ BENZ / MODELO 3836 SISTEMA BOSCH DOBLE POLEA",
+    "tradename": "MERCEDEZ BENZ ANTIGUO MODELO 3836 24V 55/70A"
+}, {
+    "suggestedPrice": 38000,
+    "modelId": 96,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR VOLVO HEAVY TRUCK FH12 12V 110A BASE ABIERTO SISTEMA BOSCH",
+    "tradename": "VOLVO TRUCK/ BASE ABIERTA SISTEMA BOSCH 12V 110A"
+}, {
+    "suggestedPrice": 49000,
+    "modelId": 97,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR SCANIA ANTIGUO 24V 65A, 114/ 124/ 144/ 164, 9.0L SISTEMA BOSCH",
+    "tradename": "SCANIA ANTIGUO 24V 65A SISTEMA BOSCH"
+}, {
+    "suggestedPrice": 49000,
+    "modelId": 98,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR JOHN DEERE / MERCEDES BENZ TRUCK 24V - 110A",
+    "tradename": "JOHN DEERE / MERCEDES BENZ, 24V - 110A"
+}, {
+    "suggestedPrice": 49000,
+    "modelId": 99,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR DE VOLKSWAGEN MODASA / MWM / CUMMINS 12V - 90A",
+    "tradename": "VOLKSWAGEN MODASA / MWM / CUMMINS, 12V - 90A"
+}, {
+    "suggestedPrice": 40000,
+    "modelId": 100,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR TOYOTA HILUX (1KD/2KD)SISTEMA BOSCH 12V - 80A",
+    "tradename": "TOYOTA HILUX (1KD/2KD) SISTEMA BOSCH, 12V - 80A"
+}, {
+    "suggestedPrice": 43000,
+    "modelId": 101,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR MERCEDES SPRINTER 2.1 CDI/ SISTEMA BOSCH 12V 90A (POLEA RANURADA 6PK)",
+    "tradename": "MERCEDES SPRINTER 2.1 CDI/SISTEMA BOSCH  12V 90A"
+}, {
+    "suggestedPrice": 40000,
+    "modelId": 102,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR BOSCH BASE CHICA VW AMAROK/ PASSAT/ SEAT 12V 180A (POLEA RANURADA 6PK)",
+    "tradename": "VW AMAROK/ BOSCH BASE CHICA / PASSAT/ SEAT 12V 180A"
+}, {
+    "suggestedPrice": 55000,
+    "modelId": 103,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR FORD TRANSIT 2.4L/ 3.2L (2006/2008) LAND ROVER DEFENDER 2.4L 2007",
+    "tradename": "FORD TRANSIT 2.4L/ 3.2L/ LAND ROVER 12V 150A"
+}, {
+    "suggestedPrice": 55000,
+    "modelId": 104,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR ISKRA /LETRIKA ALFA ROMEO FIAT IVECO 12V 55A",
+    "tradename": "LETRIKA/ FIAT/ ISKRA/ IVECO 12V 55A"
+}, {
+    "suggestedPrice": 65000,
+    "modelId": 105,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR CATERPILLAR MODERNO/ SISTEMA BOSCH 12V 240A (4POLEAS)",
+    "tradename": "CATERPILLAR MODERNO/ SISTEMA BOSCH 12V 240A"
+}, {
+    "suggestedPrice": 38000,
+    "modelId": 106,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR CATERPILLAR / SISTEMA DELCO 20SI 24V 45A -INTERNATIONAL TRUCK",
+    "tradename": "CATERPILLAR / SISTEMA DELCO 20SI 24V 45A"
+}, {
+    "suggestedPrice": 40000,
+    "modelId": 107,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR FREIGHTLINER DELCO 22SI 12V 145A (4 POLEAS)",
+    "tradename": "FREIGHTLINER DELCO 22SI 12V 145A (4P)"
+}, {
+    "suggestedPrice": 60000,
+    "modelId": 108,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR CATERPILLAR DELCO 26SI 24V 75A",
+    "tradename": "CATERPILLAR DELCO 26SI 24V 75A"
+}, {
+    "suggestedPrice": 28000,
+    "modelId": 109,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR DELCO MARINO MODELO 10SI, 12V - 60A",
+    "tradename": "DELCO MARINO MODELO 10SI, 12V - 60A"
+}, {
+    "suggestedPrice": 30000,
+    "modelId": 110,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR DELCO 10SI, BOBCAT, CATERPILLAR, 9G6080 CUMMINS, 3604663RX, 12V 60A",
+    "tradename": "DELCO 10SI / CATERPILLAR / BOBCAT 12V 60A"
+}, {
+    "suggestedPrice": 39000,
+    "modelId": 111,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR LUCAS ANTIGUO THERMO KING JOHN DEERE 12V - 65A",
+    "tradename": "LUCAS ANTIGUO / THERMO KING / JOHN DEERE, 12V - 65A"
+}, {
+    "suggestedPrice": 28000,
+    "modelId": 112,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR PERKINS LUCAS / MASSEY FERGUSON / NEW HOLLAND 1 POLEA, 12V - 65A",
+    "tradename": "PERKINS LUCAS / MASSEY FERGUSON / NEW HOLLAND, 12V - 65A"
+}, {
+    "suggestedPrice": 45000,
+    "modelId": 113,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR TOYOTA 2L / LAND CRUISER CON VACIO CHICO, 12V - 55A",
+    "tradename": "TOYOTA CATERPILLAR SISTEMA DENSO RECTO, 12V - 100A"
+}, {
+    "suggestedPrice": 32000,
+    "modelId": 114,
+    "providerId": 8,
+    "compatibility": "ALTERNATOR NISSAN TD27/ SD25 / TD25 / NISSAN NAVARA / D21, D22 /12V CON VACIO (DOBLE POLEA)",
+    "tradename": "NISSAN TD27/ DS25 12V 90A"
+}, {
+    "suggestedPrice": 32000,
+    "modelId": 115,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR TOYOTA CATERPILLAR SISTEMA DENSO RECTO DOBLE POLEA CONEXION L IG P, 12V - 100A",
+    "tradename": "TOYOTA 2L / LAND CRUISER CON VACIO, 12V - 55A"
+}, {
+    "suggestedPrice": 35000,
+    "modelId": 116,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR TOYOTA (2L/3L) CON VACIO GRANDE /LH103 LH113 LH125 2.8L, HIACE DIESEL 12V 80A",
+    "tradename": "TOYOTA (2L/3L) CON VACIO GRANDE 12V 80A"
+}, {
+    "suggestedPrice": 35000,
+    "modelId": 117,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR YANMAR/ KOMATSU SISTEMA HITACHI 12V 80A (1 POLEA)",
+    "tradename": "YANMAR/ KOMATSU SISTEMA HITACHI 12V 80A"
+}, {
+    "suggestedPrice": 28000,
+    "modelId": 118,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR NISSAN /SISTEMA HITACHI (MOTOR E15) SENTRA 12V 60A (1 POLEA)",
+    "tradename": "NISSAN SUNNY (MOTOR E15) SENTRA 12V 60A"
+}, {
+    "suggestedPrice": 53000,
+    "modelId": 119,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR TOYOTA HILUX/4 RUNNER/ INNOVA/ REVO (MOTOR 1GD, 2GD) 12V 80A",
+    "tradename": "TOYOTA HILUX/REVO/ INNAVA (MOTOR 1GD) 12V 80AO"
+}, {
+    "suggestedPrice": 28000,
+    "modelId": 120,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR PULSAR SUNNY 12V 60A (MOTOR  E16) POLEA RANURADA 4PK",
+    "tradename": "NISSAN SUNNY PULSAR/ 12V 60A (MOTOR E16)"
+}, {
+    "suggestedPrice": 49000,
+    "modelId": 121,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR HYUNDAI PORTER II MODERNO/ KIA BONGO 3, SISTEMA VALEO 3S, 12V 90A (POLEA RANURADA 7PK)",
+    "tradename": "HYUNDAI PORTER II/ KIA BONGO 3/ 12V 90A (MODERNO)"
+}, {
+    "suggestedPrice": 35000,
+    "modelId": 122,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR PERKINS MODERNO 12V 85A /CATERPILLAR 305-3661",
+    "tradename": "PERKINS MODERNO/ CATERPILLAR  JCB 12V 85A"
+}, {
+    "suggestedPrice": 130000,
+    "modelId": 123,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR PRESTOLITE 24V 175A CATERPILLAR, CUMMINS, MTU, MOTOROLA, VOLVO PENTA",
+    "tradename": "PRESTOLITE /CUMMINS CATERPILLAR 24V 175A"
+}, {
+    "suggestedPrice": 53000,
+    "modelId": 124,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR DONGFENG BASE RECTA SIN VACIO 24V 55A (DOBLE POLEA)",
+    "tradename": "DONGFENG BASE RECTA SIN VACIO 24V 55A"
+}, {
+    "suggestedPrice": 53000,
+    "modelId": 125,
+    "providerId": 8,
+    "compatibility": "ALTERNADOR CUMMINS ISDE 24V 70A/DONGFENG (POLEA RANURADA 8PK)",
+    "tradename": "DONGFENG CUMMINS 24V 70A"
+}, {
+    "suggestedPrice": 7500,
+    "modelId": 126,
+    "providerId": 6,
+    "compatibility": "Corona H20 H25 Maquinaria Si 12v 40A",
+    "tradename": "Maquinaria H20 H25 Si 12V 40A"
+}, {
+    "suggestedPrice": 18000,
+    "modelId": 127,
+    "providerId": 6,
+    "compatibility": "Corona BMW tipo 2KD 12v 220A",
+    "tradename": "BMW tipo 2KD 12v 220A"
+}, {
+    "suggestedPrice": 7500,
+    "modelId": 128,
+    "providerId": 6,
+    "compatibility": "Porta Diodo Honda Tipo 2KD Acura, Odyssey  (J35Z6) 12v 130A",
+    "tradename": "Honda tipo 2KD Acura Odyssey  (J35Z6) 12v 130A"
+}, {
+    "suggestedPrice": 7000,
+    "modelId": 129,
+    "providerId": 6,
+    "compatibility": "Relay Ford Ranger c/Vacio 12v 90A",
+    "tradename": "Ford Ranger c/Vacio 12V 90A"
+}, {
+    "suggestedPrice": 12000,
+    "modelId": 130,
+    "providerId": 6,
+    "compatibility": "Relay LIN (Suzuki Swift, Vitara 12v 80A)",
+    "tradename": "Suzuki Swift, Vitara 12v 80A"
+}, {
+    "suggestedPrice": 12000,
+    "modelId": 131,
+    "providerId": 6,
+    "compatibility": "Relay LIN (Toyota Corolla, Hybrid 12v 100A)",
+    "tradename": "Toyota Corolla, Hybrid 12v 100A"
+}, {
+    "suggestedPrice": 12000,
+    "modelId": 132,
+    "providerId": 6,
+    "compatibility": "Relay LIN (Toyota Corolla 1.6L (14-18) 1ZR 12v 125A)",
+    "tradename": "Toyota Corolla 1.6L (14-18) 1ZR 12v 125A"
+}, {
+    "suggestedPrice": 12000,
+    "modelId": 133,
+    "providerId": 6,
+    "compatibility": "Rotor Toyota 3L 12v 70A",
+    "tradename": "Toyota 3L 12v 70A"
+}, {
+    "suggestedPrice": 400,
+    "modelId": 134,
+    "providerId": 12,
+    "compatibility": "COLECTOR DE ALTERNADOR TICO (20MM)",
+    "tradename": "TICO"
+}, {
+    "suggestedPrice": 800,
+    "modelId": 135,
+    "providerId": 12,
+    "compatibility": "COLECTOR DE ALTERNADOR MOTOROLA",
+    "tradename": "MOTOROLA"
+}, {
+    "suggestedPrice": 400,
+    "modelId": 136,
+    "providerId": 12,
+    "compatibility": "COLECTOR DE ALTERNADOR TOYOTA (24MM)",
+    "tradename": "TOYOTA"
+}, {
+    "suggestedPrice": 1000,
+    "modelId": 137,
+    "providerId": 12,
+    "compatibility": "COLECTOR DE ALTERNADOR DELCO 10SI/ 22SI",
+    "tradename": "DELCO 10SI/22SI"
+}, {
+    "suggestedPrice": 600,
+    "modelId": 138,
+    "providerId": 12,
+    "compatibility": "COLECTOR DE ALTERNADOR NISSAN CD17/TD27",
+    "tradename": "NISSAN CD17/TD27"
+}, {
+    "suggestedPrice": 600,
+    "modelId": 139,
+    "providerId": 12,
+    "compatibility": "COLECTOR DE ALTERNADOR MITSUBISHI CANTER",
+    "tradename": "MITSUBISHI CANTER"
+}, {
+    "suggestedPrice": 800,
+    "modelId": 140,
+    "providerId": 12,
+    "compatibility": "COLECTOR DE ALTERNADOR FORD ANTIGUO",
+    "tradename": "FORD ANTIGUO"
+}, {
+    "suggestedPrice": 700,
+    "modelId": 141,
+    "providerId": 12,
+    "compatibility": "COLECTOR DE ALTERNADOR VOLVO MODERNO 45A",
+    "tradename": "VOLVO MOD 45A"
+}, {
+    "suggestedPrice": 800,
+    "modelId": 142,
+    "providerId": 12,
+    "compatibility": "COLECTOR DE ALTERNADOR VOLVO ANTIGUO 55A/80A",
+    "tradename": "VOLVO ANT 55A/80A"
+}, {
+    "suggestedPrice": 800,
+    "modelId": 143,
+    "providerId": 12,
+    "compatibility": "COLECTOR DE ALTERNADOR NISSAN GA15 (CUERPO CHICO)",
+    "tradename": "NISSAN GA15 CH"
+}, {
+    "suggestedPrice": 800,
+    "modelId": 144,
+    "providerId": 12,
+    "compatibility": "COLECTOR DE ALTERNADOR NISSAN GA15 (CUERPO ANCHO)",
+    "tradename": "NISSAN GA15 C/ANCHO"
+}, {
+    "suggestedPrice": 40000,
+    "modelId": 145,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR IVECO PILOTO, 12V 9 DIENTES (LAND ROVER)",
+    "tradename": "IVECO PILOTO, 12V 9T (LAND ROVER)"
+}, {
+    "suggestedPrice": 25000,
+    "modelId": 146,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR DAMAS CHINO 12V 9 DIENTES DELGADO",
+    "tradename": "DAMAS CHINO 12V 9T DELG"
+}, {
+    "suggestedPrice": 40000,
+    "modelId": 147,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR RENAULT MASTER SISTEMA VALEO 10T 12V, 2.2KW",
+    "tradename": "RENAULT MASTER SISTEMA VALEO 12V, 10T"
+}, {
+    "suggestedPrice": 30000,
+    "modelId": 148,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR HYUNDAI H1 TAPA BAJA 12V 10T",
+    "tradename": "HYUNDAI H1 TAPA BAJA 12V 10T"
+}, {
+    "suggestedPrice": 30000,
+    "modelId": 149,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR AD (CD17/CD20) 2.0KW, 12V 9 DIENTES",
+    "tradename": "NISSAN AD (CD17/CD20) 12V 10T"
+}, {
+    "suggestedPrice": 40000,
+    "modelId": 150,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR NISSAN CONDOR FD6/ FE6 12V 11 DIENTES",
+    "tradename": "NISSAN CONDOR FD6/ FE6 12V"
+}, {
+    "suggestedPrice": 28000,
+    "modelId": 151,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR NISSAN TD27 12V 9 DIENTES",
+    "tradename": "NISSAN TD27 12V 9T"
+}, {
+    "suggestedPrice": 43000,
+    "modelId": 152,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR LUCAS FORZON COPILOTO 12V 10DIENTES",
+    "tradename": "LUCAS FORZON COPILOTO 12V 10T"
+}, {
+    "suggestedPrice": 40000,
+    "modelId": 153,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR PERKINS MODERNO PILOTO 12V 10T 2.8KW SISTEMA MAGNETI MARELLI",
+    "tradename": "PERKINS MODERNO PIL 12V"
+}, {
+    "suggestedPrice": 28000,
+    "modelId": 154,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR TOYOTA CORONA C/3Y 12V 9T",
+    "tradename": "TOYOTA CORONA C/3Y 9T"
+}, {
+    "suggestedPrice": 1000,
+    "modelId": 155,
+    "providerId": 12,
+    "compatibility": "KIT DE CONTACTO SOLENOIDE TOYOTA CHICO",
+    "tradename": "TOYOTA CHICO"
+}, {
+    "suggestedPrice": 29000,
+    "modelId": 156,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR TOYOTA HILUX 3L/5L 10 DIENTES GRANDE",
+    "tradename": "TOYOTA HILUX 3L/5L 10T"
+}, {
+    "suggestedPrice": 35000,
+    "modelId": 157,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR ISUZU INDUSTRIAL ND 2.2KW, 12V 9 DIENTES",
+    "tradename": "ISUZU INDUSTRIAL ND 12V 9T"
+}, {
+    "suggestedPrice": 29000,
+    "modelId": 158,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR TOYOTA HILUX 1KD/2KD SISTEMA DENSO 12V 10T",
+    "tradename": "TOYOTA HILUX 1KD/2KD 12V 10T"
+}, {
+    "suggestedPrice": 29000,
+    "modelId": 159,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR TOYOTA COROLLA 2C GRANDE 12V 10T",
+    "tradename": "TOYOTA COROLLA 2C GR"
+}, {
+    "suggestedPrice": 58000,
+    "modelId": 160,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR PERKINS CAT/ SISTEMA DENSO 3.0KW, 12V 10DIENTES",
+    "tradename": "PERKINS CAT/ SIST DENSO 3.0KW 12V 10T"
+}, {
+    "suggestedPrice": 60000,
+    "modelId": 161,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR JOHN DEERE SISTEMA DENSO 3.0KW 12V 10 DIENTES",
+    "tradename": "JOHN DEERE SISTEMA DENSO 3.0KW 12V 10T"
+}, {
+    "suggestedPrice": 60000,
+    "modelId": 162,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR ISUZU SISTEMA DENSO 3.0KW 12V 10 DIENTES",
+    "tradename": "ISUZU SISTEMA DENSO 3.0KW 12V 10T"
+}, {
+    "suggestedPrice": 35000,
+    "modelId": 163,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR DELCO MARINO 12V 11T",
+    "tradename": "DELCO MARINO 12V 11T"
+}, {
+    "suggestedPrice": 30000,
+    "modelId": 164,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR TOYOTA HILUX PERNO AFUERA 12V 10T",
+    "tradename": "TOYOTA HILUX 12V 10T PERNO/AFUERA"
+}, {
+    "suggestedPrice": 38000,
+    "modelId": 165,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR NISSAN FD42/FD46, SISTEMA MITSUBISHI 24V 11 DIENTES",
+    "tradename": "NISSAN FD42/FD46 24V 11T"
+}, {
+    "suggestedPrice": 0,
+    "modelId": 166,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR HYUNDAI COUNTY, HD65/HD72/HD78, 24V 11 DIENTES  S/CH",
+    "tradename": "HYUNDAI COUNTY, HD65/HD72/HD78 24V 11T"
+}, {
+    "suggestedPrice": 0,
+    "modelId": 167,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR HYUNDAI COUNTY, HD65/HD72/HD78, SELLADO C/CH, 24V 11 DIENTES",
+    "tradename": "HYUNDAI COUNTY, HD65/HD72/HD78 24V 11T"
+}, {
+    "suggestedPrice": 0,
+    "modelId": 168,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR HYUNDAI COUNTY, HD65/HD72/HD78, 24V 11 DIENTES S/CH",
+    "tradename": "HYUNDAI COUNTY, HD65/HD72/HD78 24V 11T"
+}, {
+    "suggestedPrice": 42000,
+    "modelId": 169,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR MITSUBISHI FUSO MODERNO 6D16/6D17 24V 11T",
+    "tradename": "MITSUBISHI FUSO MOD 6D16/6D17 24V 11T"
+}, {
+    "suggestedPrice": 38000,
+    "modelId": 170,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR TOYOTA DINA 24V 4.5KW, 11 DIENTES",
+    "tradename": "TOYOTA DINA 24V 4.5KW, 11T"
+}, {
+    "suggestedPrice": 38000,
+    "modelId": 171,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR JAC SISTEMA DENSO 24V 4.5KW 11 DIENTES",
+    "tradename": "JAC SISTEMA DENSO 24V 11T"
+}, {
+    "suggestedPrice": 38000,
+    "modelId": 172,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR JAC SISTEMA DENSO 24V 4.5KW 9 DIENTES",
+    "tradename": "JAC SISTEMA DENSO 24V 9T"
+}, {
+    "suggestedPrice": 42000,
+    "modelId": 173,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR KIA TRADE SISTEMA DENSO 24V 4.5KW 12 DIENTES",
+    "tradename": "KIA TRADE SISTEMA DENSO 24V 12T"
+}, {
+    "suggestedPrice": 60000,
+    "modelId": 174,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR CUMMINS 6BT SISTEMA DENSO 5.5KW 24V",
+    "tradename": "CUMMINS 6BT SISTEMA DENSO 5.5KW 24V"
+}, {
+    "suggestedPrice": 60000,
+    "modelId": 175,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR IVECO SISTEMA DENSO 5.5KW 24V",
+    "tradename": "IVECO SISTEMA DENSO 5.5KW 24V"
+}, {
+    "suggestedPrice": 58000,
+    "modelId": 176,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR JOHN DEERE SISTEMA DENSO 5.5KW 24V 11 DIENTES",
+    "tradename": "JOHN DEERE SISTEMA DENSO 5.5KW 24V 11T"
+}, {
+    "suggestedPrice": 45000,
+    "modelId": 177,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR NISSAN UD/ FE6 4.5KW  24V 11 DIENTES SISTEMA SAWAFUJI",
+    "tradename": "NISSAN UD/ FE6 24V 11T"
+}, {
+    "suggestedPrice": 55000,
+    "modelId": 178,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR FOTON 24V 10 DIENTES",
+    "tradename": "FOTON 24V 10T"
+}, {
+    "suggestedPrice": 5500,
+    "modelId": 179,
+    "providerId": 12,
+    "compatibility": "ARMADURA HYUNDAI /MITSUBISHI 112MM 11T",
+    "tradename": "HYUNDAI/ MIT 112MM 11T"
+}, {
+    "suggestedPrice": 7000,
+    "modelId": 180,
+    "providerId": 12,
+    "compatibility": "ARMADURA DELCO 28MT 12V",
+    "tradename": "DELCO 28MT 12V"
+}, {
+    "suggestedPrice": 9000,
+    "modelId": 181,
+    "providerId": 12,
+    "compatibility": "ARMADURA DELCO 29MT 12V",
+    "tradename": "DELCO 29MT 12V"
+}, {
+    "suggestedPrice": 8000,
+    "modelId": 182,
+    "providerId": 12,
+    "compatibility": "ARMADURA BOSCH 145MM 14 DIENTES",
+    "tradename": "BOSCH 145MM 14T"
+}, {
+    "suggestedPrice": 8000,
+    "modelId": 183,
+    "providerId": 12,
+    "compatibility": "ARMADURA BOSCH 145MM 14 DIENTES",
+    "tradename": "BOSCH 145MM 14T"
+}, {
+    "suggestedPrice": 7000,
+    "modelId": 184,
+    "providerId": 12,
+    "compatibility": "ARMADURA DAMAS CHINO 12V 9 DIENTES DELGADO",
+    "tradename": "DAMAS CHINO 12V 9T"
+}, {
+    "suggestedPrice": 6000,
+    "modelId": 185,
+    "providerId": 12,
+    "compatibility": "ARMADURA HYUNDAI H1",
+    "tradename": "HYUNDAI H1"
+}, {
+    "suggestedPrice": 6500,
+    "modelId": 186,
+    "providerId": 12,
+    "compatibility": "ARMADURA NISSAN Z20 (33D)",
+    "tradename": "NISSAN Z20"
+}, {
+    "suggestedPrice": 4500,
+    "modelId": 187,
+    "providerId": 12,
+    "compatibility": "ARMADURA NISSAN GA15 HITACHI 110MM 8T",
+    "tradename": "NISSAN GA15 HITACHI 8T"
+}, {
+    "suggestedPrice": 6500,
+    "modelId": 188,
+    "providerId": 12,
+    "compatibility": "ARMADURA NISSAN CONDOR FD6/FE6 12V",
+    "tradename": "NISSAN CONDOR FD6/ FE6 12V"
+}, {
+    "suggestedPrice": 6000,
+    "modelId": 189,
+    "providerId": 12,
+    "compatibility": "ARMADURA NISSAN TD27 12V 188MM",
+    "tradename": "NISSAN TD27 12V 188MM"
+}, {
+    "suggestedPrice": 5000,
+    "modelId": 190,
+    "providerId": 12,
+    "compatibility": "ARMADURA NISSAN CD17",
+    "tradename": "NISSAN CD17"
+}, {
+    "suggestedPrice": 6000,
+    "modelId": 191,
+    "providerId": 12,
+    "compatibility": "ARMADURA NISSAN CD20",
+    "tradename": "NISSAN CD20"
+}, {
+    "suggestedPrice": 6000,
+    "modelId": 192,
+    "providerId": 12,
+    "compatibility": "ARMADURA NISSAN TD27 12V 182MM (CHINO)",
+    "tradename": "NISSAN TD27 12V 182MM CHINO"
+}, {
+    "suggestedPrice": 7000,
+    "modelId": 193,
+    "providerId": 12,
+    "compatibility": "ARMADURA NISSAN FRONTIER 173MM 9T",
+    "tradename": "NISSAN FRONTIER 9T"
+}, {
+    "suggestedPrice": 12000,
+    "modelId": 194,
+    "providerId": 12,
+    "compatibility": "ARMADURA PERKINS LUCAS VER MODELO",
+    "tradename": "PERKINS LUCAS"
+}, {
+    "suggestedPrice": 4500,
+    "modelId": 195,
+    "providerId": 12,
+    "compatibility": "ARMADURA HYUNDAI SONATA",
+    "tradename": "HYUNDAI SONATA"
+}, {
+    "suggestedPrice": 7500,
+    "modelId": 196,
+    "providerId": 12,
+    "compatibility": "ARMADURA MITSUBISHI FUSO ANTIGUO 6D14 12V",
+    "tradename": "MITSUBISHI FUSO ANTIGUO 6D14 ANT 12V"
+}, {
+    "suggestedPrice": 8500,
+    "modelId": 197,
+    "providerId": 12,
+    "compatibility": "ARMADURA MITSUBISHI FUSO MODERNO (HD65) MOTOR CD17, 12V",
+    "tradename": "MITSUBISHI FUSO MOD HD65 12V"
+}, {
+    "suggestedPrice": 12000,
+    "modelId": 198,
+    "providerId": 12,
+    "compatibility": "ARMADURA DE FOTON 24V",
+    "tradename": "FOTON 24V"
+}, {
+    "suggestedPrice": 6000,
+    "modelId": 199,
+    "providerId": 12,
+    "compatibility": "ARMADURA HYUNDAI EXCEL",
+    "tradename": "HYUNDAI EXCEL"
+}, {
+    "suggestedPrice": 5000,
+    "modelId": 200,
+    "providerId": 12,
+    "compatibility": "ARMADURA HYUNDAI SONATA 122MM 12V",
+    "tradename": "HYUNDAI SONATA 122MM 12V"
+}, {
+    "suggestedPrice": 4500,
+    "modelId": 201,
+    "providerId": 12,
+    "compatibility": "ARMADURA TOYOTA HILUX 3Y 12V",
+    "tradename": "TOYOTA HILUX 3Y 12V"
+}, {
+    "suggestedPrice": 6000,
+    "modelId": 202,
+    "providerId": 12,
+    "compatibility": "ARMADURA TOYOTA COROLLA 2C +CHICO 1.2KW 12V",
+    "tradename": "TOYOTA COROLLA 2C +CH"
+}, {
+    "suggestedPrice": 4500,
+    "modelId": 203,
+    "providerId": 12,
+    "compatibility": "ARMADURA DE TOYOTA COROLLA 2C CHICO",
+    "tradename": "TOYOTA COROLLA 2C CH"
+}, {
+    "suggestedPrice": 6000,
+    "modelId": 204,
+    "providerId": 12,
+    "compatibility": "ARMADURA TOYOTA COROLLA 1C/2C MEDIANO 12V",
+    "tradename": "TOYOTA COROLLA 1C/2C MEDIANO  12V"
+}, {
+    "suggestedPrice": 6000,
+    "modelId": 205,
+    "providerId": 12,
+    "compatibility": "ARMADURA TOYATA 2C GRANDE (3L/5L/2KD)",
+    "tradename": "TOYOTA 2C GR"
+}, {
+    "suggestedPrice": 7000,
+    "modelId": 206,
+    "providerId": 12,
+    "compatibility": "ARMADURA TOYOTA DINA 12V 2.5KW",
+    "tradename": "TOYOTA DINA 12V 2.5KW"
+}, {
+    "suggestedPrice": 4000,
+    "modelId": 207,
+    "providerId": 12,
+    "compatibility": "ARMADURA TOYOTA COROLLA 4E/5E 12V",
+    "tradename": "TOYOTA COROLLA 4E/5E 12V"
+}, {
+    "suggestedPrice": 6500,
+    "modelId": 208,
+    "providerId": 12,
+    "compatibility": "ARMADURA TOYOTA HILUX 3L RANURA FINA",
+    "tradename": "TOYOTA HILUX 3L"
+}, {
+    "suggestedPrice": 7000,
+    "modelId": 209,
+    "providerId": 12,
+    "compatibility": "ARMADURA DELCO 28MT 24V",
+    "tradename": "DELCO 28MT 24V"
+}, {
+    "suggestedPrice": 7000,
+    "modelId": 210,
+    "providerId": 12,
+    "compatibility": "ARMADURA DELCO 28MT 24V",
+    "tradename": "DELCO 28MT 24V"
+}, {
+    "suggestedPrice": 9500,
+    "modelId": 211,
+    "providerId": 12,
+    "compatibility": "ARMADURA BOSCH ESPAÑOL 24V 16T",
+    "tradename": "BOSCH ESPAÑOL 24V 10T"
+}, {
+    "suggestedPrice": 6500,
+    "modelId": 212,
+    "providerId": 12,
+    "compatibility": "ARMADURA NISSAN CONDOR FD6/FE6 24V",
+    "tradename": "NISSAN CONDOR FD6/FE6 24V"
+}, {
+    "suggestedPrice": 6500,
+    "modelId": 213,
+    "providerId": 12,
+    "compatibility": "ARMADURA MITSUBISHI FUSO MOTOR 6D14 24V",
+    "tradename": "MITSUBISHI FUSO 6D14 24V"
+}, {
+    "suggestedPrice": 11000,
+    "modelId": 214,
+    "providerId": 12,
+    "compatibility": "ARMADURA DE MITSUBISHI FUSO 8CIL (15TONELADAS)",
+    "tradename": "MITSUBISHI FUSO 8 CIL"
+}, {
+    "suggestedPrice": 7000,
+    "modelId": 215,
+    "providerId": 12,
+    "compatibility": "ARMADURA HYUNDAI HD65, FUSO MODERNO (MOTOR 6D16/6D17) 24V",
+    "tradename": "HYUNDAI HD65, FUSO MODERNO 24V"
+}, {
+    "suggestedPrice": 10000,
+    "modelId": 216,
+    "providerId": 12,
+    "compatibility": "ARMADURA VOLVO FM12 24V",
+    "tradename": "VOLVO FM12"
+}, {
+    "suggestedPrice": 7000,
+    "modelId": 217,
+    "providerId": 12,
+    "compatibility": "ARMADURA TOYOTA DINA 24V",
+    "tradename": "TOYOTA DINA 24V"
+}, {
+    "suggestedPrice": 7500,
+    "modelId": 218,
+    "providerId": 12,
+    "compatibility": "ARMADURA HINO 500 (J08C) 24V",
+    "tradename": "HINO 500 24V"
+}, {
+    "suggestedPrice": 7500,
+    "modelId": 219,
+    "providerId": 12,
+    "compatibility": "ARMADURA NISSAN UD/ FE6 4.5KW 24V 11 DIENTES SISTEMA SAWAFUJI",
+    "tradename": "NISSAN UD/ FE6 24V"
+}, {
+    "suggestedPrice": 12000,
+    "modelId": 220,
+    "providerId": 12,
+    "compatibility": "ARMADURA FOTON 24V 10 DIENTES",
+    "tradename": "FOTON 24V 10T"
+}, {
+    "suggestedPrice": 4500,
+    "modelId": 221,
+    "providerId": 12,
+    "compatibility": "BENDIX RENAULT MASTER VALEO 11T 29,4MM",
+    "tradename": "RENAULT MASTER VALEO 11T"
+}, {
+    "suggestedPrice": 6000,
+    "modelId": 222,
+    "providerId": 12,
+    "compatibility": "BENDIX HYUNDAI H1 VER SI VIENE SOLO O COMPLETO",
+    "tradename": "HYUNDAI H1"
+}, {
+    "suggestedPrice": 5500,
+    "modelId": 223,
+    "providerId": 12,
+    "compatibility": "BENDIX NISSAN TD27 CHINO 32MM 9 DIENTES",
+    "tradename": "NISSAN TD27 CHINO 32MM 9T"
+}, {
+    "suggestedPrice": 5000,
+    "modelId": 224,
+    "providerId": 12,
+    "compatibility": "BENDIX NISSAN TD27 PARA VERIFICAR",
+    "tradename": "NISSAN TD27"
+}, {
+    "suggestedPrice": 5000,
+    "modelId": 225,
+    "providerId": 12,
+    "compatibility": "BENDIX NISSAN CD17/CD20, 10 DIENTES 38MM",
+    "tradename": "NISSAN CD17/CD20 10T"
+}, {
+    "suggestedPrice": 5500,
+    "modelId": 226,
+    "providerId": 12,
+    "compatibility": "BENDIX NISSAN CD17/CD20, 10 DIENTES 35MM",
+    "tradename": "NISSAN CD17/CD20 10T"
+}, {
+    "suggestedPrice": 5500,
+    "modelId": 227,
+    "providerId": 12,
+    "compatibility": "BENDIX HYUNDAI PORTER (MOTOR 4D56) 10 DIENTES",
+    "tradename": "HYUNDAI PORTER 4D56 10T"
+}, {
+    "suggestedPrice": 6500,
+    "modelId": 228,
+    "providerId": 12,
+    "compatibility": "BENDIX MAZDA T4100 SISTEMA MITSUBISHI CCW 14 DIENTES",
+    "tradename": "MAZDA T4100 SIST MIT CCW 14T"
+}, {
+    "suggestedPrice": 5000,
+    "modelId": 229,
+    "providerId": 12,
+    "compatibility": "BENDIX TOYOTA COROLLA 2C GRANDE 10T 2.0",
+    "tradename": "TOYOTA COROLLA 2C GR"
+}, {
+    "suggestedPrice": 5000,
+    "modelId": 230,
+    "providerId": 12,
+    "compatibility": "BENDIX TOYOTA COROLLA 2C GRANDE 10T 2.2",
+    "tradename": "TOYOTA COROLLA 2C GR"
+}, {
+    "suggestedPrice": 7500,
+    "modelId": 231,
+    "providerId": 12,
+    "compatibility": "BENDIX ISUZU (4HF1) 11T CCW",
+    "tradename": "ISUZU 4HF1, 11T CCW"
+}, {
+    "suggestedPrice": 7500,
+    "modelId": 232,
+    "providerId": 12,
+    "compatibility": "BENDIX ISUZU 3 (4HF1) 11T CCW",
+    "tradename": "ISUZU 3 4HF1, CCW 11T"
+}, {
+    "suggestedPrice": 5000,
+    "modelId": 233,
+    "providerId": 12,
+    "compatibility": "BENDIX MITSUBISHI CANTER EJE CORTO MOTOR 4D31 9 DIENTES",
+    "tradename": "MITSUBISHI CANTER 4D31 9T"
+}, {
+    "suggestedPrice": 5000,
+    "modelId": 234,
+    "providerId": 12,
+    "compatibility": "BENDIX MITSUBISHI CANTER EJE LARGO MOTOR 4D31",
+    "tradename": "MITSUBISHI CANTER 4D31"
+}, {
+    "suggestedPrice": 0,
+    "modelId": 235,
+    "providerId": 12,
+    "compatibility": "BENDIX SOLO HYUNDAI COUNTY, HD65/HD72/HD78, 24V 11 DIENTES",
+    "tradename": "HYUNDAI COUNTY, HD65/HD72/HD78 24V 11T"
+}, {
+    "suggestedPrice": 0,
+    "modelId": 236,
+    "providerId": 12,
+    "compatibility": "BENDIX COMPLETO HYUNDAI COUNTY, HD65/HD72/HD78, 24V 11 DIENTES",
+    "tradename": "HYUNDAI COUNTY, HD65/HD72/HD78 24V 11T"
+}, {
+    "suggestedPrice": 9000,
+    "modelId": 237,
+    "providerId": 12,
+    "compatibility": "BENDIX TOYOTA DINA 12 DIENTES",
+    "tradename": "TOYOTA DINA 12T"
+}, {
+    "suggestedPrice": 7500,
+    "modelId": 238,
+    "providerId": 12,
+    "compatibility": "BENDIX TOYOTA CAT 5.5KW 10 DIENTES",
+    "tradename": "TOYOTA CAT 5.5KW 10T"
+}, {
+    "suggestedPrice": 7500,
+    "modelId": 239,
+    "providerId": 12,
+    "compatibility": "BENDIX HINO 500 (J08C) 11 DIENTES",
+    "tradename": "HINO 500 11T"
+}, {
+    "suggestedPrice": 1800,
+    "modelId": 240,
+    "providerId": 12,
+    "compatibility": "BOBINA TOYOTA 2C CHICO 12V 1.4KW",
+    "tradename": "TOYOTA 2C CH"
+}, {
+    "suggestedPrice": 1800,
+    "modelId": 241,
+    "providerId": 12,
+    "compatibility": "BOBINA TOYOTA COROLLA 2L/ 2C GRANDE 2.2KW 12V",
+    "tradename": "TOYOTA COROLLA 2L/ 2C GRANDE 2.2KW 12V"
+}, {
+    "suggestedPrice": 4000,
+    "modelId": 242,
+    "providerId": 12,
+    "compatibility": "BOBINA DE CAMPO MITSUBISHI FUSO MOTOR CD14",
+    "tradename": "MITSUBISHI FUSO 6D14"
+}, {
+    "suggestedPrice": 7500,
+    "modelId": 243,
+    "providerId": 12,
+    "compatibility": "CAMPO TOYOTA 1KD/2KD SISTEMA BOSCH",
+    "tradename": "TOYOTA 1KD/2KD SISTEMA BOSCH"
+}, {
+    "suggestedPrice": 6500,
+    "modelId": 244,
+    "providerId": 12,
+    "compatibility": "CAMPO NISSAN CONDOR FD6/ FE6 12V",
+    "tradename": "NISSAN CONDOR FD6/ FE6 12V"
+}, {
+    "suggestedPrice": 6500,
+    "modelId": 245,
+    "providerId": 12,
+    "compatibility": "CAMPO NISSAN FRONTIER ZD30",
+    "tradename": "NISSAN FRONTIER ZD30"
+}, {
+    "suggestedPrice": 11000,
+    "modelId": 246,
+    "providerId": 12,
+    "compatibility": "CAMPO PERKINS LUCAS",
+    "tradename": "PERKINS LUCAS"
+}, {
+    "suggestedPrice": 4500,
+    "modelId": 247,
+    "providerId": 12,
+    "compatibility": "CAMPO DEL TOYOTA HILUX 3Y",
+    "tradename": "TOYOTA HILUX 3Y"
+}, {
+    "suggestedPrice": 6000,
+    "modelId": 248,
+    "providerId": 12,
+    "compatibility": "CAMPO TOYOTA COROLLA 2C +CHICO 1.2KW 12V",
+    "tradename": "TOYOTA COROLLA 2C +CH"
+}, {
+    "suggestedPrice": 4500,
+    "modelId": 249,
+    "providerId": 12,
+    "compatibility": "CAMPO DEL TOYOTA COROLLA 2C CHICO",
+    "tradename": "TOYOTA COROLLA 2C CH"
+}, {
+    "suggestedPrice": 6500,
+    "modelId": 250,
+    "providerId": 12,
+    "compatibility": "CAMPO KIA K2700 12V CCW",
+    "tradename": "TOYOTA 2C GR"
+}, {
+    "suggestedPrice": 9000,
+    "modelId": 251,
+    "providerId": 12,
+    "compatibility": "CAMPO KIA TRADE TOYOTA DINA CCW, 12V",
+    "tradename": "KIA TRADE/TOYOTA DINA CCW, 12V"
+}, {
+    "suggestedPrice": 12000,
+    "modelId": 252,
+    "providerId": 12,
+    "compatibility": "CAMPO CAT/SISTEMA DENSO 3.0KW 12V",
+    "tradename": "CAT SIST DENSO, 3.0KW 12V"
+}, {
+    "suggestedPrice": 6500,
+    "modelId": 253,
+    "providerId": 12,
+    "compatibility": "CAMPO TOYOTA 3L 12V",
+    "tradename": "TOYOTA 3L 12V"
+}, {
+    "suggestedPrice": 10000,
+    "modelId": 254,
+    "providerId": 12,
+    "compatibility": "CAMPO DELCO 29MT 24V",
+    "tradename": "DELCO 29MT 24V"
+}, {
+    "suggestedPrice": 6500,
+    "modelId": 255,
+    "providerId": 12,
+    "compatibility": "CAMPO NISSAN CONDOR FD6/FE6 24V",
+    "tradename": "NISSAN CONDOR FD6/FE6 24V"
+}, {
+    "suggestedPrice": 4900,
+    "modelId": 256,
+    "providerId": 12,
+    "compatibility": "CAMPO MITSUBISHI CANTER MOTOR 4D31 24V",
+    "tradename": "MITSUBISHI CANTER 4D31 24V"
+}, {
+    "suggestedPrice": 3000,
+    "modelId": 257,
+    "providerId": 12,
+    "compatibility": "CAMPO SOLO MITSUBISHI CANTER 4D31/4D32, 24V",
+    "tradename": "MITSUBISHI CANTER 4D31/4D32, 24V"
+}, {
+    "suggestedPrice": 7000,
+    "modelId": 258,
+    "providerId": 12,
+    "compatibility": "CAMPO DE MITSUBISHI FUSO/ MOTOR 6D14, 24V",
+    "tradename": "MITSUBISHI FUSO 6D14 24V"
+}, {
+    "suggestedPrice": 11000,
+    "modelId": 259,
+    "providerId": 12,
+    "compatibility": "CAMPO HYUNDAI 6D22 24V CCW",
+    "tradename": "HYUNDAI 6D22 24V CCW"
+}, {
+    "suggestedPrice": 7500,
+    "modelId": 260,
+    "providerId": 12,
+    "compatibility": "CAMPO HYUNDAI HD65, HD72 24V",
+    "tradename": "HYUNDAI HD65,HD72 24V"
+}, {
+    "suggestedPrice": 9000,
+    "modelId": 261,
+    "providerId": 12,
+    "compatibility": "CAMPO KIA TRADE/ TOYOTA DINA 24V CCW",
+    "tradename": "KIA TRADE/ TOYOTA DINA 24V CCW"
+}, {
+    "suggestedPrice": 7500,
+    "modelId": 262,
+    "providerId": 12,
+    "compatibility": "CAMPO HINO 500 (J08C) 24V",
+    "tradename": "HINO 500 24V"
+}, {
+    "suggestedPrice": 12000,
+    "modelId": 263,
+    "providerId": 12,
+    "compatibility": "CAMPO FOTON 24V 10 DIENTES",
+    "tradename": "FOTON 24V 10T"
+}, {
+    "suggestedPrice": 1000,
+    "modelId": 264,
+    "providerId": 12,
+    "compatibility": "HORQUILLA MITSUBISHI CANTER 4D31/4D32, 24V",
+    "tradename": "MITSUBISHI CANTER 4D31/4D32, 24V"
+}, {
+    "suggestedPrice": 1500,
+    "modelId": 265,
+    "providerId": 12,
+    "compatibility": "HORQUILLA MITSUBISHI FUSO/ MOTOR 6D14",
+    "tradename": "MITSUBISHI FUSO/ MOTOR 6D14"
+}, {
+    "suggestedPrice": 2500,
+    "modelId": 266,
+    "providerId": 12,
+    "compatibility": "HORQUILLA NISSAN UD/ FE6 4.5KW  24V 11 DIENTES SISTEMA SAWAFUJI",
+    "tradename": "NISSAN UD/ FE6 24V 11T"
+}, {
+    "suggestedPrice": 500,
+    "modelId": 267,
+    "providerId": 12,
+    "compatibility": "KIT DE AISLANTE 42MT",
+    "tradename": "42MT"
+}, {
+    "suggestedPrice": 8000,
+    "modelId": 268,
+    "providerId": 12,
+    "compatibility": "KIT DE REPARACION DE ARRANCADOR 42MT 12V (79-1116)",
+    "tradename": "42MT 12V"
+}, {
+    "suggestedPrice": 2500,
+    "modelId": 269,
+    "providerId": 12,
+    "compatibility": "PORTA CARBON ISUZU 3 (4HF1) 24V CCW",
+    "tradename": "ISUZU 3 4HF1, 24V CCW"
+}, {
+    "suggestedPrice": 3500,
+    "modelId": 270,
+    "providerId": 12,
+    "compatibility": "PORTA CARBON MITSUBISHI FUSO DE 8CIL (15 TONELADAS)",
+    "tradename": "MITSUBISHI FUSO 8 CIL"
+}, {
+    "suggestedPrice": 4500,
+    "modelId": 271,
+    "providerId": 12,
+    "compatibility": "PORTA CARBON FOTON 24V 10 DIENTES",
+    "tradename": "FOTON 24V 10T"
+}, {
+    "suggestedPrice": 5500,
+    "modelId": 272,
+    "providerId": 12,
+    "compatibility": "SOLENOIDE TOYOTA 1KD/2KD SISTEMA BOSCH",
+    "tradename": "TOYOTA 1KD/2KD SISTEMA BOSCH"
+}, {
+    "suggestedPrice": 6000,
+    "modelId": 273,
+    "providerId": 12,
+    "compatibility": "SOLENOIDE TOYOTA HILUX 3Y 1.0KW 12V IZQUIERDO",
+    "tradename": "TOYOTA HILUX 3Y 12V 1.0KW IZQ"
+}, {
+    "suggestedPrice": 6000,
+    "modelId": 274,
+    "providerId": 12,
+    "compatibility": "SOLENOIDE TOYOTA HILUX 3Y 1.0KW 12V DERECHO",
+    "tradename": "TOYOTA HILUX 3Y 12V 1.0KW DER"
+}, {
+    "suggestedPrice": 6000,
+    "modelId": 275,
+    "providerId": 12,
+    "compatibility": "SOLENOIDE COMPLETO/ TOYOTA COROLLA 2C CHICO",
+    "tradename": "TOYOTA COROLLA 2C CH"
+}, {
+    "suggestedPrice": 6500,
+    "modelId": 276,
+    "providerId": 12,
+    "compatibility": "SOLENOIDE TOYOTA COROLLA 2C GRANDE IZQUIERDO",
+    "tradename": "TOYOTA COROLLA 2C GRANDE"
+}, {
+    "suggestedPrice": 6500,
+    "modelId": 277,
+    "providerId": 12,
+    "compatibility": "SOLENOIDE TOYOTA COROLLA 2C GRANDE DERECHO",
+    "tradename": "TOYOTA COROLLA 2C GRANDE"
+}, {
+    "suggestedPrice": 7500,
+    "modelId": 278,
+    "providerId": 12,
+    "compatibility": "SOLENOIDE COMPLETO TOYOTA DINA 12V IZQUIERDO",
+    "tradename": "TOYOTA DINA 12V IZQ"
+}, {
+    "suggestedPrice": 7500,
+    "modelId": 279,
+    "providerId": 12,
+    "compatibility": "SOLENOIDE COMPLETO TOYOTA DINA 12V DERECHO",
+    "tradename": "TOYOTA DINA 12V DER"
+}, {
+    "suggestedPrice": 11000,
+    "modelId": 280,
+    "providerId": 12,
+    "compatibility": "SOLENOIDE CAT SISTEMA DENSO 3.0KW 12V",
+    "tradename": "CAT SIST DENSO, 3.0KW 12V"
+}, {
+    "suggestedPrice": 6500,
+    "modelId": 281,
+    "providerId": 12,
+    "compatibility": "SOLENOIDE TOYOTA  3L 12V VERIFICAR CONTENIDO",
+    "tradename": "TOYOTA 3L 12V"
+}, {
+    "suggestedPrice": 6500,
+    "modelId": 282,
+    "providerId": 12,
+    "compatibility": "SOLENOIDE TOYOTA HIACE 3L 12V",
+    "tradename": "TOYOTA HIACE 3L 12V"
+}, {
+    "suggestedPrice": 7500,
+    "modelId": 283,
+    "providerId": 12,
+    "compatibility": "SOLENOIDE TOYOTA DINA 24V 4.5KW (IZQUIERDA)",
+    "tradename": "TOYOTA DINA"
+}, {
+    "suggestedPrice": 7500,
+    "modelId": 284,
+    "providerId": 12,
+    "compatibility": "SOLENOIDE TOYOTA DINA 24V 4.5KW (DERECHA)",
+    "tradename": "TOYOTA DINA"
+}, {
+    "suggestedPrice": 11000,
+    "modelId": 285,
+    "providerId": 12,
+    "compatibility": "SOLENOIDE CAT SISTEMA DENSO 5.5KW 24V",
+    "tradename": "CAT SIST DENSO 5.5KW 24V"
+}, {
+    "suggestedPrice": 8500,
+    "modelId": 286,
+    "providerId": 12,
+    "compatibility": "SOLENOIDE FOTON 24V 10 DIENTES",
+    "tradename": "FOTON 24V 10T"
+}, {
+    "suggestedPrice": 2000,
+    "modelId": 287,
+    "providerId": 12,
+    "compatibility": "BOCINA SOLENOIDE TOYOTA DINA",
+    "tradename": "TOYOTA DINA"
+}, {
+    "suggestedPrice": 2500,
+    "modelId": 288,
+    "providerId": 12,
+    "compatibility": "COLECTOR DE ARMADURA PERKINS LUCAS 21 DELGAS",
+    "tradename": "PERKINS LUCAS 21 DELGAS"
+}, {
+    "suggestedPrice": 1000,
+    "modelId": 289,
+    "providerId": 12,
+    "compatibility": "EMBOLO TOYOTA COROLLA 2C CHICO",
+    "tradename": "TOYOTA 2C CH"
+}, {
+    "suggestedPrice": 1000,
+    "modelId": 290,
+    "providerId": 12,
+    "compatibility": "EMBOLO TOYOTA 2L",
+    "tradename": "TOYOTA 2L"
+}, {
+    "suggestedPrice": 1000,
+    "modelId": 291,
+    "providerId": 12,
+    "compatibility": "PIÑON DE BENDIX MITSUBISHI CANTER 9 DIENTES COMPLETO",
+    "tradename": "MITSUBISHI CANTER 9T"
+}, {
+    "suggestedPrice": 2500,
+    "modelId": 292,
+    "providerId": 12,
+    "compatibility": "PIÑON TOYOTA DINA 10 DIENTES 36MM",
+    "tradename": "TOYOTA DINA 10T 36MM"
+}, {
+    "suggestedPrice": 3500,
+    "modelId": 293,
+    "providerId": 6,
+    "compatibility": "Tapa Delantera de Alternador Toyota 3L 12v 70A",
+    "tradename": "Toyota 3L 12V 70A"
+}, {
+    "suggestedPrice": 5500,
+    "modelId": 294,
+    "providerId": 12,
+    "compatibility": "TAPA DELANTERA PERKINS LUCAS COPILOTO",
+    "tradename": "PERKINS LUCAS COPILOTO"
+}, {
+    "suggestedPrice": 5000,
+    "modelId": 295,
+    "providerId": 12,
+    "compatibility": "TAPA DELANTERA NISSAN CONDOR FD6/FE6 24V",
+    "tradename": "NISSAN CONDOR FD6/FE6 24V"
+}, {
+    "suggestedPrice": 3500,
+    "modelId": 296,
+    "providerId": 12,
+    "compatibility": "TAPA DELANTERA MITSUBISHI CANTER MOTOR 4D31",
+    "tradename": "MITSUBISHI CANTER 4D31"
+}, {
+    "suggestedPrice": 4500,
+    "modelId": 297,
+    "providerId": 12,
+    "compatibility": "TAPA DELANTERA MITSUBISHI FUSO/ MOTOR 6D15",
+    "tradename": "MITSUBISHI FUSO/ MOTOR 6D15"
+}, {
+    "suggestedPrice": 6000,
+    "modelId": 298,
+    "providerId": 12,
+    "compatibility": "TAPA DELANTERA JAC SISTEMA DENSO",
+    "tradename": "JAC SISTEMA"
+}, {
+    "suggestedPrice": 6000,
+    "modelId": 299,
+    "providerId": 12,
+    "compatibility": "TAPA DELANTERA ND",
+    "tradename": ""
+}, {
+    "suggestedPrice": 6000,
+    "modelId": 300,
+    "providerId": 12,
+    "compatibility": "TAPA DELANTERA ND",
+    "tradename": ""
+}, {
+    "suggestedPrice": 6000,
+    "modelId": 301,
+    "providerId": 12,
+    "compatibility": "TAPA DELANTERA ND",
+    "tradename": ""
+}, {
+    "suggestedPrice": 6000,
+    "modelId": 302,
+    "providerId": 12,
+    "compatibility": "TAPA DELANTERA ND",
+    "tradename": ""
+}, {
+    "suggestedPrice": 6000,
+    "modelId": 303,
+    "providerId": 12,
+    "compatibility": "TAPA DELANTERA ND",
+    "tradename": ""
+}, {
+    "suggestedPrice": 6000,
+    "modelId": 304,
+    "providerId": 12,
+    "compatibility": "TAPA DELANTERA ND",
+    "tradename": ""
+}, {
+    "suggestedPrice": 6000,
+    "modelId": 305,
+    "providerId": 12,
+    "compatibility": "TAPA DELANTERA ND",
+    "tradename": ""
+}, {
+    "suggestedPrice": 6000,
+    "modelId": 306,
+    "providerId": 12,
+    "compatibility": "TAPA DELANTERA ND",
+    "tradename": ""
+}, {
+    "suggestedPrice": 1000,
+    "modelId": 307,
+    "providerId": 12,
+    "compatibility": "TAPA INTERMEDIA MITSUBISHI CANTER",
+    "tradename": "MITSUBISHI CANTER"
+}, {
+    "suggestedPrice": 1800,
+    "modelId": 308,
+    "providerId": 12,
+    "compatibility": "TAPA INTERMEDIA MITSUBISHI FUSO",
+    "tradename": "MITSUBISHI FUSO"
+}, {
+    "suggestedPrice": 3000,
+    "modelId": 309,
+    "providerId": 12,
+    "compatibility": "TAPA TRASERA DELCO 29MT",
+    "tradename": "DELCO 29MT"
+}, {
+    "suggestedPrice": 2500,
+    "modelId": 310,
+    "providerId": 12,
+    "compatibility": "TAPA TRASERA PERKINS LUCAS",
+    "tradename": "PERKINS LUCAS"
+}, {
+    "suggestedPrice": 1500,
+    "modelId": 311,
+    "providerId": 12,
+    "compatibility": "TAPA TRASERA DEL TOYOTA COROLLA 2C CHICO",
+    "tradename": "TOYOTA COROLLA 2C CH"
+}, {
+    "suggestedPrice": 3500,
+    "modelId": 312,
+    "providerId": 12,
+    "compatibility": "TAPA TRASERA FOTON",
+    "tradename": "FOTON 24V"
+}, {
+    "suggestedPrice": 1800,
+    "modelId": 313,
+    "providerId": 12,
+    "compatibility": "TAPA TRASERA TOYOTA HIACE 3L",
+    "tradename": "TOYOTA HIACE 3L"
+}, {
+    "suggestedPrice": 2500,
+    "modelId": 314,
+    "providerId": 12,
+    "compatibility": "TAPA TRASERA ISUZU 3 (4HF1) 24V 11 DIENTES",
+    "tradename": "ISUZU 3 (4HF1) 24V 11T"
+}, {
+    "suggestedPrice": 1000,
+    "modelId": 315,
+    "providerId": 12,
+    "compatibility": "TAPA TRASERA MITSUBISHI CANTER",
+    "tradename": "MITSUBISHI CANTER"
+}, {
+    "suggestedPrice": 2500,
+    "modelId": 316,
+    "providerId": 12,
+    "compatibility": "TAPA TRASERA HYUNDAI 6D22",
+    "tradename": "HYUNDAI 6D22"
+}, {
+    "suggestedPrice": 3500,
+    "modelId": 317,
+    "providerId": 12,
+    "compatibility": "TAPA TRASERA MITSUBISHI FUSO  DE 8CIL (15 TONELADAS)",
+    "tradename": "MITSUBISHI FUSO 8 CIL"
+}, {
+    "suggestedPrice": 2500,
+    "modelId": 318,
+    "providerId": 12,
+    "compatibility": "TAPA TRASERA TOYOTA DINA",
+    "tradename": "TOYOTA DINA"
+}, {
+    "suggestedPrice": 300,
+    "modelId": 319,
+    "providerId": 12,
+    "compatibility": "TERMINAL DE CAMPO 37MT/41MT/42MT",
+    "tradename": "37MT/41MT/42MT"
+}, {
+    "suggestedPrice": 45000,
+    "modelId": 320,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR DELCO 28MT 12V 10 DIENTES (PIÑON DELGADO)",
+    "tradename": "DELCO 28MT 12V 10T (PIÑON DELGADO)"
+}, {
+    "suggestedPrice": 45000,
+    "modelId": 321,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR DELCO 28MT 12V 10 DIENTES (PIÑON GRUESO)",
+    "tradename": "DELCO 28MT 12V 10T (PIÑON GRUESO)"
+}, {
+    "suggestedPrice": 50000,
+    "modelId": 322,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR MERCEDES DELCO 29MT 12V 9DIENTES 3.3KW",
+    "tradename": "MERCEDES DELCO 29MT 12V 9T"
+}, {
+    "suggestedPrice": 30000,
+    "modelId": 323,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR HYUNDAI H1 VALEO, TAPA ALTA, 12V 10 DIENTES",
+    "tradename": "HYUNDAI H1 VALEO 12V 10T"
+}, {
+    "suggestedPrice": 30000,
+    "modelId": 324,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR AD (CD17/CD20) 2.0KW, 12V 9 DIENTES",
+    "tradename": "NISSAN AD (CD17/CD20) 12V 9T"
+}, {
+    "suggestedPrice": 30000,
+    "modelId": 325,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR NISSAN FRONTIER ZD30 12V 9 DIENTES",
+    "tradename": "NISSAN FRONTIER ZD30 12V 9T"
+}, {
+    "suggestedPrice": 28000,
+    "modelId": 326,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR HYUNDAI PORTER 12V 10 DIENTES",
+    "tradename": "HYUNDAI PORTER 12V 10T"
+}, {
+    "suggestedPrice": 32000,
+    "modelId": 327,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR NISSAN NAVARA MOTOR YD25 12V 12DIENTES",
+    "tradename": "NISSAN NAVARA YD25 12V 12T"
+}, {
+    "suggestedPrice": 32000,
+    "modelId": 328,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR MITSUBISHI MONTERO, 4M40 12V 10 DIENTES",
+    "tradename": "MITSUBISHI MONTERO 4M40, 12V 10T"
+}, {
+    "suggestedPrice": 30000,
+    "modelId": 329,
+    "providerId": 12,
+    "compatibility": "ARRANADOR MITSUBISHI L200/ DAKAR 12V 10 DIENTES",
+    "tradename": "MITSUBISHI L200/DAKAR 12V 10T"
+}, {
+    "suggestedPrice": 40000,
+    "modelId": 330,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR PERKINS MODERNO COPILOTO, 12V 10 DIENTES",
+    "tradename": "PERKINS MOD COPILOTO 12V 10T"
+}, {
+    "suggestedPrice": 34000,
+    "modelId": 331,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR KIA PREGIO K2700 12V 11DIENTES",
+    "tradename": "KIA PREGIO K2700 12V 11T"
+}, {
+    "suggestedPrice": 32000,
+    "modelId": 332,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR NISSAN SD23 ND 12V 9DIENTES",
+    "tradename": "NISSAN SD23 ND 12V 9T"
+}, {
+    "suggestedPrice": 30000,
+    "modelId": 333,
+    "providerId": 12,
+    "compatibility": "ARRANACADOR TOYOTA 1KD/2KD ND 12V 10 DIENTES",
+    "tradename": "TOYOTA 1KD/2KD ND 12V 10T"
+}, {
+    "suggestedPrice": 38000,
+    "modelId": 334,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR TOYOTA DINA 13B/ 14B 12V 11 DIENTES",
+    "tradename": "TOYOTA DINA 13B/14B 12V 11T"
+}, {
+    "suggestedPrice": 42000,
+    "modelId": 335,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR PERKINS SISTEMA DENSO 12V 2.5KW, 10 DIENTES GIRATORIO",
+    "tradename": "PERKINS SISTEMA DENSO 12V 10T GIRATORIO"
+}, {
+    "suggestedPrice": 45000,
+    "modelId": 336,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR MERCEDES SISTEMA DENSO 12V 2.5KW 10T GIRATORIO",
+    "tradename": "MERCEDES SISTEMA DENSO 12V 10T GIRATORIO"
+}, {
+    "suggestedPrice": 38000,
+    "modelId": 337,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR JAC SISTEMA DENSO 12V 9 DIENTES 2.5KW",
+    "tradename": "JAC SISTEMA DENSO 12V 9T"
+}, {
+    "suggestedPrice": 38000,
+    "modelId": 338,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR JAC SISTEMA DENSO 12V 11 DIENTES 2.5KW",
+    "tradename": "JAC SISTEMA DENSO 12V 11T"
+}, {
+    "suggestedPrice": 45000,
+    "modelId": 339,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR CUMMINS/KOMATSU, SISTEMA DENSO 12V 13T, 2.5KW",
+    "tradename": "CUMMINS KOMATSU ND 12V 13T"
+}, {
+    "suggestedPrice": 45000,
+    "modelId": 340,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR CUMMINS/KOMATSU, SISTEMA DENSO 12V 10T, 2.5KW",
+    "tradename": "CUMMINS KOMATSU ND 12V 10T"
+}, {
+    "suggestedPrice": 40000,
+    "modelId": 341,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR KIA TRADE SISTEMA DENSO 12V 4.5KW 12 DIENTES",
+    "tradename": "KIA TRADE SISTEMA DENSO 12V 12T"
+}, {
+    "suggestedPrice": 45000,
+    "modelId": 342,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR DELCO 28MT 24V 10 DIENTES DONGFENG",
+    "tradename": "DELCO 28MT 24V 10T (DONGFENG)"
+}, {
+    "suggestedPrice": 50000,
+    "modelId": 343,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR DELCO MERCEDES 29MT 24V 11 DIENTES",
+    "tradename": "DELCO MERCEDES 29MT 24V 11T"
+}, {
+    "suggestedPrice": 40000,
+    "modelId": 344,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR NISSAN CONDOR FD6/ FE6 24V 11 DIENTES",
+    "tradename": "NISSAN CONDOR FD6/ FE6 24V 11T"
+}, {
+    "suggestedPrice": 32000,
+    "modelId": 345,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR ISUZU /JAC (MOTOR 4BC2) 24V 9 DIENTES",
+    "tradename": "ISUZU/ JAC 4BC2 24V 9T"
+}, {
+    "suggestedPrice": 35000,
+    "modelId": 346,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR ISUZU (3) 4HF1 24V 11 DIENTES",
+    "tradename": "ISUZU (3) 4HF1 24V 11T"
+}, {
+    "suggestedPrice": 20000,
+    "modelId": 347,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR MITSUBISHI CANTER 4D31/4D32, 24V",
+    "tradename": "MITSUBISHI CANTER 4D31/4D32, 24V"
+}, {
+    "suggestedPrice": 25000,
+    "modelId": 348,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR NISSAN ED33 24V 10DIENTES(MOTOR FD35)",
+    "tradename": "NISSAN ED33 24V 10T"
+}, {
+    "suggestedPrice": 30000,
+    "modelId": 349,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR DE MITSUBISHI FUSO/ MOTOR 6D14, 24V",
+    "tradename": "MITSUBISHI FUSO 6D14 24V"
+}, {
+    "suggestedPrice": 45000,
+    "modelId": 350,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR HYUNDAI 6D22 24V 13 DIENTES",
+    "tradename": "HYUNDAI 6D22 24V 13T"
+}, {
+    "suggestedPrice": 39000,
+    "modelId": 351,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR HYUNDAI COUNTY, HD65/HD72/HD78, 24V 11 DIENTES (VALEO)",
+    "tradename": "HYUNDAI COUNTY, HD65/HD72/HD78 24V 11T"
+}, {
+    "suggestedPrice": 48000,
+    "modelId": 352,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR ISUZU 6HK1 CUERPO HYUNDAI 24V 11 DIENTES",
+    "tradename": "ISUZU 6HK1/ CUERPO HYUNDAI, 24V 11T"
+}, {
+    "suggestedPrice": 55000,
+    "modelId": 353,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR VOLVO FM12 24V 12 DIENTES",
+    "tradename": "VOLVO FM12 24V 12T"
+}, {
+    "suggestedPrice": 58000,
+    "modelId": 354,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR HOWO SISTEMA MITSUBISHI 24V 11 DIENTES (SINOTRUCK)",
+    "tradename": "HOWO SISTEMA MITSUBISHI 24V 11T"
+}, {
+    "suggestedPrice": 60000,
+    "modelId": 355,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR DONGFENG CUMMINS, CUERPO FM 24V 12 DIENTES",
+    "tradename": "DONGFENG CUMMINS/CUERPO FM 24V 12T"
+}, {
+    "suggestedPrice": 65000,
+    "modelId": 356,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR 39MT SISTEMA MITSUBISHI 24V 12 DIENTES",
+    "tradename": "39MT SISTEMA MITSUBISHI 24V 12T"
+}, {
+    "suggestedPrice": 42000,
+    "modelId": 357,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR PERKINS SISTEMA DENSO 24V 4.5KW, 10 DIENTES GIRATORIO",
+    "tradename": "PERKINS SISTEMA DENSO 24V 10T GIRATORIO"
+}, {
+    "suggestedPrice": 45000,
+    "modelId": 358,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR MERCEDES SISTEMA DENSO COPILOTO  24V 10 DIENTES GIRATORIO",
+    "tradename": "MERCEDES SISTEMA DENSO COP 24V 10T GIRATORIO"
+}, {
+    "suggestedPrice": 40000,
+    "modelId": 359,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR HINO SISTEMA DENSO (JC08C) 24V 11 DIENTES",
+    "tradename": "HINO SISTEMA DENSO 24V 11T"
+}, {
+    "suggestedPrice": 38000,
+    "modelId": 360,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR TOYOTA DINA 3B 24V 11 DIENTES",
+    "tradename": "TOYOTA DINA 3B, 24V 11T"
+}, {
+    "suggestedPrice": 45000,
+    "modelId": 361,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR CUMMINS/KOMATSU, SISTEMA DENSO 24V 13T, 4.5KW",
+    "tradename": "CUMMINS KOMATSU ND 24V 13T"
+}, {
+    "suggestedPrice": 40000,
+    "modelId": 362,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR  HINO 500 (J08C) 24V 11 DIENTES",
+    "tradename": "HINO 500 24V 11T"
+}, {
+    "suggestedPrice": 45000,
+    "modelId": 363,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR ASIA COSMOS SISTEMA SAWAFUJI 24V 11 DIENTES 4.5KW (H70C)",
+    "tradename": "ASIA COSMOS SIST SAWAFUJI (H70C) 24V 11T"
+}, {
+    "suggestedPrice": 45000,
+    "modelId": 364,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR NISSAN UD/ FE6 4.5KW 24V 11 DIENTES SISTEMA SAWAFUJI",
+    "tradename": "NISSAN UD/ FE6 24V 11T"
+}, {
+    "suggestedPrice": 12000,
+    "modelId": 365,
+    "providerId": 12,
+    "compatibility": "ARMADURA MERCEDES JD SISTEMA BOSCH 12V",
+    "tradename": "MERCEDES JD SISTEMA BOSCH 12V"
+}, {
+    "suggestedPrice": 6000,
+    "modelId": 366,
+    "providerId": 12,
+    "compatibility": "ARMADURA NISSAN TD27 182MM 12V",
+    "tradename": "NISSAN TD27"
+}, {
+    "suggestedPrice": 12000,
+    "modelId": 367,
+    "providerId": 12,
+    "compatibility": "ARMADURA PERKINS LUCAS 4CIL, (CURVA)",
+    "tradename": "PERKINS LUCAS"
+}, {
+    "suggestedPrice": 4500,
+    "modelId": 368,
+    "providerId": 12,
+    "compatibility": "ARMADURA DE MITSUBISHI CANTER/ HYUNDAI PORTER 12V",
+    "tradename": "MITSUBISHI CANTER/HYUNDAI PORTER 12V"
+}, {
+    "suggestedPrice": 4500,
+    "modelId": 369,
+    "providerId": 12,
+    "compatibility": "ARMADURA MITSUBISHI CANTER 4D31/4D32, 24V",
+    "tradename": "MITSUBISHI CANTER 4D31/4D32, 24V"
+}, {
+    "suggestedPrice": 5000,
+    "modelId": 370,
+    "providerId": 12,
+    "compatibility": "BENDIX TOYOTA COROLLA 2C CHICO 10 DIENTES",
+    "tradename": "TOYOTA COROLLA 2C CH"
+}, {
+    "suggestedPrice": 5000,
+    "modelId": 371,
+    "providerId": 12,
+    "compatibility": "BENDIX DEL TOYOTA HIACE 2L, 12V",
+    "tradename": "TOYOTA HIACE 2L DELGADO 12V"
+}, {
+    "suggestedPrice": 50000,
+    "modelId": 372,
+    "providerId": 12,
+    "compatibility": "ARRANCADOR DELCO MERCEDES 29MT 24V 11 DIENTES",
+    "tradename": "DELCO MERCEDES 29MT 24V 11T"
+}, {
+    "suggestedPrice": 5000,
+    "modelId": 373,
+    "providerId": 12,
+    "compatibility": "BENDIX MITSUBISHI CANTER EJE CORTO 4D31/4D32 9T",
+    "tradename": "MITSUBISHI CANTER EJE CORTO"
+}, {
+    "suggestedPrice": 15000,
+    "modelId": 374,
+    "providerId": 12,
+    "compatibility": "BENDIX COMPLETO VOLVO FM12 24V 12 DIENTES",
+    "tradename": "VOLVO FM12 24V 12T"
+}, {
+    "suggestedPrice": 6000,
+    "modelId": 375,
+    "providerId": 12,
+    "compatibility": "CAMPO NISSAN TD27 12V",
+    "tradename": "NISSAN TD27"
+}, {
+    "suggestedPrice": 7000,
+    "modelId": 376,
+    "providerId": 12,
+    "compatibility": "CAMPO MITSUBISHI /MAZDA 12V CCW",
+    "tradename": "MITSUBISHI/ MAZDA CCW"
+}, {
+    "suggestedPrice": 6000,
+    "modelId": 377,
+    "providerId": 12,
+    "compatibility": "CAMPO DEL TOYOTA HIACE 2L DELGADO 12V",
+    "tradename": "TOYOTA HIACE 2L DELGADO 12V"
+}, {
+    "suggestedPrice": 6500,
+    "modelId": 378,
+    "providerId": 12,
+    "compatibility": "CAMPO TOYOTA 2C GRANDE 12V",
+    "tradename": "TOYOTA 2C GR"
+}, {
+    "suggestedPrice": 4500,
+    "modelId": 379,
+    "providerId": 12,
+    "compatibility": "CAMPO TOYOTA COROLLA 4E/5E (PROBOX)",
+    "tradename": "TOYOTA COROLLA 4E/5E"
+}, {
+    "suggestedPrice": 5500,
+    "modelId": 380,
+    "providerId": 12,
+    "compatibility": "CAMPO TOYOTA COROLLA 4E/5E GRANDE (PROBOX), HONDA",
+    "tradename": "TOYOTA COROLLA 4E/5E GRANDE"
+}, {
+    "suggestedPrice": 11000,
+    "modelId": 381,
+    "providerId": 12,
+    "compatibility": "CAMPO MITSUBISHI FUSO 8CIL (15 TON)",
+    "tradename": "MITSUBHI FUSO 8CIL (15TON)"
+}, {
+    "suggestedPrice": 7500,
+    "modelId": 382,
+    "providerId": 12,
+    "compatibility": "CAMPO HYUNDAI HD65, HD72/ MITSUBISHI FUSO MODERNO 6D16/6D17",
+    "tradename": "HYUNDAY HD65/HD72, MIT 6D16/6D17"
+}, {
+    "suggestedPrice": 58000,
+    "modelId": 383,
+    "providerId": 12,
+    "compatibility": "CAMPO CAT SISTEMA DENSO 5.5KW 24V",
+    "tradename": "CAT SISTEMA DENSO"
+}, {
+    "suggestedPrice": 2500,
+    "modelId": 384,
+    "providerId": 12,
+    "compatibility": "HORQUILLA HINO 500 (J08C)",
+    "tradename": "HINO 500"
+}, {
+    "suggestedPrice": 3200,
+    "modelId": 385,
+    "providerId": 12,
+    "compatibility": "SOLENOIDE DAEWOO TICO",
+    "tradename": "DAEWOO TICO"
+}, {
+    "suggestedPrice": 40000,
+    "modelId": 386,
+    "providerId": 12,
+    "compatibility": "TAPA ISUZU SISTEMA DENSO 4.5KW",
+    "tradename": "ISUZU SISTEMA DENSO 4.5KW"
+}, {
+    "suggestedPrice": 60000,
+    "modelId": 387,
+    "providerId": 12,
+    "compatibility": "TAPA ISUZU SISTEMA DENSO 5.5KW",
+    "tradename": "ISUZU SISTEMA DENSO 5.5KW"
+}, {
+    "suggestedPrice": 150,
+    "modelId": 388,
+    "providerId": 12,
+    "compatibility": "CONTACTO TOYOTA CHICO /VERIFICAR POSICION",
+    "tradename": "TOYOTA CHICO"
+}, {
+    "suggestedPrice": 2500,
+    "modelId": 389,
+    "providerId": 12,
+    "compatibility": "TAPA INTERMEDIA NISSAN CONDOR FD6/ FE6 24V 11 DIENTES",
+    "tradename": "NISSAN CONDOR FD6/ FE6 24V 11T"
+}, {
+    "suggestedPrice": 600,
+    "modelId": 390,
+    "providerId": 12,
+    "compatibility": "SEGURO DE TAPA INTERMEDIA MITSUBISHI CANTER",
+    "tradename": "MITSUBISHI CANTER"
+}]

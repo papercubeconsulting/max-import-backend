@@ -77,6 +77,8 @@ const Put = {
     providerId: Joi.number().integer(),
     warehouseId: Joi.number().integer(),
     observations: Joi.string().allow(''),
+    arrivalDate: Joi.date()
+      .optional(),
     suppliedProducts: Joi.array()
       .items(
         Joi.object({
