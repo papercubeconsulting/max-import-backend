@@ -71,7 +71,7 @@ const checkCategory = async (
   if (parentKey && parent && parent.id) query[parentKey] = parent.id;
 
   category = await Category.findOne({ where: query });
-  if (category)
+  if (category && parent !== undefined)
     // * entidad repetida
     return {
       valid: false,
@@ -120,6 +120,7 @@ const validatePost = async reqBody => {
     'subfamilyId',
     2,
   );
+
   if (!element.valid) return setResponse(400, element.message);
 
   const model = await checkCategory(
