@@ -2,6 +2,7 @@
 const { Model } = require('sequelize');
 const _ = require('lodash');
 const moment = require('moment');
+const SequelizeLib = require('sequelize');
 
 const { SALE, getDictValues, PROFORMA } = require('../../utils/constants');
 
@@ -74,6 +75,10 @@ module.exports = (sequelize, DataTypes) => {
             ? this.getDataValue('voucherImage').toString('utf8')
             : undefined;
         },
+      },
+      paymentDate: {
+        type: DataTypes.DATE,
+        defaultValue: SequelizeLib.NOW,
       },
 
       // ? Campos para proceso de venta

@@ -33,6 +33,7 @@ const Post = {
       .required(),
     voucherCode: Joi.string().allow(''),
     voucherImage: Joi.string().allow(null),
+    paymentDate: Joi.date().optional(),
     bankAccountId: Joi.number().integer(),
     deliveryAgencyId: Joi.number()
       .integer()
