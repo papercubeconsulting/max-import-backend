@@ -5,6 +5,11 @@ const getProductBox = async (req, res) => {
   return res.status(response.status).send(response);
 };
 
+const listProductBoxs = async (req, res) => {
+  const productBoxs=await Service.listProductBoxes(req.query);
+  return res.status(productBoxs.status).send(productBoxs);
+}
+
 const getProductBoxByCode = async (req, res) => {
   const response = await Service.getProductBox(req.params);
   return res.status(response.status).send(response);
@@ -33,4 +38,5 @@ module.exports = {
   getProductBoxByCode,
   putProductBox,
   getProductBoxByIdentifier,
+  listProductBoxs,
 };

@@ -14,6 +14,13 @@ router.get(
   Controller.getProductBoxByIdentifier,
 );
 
+router.get(
+  '/',
+  isAble('read', 'productBox'),
+  celebrate(Validator.List),
+  Controller.listProductBoxs,
+);
+
 router.put(
   '/:id',
   isAble('read', 'productBox'),

@@ -46,3 +46,26 @@ paths:
       responses:
         "200":
           description: successful operation
+
+  "/productboxes":
+    get:
+      tags:
+        - inventory.productBox
+      summary: Listado de productBox
+
+      parameters:
+        - $ref: '#/components/parameters/productId'
+      responses:
+        '200':
+          description: Products found
+
+components:
+  parameters:
+    productId:
+      name: productId
+      in: query
+      description: id del producto
+      schema:
+        type: integer
+        format: int32
+        minimum: 1

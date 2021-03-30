@@ -3,6 +3,7 @@ const {
   ProductBoxLog,
   Product,
   Provider,
+  Supply,
   Warehouse,
   User,
 } = require('@dbModels');
@@ -35,7 +36,13 @@ const getProductBox = async reqParams => {
 };
 
 const listProductBoxes = async reqQuery => {
-  const productBoxes = await ProductBox.findAll(reqQuery);
+  const productBoxes = await ProductBox.findAll({
+    where: reqQuery,
+    include: [
+      Warehouse,
+      Supply,
+    ]
+  });
 
   return setResponse(200, 'ProductBoxs found.', productBoxes);
 };

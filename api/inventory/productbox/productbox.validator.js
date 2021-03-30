@@ -29,7 +29,14 @@ const Put = {
   },
 };
 
+const List ={
+  query:{
+    productId: Joi.string(),
+  }
+};
+
 module.exports = {
+  List,
   GetCode,
   Get,
   Put,
