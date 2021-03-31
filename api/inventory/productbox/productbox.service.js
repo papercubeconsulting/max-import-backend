@@ -41,6 +41,7 @@ const listProductBoxes = async reqQuery => {
     include: [
       Warehouse,
       Supply,
+      { model: Warehouse, as: 'previousWarehouse' },
     ]
   });
 
@@ -57,6 +58,7 @@ const putProductBox = async (reqBody, reqParams, reqUser) => {
   const productBox = await ProductBox.findByPk(reqParams.id);
   if (!productBox) return setResponse(404, 'ProductBox not found.');
   if (reqBody.warehouseId) {
+    reqBody.previousWarehouseId= productBox.dataValues.warehouseId;
     const warehouse = await Warehouse.findByPk(reqBody.warehouseId);
     if (!warehouse) return setResponse(404, 'Warehouse not found.');
   }
