@@ -29,10 +29,31 @@ const Put = {
   },
 };
 
-const List ={
-  query:{
+const PutMove = {
+  body: {
+    boxes: Joi.array().items(
+      Joi.object({
+        id: Joi.number()
+          .integer()
+          .min(1)
+          .required(),
+        warehouseId: Joi.number()
+          .integer()
+          .min(1)
+          .required(),
+        previousWarehouseId: Joi.number()
+          .integer()
+          .min(1)
+          .required(),
+      }),
+    ),
+  },
+};
+
+const List = {
+  query: {
     productId: Joi.string(),
-  }
+  },
 };
 
 module.exports = {
@@ -40,4 +61,5 @@ module.exports = {
   GetCode,
   Get,
   Put,
+  PutMove,
 };

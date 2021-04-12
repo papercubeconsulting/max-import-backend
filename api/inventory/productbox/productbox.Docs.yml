@@ -35,7 +35,45 @@ paths:
       responses:
         "200":
           description: successful operation
-
+  "/productboxes/move":
+    put:
+      tags:
+        - inventory.productBox
+      summary: Actualizar productBoxes warehouse
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                boxes:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        format: int32
+                        description: Id del box
+                      warehouseId:
+                        type: integer
+                        format: int32
+                        description: Id del warehouse
+                      previousWarehouseId:
+                        type: integer
+                        format: int32
+                        description: Id del previo warehouse
+            example:
+              required:
+                - boxes
+            examples:
+              Dos cajas:
+                value:
+                  boxes:
+                      [{ id: 1, warehouseId: 1, previousWarehouseId: 1 },{ id: 1, warehouseId: 1, previousWarehouseId: 1 }]
+      responses:
+        "200":
+          description: successful operation
   "/productboxes/{code}":
     get:
       tags:

@@ -22,6 +22,13 @@ router.get(
 );
 
 router.put(
+  '/move',
+  isAble('read', 'productBox'),
+  celebrate(Validator.PutMove),
+  Controller.putMoveProductBox,
+);
+
+router.put(
   '/:id',
   isAble('read', 'productBox'),
   celebrate(Validator.Put),
