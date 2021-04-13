@@ -25,6 +25,7 @@ paths:
         - $ref: '#/components/parameters/dispatchStatus'
         - $ref: '#/components/parameters/name'
         - $ref: '#/components/parameters/lastname'
+        - $ref: '#/components/parameters/idNumber'
       responses:
         '200':
           description: Successful operation
@@ -172,3 +173,13 @@ components:
       required: false
       schema:
         type: string
+
+    idNumber:
+      name: idNumber
+      in: query
+      description: DNI o RUC del cliente
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1

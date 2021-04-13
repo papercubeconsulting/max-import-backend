@@ -104,6 +104,7 @@ const List = {
     lastname: Joi.string()
       .lowercase()
       .trim(),
+    idNumber: Joi.number().integer(),
   },
 };
 

@@ -14,6 +14,20 @@ router.get(
   Controller.getProductBoxByIdentifier,
 );
 
+router.get(
+  '/',
+  isAble('read', 'productBox'),
+  celebrate(Validator.List),
+  Controller.listProductBoxs,
+);
+
+router.put(
+  '/move',
+  isAble('read', 'productBox'),
+  celebrate(Validator.PutMove),
+  Controller.putMoveProductBox,
+);
+
 router.put(
   '/:id',
   isAble('read', 'productBox'),

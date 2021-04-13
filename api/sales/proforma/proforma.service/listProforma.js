@@ -7,7 +7,7 @@ const { Proforma, User, Client, Sale, DeliveryAgency } = require('@dbModels');
 
 const { setResponse, paginate } = require('../../../utils');
 
-const noQueryFields = ['page', 'pageSize', 'from', 'to', 'name', 'lastname'];
+const noQueryFields = ['page', 'pageSize', 'from', 'to', 'name', 'lastname', 'idNumber'];
 
 const listProforma = async reqQuery => {
   // ? Query para la proforma
@@ -45,6 +45,14 @@ const listProforma = async reqQuery => {
       `%${reqQuery.lastname}%`,
     );
 
+  if (reqQuery.idNumber){
+    clientQuery.idNumber = sequelize.where(
+      sequelize.fn('LOWER', sequelize.col('idNumber')),
+      'LIKE',
+      `%${reqQuery.idNumber}%`,
+    );
+  }
+
   const proformas = await Proforma.findAndCountAll({
     where: mainQuery,
     order: [['createdAt', 'DESC']],
@@ -52,7 +60,7 @@ const listProforma = async reqQuery => {
       {
         model: Client,
         where: clientQuery,
-        attributes: ['id', 'name', 'lastname'],
+        attributes: ['id', 'name', 'lastname', 'idNumber'],
       },
       { model: User, attributes: ['id', 'name', 'lastname'] },
       { model: Sale, include: [DeliveryAgency] },

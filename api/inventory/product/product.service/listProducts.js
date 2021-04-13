@@ -99,6 +99,24 @@ const listProducts = async reqQuery => {
   return setResponse(200, 'Products found.', response);
 };
 
+const listTradename = async reqQuery => {
+  let products = await Product.findAll({
+    attributes: ['tradename'],
+    group: ['tradename'],
+    order: ['tradename'],
+  });
+
+  const response = {
+    page: reqQuery.page,
+    pageSize: reqQuery.pageSize,
+    pages: _.ceil(products.length / reqQuery.pageSize),
+    rows: products,
+  };
+
+  return setResponse(200, 'Tradenames founds.', response);
+};
+
 module.exports = {
   listProducts,
+  listTradename,
 };

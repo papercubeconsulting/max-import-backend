@@ -8,6 +8,12 @@ const { isAble } = require('@/middleware/authorization');
 const router = express.Router();
 
 router.get(
+  '/tradename',
+  isAble('read', 'product'),
+  celebrate(Validator.List),
+  Controller.listTradename,
+);
+router.get(
   '/:id',
   isAble('read', 'product'),
   celebrate(Validator.Get),
@@ -19,6 +25,7 @@ router.get(
   celebrate(Validator.List),
   Controller.listProducts,
 );
+
 router.post('/base', Controller.postProductBase); // TODO: Remove
 router.post(
   '/',

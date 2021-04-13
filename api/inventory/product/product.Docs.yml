@@ -73,7 +73,16 @@ paths:
       responses:
         '200':
           description: Successful operation
-
+  '/products/tradename':
+      get:
+        tags:
+          - inventory.products
+        summary: Listado de los tradename del inventario
+        description: Listado de los tradename del inventario
+        operationId: listTradename
+        responses:
+          '200':
+            description: Tradenames found
 components:
   parameters:
     noStock:

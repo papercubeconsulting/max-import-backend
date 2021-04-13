@@ -13,6 +13,13 @@ const listProducts = async (req, res) => {
 
   return res.status(products.status).send(products);
 };
+
+const listTradename = async(req,res)=>{
+  const products = await Services.listTradename(req.query);
+  
+  return res.status(products.status).send(products);
+}
+
 const postProduct = async (req, res) => {
   const validate = await Services.validatePost(req.body);
   if (validate.status !== 200)
@@ -48,6 +55,7 @@ const postProductBase = async (req, res) => {
 module.exports = {
   getProduct,
   listProducts,
+  listTradename,
   postProduct,
   putProduct,
   postProductBase,

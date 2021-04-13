@@ -116,6 +116,9 @@ components:
                 type: string
               voucherImage:
                 type: string
+              paymentDate:
+                type: string
+                format: date
               bankAccountId:
                 type: integer
           examples:
@@ -146,6 +149,7 @@ components:
                 initialPayment: 100000
                 voucherCode: "123456789"
                 voucherImage: "Aqui va la imagen en base 64"
+                paymentDate: "2021-03-09T05:00:31.133Z"
                 paymentMethod: Depósito
                 bankAccountId: 1
       required: true

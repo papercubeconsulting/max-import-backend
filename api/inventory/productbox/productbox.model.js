@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
 
       ProductBox.belongsTo(models.Product);
       ProductBox.belongsTo(models.Warehouse);
+      ProductBox.belongsTo(models.Warehouse, { as: 'previousWarehouse', foreignKey: 'previousWarehouseId' });
       ProductBox.belongsTo(models.Supply);
       ProductBox.belongsTo(models.SuppliedProduct);
 
