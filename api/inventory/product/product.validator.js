@@ -87,9 +87,18 @@ const Put = {
     suggestedPrice: Joi.number().integer(),
   },
 };
+
+const Delete = {
+  params: {
+    id: Joi.number()
+      .integer()
+      .required(),
+  },
+};
 module.exports = {
   List,
   Get,
   Post,
   Put,
+  Delete,
 };

@@ -73,6 +73,15 @@ paths:
       responses:
         '200':
           description: Successful operation
+    delete:
+      tags:
+        - inventory.products
+      summary: Eliminar un producto
+      parameters:
+        - $ref: '#/components/parameters/paramId'
+      responses:
+        '200':
+          description: Successful operation
   '/products/tradename':
       get:
         tags:
