@@ -18,8 +18,14 @@ const postProvider = async (req, res) => {
   return res.status(provider.status).send(provider);
 };
 
+const putProvider = async (req, res) => {
+  const response = await Services.putProvider(req.body, req.params);
+  return res.status(response.status).send(response);
+};
+
 module.exports = {
   getProvider,
   listProviders,
   postProvider,
+  putProvider,
 };

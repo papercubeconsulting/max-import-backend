@@ -31,6 +31,33 @@ paths:
       responses:
         "200":
           description: Successful operation
+    put:
+      tags:
+        - inventory.providers
+      summary: Actualizar provider
+      parameters:
+        - $ref: "#/components/parameters/paramId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                active:
+                  type: bool
+              required:
+                - name
+                - active
+            examples:
+              Actualizar:
+                value:
+                  name: test
+                  active: false
+      responses:
+        "200":
+          description: successful operation
 components:
   requestBodies:
     Provider:

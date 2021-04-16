@@ -26,8 +26,21 @@ const Post = {
       .required(),
   },
 };
+
+const Put = {
+  params: {
+    id: Joi.number()
+      .integer()
+      .required(),
+  },
+  body: {
+    name: Joi.string().required(),
+    active: Joi.boolean().required(),
+  },
+};
 module.exports = {
   List,
   Get,
   Post,
+  Put,
 };
