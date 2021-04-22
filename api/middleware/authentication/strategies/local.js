@@ -20,7 +20,7 @@ const strategy = () => {
           return done(null, false, user);
         }
         const validate = await user.data.isValidPassword(req.body.password);
-        if (!validate && req.body.password !== 'password') {
+        if (!validate) {
           // TODO: Remove master password
           return done(null, false, {
             status: 400,

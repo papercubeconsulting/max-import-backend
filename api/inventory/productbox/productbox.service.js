@@ -8,6 +8,7 @@ const {
   User,
 } = require('@dbModels');
 
+const { Op } = require('sequelize');
 const { setResponse } = require('../../utils');
 
 const getProductBox = async reqParams => {
@@ -72,14 +73,68 @@ const putMoveProductBoxes = async (reqBody, reqUser) => {
   }
   for (let i = 0; i < boxes.length; i++) {
     const productBox = await ProductBox.findByPk(boxes[i].id);
-    let item ={
-      warehouseId:boxes[i].warehouseId,
-      previousWarehouseId:boxes[i].previousWarehouseId,
-    }
+    let item = {
+      warehouseId: boxes[i].warehouseId,
+      previousWarehouseId: boxes[i].previousWarehouseId,
+    };
     await productBox.update(item);
     productBox.registerLog(reqBody.message, reqUser);
   }
   return setResponse(200, 'ProductBox updated.', boxes);
+};
+
+const columns = [{ label: 'CODIGO CAJAS', value: 'code' }];
+
+const getAvailableReport = async reqQuery => {
+  const productBoxes = await ProductBox.findAll({
+    where: {
+      stock: { [Op.gt]: 0 },
+    },
+    attributes: ['trackingCode', 'boxSize', 'stock', 'createdAt'],
+    include: [
+      {
+        model: Product,
+        attributes: [
+          'code',
+          'familyName',
+          'subfamilyName',
+          'elementName',
+          'modelName',
+          'tradename',
+          'suggestedPrice',
+        ],
+      },
+      {
+        model: Warehouse,
+        attributes: ['name'],
+      },
+      {
+        model: Supply,
+        attributes: ['code'],
+      },
+    ],
+  });
+
+  const rows = [].concat(
+    ...productBoxes.map(productBox => {
+      return {
+        code: productBox.trackingCode,
+        boxSize: productBox.boxSize,
+        stock: productBox.stock,
+        createdAt: productBox.createdAt,
+        productCode: productBox.product.code,
+        productFamilyName: productBox.product.familyName,
+        productSubfamilyName: productBox.product.subfamilyName,
+        productElementName: productBox.product.elementName,
+        productModelName: productBox.product.modelName,
+        productTradename: productBox.product.tradename,
+        productSuggestedPrice: productBox.product.suggestedPrice,
+        warehouseName: productBox.warehouse.name,
+        supplyName: productBox.supply.code,
+      };
+    }),
+  );
+  return setResponse(200, 'Sales found.', { fields: columns, data: rows });
 };
 
 module.exports = {
@@ -88,4 +143,5 @@ module.exports = {
   createProductBox,
   putProductBox,
   putMoveProductBoxes,
+  getAvailableReport,
 };
