@@ -1,4 +1,10 @@
-const { Product, ProductBox, SuppliedProduct, ProformaProduct } = require('@dbModels');
+const {
+  Product,
+  Model,
+  ProductBox,
+  SuppliedProduct,
+  ProformaProduct,
+} = require('@dbModels');
 const { setResponse } = require('../../../utils');
 
 const deleteProduct = async reqParams => {
@@ -8,25 +14,36 @@ const deleteProduct = async reqParams => {
   const productBox = await ProductBox.findOne({
     where: { productId: reqParams.id },
   });
-  if (productBox) return setResponse(400, 'Se tiene cajas del producto.');
+  if (productBox)
+    return setResponse(
+      400,
+      'No es posible eliminar este item dado que tiene stock.',
+    );
 
   const suppliedProduct = await SuppliedProduct.findOne({
     where: { productId: reqParams.id },
   });
   if (suppliedProduct)
-    return setResponse(400, 'Se tiene un proceso de abastecimiento pendiente.');
+    return setResponse(
+      400,
+      'No es posible eliminar este item dado que tiene stock.',
+    );
 
   const proformaProduct = await ProformaProduct.findOne({
     where: { productId: reqParams.id },
   });
   if (proformaProduct)
-    return setResponse(400, 'Se tiene el producto en una proforma.');
+    return setResponse(
+      400,
+      'No es posible eliminar este item dado que tiene stock.',
+    );
 
-  const productDelete = await Product.destroy({ where: { id: reqParams.id } });
+  await Product.destroy({ where: { id: reqParams.id } });
+  await Model.destroy({ where: { id: product.modelId } });
 
   return setResponse(200, 'Delete Product.', product);
 };
 
-module.exports={
-    deleteProduct,
-}
+module.exports = {
+  deleteProduct,
+};

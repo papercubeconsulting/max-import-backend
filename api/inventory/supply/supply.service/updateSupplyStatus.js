@@ -7,6 +7,7 @@ const updateSupplyStatus = async (reqBody, reqParams) => {
   const supply = await Supply.findByPk(reqParams.id, {
     include: SuppliedProduct,
   });
+  //
   if (!supply || supply.status !== status.PENDING)
     return setResponse(
       404,

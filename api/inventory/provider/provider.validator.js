@@ -2,7 +2,7 @@ const { Joi } = require('celebrate');
 
 const List = {
   query: {
-    active: Joi.boolean().default(true),
+    active: Joi.boolean().optional(),
   },
 };
 
