@@ -123,6 +123,24 @@ paths:
           description: Resource not found
       requestBody:
         $ref: "#/components/requestBodies/attendSuppliedProduct"
+  "/supplies/{supplyId}/delete/{suppliedProductId}":
+    delete:
+      tags:
+        - inventory.supplies
+      summary: Eliminar un item de abastecimiento
+      description: |
+        Eliminar un item de abastecimiento
+      operationId: deleteSuppliedProduct
+      parameters:
+        - $ref: "#/components/parameters/supplyId"
+        - $ref: "#/components/parameters/deleteSuppliedProductId"
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Bad request | Check message
+        "404":
+          description: Resource not found
 components:
   requestBodies:
     Supply:
@@ -284,3 +302,14 @@ components:
         format: int32
         minimum: 1
         default: 15
+    deleteSuppliedProductId:
+      name: suppliedProductId
+      in: path
+      description: Id de la fila a eliminar.
+      required: true
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        default: 15
+

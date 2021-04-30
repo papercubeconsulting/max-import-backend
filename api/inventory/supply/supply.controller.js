@@ -69,6 +69,16 @@ const updateAttendSuppliedProduct = async (req, res) => {
   return res.status(supply.status).send(supply);
 };
 
+const deleteAttendSuppliedProduct = async (req, res) => {
+  const suppliedProduct = await Services.deleteAttendSuppliedProduct(
+    req.params,
+    req.user,
+  );
+
+  const supply = await Services.readSupply(req.params);
+  return res.status(supply.status).send(supply);
+};
+
 module.exports = {
   getSupply,
   listSupplies,
@@ -78,4 +88,5 @@ module.exports = {
   // * Others
   putSupplyStatus,
   updateAttendSuppliedProduct,
+  deleteAttendSuppliedProduct,
 };
