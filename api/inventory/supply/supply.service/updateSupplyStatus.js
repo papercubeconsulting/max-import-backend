@@ -36,6 +36,8 @@ const updateSupplyStatus = async (reqBody, reqParams) => {
         where: { suppliedProductId: suppliedProduct.id },
       });
 
+      await Product.updateStock(suppliedProduct.productId);
+
     }
     await SuppliedProduct.destroy({
       where: { supplyId: supply.id },
