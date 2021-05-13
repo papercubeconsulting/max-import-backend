@@ -26,7 +26,7 @@ const deleteProduct = async reqParams => {
   if (suppliedProduct)
     return setResponse(
       400,
-      'No es posible eliminar este item dado que tiene stock.',
+      'No es posible eliminar este item dado que este producto está como item en un abastecimiento en estado pendiente.',
     );
 
   const proformaProduct = await ProformaProduct.findOne({
@@ -35,7 +35,7 @@ const deleteProduct = async reqParams => {
   if (proformaProduct)
     return setResponse(
       400,
-      'No es posible eliminar este item dado que tiene stock.',
+      'No es posible eliminar este item dado que esta presente en una proforma.',
     );
 
   await Product.destroy({ where: { id: reqParams.id } });
