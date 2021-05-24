@@ -1,4 +1,4 @@
-const { Supply, SuppliedProduct } = require('@dbModels');
+const { Supply, SuppliedProduct, ProductBox } = require('@dbModels');
 
 const { setResponse } = require('../../../utils');
 const { supplyStatus: status } = require('../../../utils/constants');
@@ -7,12 +7,51 @@ const updateSupplyStatus = async (reqBody, reqParams) => {
   const supply = await Supply.findByPk(reqParams.id, {
     include: SuppliedProduct,
   });
-  if (!supply || supply.status !== status.PENDING)
+  // || supply.status !== status.PENDING
+  if (!supply)
     return setResponse(
       404,
       `Supply not found or current status different from ${status.PENDING}.`,
     );
 
+  if (supply.status === status.ATTENDED) {
+    const suppliedProducts = await SuppliedProduct.findAll({
+      where: { supplyId: supply.id },
+    });
+    for (const suppliedProduct of suppliedProducts) {
+      const productBoxes = await ProductBox.findAll({
+        where: { suppliedProductId: suppliedProduct.id },
+      });
+
+      for (const productBox of productBoxes) {
+        if (productBox.boxSize > productBox.stock) {
+          return setResponse(
+            404,
+            `El abastecimiento tiene items de cajas despachadas`,
+          );
+        }
+      }
+
+      await ProductBox.destroy({
+        where: { suppliedProductId: suppliedProduct.id },
+      });
+
+      await Product.updateStock(suppliedProduct.productId);
+
+    }
+    await SuppliedProduct.destroy({
+      where: { supplyId: supply.id },
+    });
+    supply.status = reqBody.status;
+    if (reqBody.status === status.CANCELLED){
+      supply.cancellationDate = new Date();
+    }
+
+
+    await supply.save();
+
+    return setResponse(200, 'Supply status updated.');
+  }
   // * Si se desea cancelar no debe existir un supplied product con elementos atendidos
   if (
     reqBody.status === status.CANCELLED &&

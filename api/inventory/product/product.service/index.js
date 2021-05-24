@@ -4,4 +4,5 @@ module.exports = {
   ...require('./listProducts'),
   ...require('./readProduct'),
   ...require('./updateProduct'),
+  ...require('./deleteProduct'),
 };

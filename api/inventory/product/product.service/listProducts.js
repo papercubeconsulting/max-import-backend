@@ -83,6 +83,7 @@ const listProducts = async reqQuery => {
 
   const response = {
     page: reqQuery.page,
+    length:products.length,
     pageSize: reqQuery.pageSize,
     pages: _.ceil(products.length / reqQuery.pageSize),
     rows: products,

@@ -39,8 +39,7 @@ const Post = {
     code: Joi.string()
       .allow('')
       .default(''),
-    arrivalDate: Joi.date()
-      .optional(),
+    arrivalDate: Joi.date().optional(),
     observations: Joi.string()
       .allow('')
       .default(''),
@@ -77,8 +76,7 @@ const Put = {
     providerId: Joi.number().integer(),
     warehouseId: Joi.number().integer(),
     observations: Joi.string().allow(''),
-    arrivalDate: Joi.date()
-      .optional(),
+    arrivalDate: Joi.date().optional(),
     suppliedProducts: Joi.array()
       .items(
         Joi.object({
@@ -141,6 +139,17 @@ const PostAttendSuppliedProduct = {
   },
 };
 
+const DeleteAttendSuppliedProduct = {
+  params: {
+    id: Joi.number()
+      .integer()
+      .required(),
+    idSuppliedProduct: Joi.number()
+      .integer()
+      .required(),
+  },
+};
+
 module.exports = {
   List,
   Get,
@@ -150,4 +159,5 @@ module.exports = {
   // * Other
   PutStatus,
   PostAttendSuppliedProduct,
+  DeleteAttendSuppliedProduct,
 };

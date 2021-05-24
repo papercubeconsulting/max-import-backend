@@ -26,4 +26,10 @@ router.post(
   Controller.postProvider,
 );
 
+router.put(
+  '/:id',
+  isAble('create', 'provider'),
+  celebrate(Validator.Put),
+  Controller.putProvider,
+);
 module.exports = router;

@@ -39,5 +39,10 @@ router.put(
   celebrate(Validator.Put),
   Controller.putProduct,
 );
-
+router.delete(
+  '/:id',
+  isAble('delete', 'product'),
+  celebrate(Validator.Delete),
+  Controller.deleteProduct,
+);
 module.exports = router;

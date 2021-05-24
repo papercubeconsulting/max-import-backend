@@ -9,4 +9,5 @@ module.exports = {
   ...require('./updateSupply'),
   ...require('./updateSupplyStatus'),
   ...require('./validateUpdateSupply'),
+  ...require('./deleteAttendSuppliedProduct'),
 };

@@ -50,4 +50,11 @@ router.post(
   Controller.updateAttendSuppliedProduct,
 );
 
+router.delete(
+  '/:id/delete/:idSuppliedProduct',
+  isAble('update', 'supply'),
+  celebrate(Validator.DeleteAttendSuppliedProduct),
+  Controller.deleteAttendSuppliedProduct,
+);
+
 module.exports = router;

@@ -11,7 +11,8 @@ const readProvider = async reqParams => {
 };
 
 const listProviders = async reqQuery => {
-  const providers = await Provider.findAll(reqQuery);
+  console.log(reqQuery);
+  const providers = await Provider.findAll({where:reqQuery});
 
   return setResponse(200, 'Providers found.', providers);
 };
@@ -26,8 +27,16 @@ const createProvider = async reqBody => {
   return setResponse(201, 'Provider created.', provider);
 };
 
+const putProvider = async (reqBody, reqParams) => {
+  const provider = await Provider.findByPk(reqParams.id);
+  if (!provider) return setResponse(404, 'ProductBox not found.');
+  await provider.update(reqBody);
+  return setResponse(200, 'Provider update.', provider);
+};
+
 module.exports = {
   readProvider,
   listProviders,
   createProvider,
+  putProvider,
 };

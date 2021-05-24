@@ -8,6 +8,12 @@ const { isAble } = require('@/middleware/authorization');
 const router = express.Router();
 
 router.get(
+  '/availableReport',
+  isAble('read', 'productBox'),
+  Controller.getAvailableReport,
+);
+
+router.get(
   '/:identifier',
   isAble('read', 'productBox'),
   celebrate(Validator.Get),

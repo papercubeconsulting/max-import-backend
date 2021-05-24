@@ -52,6 +52,11 @@ const postProductBase = async (req, res) => {
   return res.status(product.status).send(product);
 };
 
+const deleteProduct = async (req, res) => {
+  const product = await Services.deleteProduct(req.params);
+  return res.status(product.status).send(product);
+};
+
 module.exports = {
   getProduct,
   listProducts,
@@ -59,4 +64,5 @@ module.exports = {
   postProduct,
   putProduct,
   postProductBase,
+  deleteProduct,
 };
