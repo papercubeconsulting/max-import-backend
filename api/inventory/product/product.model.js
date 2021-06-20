@@ -57,7 +57,7 @@ module.exports = (sequelize, DataTypes) => {
       if (includeBoxSizeDetail)
         product.stockByWarehouseAndBoxSize = Object.values(
           product.productBoxes.reduce((accumulator, currentValue) => {
-            const key = `${currentValue.warehouseId}-${currentValue.boxSize}`;
+            const key = `${currentValue.warehouse.id}-${currentValue.boxSize}`;
             if (!_.get(accumulator, [key]))
               accumulator[key] = {
                 warehouseId: currentValue.warehouse.id,
