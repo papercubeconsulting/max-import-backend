@@ -16,7 +16,7 @@ const roles = {
     can('read', 'model');
     can('read', 'provider');
     can('read', 'product');
-    can('read', 'productbox');
+    can('read', 'productBox');
     can('read', 'warehouse');
 
     can('read', 'bank');
@@ -36,11 +36,11 @@ const roles = {
     can('manage', 'model');
     can('manage', 'provider');
     can('manage', 'product');
-    can('manage', 'productbox');
+    can('manage', 'productBox');
     can('manage', 'warehouse');
 
     can('manage', 'supply'); // ? Gestión y atención
-    can('read', 'productbox');
+    can('read', 'productBox');
     can('read', 'bank');
     can('read', 'client');
 
