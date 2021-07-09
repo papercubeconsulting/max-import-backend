@@ -40,7 +40,7 @@ const roles = {
     can('manage', 'warehouse');
 
     can('manage', 'supply'); // ? Gestión y atención
-
+    can('read', 'productbox');
     can('read', 'bank');
     can('read', 'client');
 
