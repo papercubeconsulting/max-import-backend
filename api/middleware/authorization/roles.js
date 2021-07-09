@@ -58,7 +58,7 @@ const roles = {
     can('read', 'model');
     can('read', 'provider');
     can('read', 'product');
-    can('read', 'productbox');
+    can('read', 'productBox');
     can('read', 'warehouse');
 
     can('read', 'bank');
