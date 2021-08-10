@@ -14,6 +14,12 @@ router.get(
 );
 
 router.get(
+  '/movementReport',
+  isAble('read', 'productBox'),
+  Controller.getMovementReport,
+);
+
+router.get(
   '/:identifier',
   isAble('read', 'productBox'),
   celebrate(Validator.Get),
