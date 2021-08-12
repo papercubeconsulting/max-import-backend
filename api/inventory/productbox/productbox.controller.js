@@ -1,5 +1,8 @@
 const Service = require('./productbox.service');
-const { excelParserProductBox, } = require('@/utils');
+const {
+  excelParserProductBox,
+  excelParserProductBoxMovement,
+} = require('@/utils');
 
 const getProductBox = async (req, res) => {
   const response = await Service.getProductBox(req.params);
@@ -50,6 +53,16 @@ const getAvailableReport = async (req, res) => {
   );
 };
 
+const getMovementReport = async (req, res) => {
+  const response = await Service.getMovementReport(req.query);
+  return excelParserProductBoxMovement(
+    res,
+    'MOVEMENT',
+    response.data.fields,
+    response.data.data,
+  );
+};
+
 module.exports = {
   getProductBox,
   getProductBoxByCode,
@@ -58,4 +71,5 @@ module.exports = {
   getProductBoxByIdentifier,
   listProductBoxs,
   getAvailableReport,
+  getMovementReport,
 };
