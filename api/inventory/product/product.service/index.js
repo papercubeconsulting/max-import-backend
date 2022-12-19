@@ -5,4 +5,5 @@ module.exports = {
   ...require('./readProduct'),
   ...require('./updateProduct'),
   ...require('./deleteProduct'),
+  ...require('./getInventoryReport'),
 };

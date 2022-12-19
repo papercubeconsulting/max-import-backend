@@ -1,4 +1,5 @@
 const Services = require('./product.service');
+const { excelParserInventory} = require('@/utils');
 
 const getProduct = async (req, res) => {
   const product = await (req.query.noStock
@@ -57,6 +58,17 @@ const deleteProduct = async (req, res) => {
   return res.status(product.status).send(product);
 };
 
+const getInventoryReport = async(req,res)=>{
+
+  const response = await Services.getInventoryReport(req.query);
+  return excelParserInventory(
+    res,
+    'Inventory',
+    response.data.fields,
+    response.data.data,
+  );
+}
+
 module.exports = {
   getProduct,
   listProducts,
@@ -65,4 +77,5 @@ module.exports = {
   putProduct,
   postProductBase,
   deleteProduct,
+  getInventoryReport,
 };

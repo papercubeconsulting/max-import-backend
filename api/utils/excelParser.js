@@ -112,4 +112,23 @@ module.exports = {
       });
     });
   },
+  excelParserInventory: async(res, fileName, fields, data)=>{
+    const source = path.resolve(basePath, 'baseInventory.xlsx');
+    const initRow = 4;
+    const tempFilePath = tempfile('.xlsx');
+
+    const workbook = new ExcelJS.Workbook();
+    await workbook.xlsx.readFile(source);
+    const worksheet = workbook.worksheets[0];
+
+    await asyncForEach(data, async (row, i) => {
+      worksheet.getRow(initRow + i).values = Object.values(row);
+    });
+
+    workbook.xlsx.writeFile(tempFilePath).then(function() {
+      res.status(200).sendFile(tempFilePath, function(err) {
+        if (err) winston.error(`---------- error downloading file: ${err}`);
+      });
+    });
+  },
 };

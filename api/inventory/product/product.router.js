@@ -13,6 +13,12 @@ router.get(
   celebrate(Validator.List),
   Controller.listTradename,
 );
+
+router.get(
+  '/inventoryReport',
+  isAble('read', 'product'),
+  Controller.getInventoryReport,
+)
 router.get(
   '/:id',
   isAble('read', 'product'),
