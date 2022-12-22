@@ -67,7 +67,7 @@ const getInventoryReport = async reqQuery => {
       return {
         code: product.code,
         family: product.familyName,
-        subFamily: product.subFamilyName,
+        subFamily: product.subfamilyName,
         element: product.elementName,
         model: product.modelName,
         name: product.tradename,
