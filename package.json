@@ -22,7 +22,7 @@
     "bcrypt": "^5.0.0",
     "celebrate": "^11.0.0",
     "compression": "^1.7.4",
-    "config": "^3.2.4",
+    "config": "^3.3.8",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "dinero.js": "^1.8.1",
