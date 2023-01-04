@@ -1,7 +1,7 @@
 FROM node:10.15.0
 
 WORKDIR '/app'
-COPY ./package.json ./
+COPY ./package*.json ./
 RUN npm install
 COPY . .
 ENV PORT 8080
