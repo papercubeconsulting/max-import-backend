@@ -10,6 +10,7 @@ const Post = {
     discount: Joi.number()
       .integer()
       .required(),
+    efectivo: Joi.number(),
     proformaProducts: Joi.array()
       .items(
         Joi.object({
@@ -44,6 +45,7 @@ const Put = {
     discount: Joi.number()
       .integer()
       .required(),
+    efectivo: Joi.number(),
     proformaProducts: Joi.array()
       .items(
         Joi.object({

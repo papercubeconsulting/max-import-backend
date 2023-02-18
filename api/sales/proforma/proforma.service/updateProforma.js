@@ -53,9 +53,12 @@ const putProforma = async (reqParams, reqBody) => {
     );
 
     // * --------------------------------------------------------
-    await proforma.update(_.pick(reqBody, ['clientId', 'discount']), {
-      transaction: t,
-    });
+    await proforma.update(
+      _.pick(reqBody, ['clientId', 'discount', 'efectivo']),
+      {
+        transaction: t,
+      },
+    );
 
     await t.commit();
     await proforma.reload();

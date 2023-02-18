@@ -99,6 +99,16 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },
+      efectivo: {
+        type: DataTypes.INTEGER,
+        set(value) {
+          this.setDataValue('efectivo', value * 100);
+        },
+      },
+      credit: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
       // ? Monto de descuento aplicado a toda la proforma
       discount: {
         type: DataTypes.INTEGER,
@@ -160,6 +170,8 @@ module.exports = (sequelize, DataTypes) => {
             0,
           );
           proforma.total = proforma.subtotal - proforma.discount;
+          // due => default => total
+          proforma.credit = proforma.total - proforma.efectivo;
         },
         afterCreate: async (proforma, options) => {
           const client = await proforma.getClient();
