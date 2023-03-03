@@ -179,6 +179,22 @@ module.exports = (sequelize, DataTypes) => {
             : undefined;
         },
       },
+      secondImageBase64: {
+        type: DataTypes.BLOB,
+        get() {
+          return this.getDataValue('secondImageBase64')
+            ? this.getDataValue('secondImageBase64').toString('utf8')
+            : undefined;
+        },
+      },
+      thirdImageBase64: {
+        type: DataTypes.BLOB,
+        get() {
+          return this.getDataValue('thirdImageBase64')
+            ? this.getDataValue('thirdImageBase64').toString('utf8')
+            : undefined;
+        },
+      },
       suggestedPrice: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -204,7 +220,9 @@ module.exports = (sequelize, DataTypes) => {
       // options
       modelName: 'product',
       defaultScope: {
-        attributes: { exclude: ['imageBase64'] },
+        attributes: {
+          exclude: ['imageBase64', 'secondImageBase64', 'thirdImageBase64'],
+        },
       },
       scopes: {
         full: {},
