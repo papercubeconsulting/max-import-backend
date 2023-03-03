@@ -66,6 +66,8 @@ const Post = {
       .min(1)
       .required(),
     imageBase64: Joi.string(),
+    secondImageBase64: Joi.string(),
+    thirdImageBase64: Joi.string(),
     compatibility: Joi.string(),
     tradename: Joi.string(),
     suggestedPrice: Joi.number()
@@ -82,6 +84,8 @@ const Put = {
   },
   body: {
     imageBase64: Joi.string(),
+    secondImageBase64: Joi.string(),
+    thirdImageBase64: Joi.string(),
     compatibility: Joi.string(),
     tradename: Joi.string(),
     suggestedPrice: Joi.number().integer(),
