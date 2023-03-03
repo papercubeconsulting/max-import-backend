@@ -27,7 +27,9 @@ const getInventoryReport = async reqQuery => {
       {
         model: Product,
         where: _.pick(reqQuery, productFields),
-        attributes: { exclude: 'imageBase64' },
+        attributes: {
+          exclude: ['imageBase64', 'secondImageBase64', 'thirdImageBase64'],
+        },
       },
     ],
     group: ['warehouseId', 'productId', 'warehouse.id', 'product.id'],
@@ -36,7 +38,9 @@ const getInventoryReport = async reqQuery => {
 
   let products = await Product.findAll({
     where: _.pick(reqQuery, productFields),
-    attributes: { exclude: 'imageBase64' },
+    attributes: {
+      exclude: ['imageBase64', 'secondImageBase64', 'thirdImageBase64'],
+    },
     order: ['id'],
     raw: true,
   });
