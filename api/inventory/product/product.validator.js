@@ -83,9 +83,9 @@ const Put = {
       .required(),
   },
   body: {
-    imageBase64: Joi.string(),
-    secondImageBase64: Joi.string(),
-    thirdImageBase64: Joi.string(),
+    imageBase64: Joi.string().allow(null),
+    secondImageBase64: Joi.string().allow(null),
+    thirdImageBase64: Joi.string().allow(null),
     compatibility: Joi.string(),
     tradename: Joi.string(),
     suggestedPrice: Joi.number().integer(),
