@@ -18,7 +18,9 @@ const getProductBox = async reqParams => {
       {
         model: Product,
         include: [Provider],
-        attributes: { exclude: 'imageBase64' },
+        attributes: {
+          exclude: ['imageBase64', 'secondImageBase64', 'thirdImageBase64'],
+        },
       },
       Warehouse,
       {
