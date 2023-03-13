@@ -39,6 +39,9 @@ router.post(
   celebrate(Validator.Post),
   Controller.postProduct,
 );
+
+router.post('/csvUpload',Validator.validateCsv, Controller.uploadCsvData);
+
 router.put(
   '/:id',
   isAble('update', 'product'),
