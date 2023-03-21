@@ -7,4 +7,5 @@ module.exports = {
   ...require('./deleteProduct'),
   ...require('./getInventoryReport'),
   ...require('./uploadCsvProduct'),
+  ...require('./uploadImagesZip'),
 };
