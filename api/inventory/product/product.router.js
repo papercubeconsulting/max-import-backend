@@ -42,6 +42,8 @@ router.post(
 
 router.post('/csvUpload',Validator.validateCsv, Controller.uploadCsvData);
 
+router.post('/images/zipUpload', Validator.validateImagesZip, Controller.uploadImages);
+
 router.put(
   '/:id',
   isAble('update', 'product'),

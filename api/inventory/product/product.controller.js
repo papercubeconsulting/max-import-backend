@@ -1,5 +1,5 @@
 const Services = require('./product.service');
-const { excelParserInventory, excelParserBulkUpload} = require('@/utils');
+const { excelParserInventory, excelParserBulkUpload, excelParserBulkImagesUpload} = require('@/utils');
 
 const getProduct = async (req, res) => {
   const product = await (req.query.noStock
@@ -80,6 +80,14 @@ const uploadCsvData = async(req,res)=>{
     response.data.data,);
 }
 
+const uploadImages = async (req, res)=>{
+
+  const zip = req.file;
+  const response = await Services.uploadImagesZip(req.params, zip);
+  
+  return excelParserBulkImagesUpload(res,  'Caga Masiva de Imagenes', response.data.fields, response.data.data,);
+}
+
 module.exports = {
   getProduct,
   listProducts,
@@ -90,4 +98,5 @@ module.exports = {
   deleteProduct,
   getInventoryReport,
   uploadCsvData,
+  uploadImages,
 };
