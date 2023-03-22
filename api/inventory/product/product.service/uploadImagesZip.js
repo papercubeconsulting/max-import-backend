@@ -53,7 +53,7 @@ const uploadImagesZip = async(reqParams, file, reqUser)=>{
             console.log("File name", fileName);
             
             entry.buffer().then(async buffer => {
-              const base64Data = `data:image${Buffer.from(buffer).toString('base64')};base64`;
+              const base64Data = `data:image/jpeg;base64,${Buffer.from(buffer).toString('base64')}`;
               
               //TODO: ecapsulat this logic
               let updateData={};
