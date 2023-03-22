@@ -65,3 +65,10 @@ typings/
 .vscode
 .history
 playground/
+
+# macfolders
+.DS_Store
+
+# intellij
+.idea
+
