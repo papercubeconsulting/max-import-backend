@@ -171,6 +171,7 @@ const getMovementReport = async reqQuery => {
               'modelName',
               'tradename',
               'suggestedPrice',
+              'stock'
             ],
           },
         ],
@@ -187,6 +188,7 @@ const getMovementReport = async reqQuery => {
     ...productBoxes.map(productBox => {
       return {
         code: productBox.productBox.trackingCode,
+        stock:productBox.productBox.stock,
         log:
           productBox.log === 'Abastecimiento' ? 'Abastecimiento' : 'Movimiento',
         createdAt: productBox.createdAt,
