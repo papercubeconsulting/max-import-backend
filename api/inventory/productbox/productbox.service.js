@@ -187,7 +187,7 @@ const getMovementReport = async reqQuery => {
     ...productBoxes.map(productBox => {
       return {
         code: productBox.productBox.trackingCode,
-        stock:productBox.stock,
+        stock:productBox.productBox.stock,
         log:
           productBox.log === 'Abastecimiento' ? 'Abastecimiento' : 'Movimiento',
         createdAt: productBox.createdAt,
