@@ -1,4 +1,6 @@
 const { Joi } = require('celebrate');
+const multer = require('multer');
+const path = require('path');
 
 const List = {
   query: {
@@ -66,6 +68,8 @@ const Post = {
       .min(1)
       .required(),
     imageBase64: Joi.string(),
+    secondImageBase64: Joi.string(),
+    thirdImageBase64: Joi.string(),
     compatibility: Joi.string(),
     tradename: Joi.string(),
     suggestedPrice: Joi.number()
@@ -81,7 +85,9 @@ const Put = {
       .required(),
   },
   body: {
-    imageBase64: Joi.string(),
+    imageBase64: Joi.string().allow(null),
+    secondImageBase64: Joi.string().allow(null),
+    thirdImageBase64: Joi.string().allow(null),
     compatibility: Joi.string(),
     tradename: Joi.string(),
     suggestedPrice: Joi.number().integer(),
@@ -95,10 +101,67 @@ const Delete = {
       .required(),
   },
 };
+
+const uploadCsv = multer({
+  fileFilter(req, file, callback) {
+    
+    const ext = path.extname(file.originalname);
+    if (!['.csv'].includes(ext)) {
+      return callback(new Error('Only csv are allowed'), false);
+    }
+    return callback(null, true);
+  },
+  limits: {
+    fileSize: 1024 * 1024 * 1024,
+  },
+  dest: '_tmp_/',
+});
+
+const uploadZip = multer({
+  fileFilter(req, file, callback) {
+    
+    const ext = path.extname(file.originalname);
+    if (!['.zip'].includes(ext)) {
+      return callback(new Error('Only zip are allowed'), false);
+    }
+    return callback(null, true);
+  },
+  limits: {
+    fileSize: 1024 * 1024 * 1024 * 1024,
+  },
+  dest: '_tmp_/',
+
+})
+
+const validateCsv = (req,res,next)=>{
+  
+  uploadCsv.single('csv')(req, res, function(err) {
+      if (err){
+        return res
+        .status('400')
+        .send({ status: 400, message: String(err), data: {} });
+      }
+      next();
+  });
+};
+
+const validateImagesZip = (req, res, next)=>{
+
+  uploadZip.single('zip')(req, res, function(err) {
+    if (err){
+      return res
+      .status('400')
+      .send({ status: 400, message: String(err), data: {} });
+    }
+    next();
+  });
+}
 module.exports = {
   List,
   Get,
   Post,
   Put,
   Delete,
+  validateCsv,
+  validateImagesZip
 };

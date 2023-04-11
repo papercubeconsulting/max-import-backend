@@ -18,7 +18,9 @@ const getProductBox = async reqParams => {
       {
         model: Product,
         include: [Provider],
-        attributes: { exclude: 'imageBase64' },
+        attributes: {
+          exclude: ['imageBase64', 'secondImageBase64', 'thirdImageBase64'],
+        },
       },
       Warehouse,
       {
@@ -157,7 +159,7 @@ const getMovementReport = async reqQuery => {
     include: [
       {
         model: ProductBox,
-        attributes: ['trackingCode'],
+        attributes: ['trackingCode', 'stock'],
         include: [
           {
             model: Product,
@@ -168,7 +170,7 @@ const getMovementReport = async reqQuery => {
               'elementName',
               'modelName',
               'tradename',
-              'suggestedPrice',
+              'suggestedPrice'
             ],
           },
         ],
@@ -185,6 +187,7 @@ const getMovementReport = async reqQuery => {
     ...productBoxes.map(productBox => {
       return {
         code: productBox.productBox.trackingCode,
+        stock:productBox.productBox.stock,
         log:
           productBox.log === 'Abastecimiento' ? 'Abastecimiento' : 'Movimiento',
         createdAt: productBox.createdAt,

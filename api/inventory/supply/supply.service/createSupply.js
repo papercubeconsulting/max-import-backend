@@ -44,7 +44,9 @@ const createSupply = async reqBody => {
           model: SuppliedProduct,
           include: {
             model: Product,
-            attributes: { exclude: 'imageBase64' },
+            attributes: {
+              exclude: ['imageBase64', 'secondImageBase64', 'thirdImageBase64'],
+            },
           },
         },
       ],

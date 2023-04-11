@@ -40,7 +40,9 @@ const listProducts = async reqQuery => {
       {
         model: Product,
         where: _.pick(reqQuery, productFields),
-        attributes: { exclude: 'imageBase64' },
+        attributes: {
+          exclude: ['imageBase64', 'secondImageBase64', 'thirdImageBase64'],
+        },
       },
     ],
     group: ['warehouseId', 'productId', 'warehouse.id', 'product.id'],
@@ -49,7 +51,9 @@ const listProducts = async reqQuery => {
 
   let products = await Product.findAll({
     where: _.pick(reqQuery, productFields),
-    attributes: { exclude: 'imageBase64' },
+    attributes: {
+      exclude: ['imageBase64', 'secondImageBase64', 'thirdImageBase64'],
+    },
     order: ['id'],
     raw: true,
   });
@@ -83,7 +87,7 @@ const listProducts = async reqQuery => {
 
   const response = {
     page: reqQuery.page,
-    length:products.length,
+    length: products.length,
     pageSize: reqQuery.pageSize,
     pages: _.ceil(products.length / reqQuery.pageSize),
     rows: products,
