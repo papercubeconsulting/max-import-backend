@@ -159,7 +159,7 @@ const getMovementReport = async reqQuery => {
     include: [
       {
         model: ProductBox,
-        attributes: ['trackingCode'],
+        attributes: ['trackingCode', 'stock'],
         include: [
           {
             model: Product,
@@ -170,8 +170,7 @@ const getMovementReport = async reqQuery => {
               'elementName',
               'modelName',
               'tradename',
-              'suggestedPrice',
-              'stock'
+              'suggestedPrice'
             ],
           },
         ],
@@ -188,7 +187,7 @@ const getMovementReport = async reqQuery => {
     ...productBoxes.map(productBox => {
       return {
         code: productBox.productBox.trackingCode,
-        stock:productBox.productBox.stock,
+        stock:productBox.stock,
         log:
           productBox.log === 'Abastecimiento' ? 'Abastecimiento' : 'Movimiento',
         createdAt: productBox.createdAt,
