@@ -51,6 +51,8 @@ const getInventoryReport = async reqQuery => {
     product.totalStock = 0;
     product.activeStock = 0;
     product.damagedStock = 0;
+    product.storeStock = 0;
+    product.warehouseStock=0;
     while (j < productBoxes.length) {
       if (productBoxes[j].productId === product.id) {
         product.productBoxes.push(productBoxes[j]);
@@ -60,6 +62,13 @@ const getInventoryReport = async reqQuery => {
             ? 'damagedStock'
             : 'activeStock'
         ] += productBoxes[j].get('stock');
+
+        if(productBoxes[j].warehouse.type === warehouseTypes.STORE){
+          product.storeStock += productBoxes[j].get('stock');
+        }
+        if(productBoxes[j].warehouse.type === warehouseTypes.WAREHOUSE){
+          product.warehouseStock += productBoxes[j].get('stock');
+        }
       } else break;
       j += 1;
     }
@@ -75,7 +84,8 @@ const getInventoryReport = async reqQuery => {
         element: product.elementName,
         model: product.modelName,
         name: product.tradename,
-        stock: product.availableStock,
+        stockStore: product.storeStock,
+        stockWarehouse:product.warehouseStock,
         boxes: product.productBoxes.length,
       };
     }),
