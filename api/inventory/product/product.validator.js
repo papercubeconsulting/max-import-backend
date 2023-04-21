@@ -75,6 +75,7 @@ const Post = {
     suggestedPrice: Joi.number()
       .integer()
       .required(),
+    cost: Joi.number(),
   },
 };
 
@@ -104,7 +105,6 @@ const Delete = {
 
 const uploadCsv = multer({
   fileFilter(req, file, callback) {
-    
     const ext = path.extname(file.originalname);
     if (!['.csv'].includes(ext)) {
       return callback(new Error('Only csv are allowed'), false);
@@ -119,7 +119,6 @@ const uploadCsv = multer({
 
 const uploadZip = multer({
   fileFilter(req, file, callback) {
-    
     const ext = path.extname(file.originalname);
     if (!['.zip'].includes(ext)) {
       return callback(new Error('Only zip are allowed'), false);
@@ -130,32 +129,29 @@ const uploadZip = multer({
     fileSize: 1024 * 1024 * 1024 * 1024,
   },
   dest: '_tmp_/',
+});
 
-})
-
-const validateCsv = (req,res,next)=>{
-  
+const validateCsv = (req, res, next) => {
   uploadCsv.single('csv')(req, res, function(err) {
-      if (err){
-        return res
+    if (err) {
+      return res
         .status('400')
         .send({ status: 400, message: String(err), data: {} });
-      }
-      next();
-  });
-};
-
-const validateImagesZip = (req, res, next)=>{
-
-  uploadZip.single('zip')(req, res, function(err) {
-    if (err){
-      return res
-      .status('400')
-      .send({ status: 400, message: String(err), data: {} });
     }
     next();
   });
-}
+};
+
+const validateImagesZip = (req, res, next) => {
+  uploadZip.single('zip')(req, res, function(err) {
+    if (err) {
+      return res
+        .status('400')
+        .send({ status: 400, message: String(err), data: {} });
+    }
+    next();
+  });
+};
 module.exports = {
   List,
   Get,
@@ -163,5 +159,5 @@ module.exports = {
   Put,
   Delete,
   validateCsv,
-  validateImagesZip
+  validateImagesZip,
 };

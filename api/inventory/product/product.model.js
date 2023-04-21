@@ -211,8 +211,13 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },
-
+      elementId: DataTypes.INTEGER,
+      familyId: DataTypes.INTEGER,
+      providerId: DataTypes.INTEGER,
+      subfamilyId: DataTypes.INTEGER,
       modelId: DataTypes.INTEGER,
+      cost: DataTypes.FLOAT,
+      margin: DataTypes.FLOAT,
     },
     {
       sequelize,
@@ -260,6 +265,8 @@ module.exports = (sequelize, DataTypes) => {
             Provider.findByPk(product.providerId),
           ]);
 
+          product.margin = (product.suggestedPrice / product.cost).toFixed(6);
+
           product.modelName = categories.name;
 
           product.elementId = categories.elementId;
@@ -276,6 +283,11 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
   );
+
+  // to update the table when schema changes
+  Product.sync({ alter: true })
+    .then(result => console.log('Updated db'))
+    .catch(error => console.log('Error updating db'));
 
   return Product;
 };
