@@ -216,7 +216,7 @@ module.exports = (sequelize, DataTypes) => {
       providerId: DataTypes.INTEGER,
       subfamilyId: DataTypes.INTEGER,
       modelId: DataTypes.INTEGER,
-      cost: DataTypes.FLOAT,
+      cost: DataTypes.INTEGER,
       margin: DataTypes.FLOAT,
     },
     {
