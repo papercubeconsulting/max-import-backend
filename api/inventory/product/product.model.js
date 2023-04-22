@@ -265,7 +265,8 @@ module.exports = (sequelize, DataTypes) => {
             Provider.findByPk(product.providerId),
           ]);
 
-          product.margin = (product.suggestedPrice / product.cost).toFixed(6);
+          // fixed to 4 decimals lets has in the front a percentage with two decimals
+          product.margin = (product.suggestedPrice / product.cost).toFixed(4);
 
           product.modelName = categories.name;
 
@@ -285,9 +286,9 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   // to update the table when schema changes
-  Product.sync({ alter: true })
-    .then(result => console.log('Updated db'))
-    .catch(error => console.log('Error updating db'));
+  // Product.sync({ alter: true })
+  //   .then(result => console.log('Updated db'))
+  //   .catch(error => console.log('Error updating db'));
 
   return Product;
 };

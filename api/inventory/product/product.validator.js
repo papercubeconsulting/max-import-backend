@@ -75,7 +75,7 @@ const Post = {
     suggestedPrice: Joi.number()
       .integer()
       .required(),
-    cost: Joi.number(),
+    cost: Joi.number().positive(0),
   },
 };
 
@@ -89,9 +89,10 @@ const Put = {
     imageBase64: Joi.string().allow(null),
     secondImageBase64: Joi.string().allow(null),
     thirdImageBase64: Joi.string().allow(null),
-    compatibility: Joi.string(),
+    compatibility: Joi.string().allow(''),
     tradename: Joi.string(),
     suggestedPrice: Joi.number().integer(),
+    cost: Joi.number().integer(),
   },
 };
 
