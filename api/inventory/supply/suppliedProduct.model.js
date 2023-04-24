@@ -24,6 +24,10 @@ module.exports = (sequelize, DataTypes) => {
       quantity: {
         type: DataTypes.INTEGER,
       },
+      initQuantity:{
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
       suppliedQuantity: {
         type: DataTypes.INTEGER,
         defaultValue: 0,
@@ -50,6 +54,11 @@ module.exports = (sequelize, DataTypes) => {
           fields: ['boxSize', 'productId', 'supplyId'],
         },
       ],
+      hooks:{
+        afterCreate: async suppliedProduct=>{
+          suppliedProduct.initQuantity=suppliedProduct.quantity;
+        },
+      }
     },
   );
   return SuppliedProduct;
