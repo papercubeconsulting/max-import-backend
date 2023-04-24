@@ -55,8 +55,10 @@ module.exports = (sequelize, DataTypes) => {
         },
       ],
       hooks:{
-        afterCreate: async suppliedProduct=>{
-          suppliedProduct.initQuantity=suppliedProduct.quantity;
+        beforeBulkCreate: async suppliedProduct=>{
+          suppliedProduct.forEach((obj,index, array)=>{
+            array[index].initQuantity=array[index].quantity;
+          });
         },
       }
     },
