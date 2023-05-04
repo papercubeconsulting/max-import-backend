@@ -39,6 +39,9 @@ module.exports = (sequelize, DataTypes) => {
       boxSize: {
         type: DataTypes.INTEGER,
       },
+      initBoxSize:{
+        type: DataTypes.INTEGER,
+      },
       status: {
         type: DataTypes.ENUM(statuses),
         defaultValue: status.PENDING,
@@ -58,6 +61,7 @@ module.exports = (sequelize, DataTypes) => {
         beforeBulkCreate: async suppliedProduct=>{
           suppliedProduct.forEach((obj,index, array)=>{
             array[index].initQuantity=array[index].quantity;
+            array[index].initBoxSize=array[index].boxSize;
           });
         },
       }
