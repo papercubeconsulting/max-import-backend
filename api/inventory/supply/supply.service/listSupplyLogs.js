@@ -1,6 +1,6 @@
 const { SupplyLog, User } = require('@dbModels');
 const _ = require('lodash');
-const { setResponse, paginate } = require('../../../utils');
+const { setResponse } = require('../../../utils');
 
 const supplyLogFields = ['supplyId'];
 const listSupplyLogs = async reqQuery => {

@@ -1,17 +1,20 @@
 /* eslint-disable import/no-dynamic-require */
 const winston = require('winston');
-
 const {
   Supply,
+  SupplyLog,
   SuppliedProduct,
   Product,
   Provider,
   Warehouse,
 } = require('@dbModels');
+const { SUPPLY_LOGS } = require('@/utils/constants');
 
 const { sequelize } = require(`@root/startup/db`);
 
 const { setResponse } = require('../../../utils');
+
+const _ = require('lodash');
 
 const validateCreateSupply = async reqBody => {
   const productIds = Array.from(
@@ -25,7 +28,7 @@ const validateCreateSupply = async reqBody => {
   return setResponse(200, 'Ok');
 };
 
-const createSupply = async reqBody => {
+const createSupply = async (reqBody, reqUser) => {
   const t = await sequelize.transaction();
 
   try {
@@ -56,6 +59,14 @@ const createSupply = async reqBody => {
     // If the execution reaches this line, no errors were thrown.
     // We commit the transaction.
     await t.commit();
+
+    await SupplyLog.create({
+      log: `${SUPPLY_LOGS.CREATE.LOG}`,
+      action: SUPPLY_LOGS.CREATE.ACTION,
+      detail: '-',
+      userId: _.get(reqUser, 'id', reqUser),
+      supplyId: supply.id,
+    });
 
     return setResponse(201, 'Supply created.', supply);
   } catch (error) {
