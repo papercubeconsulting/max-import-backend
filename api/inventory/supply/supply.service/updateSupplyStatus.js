@@ -37,16 +37,14 @@ const updateSupplyStatus = async (reqBody, reqParams) => {
       });
 
       await Product.updateStock(suppliedProduct.productId);
-
     }
     await SuppliedProduct.destroy({
       where: { supplyId: supply.id },
     });
     supply.status = reqBody.status;
-    if (reqBody.status === status.CANCELLED){
+    if (reqBody.status === status.CANCELLED) {
       supply.cancellationDate = new Date();
     }
-
 
     await supply.save();
 

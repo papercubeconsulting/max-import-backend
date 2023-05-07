@@ -79,6 +79,11 @@ const deleteAttendSuppliedProduct = async (req, res) => {
   return res.status(supply.status).send(supply);
 };
 
+const listSupplyLogs = async (req, res) => {
+  const supplyLogs = await Services.listSupplyLogs(req.query);
+  return res.status(supplyLogs.status).send(supplyLogs);
+};
+
 module.exports = {
   getSupply,
   listSupplies,
@@ -89,4 +94,5 @@ module.exports = {
   putSupplyStatus,
   updateAttendSuppliedProduct,
   deleteAttendSuppliedProduct,
+  listSupplyLogs,
 };

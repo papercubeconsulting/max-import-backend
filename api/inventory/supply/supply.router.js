@@ -7,6 +7,8 @@ const { isAble } = require('@/middleware/authorization');
 
 const router = express.Router();
 
+router.get('/logs', isAble('read', 'supply'), Controller.listSupplyLogs);
+
 router.get(
   '/:id',
   isAble('read', 'supply'),

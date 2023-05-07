@@ -1,7 +1,8 @@
-const { setResponse } = require('@/utils');
 const _ = require('lodash');
 const sequelize = require('sequelize');
 const { Product, ProductBox, Warehouse } = require('@dbModels');
+const { setResponse } = require('@/utils');
+
 const productFields = [
   'code',
   'familyId',
@@ -12,6 +13,7 @@ const productFields = [
   'tradename',
 ];
 const { warehouseTypes } = require('../../../utils/constants');
+
 const getInventoryReport = async reqQuery => {
   const productBoxes = await ProductBox.findAll({
     attributes: [
@@ -52,7 +54,7 @@ const getInventoryReport = async reqQuery => {
     product.activeStock = 0;
     product.damagedStock = 0;
     product.storeStock = 0;
-    product.warehouseStock=0;
+    product.warehouseStock = 0;
     while (j < productBoxes.length) {
       if (productBoxes[j].productId === product.id) {
         product.productBoxes.push(productBoxes[j]);
@@ -63,10 +65,10 @@ const getInventoryReport = async reqQuery => {
             : 'activeStock'
         ] += productBoxes[j].get('stock');
 
-        if(productBoxes[j].warehouse.type === warehouseTypes.STORE){
+        if (productBoxes[j].warehouse.type === warehouseTypes.STORE) {
           product.storeStock += productBoxes[j].get('stock');
         }
-        if(productBoxes[j].warehouse.type === warehouseTypes.WAREHOUSE){
+        if (productBoxes[j].warehouse.type === warehouseTypes.WAREHOUSE) {
           product.warehouseStock += productBoxes[j].get('stock');
         }
       } else break;
@@ -85,7 +87,7 @@ const getInventoryReport = async reqQuery => {
         model: product.modelName,
         name: product.tradename,
         stockStore: product.storeStock,
-        stockWarehouse:product.warehouseStock,
+        stockWarehouse: product.warehouseStock,
         boxes: product.productBoxes.length,
       };
     }),

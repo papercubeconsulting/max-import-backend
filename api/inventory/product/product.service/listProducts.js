@@ -105,7 +105,7 @@ const listProducts = async reqQuery => {
 };
 
 const listTradename = async reqQuery => {
-  let products = await Product.findAll({
+  const products = await Product.findAll({
     attributes: ['tradename'],
     group: ['tradename'],
     order: ['tradename'],
