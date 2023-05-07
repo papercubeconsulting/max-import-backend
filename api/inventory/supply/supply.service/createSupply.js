@@ -34,7 +34,7 @@ const createSupply = async (reqBody, reqUser) => {
   try {
     let supply = await Supply.create(reqBody, { transaction: t });
     await SuppliedProduct.bulkCreate(
-      reqBody.suppliedProducts.map(obj => ({ ...obj, supplyId: supply.id })),
+      reqBody.suppliedProducts.map(obj => ({ ...obj, supplyId: supply.id, initQuantity: obj.quantity, initBoxSize: obj.boxSize })),
       { transaction: t },
     );
 

@@ -57,14 +57,6 @@ module.exports = (sequelize, DataTypes) => {
           fields: ['boxSize', 'productId', 'supplyId'],
         },
       ],
-      hooks: {
-        beforeBulkCreate: async suppliedProduct => {
-          suppliedProduct.forEach((obj, index, array) => {
-            array[index].initQuantity = array[index].quantity;
-            array[index].initBoxSize = array[index].boxSize;
-          });
-        },
-      },
     },
   );
   return SuppliedProduct;
