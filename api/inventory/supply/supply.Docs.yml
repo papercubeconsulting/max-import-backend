@@ -141,6 +141,22 @@ paths:
           description: Bad request | Check message
         "404":
           description: Resource not found
+  "/supplies/logs":
+    get:
+      tags:
+        - inventory.supplies
+      summary: Listar los logs de un supplyId
+      operationId: listSupplyLogs
+      parameters:
+        - in: query
+          name: supplyId
+          schema:
+            type: integer
+          description: supplyId
+          required: false
+      responses:
+        "200":
+          description: Supply Logs found
 components:
   requestBodies:
     Supply:

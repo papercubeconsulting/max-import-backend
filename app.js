@@ -16,8 +16,6 @@ if (process.env.NODE_ENV === 'production') {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
-
 app.use(morgan('dev'));
 
 const db = require('./startup/db');

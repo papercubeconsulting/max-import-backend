@@ -67,7 +67,7 @@ const putProductBox = async (reqBody, reqParams, reqUser) => {
 };
 
 const putMoveProductBoxes = async (reqBody, reqUser) => {
-  let boxes = reqBody.boxes;
+  const { boxes } = reqBody;
   for (let i = 0; i < boxes.length; i++) {
     console.log(boxes[i].id);
     const productBox = await ProductBox.findByPk(boxes[i].id);
@@ -75,7 +75,7 @@ const putMoveProductBoxes = async (reqBody, reqUser) => {
   }
   for (let i = 0; i < boxes.length; i++) {
     const productBox = await ProductBox.findByPk(boxes[i].id);
-    let item = {
+    const item = {
       warehouseId: boxes[i].warehouseId,
       previousWarehouseId: boxes[i].previousWarehouseId,
     };
@@ -170,7 +170,7 @@ const getMovementReport = async reqQuery => {
               'elementName',
               'modelName',
               'tradename',
-              'suggestedPrice'
+              'suggestedPrice',
             ],
           },
         ],
@@ -187,7 +187,7 @@ const getMovementReport = async reqQuery => {
     ...productBoxes.map(productBox => {
       return {
         code: productBox.productBox.trackingCode,
-        stock:productBox.productBox.stock,
+        stock: productBox.productBox.stock,
         log:
           productBox.log === 'Abastecimiento' ? 'Abastecimiento' : 'Movimiento',
         createdAt: productBox.createdAt,

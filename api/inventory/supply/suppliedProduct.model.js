@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       quantity: {
         type: DataTypes.INTEGER,
       },
-      initQuantity:{
+      initQuantity: {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },
@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
       boxSize: {
         type: DataTypes.INTEGER,
       },
-      initBoxSize:{
+      initBoxSize: {
         type: DataTypes.INTEGER,
       },
       status: {
@@ -57,14 +57,14 @@ module.exports = (sequelize, DataTypes) => {
           fields: ['boxSize', 'productId', 'supplyId'],
         },
       ],
-      hooks:{
-        beforeBulkCreate: async suppliedProduct=>{
-          suppliedProduct.forEach((obj,index, array)=>{
-            array[index].initQuantity=array[index].quantity;
-            array[index].initBoxSize=array[index].boxSize;
+      hooks: {
+        beforeBulkCreate: async suppliedProduct => {
+          suppliedProduct.forEach((obj, index, array) => {
+            array[index].initQuantity = array[index].quantity;
+            array[index].initBoxSize = array[index].boxSize;
           });
         },
-      }
+      },
     },
   );
   return SuppliedProduct;

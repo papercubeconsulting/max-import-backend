@@ -1,11 +1,11 @@
 const { sequelize } = require(`@root/startup/db`);
 
 const { Supply, SuppliedProduct, ProductBox, Product } = require('@dbModels');
+const winston = require('winston');
 const {
   supplyStatus: status,
   PRODUCTBOX_UPDATES,
 } = require('../../../utils/constants');
-const winston = require('winston');
 const { setResponse } = require('../../../utils');
 
 const deleteAttendSuppliedProduct = async (reqParams, reqUser) => {
@@ -28,7 +28,7 @@ const deleteAttendSuppliedProduct = async (reqParams, reqUser) => {
         transaction: t,
       });
     }
-    //Cuano solo se emite una cierta cantidad de cajas
+    // Cuano solo se emite una cierta cantidad de cajas
     if (
       suppliedProduct.status === status.PENDING &&
       suppliedProduct.quantity > suppliedProduct.suppliedQuantity
@@ -70,7 +70,6 @@ const deleteAttendSuppliedProduct = async (reqParams, reqUser) => {
 
     return setResponse(400, 'Detele attend  supplied productfailed.');
   }
-
 };
 
 module.exports = { deleteAttendSuppliedProduct };

@@ -1,7 +1,5 @@
 /* eslint-disable no-restricted-syntax */
-const _ = require('lodash');
 const { User } = require('@dbModels');
-const { Op } = require('sequelize');
 
 const { setResponse } = require('@root/api/utils');
 

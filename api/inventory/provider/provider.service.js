@@ -11,8 +11,7 @@ const readProvider = async reqParams => {
 };
 
 const listProviders = async reqQuery => {
-  console.log(reqQuery);
-  const providers = await Provider.findAll({where:reqQuery});
+  const providers = await Provider.findAll({ where: reqQuery });
 
   return setResponse(200, 'Providers found.', providers);
 };

@@ -93,7 +93,7 @@ module.exports = {
       });
     });
   },
-  excelParserProductBoxMovement: async(res,fileName,fields,data) =>{
+  excelParserProductBoxMovement: async (res, fileName, fields, data) => {
     const source = path.resolve(basePath, 'baseProductBoxMovement.xlsx');
     const initRow = 4;
     const tempFilePath = tempfile('.xlsx');
@@ -112,7 +112,7 @@ module.exports = {
       });
     });
   },
-  excelParserInventory: async(res, fileName, fields, data)=>{
+  excelParserInventory: async (res, fileName, fields, data) => {
     const source = path.resolve(basePath, 'baseInventory.xlsx');
     const initRow = 4;
     const tempFilePath = tempfile('.xlsx');
@@ -132,7 +132,7 @@ module.exports = {
     });
   },
 
-  excelParserBulkUpload: async(res, fileName, fields,data)=>{
+  excelParserBulkUpload: async (res, fileName, fields, data) => {
     const source = path.resolve(basePath, 'baseBulkUploadResponse.xlsx');
     const initRow = 4;
     const tempFilePath = tempfile('.xlsx');
@@ -152,7 +152,7 @@ module.exports = {
     });
   },
 
-  excelParserBulkImagesUpload: async(res, fileName, fields,data)=>{
+  excelParserBulkImagesUpload: async (res, fileName, fields, data) => {
     const source = path.resolve(basePath, 'baseBulkImagesUploadResponse.xlsx');
     const initRow = 4;
     const tempFilePath = tempfile('.xlsx');
@@ -170,5 +170,5 @@ module.exports = {
         if (err) winston.error(`---------- error downloading file: ${err}`);
       });
     });
-  }
+  },
 };

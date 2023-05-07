@@ -1,5 +1,9 @@
 const Services = require('./product.service');
-const { excelParserInventory, excelParserBulkUpload, excelParserBulkImagesUpload} = require('@/utils');
+const {
+  excelParserInventory,
+  excelParserBulkUpload,
+  excelParserBulkImagesUpload,
+} = require('@/utils');
 
 const getProduct = async (req, res) => {
   const product = await (req.query.noStock
@@ -15,11 +19,11 @@ const listProducts = async (req, res) => {
   return res.status(products.status).send(products);
 };
 
-const listTradename = async(req,res)=>{
+const listTradename = async (req, res) => {
   const products = await Services.listTradename(req.query);
-  
+
   return res.status(products.status).send(products);
-}
+};
 
 const postProduct = async (req, res) => {
   const validate = await Services.validatePost(req.body);
@@ -58,8 +62,7 @@ const deleteProduct = async (req, res) => {
   return res.status(product.status).send(product);
 };
 
-const getInventoryReport = async(req,res)=>{
-
+const getInventoryReport = async (req, res) => {
   const response = await Services.getInventoryReport(req.query);
   return excelParserInventory(
     res,
@@ -67,26 +70,31 @@ const getInventoryReport = async(req,res)=>{
     response.data.fields,
     response.data.data,
   );
-}
+};
 
-const uploadCsvData = async(req,res)=>{
-
+const uploadCsvData = async (req, res) => {
   const csv = req.file;
   const response = await Services.uploadCsvProduct(req.params, csv);
-  
-  return excelParserBulkUpload(res,
+
+  return excelParserBulkUpload(
+    res,
     'Carga Masiva',
     response.data.fields,
-    response.data.data,);
-}
+    response.data.data,
+  );
+};
 
-const uploadImages = async (req, res)=>{
-
+const uploadImages = async (req, res) => {
   const zip = req.file;
   const response = await Services.uploadImagesZip(req.params, zip);
-  
-  return excelParserBulkImagesUpload(res,  'Caga Masiva de Imagenes', response.data.fields, response.data.data,);
-}
+
+  return excelParserBulkImagesUpload(
+    res,
+    'Caga Masiva de Imagenes',
+    response.data.fields,
+    response.data.data,
+  );
+};
 
 module.exports = {
   getProduct,
