@@ -7,7 +7,12 @@ module.exports = {
     DELETE_PRODUCT: {
       LOG: 'Editó',
       ACTION: 'UPDATE',
-      DETAIL: 'Borró item del abast.'
-    }
+      DETAIL: 'Borró item'
+    },
+    UPDATE_PRODUCT: {
+      LOG: 'Editó',
+      ACTION: 'UPDATE',
+      DETAIL: 'Modifico item'
+    },
   },
 };

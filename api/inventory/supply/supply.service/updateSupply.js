@@ -57,6 +57,13 @@ const updateSupply = async (reqBody, reqParams, validatedData, reqUser) => {
           { quantity: queryProd.quantity },
           { where: { id: cur.id }, transaction: t },
         ),
+        SupplyLog.create({
+          log: `${SUPPLY_LOGS.UPDATE_PRODUCT.LOG}`,
+          action: SUPPLY_LOGS.UPDATE_PRODUCT.ACTION,
+          detail: `${SUPPLY_LOGS.UPDATE_PRODUCT.DETAIL}: ${cur.product.code}`,
+          userId: _.get(reqUser, 'id', reqUser),
+          supplyId: reqParams.id,
+        }),
       );
       return acc;
     }, promises);
