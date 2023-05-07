@@ -86,9 +86,15 @@ const Put = {
           boxSize: Joi.number()
             .integer()
             .required(),
+          initBoxSize: Joi.number()
+          .integer()
+          .optional(),
           quantity: Joi.number()
             .integer()
             .required(),
+          initQuantity: Joi.number()
+            .integer()
+            .optional(),
         }),
       )
       .unique((a, b) => a.productId === b.productId && a.boxSize === b.boxSize)
