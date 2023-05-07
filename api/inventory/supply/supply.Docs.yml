@@ -260,10 +260,18 @@ components:
                       type: integer
                       format: int32
                       description: Cantidad de unidades en la caja
+                    initBoxSize:
+                      type: integer
+                      format: int32
+                      description: Cantidad de inicial de unidades en la caja
                     quantity:
                       type: integer
                       format: int32
                       description: Cantidad de cajas a recibir
+                    initQuantity:
+                      type: integer
+                      format: int32
+                      description: Cantidad inicial de cajas a recibir
                 description: Se puede tener elementos del mismo productId pero distinto boxSize
             example:
               providerId: 1
@@ -272,7 +280,7 @@ components:
               code: "20200101-1"
               suppliedProducts:
                 [
-                  { productId: 1, boxSize: 20, quantity: 100 },
+                  { productId: 1, boxSize: 20, initBoxSize: 20, quantity: 100, initQuantity: 100 },
                   { productId: 1, boxSize: 50, quantity: 20 },
                   { productId: 2, boxSize: 50, quantity: 10 },
                 ]
