@@ -53,9 +53,15 @@ const Post = {
           boxSize: Joi.number()
             .integer()
             .required(),
+          initBoxSize: Joi.number()
+            .integer()
+            .optional(),
           quantity: Joi.number()
             .integer()
             .required(),
+          initQuantity: Joi.number()
+            .integer()
+            .optional(),
           suppliedQuantity: Joi.number().integer(), // TODO: REMOVE BECAUSE IS JUST FOR SEEDING
         }),
       )

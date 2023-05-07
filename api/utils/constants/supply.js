@@ -4,5 +4,10 @@ module.exports = {
       LOG: 'Creó abastecimiento',
       ACTION: 'CREATE',
     },
+    DELETE_PRODUCT: {
+      LOG: 'Editó',
+      ACTION: 'UPDATE',
+      DETAIL: 'Borró item del abast.'
+    }
   },
 };
