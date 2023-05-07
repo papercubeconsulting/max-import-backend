@@ -5,6 +5,7 @@ const winston = require('winston');
 
 const {
   Supply,
+  SupplyLog,
   SuppliedProduct,
   Product,
   Provider,
@@ -14,10 +15,11 @@ const {
 const { sequelize } = require(`@root/startup/db`);
 
 const { setResponse } = require('../../../utils');
+const { SUPPLY_LOGS } = require('@/utils/constants');
 
 // ? Servicio para actualiza campos del abastecimiento y añadir/remover productos
 // ? El abastecimiento debe estar sin atender
-const updateSupply = async (reqBody, reqParams, validatedData) => {
+const updateSupply = async (reqBody, reqParams, validatedData, reqUser) => {
   const t = await sequelize.transaction();
 
   try {
@@ -32,9 +34,17 @@ const updateSupply = async (reqBody, reqParams, validatedData) => {
     validatedData.deleteSuppliedProducts.reduce((acc, cur) => {
       acc.push(
         SuppliedProduct.destroy({ where: { id: cur.id }, transaction: t }),
+        SupplyLog.create({
+          log: `${SUPPLY_LOGS.DELETE_PRODUCT.LOG}`,
+          action: SUPPLY_LOGS.DELETE_PRODUCT.ACTION,
+          detail: `${SUPPLY_LOGS.DELETE_PRODUCT.DETAIL}: ${cur.product.code}`,
+          userId: _.get(reqUser, 'id', reqUser),
+          supplyId: reqParams.id,
+        }),
       );
       return acc;
     }, promises);
+
 
     // * Update items (cantidad de cajas)
     validatedData.updateSuppliedProducts.reduce((acc, cur) => {

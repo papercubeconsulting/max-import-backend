@@ -31,6 +31,7 @@ const putSupply = async (req, res) => {
     req.body,
     req.params,
     validation.data,
+    req.user,
   );
 
   return res.status(supply.status).send(supply);
