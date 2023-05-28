@@ -162,6 +162,17 @@ const DeleteAttendSuppliedProduct = {
   },
 };
 
+const validateCsv= (req, res, next)=>{
+  uploadCsv.single('csv')(req, res, function(err) {
+    if (err) {
+      return res
+        .status('400')
+        .send({ status: 400, message: String(err), data: {} });
+    }
+    next();
+  });
+}
+
 module.exports = {
   List,
   Get,
@@ -172,4 +183,5 @@ module.exports = {
   PutStatus,
   PostAttendSuppliedProduct,
   DeleteAttendSuppliedProduct,
+  validateCsv,
 };

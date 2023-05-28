@@ -85,6 +85,16 @@ const listSupplyLogs = async (req, res) => {
   return res.status(supplyLogs.status).send(supplyLogs);
 };
 
+const uploadCsvData = async (req,res)=>{
+  const csv = req.file;
+  const response = await Services.uploadCsvProduct(req.params, csv);
+
+  return excelParserSupplyUpload(
+    res,
+    response.data.data,
+  );
+}
+
 module.exports = {
   getSupply,
   listSupplies,
@@ -96,4 +106,5 @@ module.exports = {
   updateAttendSuppliedProduct,
   deleteAttendSuppliedProduct,
   listSupplyLogs,
+  uploadCsvData,
 };

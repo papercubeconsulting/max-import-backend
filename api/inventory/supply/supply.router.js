@@ -46,6 +46,12 @@ router.put(
 // router.delete('/:id', celebrate(Validator.Delete), Controller.deleteSupply);
 
 router.post(
+  'csvUpload',
+  Validator.validateCsv,
+  Controller.uploadCsvData
+);
+
+router.post(
   '/:id/attend/:idSuppliedProduct',
   isAble('attend', 'supply'),
   celebrate(Validator.PostAttendSuppliedProduct),
