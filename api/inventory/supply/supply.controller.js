@@ -1,4 +1,7 @@
 const Services = require('./supply.service');
+const {
+  excelParserSupplyUpload,
+} = require('@/utils');
 
 const getSupply = async (req, res) => {
   const supply = await Services.readSupply(req.params);
@@ -85,6 +88,16 @@ const listSupplyLogs = async (req, res) => {
   return res.status(supplyLogs.status).send(supplyLogs);
 };
 
+const uploadCsvData = async (req,res)=>{
+  const csv = req.file;
+  const response = await Services.uploadCsvSupply(req.params, csv);
+
+  return excelParserSupplyUpload(
+    res,
+    response.data.data,
+  );
+}
+
 module.exports = {
   getSupply,
   listSupplies,
@@ -96,4 +109,5 @@ module.exports = {
   updateAttendSuppliedProduct,
   deleteAttendSuppliedProduct,
   listSupplyLogs,
+  uploadCsvData,
 };

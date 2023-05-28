@@ -11,4 +11,5 @@ module.exports = {
   ...require('./validateUpdateSupply'),
   ...require('./deleteAttendSuppliedProduct'),
   ...require('./listSupplyLogs'),
+  ...require('./uploadCsvSupply'),
 };
