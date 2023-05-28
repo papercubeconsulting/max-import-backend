@@ -1,6 +1,9 @@
 const { Joi } = require('celebrate');
 
 const { supplyStatus: status } = require('../../utils/constants');
+const multer = require('multer');
+const path = require('path');
+
 
 const List = {
   query: {
@@ -161,6 +164,20 @@ const DeleteAttendSuppliedProduct = {
       .required(),
   },
 };
+
+const uploadCsv = multer({
+  fileFilter(req, file, callback) {
+    const ext = path.extname(file.originalname);
+    if (!['.csv'].includes(ext)) {
+      return callback(new Error('Only csv are allowed'), false);
+    }
+    return callback(null, true);
+  },
+  limits: {
+    fileSize: 1024 * 1024 * 1024,
+  },
+  dest: '_tmp_/',
+});
 
 const validateCsv= (req, res, next)=>{
   uploadCsv.single('csv')(req, res, function(err) {

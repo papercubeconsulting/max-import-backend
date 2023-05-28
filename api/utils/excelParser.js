@@ -173,7 +173,7 @@ module.exports = {
   },
 
   excelParserSupplyUpload:async(res,data)=>{
-    const source = path.resolve(basePath, 'baseSupplyeUploadResponse.xlsx');
+    const source = path.resolve(basePath, 'baseSupplyUploadResponse.xlsx');
     const initRow = 4;
     const tempFilePath = tempfile('.xlsx');
 

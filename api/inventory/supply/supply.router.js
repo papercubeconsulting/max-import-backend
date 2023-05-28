@@ -46,9 +46,9 @@ router.put(
 // router.delete('/:id', celebrate(Validator.Delete), Controller.deleteSupply);
 
 router.post(
-  'csvUpload',
+  '/csvUpload',
   Validator.validateCsv,
-  Controller.uploadCsvData
+  Controller.uploadCsvData,
 );
 
 router.post(
