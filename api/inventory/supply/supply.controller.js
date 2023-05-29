@@ -95,6 +95,7 @@ const uploadCsvData = async (req,res)=>{
   return excelParserSupplyUpload(
     res,
     response.data.data,
+    response.data.supply
   );
 }
 
