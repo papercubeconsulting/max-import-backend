@@ -4,7 +4,7 @@ const fs = require('fs');
 const { Warehouse, Provider, Product } = require('@dbModels');
 const _ = require('lodash');
 const {validateCreateSupply, createSupply} = require('./createSupply');
-const moment = require('moment');
+const moment = require('moment-timezone');
 
 const uploadCsvSupply=async(reqParams, file, reqUser)=>{
 
@@ -54,7 +54,7 @@ const uploadCsvSupply=async(reqParams, file, reqUser)=>{
     reqBody.suppliedProducts=productsSupply;
 
     //handle date
-    const parsedDate = moment(supplyData[0].fecha, 'DD/MM/YYYY');
+    const parsedDate = moment(supplyData[0].fecha, 'DD/MM/YYYY').tz('America/Lima').add(5, 'hours');
     const formattedDate = parsedDate.format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
     reqBody.arrivalDate=formattedDate;
 

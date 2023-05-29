@@ -189,7 +189,7 @@ module.exports = {
     proveedor.value = supply.data.provider.name;
     warehouse.value = supply.data.warehouse.name;
     code.value = supply.data.code;
-    arrivalDate.value=supply.data.arrivalDate;
+    arrivalDate.value= moment.tz(supply.data.arrivalDate, 'America/Lima').format('DD/MM/YYYY');
 
     await asyncForEach(data, async (row, i) => {
       worksheet.getRow(initRow + i).values = Object.values(row);
