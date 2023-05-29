@@ -172,14 +172,24 @@ module.exports = {
     });
   },
 
-  excelParserSupplyUpload:async(res,data)=>{
+  excelParserSupplyUpload:async(res,data,supply)=>{
     const source = path.resolve(basePath, 'baseSupplyUploadResponse.xlsx');
-    const initRow = 4;
+    const initRow = 10;
     const tempFilePath = tempfile('.xlsx');
 
     const workbook = new ExcelJS.Workbook();
     await workbook.xlsx.readFile(source);
     const worksheet = workbook.worksheets[0];
+
+    const proveedor = worksheet.getCell('B3');
+    const warehouse = worksheet.getCell('B4');
+    const code = worksheet.getCell('B5');
+    const arrivalDate= worksheet.getCell('B6');
+
+    proveedor.value = supply.data.provider.name;
+    warehouse.value = supply.data.warehouse.name;
+    code.value = supply.data.code;
+    arrivalDate.value=supply.data.arrivalDate;
 
     await asyncForEach(data, async (row, i) => {
       worksheet.getRow(initRow + i).values = Object.values(row);

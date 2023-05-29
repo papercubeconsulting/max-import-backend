@@ -131,7 +131,6 @@ const uploadCsvProduct = async (reqParams, file, reqUser) => {
   fs.unlinkSync(file.path);
 
   for (let i = 0; i < bulkProducts.length; i++) {
-    console.log(bulkProducts[i]);
     const familyName = bulkProducts[i].familia;
     const subfamilyName = bulkProducts[i].subFamilia;
     const elementName = bulkProducts[i].elemento;
