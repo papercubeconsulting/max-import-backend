@@ -11,7 +11,7 @@ const uploadCsvSupply=async(reqParams, file, reqUser)=>{
     const columnsOutput=[];
     
 
-    const supplyData = await csv().fromFile(file.path);
+    const supplyData = await csv({delimiter: [';', ',']}).fromFile(file.path);
 
     fs.unlinkSync(file.path);
 
@@ -58,9 +58,9 @@ const uploadCsvSupply=async(reqParams, file, reqUser)=>{
     const formattedDate = parsedDate.format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
     reqBody.arrivalDate=formattedDate;
 
-    //console.log("reqBody", reqBody);
     const validate = await validateCreateSupply(reqBody);
     if (validate.status !== 200){
+        console.log("Inalid Request");
         return setResponse(400, 'Invalid Request.');
     }
     

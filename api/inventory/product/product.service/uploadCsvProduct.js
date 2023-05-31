@@ -126,7 +126,7 @@ const uploadCsvProduct = async (reqParams, file, reqUser) => {
   const columnsOutput = [];
   const row = [];
 
-  const bulkProducts = await csv().fromFile(file.path);
+  const bulkProducts = await csv({delimiter: [';', ',']}).fromFile(file.path);
 
   fs.unlinkSync(file.path);
 
@@ -151,14 +151,16 @@ const uploadCsvProduct = async (reqParams, file, reqUser) => {
       upload: '',
       reason: '',
     };
-
+    
+    /*
     console.log(
       `Item ${i +
         1}: family: ${familyName}, subFamily:${subfamilyName} proveedor: ${
         bulkProducts[i].proveedor
       }`,
     );
-
+    */
+   
     const itemProductDraft = {
       familyName,
       subfamilyName,
