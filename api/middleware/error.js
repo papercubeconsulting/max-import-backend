@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable func-names */
-const { setResponse } = require('@/utils');
 const { ForbiddenError } = require('@casl/ability');
 const winston = require('winston');
+const { setResponse } = require('@/utils');
 
 module.exports = function(err, req, res, next) {
   winston.error(err.stack, err);

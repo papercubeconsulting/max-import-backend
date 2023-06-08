@@ -1,6 +1,9 @@
 const { Joi } = require('celebrate');
 
 const { supplyStatus: status } = require('../../utils/constants');
+const multer = require('multer');
+const path = require('path');
+
 
 const List = {
   query: {
@@ -53,9 +56,15 @@ const Post = {
           boxSize: Joi.number()
             .integer()
             .required(),
+          initBoxSize: Joi.number()
+            .integer()
+            .optional(),
           quantity: Joi.number()
             .integer()
             .required(),
+          initQuantity: Joi.number()
+            .integer()
+            .optional(),
           suppliedQuantity: Joi.number().integer(), // TODO: REMOVE BECAUSE IS JUST FOR SEEDING
         }),
       )
@@ -86,9 +95,15 @@ const Put = {
           boxSize: Joi.number()
             .integer()
             .required(),
+          initBoxSize: Joi.number()
+          .integer()
+          .optional(),
           quantity: Joi.number()
             .integer()
             .required(),
+          initQuantity: Joi.number()
+            .integer()
+            .optional(),
         }),
       )
       .unique((a, b) => a.productId === b.productId && a.boxSize === b.boxSize)
@@ -150,6 +165,31 @@ const DeleteAttendSuppliedProduct = {
   },
 };
 
+const uploadCsv = multer({
+  fileFilter(req, file, callback) {
+    const ext = path.extname(file.originalname);
+    if (!['.csv'].includes(ext)) {
+      return callback(new Error('Only csv are allowed'), false);
+    }
+    return callback(null, true);
+  },
+  limits: {
+    fileSize: 1024 * 1024 * 1024,
+  },
+  dest: '_tmp_/',
+});
+
+const validateCsv= (req, res, next)=>{
+  uploadCsv.single('csv')(req, res, function(err) {
+    if (err) {
+      return res
+        .status('400')
+        .send({ status: 400, message: String(err), data: {} });
+    }
+    next();
+  });
+}
+
 module.exports = {
   List,
   Get,
@@ -160,4 +200,5 @@ module.exports = {
   PutStatus,
   PostAttendSuppliedProduct,
   DeleteAttendSuppliedProduct,
+  validateCsv,
 };

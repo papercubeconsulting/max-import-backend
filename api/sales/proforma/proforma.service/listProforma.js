@@ -7,7 +7,15 @@ const { Proforma, User, Client, Sale, DeliveryAgency } = require('@dbModels');
 
 const { setResponse, paginate } = require('../../../utils');
 
-const noQueryFields = ['page', 'pageSize', 'from', 'to', 'name', 'lastname', 'idNumber'];
+const noQueryFields = [
+  'page',
+  'pageSize',
+  'from',
+  'to',
+  'name',
+  'lastname',
+  'idNumber',
+];
 
 const listProforma = async reqQuery => {
   // ? Query para la proforma
@@ -45,7 +53,7 @@ const listProforma = async reqQuery => {
       `%${reqQuery.lastname}%`,
     );
 
-  if (reqQuery.idNumber){
+  if (reqQuery.idNumber) {
     clientQuery.idNumber = sequelize.where(
       sequelize.fn('LOWER', sequelize.col('idNumber')),
       'LIKE',

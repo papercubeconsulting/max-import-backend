@@ -10,4 +10,6 @@ module.exports = {
   ...require('./updateSupplyStatus'),
   ...require('./validateUpdateSupply'),
   ...require('./deleteAttendSuppliedProduct'),
+  ...require('./listSupplyLogs'),
+  ...require('./uploadCsvSupply'),
 };

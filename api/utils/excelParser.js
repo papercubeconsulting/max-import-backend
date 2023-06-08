@@ -93,7 +93,7 @@ module.exports = {
       });
     });
   },
-  excelParserProductBoxMovement: async(res,fileName,fields,data) =>{
+  excelParserProductBoxMovement: async (res, fileName, fields, data) => {
     const source = path.resolve(basePath, 'baseProductBoxMovement.xlsx');
     const initRow = 4;
     const tempFilePath = tempfile('.xlsx');
@@ -112,7 +112,7 @@ module.exports = {
       });
     });
   },
-  excelParserInventory: async(res, fileName, fields, data)=>{
+  excelParserInventory: async (res, fileName, fields, data) => {
     const source = path.resolve(basePath, 'baseInventory.xlsx');
     const initRow = 4;
     const tempFilePath = tempfile('.xlsx');
@@ -132,7 +132,7 @@ module.exports = {
     });
   },
 
-  excelParserBulkUpload: async(res, fileName, fields,data)=>{
+  excelParserBulkUpload: async (res, fileName, fields, data) => {
     const source = path.resolve(basePath, 'baseBulkUploadResponse.xlsx');
     const initRow = 4;
     const tempFilePath = tempfile('.xlsx');
@@ -152,7 +152,7 @@ module.exports = {
     });
   },
 
-  excelParserBulkImagesUpload: async(res, fileName, fields,data)=>{
+  excelParserBulkImagesUpload: async (res, fileName, fields, data) => {
     const source = path.resolve(basePath, 'baseBulkImagesUploadResponse.xlsx');
     const initRow = 4;
     const tempFilePath = tempfile('.xlsx');
@@ -170,5 +170,35 @@ module.exports = {
         if (err) winston.error(`---------- error downloading file: ${err}`);
       });
     });
-  }
+  },
+
+  excelParserSupplyUpload:async(res,data,supply)=>{
+    const source = path.resolve(basePath, 'baseSupplyUploadResponse.xlsx');
+    const initRow = 10;
+    const tempFilePath = tempfile('.xlsx');
+
+    const workbook = new ExcelJS.Workbook();
+    await workbook.xlsx.readFile(source);
+    const worksheet = workbook.worksheets[0];
+
+    const proveedor = worksheet.getCell('B3');
+    const warehouse = worksheet.getCell('B4');
+    const code = worksheet.getCell('B5');
+    const arrivalDate= worksheet.getCell('B6');
+
+    proveedor.value = supply.data.provider.name;
+    warehouse.value = supply.data.warehouse.name;
+    code.value = supply.data.code;
+    arrivalDate.value= moment.tz(supply.data.arrivalDate, 'America/Lima').format('DD/MM/YYYY');
+
+    await asyncForEach(data, async (row, i) => {
+      worksheet.getRow(initRow + i).values = Object.values(row);
+    });
+
+    workbook.xlsx.writeFile(tempFilePath).then(function() {
+      res.status(200).sendFile(tempFilePath, function(err) {
+        if (err) winston.error(`---------- error downloading file: ${err}`);
+      });
+    });
+  },
 };

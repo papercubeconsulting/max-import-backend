@@ -24,6 +24,10 @@ module.exports = (sequelize, DataTypes) => {
       quantity: {
         type: DataTypes.INTEGER,
       },
+      initQuantity: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
       suppliedQuantity: {
         type: DataTypes.INTEGER,
         defaultValue: 0,
@@ -34,6 +38,10 @@ module.exports = (sequelize, DataTypes) => {
       },
       boxSize: {
         type: DataTypes.INTEGER,
+      },
+      initBoxSize: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
       },
       status: {
         type: DataTypes.ENUM(statuses),

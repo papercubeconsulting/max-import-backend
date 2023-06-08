@@ -7,6 +7,8 @@ const { isAble } = require('@/middleware/authorization');
 
 const router = express.Router();
 
+router.get('/logs', isAble('read', 'supply'), Controller.listSupplyLogs);
+
 router.get(
   '/:id',
   isAble('read', 'supply'),
@@ -42,6 +44,12 @@ router.put(
   Controller.putSupply,
 );
 // router.delete('/:id', celebrate(Validator.Delete), Controller.deleteSupply);
+
+router.post(
+  '/csvUpload',
+  Validator.validateCsv,
+  Controller.uploadCsvData,
+);
 
 router.post(
   '/:id/attend/:idSuppliedProduct',

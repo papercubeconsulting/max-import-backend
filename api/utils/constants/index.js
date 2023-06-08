@@ -5,4 +5,5 @@ module.exports = {
   ...require('./sales'),
   ...require('./utils'),
   ...require('./user'),
+  ...require('./supply'),
 };
