@@ -137,7 +137,9 @@ const uploadCsvProduct = async (reqParams, file, reqUser) => {
     const modelName = bulkProducts[i].modelo;
     const compatibility = bulkProducts[i].compatibilidad;
     const tradename = bulkProducts[i].nombreComercial;
-    const suggestedPrice = parseInt(bulkProducts[i].precio);
+    const suggestedPrice = parseInt(bulkProducts[i].precio) || 0;
+    const margin=1;
+    const cost = suggestedPrice;
     const providerName = bulkProducts[i].proveedor;
 
     const rowResponse = {
@@ -269,6 +271,8 @@ const uploadCsvProduct = async (reqParams, file, reqUser) => {
 
       compatibility,
       suggestedPrice,
+      margin,
+      cost,
       tradename,
     };
 
@@ -279,6 +283,7 @@ const uploadCsvProduct = async (reqParams, file, reqUser) => {
       rowResponse.reason = 'OK';
       row.push(rowResponse);
     } catch (err) {
+      console.log(err);
       rowResponse.upload = 'NO EXITOSO';
       rowResponse.reason = 'Error al crear en BD';
       row.push(rowResponse);
