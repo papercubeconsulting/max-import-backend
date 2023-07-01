@@ -240,7 +240,6 @@ const uploadCsvProduct = async (reqParams, file, reqUser) => {
     const validation = { family, subfamily, element, model };
     const categories = await createCategories(itemProductDraft, validation);
 
-    console.log(categories.model.id);
     let product = await Product.findOne({
       where: { modelId: categories.model.id },
     });
@@ -248,6 +247,7 @@ const uploadCsvProduct = async (reqParams, file, reqUser) => {
     if (product) {
       rowResponse.upload = 'NO EXITOSO';
       rowResponse.reason = 'Product ya existe en la BD';
+      rowResponse.code= product.code;
       row.push(rowResponse);
       continue;
     }
