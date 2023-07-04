@@ -31,8 +31,8 @@ const uploadCsvSupply=async(reqParams, file, reqUser)=>{
         const newItem = _.pick(item, ['field5', 'field6','field7']); // Removing 'properties'
         return _.mapKeys(newItem, (value, key) => {
             if (key === 'field5') return 'productCode'; // Changing
-            if (key === 'field6') return 'boxSize'; 
-            if (key === 'field7') return 'quantity'; 
+            if (key === 'field6') return 'quantity'; 
+            if (key === 'field7') return 'boxSize'; 
             return key;
         });
     });
