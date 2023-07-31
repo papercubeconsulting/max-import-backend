@@ -33,9 +33,21 @@ const listProforma = async (req, res) => {
   return res.status(response.status).send(response);
 };
 
+const sendPdfProforma = async (req, res) => {
+  const { url } = req.body;
+  const bearerToken = req.headers.authorization;
+  console.log({ bearerToken });
+  res.setHeader('Content-Disposition', `attachment; filename="file.pdf"`);
+  res.setHeader('Content-Type', 'application/pdf');
+  const pdf = await Service.sendPdf(url, bearerToken);
+
+  return res.send(pdf);
+};
+
 module.exports = {
   postProforma,
   putProforma,
   getProforma,
   listProforma,
+  sendPdfProforma,
 };
