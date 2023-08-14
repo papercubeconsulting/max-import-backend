@@ -72,3 +72,4 @@ playground/
 # intellij
 .idea
 
+config/config.json

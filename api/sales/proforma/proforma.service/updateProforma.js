@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const winston = require('winston');
-const { Proforma, ProformaProduct } = require('@dbModels');
+const { Proforma, DiscountProforma, ProformaProduct } = require('@dbModels');
+const { isDiscountAllowed } = require('./discountProforma');
 
 const { sequelize } = require(`@root/startup/db`);
 const { setResponse } = require('../../../utils');
@@ -12,7 +13,7 @@ const validatePutProforma = async reqParams => {
   return setResponse(200, 'OK');
 };
 
-const putProforma = async (reqParams, reqBody) => {
+const putProforma = async (reqParams, reqBody, reqUser) => {
   const t = await sequelize.transaction();
 
   try {
@@ -52,15 +53,22 @@ const putProforma = async (reqParams, reqBody) => {
       }),
     );
 
+    // get the user role
+    const userRole = _.get(reqUser, ['dataValues', 'role']);
+
     // * --------------------------------------------------------
     await proforma.update(
-      _.pick(reqBody, ['clientId', 'discount', 'efectivo']),
+      _.pick(reqBody, ['clientId', 'discount', 'efectivo', 'status']),
       {
         transaction: t,
+        role: userRole,
+        DiscountProforma,
+        isDiscountAllowed,
       },
     );
 
     await t.commit();
+
     await proforma.reload();
     return setResponse(200, 'Proforma created.', proforma);
   } catch (error) {
