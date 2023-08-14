@@ -7,14 +7,13 @@ sgMail.setApiKey(config.get('sendGridKey'));
 const { from, templateIds } = config.get('sendgrid');
 
 module.exports = {
-  sendEmailTemplate: async (to, data, template, attachments) => {
+  sendEmailTemplate: async (to, data, template) => {
     try {
       await sgMail.send({
         to,
         from,
         templateId: templateIds[template],
         dynamic_template_data: data,
-        ...(attachments ? { attachments } : {}),
       });
     } catch (error) {
       winston.error(error);

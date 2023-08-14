@@ -32,6 +32,6 @@ router.put(
   Controller.putProforma,
 );
 
-router.post('/pdf', Controller.sendPdfProforma);
+router.post('/pdf/:id', isAble('read', 'proforma'), Controller.sendPdfProforma);
 
 module.exports = router;
