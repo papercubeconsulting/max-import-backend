@@ -4,6 +4,10 @@ module.exports = {
     STATUS: {
       OPEN: { value: 'OPEN', name: 'En cotización' },
       CLOSED: { value: 'CLOSED', name: 'Cerrada' },
+      PENDING_DISCOUNT_APPROVAL: {
+        value: 'PENDING_DISCOUNT_APPROVAL',
+        name: 'Pendiente de aprobación del descuento',
+      },
     },
     SALE_STATUS: {
       PENDING: { value: 'PENDING', name: 'Pendiente' },

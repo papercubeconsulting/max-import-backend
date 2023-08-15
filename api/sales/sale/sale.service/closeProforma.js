@@ -13,6 +13,17 @@ const closeProforma = async (reqBody, reqUser) => {
     const proforma = await Proforma.findByPk(reqBody.proformaId, {
       transaction: t,
     });
+    // ? Se valida que el estado de la proforma no este en PENDING_DISCOUNT_APPROVAL
+    if (proforma.status === PROFORMA.STATUS.PENDING_DISCOUNT_APPROVAL.value) {
+      await t.rollback();
+      return setResponse(
+        400,
+        'Pending approval for discount.',
+        null,
+        'Proforma pendiente de aprobacion de descuento.',
+      );
+    }
+
     // ? Se valida que el estado de la proforma no haya pasado a cerrada
     if (proforma.status === PROFORMA.STATUS.CLOSED.value) {
       await t.rollback();
