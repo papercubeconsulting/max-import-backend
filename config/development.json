@@ -4,7 +4,7 @@
   "sendgrid": {
     "from": "soluciones@papercube.pe",
     "templateIds": {
-      "resetPassword": "d-3ab0a72b8ac94fd587e88617b4447be5",
+      "resetPassword": "d-c89be35c7b284dd8992376f1a83ae464",
       "emailProforma": "d-944e3fab958247ddaceec9d1fdbe52e9"
     }
   }

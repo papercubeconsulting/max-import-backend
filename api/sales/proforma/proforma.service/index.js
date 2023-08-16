@@ -5,6 +5,7 @@ module.exports = {
   ...require('./listProforma'),
   ...require('./updateProforma'),
   ...require('./sendPdf'),
+  ...require('./discountProforma'),
 
   // TODO: REMOVE BECAUSE IS JUST FOR SEEDING
   ...require('./_seedCreateProforma'),
