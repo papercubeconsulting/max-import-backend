@@ -73,3 +73,4 @@ playground/
 .idea
 
 config/config.json
+docker-compose.yml
