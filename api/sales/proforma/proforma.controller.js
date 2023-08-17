@@ -62,33 +62,43 @@ const listProforma = async (req, res) => {
   return res.status(response.status).send(response);
 };
 
-const validateDiscountProforma = async (req, res) => {
-  const canUserValidateDiscount = Service.canCurrentUserValidate(req);
-  if (!canUserValidateDiscount)
-    return res
-      .status(401)
-      .send(setResponse('401', 'Permisos insuficientes para validar el error'));
+const sendPdfProforma = async (req, res) => {
+  const { url } = req.body;
+  const bearerToken = req.headers.authorization;
+  res.setHeader('Content-Disposition', `attachment; filename="file.pdf"`);
+  res.setHeader('Content-Type', 'application/pdf');
+  const pdf = await Service.sendPdf(url, bearerToken, req);
 
-  // console.log('allowed')
-  const response = await Service.updateDiscountProforma(req);
+  return res.send(pdf);
 
-  return res.status(response.status).send(response);
-};
+  const validateDiscountProforma = async (req, res) => {
+    const canUserValidateDiscount = Service.canCurrentUserValidate(req);
+    if (!canUserValidateDiscount)
+      return res
+        .status(401)
+        .send(setResponse('401', 'Permisos insuficientes para validar el error'));
 
-const getInfoValidationStatus = async (req, res) => {
-  // console.log({Proforma,DiscountProforma})
-  const { transactionId } = req.params;
-  // console.log({ transactionId });
-  const response = await Service.getDiscountProforma(transactionId);
+    // console.log('allowed')
+    const response = await Service.updateDiscountProforma(req);
 
-  res.status(response.status).send(response);
-};
+    return res.status(response.status).send(response);
+  };
 
-module.exports = {
-  postProforma,
-  putProforma,
-  getProforma,
-  listProforma,
-  validateDiscountProforma,
-  getInfoValidationStatus,
-};
+  const getInfoValidationStatus = async (req, res) => {
+    // console.log({Proforma,DiscountProforma})
+    const { transactionId } = req.params;
+    // console.log({ transactionId });
+    const response = await Service.getDiscountProforma(transactionId);
+
+    res.status(response.status).send(response);
+  };
+
+  module.exports = {
+    postProforma,
+    putProforma,
+    getProforma,
+    listProforma,
+    sendPdfProforma,
+    validateDiscountProforma,
+    getInfoValidationStatus,
+  };

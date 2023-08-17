@@ -32,6 +32,8 @@ router.put(
   Controller.putProforma,
 );
 
+router.post('/pdf/:id', isAble('read', 'proforma'), Controller.sendPdfProforma);
+
 router.get(
   '/validate_discount/:transactionId',
   Controller.getInfoValidationStatus,
@@ -41,4 +43,5 @@ router.post(
   '/validate_discount/:transactionId',
   Controller.validateDiscountProforma,
 );
+
 module.exports = router;
