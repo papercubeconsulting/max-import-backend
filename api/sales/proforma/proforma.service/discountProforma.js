@@ -12,13 +12,15 @@ const { setResponse, ROLES } = require('../../../utils');
 
 const isDiscountAllowed = (discount, userRole) => {
   const DEFAULT_DISCOUNT = 5;
-  const maxDiscount = ROLES[userRole].maxDiscount || DEFAULT_DISCOUNT;
+  const maxDiscount =
+    ROLES[userRole].maxDiscount === null
+      ? 100
+      : ROLES[userRole].maxDiscount || DEFAULT_DISCOUNT;
+
   return maxDiscount >= discount;
 };
 
 const getValidateTransactionId = async proformaId => {
-  // console.log({ Proforma });
-  // const { DiscountProforma } = require('@dbModels');
   try {
     const discountProforma = await DiscountProforma.create({
       proformaId,
@@ -26,7 +28,7 @@ const getValidateTransactionId = async proformaId => {
 
     return discountProforma.dataValues.id;
   } catch (error) {
-    setResponse(500, 'Failed getting discount proforma');
+    return setResponse(500, 'Failed getting discount proforma');
   }
 };
 
@@ -64,7 +66,10 @@ const updateDiscountProforma = async req => {
     const isAllowed = isDiscountAllowed(discountPercentage * 100, role);
 
     if (!isAllowed) {
-      return setResponse(401, 'Permisos insuficientes para validar el error');
+      return setResponse(
+        401,
+        'Permisos insuficientes para validar la proforma',
+      );
     }
 
     const { transactionId } = req.params;
@@ -73,8 +78,6 @@ const updateDiscountProforma = async req => {
       include: [Proforma],
       transaction: t,
     });
-
-    // console.log({ discountProforma });
 
     if (!discountProforma) {
       await t.commit();

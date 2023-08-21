@@ -70,19 +70,21 @@ const sendPdfProforma = async (req, res) => {
   const pdf = await Service.sendPdf(url, bearerToken, req);
 
   return res.send(pdf);
-}
+};
 
 const validateDiscountProforma = async (req, res) => {
   const canUserValidateDiscount = Service.canCurrentUserValidate(req);
   if (!canUserValidateDiscount)
     return res
       .status(401)
-      .send(setResponse('401', 'Permisos insuficientes para validar el error'));
+      .send(
+        setResponse('401', 'Permisos insuficientes para validar la proforma'),
+      );
 
-  // console.log('allowed')
   const response = await Service.updateDiscountProforma(req);
 
-  return res.status(response.status).send(response);
+  // 200 to return the json
+  return res.status(200).send(response);
 };
 
 const getInfoValidationStatus = async (req, res) => {
@@ -94,12 +96,12 @@ const getInfoValidationStatus = async (req, res) => {
   res.status(response.status).send(response);
 };
 
-  module.exports = {
-    postProforma,
-    putProforma,
-    getProforma,
-    listProforma,
-    sendPdfProforma,
-    validateDiscountProforma,
-    getInfoValidationStatus,
-  };
+module.exports = {
+  postProforma,
+  putProforma,
+  getProforma,
+  listProforma,
+  sendPdfProforma,
+  validateDiscountProforma,
+  getInfoValidationStatus,
+};

@@ -32,7 +32,7 @@ router.put(
   Controller.putProforma,
 );
 
-router.post('/pdf/:id', isAble('read', 'proforma'), Controller.sendPdfProforma);
+router.post('/:id/pdf', Controller.sendPdfProforma);
 
 router.get(
   '/validate_discount/:transactionId',

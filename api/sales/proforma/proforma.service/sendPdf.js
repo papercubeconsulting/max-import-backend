@@ -12,7 +12,6 @@ sgMail.setApiKey(config.get('sendGridKey'));
 
 const sendPdf = async (url, bearerToken, req) => {
   const { id: proformaId } = req.params || {};
-
   const proforma = Proforma.findByPk(proformaId);
 
   if (!proforma)
@@ -95,12 +94,14 @@ const sendPdf = async (url, bearerToken, req) => {
   const data = {
     CLIENT_NAME: user.name,
     INVOICE_NUMBER: proformaId,
+    PHONE_NUMBER_CONTACT: user.phoneNumber,
+    SELLER: `${user.name} ${user.lastname}`,
   };
 
   const msg = {
     to: 'hreloza@gmail.com', // Change to your recipient
     from, // Change to your verified sender
-    subject: `MAX IMPORT: COTIZACION N: ${proformaId}`,
+    subject: `MAX IMPORT: COTIZACION N°: ${proformaId}`,
     templateId: templateIds.emailProforma,
     dynamic_template_data: data,
     attachments,
