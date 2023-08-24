@@ -99,7 +99,7 @@ const sendPdf = async (url, bearerToken, req) => {
   };
 
   const msg = {
-    to: 'hreloza@gmail.com', // Change to your recipient
+    to: user.email, // Change to your recipient
     from, // Change to your verified sender
     subject: `MAX IMPORT: COTIZACION N°: ${proformaId}`,
     templateId: templateIds.emailProforma,

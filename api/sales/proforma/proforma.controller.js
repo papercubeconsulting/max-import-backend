@@ -69,7 +69,7 @@ const sendPdfProforma = async (req, res) => {
   res.setHeader('Content-Type', 'application/pdf');
   const pdf = await Service.sendPdf(url, bearerToken, req);
 
-  return res.send(pdf);
+  return res.status(200).send(pdf);
 };
 
 const validateDiscountProforma = async (req, res) => {
