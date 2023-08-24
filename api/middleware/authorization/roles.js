@@ -20,7 +20,7 @@ const roles = {
     can('read', 'warehouse');
 
     can('read', 'bank');
-    can('read', 'client');
+    can('manage', 'client');
 
     can('read', 'deliveryAgency');
     can('read', 'dispatch');
@@ -62,7 +62,7 @@ const roles = {
     can('read', 'warehouse');
 
     can('read', 'bank');
-    can('read', 'client');
+    can('manage', 'client');
     can('SIGO', 'client');
 
     can('read', 'deliveryAgency');
