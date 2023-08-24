@@ -75,7 +75,7 @@ const Post = {
     suggestedPrice: Joi.number()
       .integer()
       .required(),
-    cost: Joi.number().positive().default(0),
+    cost: Joi.number().default(0),
   },
 };
 

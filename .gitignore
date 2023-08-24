@@ -72,3 +72,5 @@ playground/
 # intellij
 .idea
 
+config/config.json
+docker-compose.yml
