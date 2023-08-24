@@ -1,4 +1,5 @@
 FROM node:14.21.3
+RUN apt-get update && apt-get install -y libx11-xcb1
 
 WORKDIR '/app'
 COPY ./package*.json ./
