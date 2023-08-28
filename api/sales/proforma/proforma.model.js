@@ -5,6 +5,7 @@ const { Model } = require('sequelize');
 const moment = require('moment');
 const { JSON } = require('sequelize');
 const { getDictValues, PROFORMA, DISPATCH } = require('../../utils/constants');
+const { EXPIRE_DAYS } = require('@/utils/constants/proforma');
 // const { isDiscountAllowed } = require('./proforma.service/discountProforma');
 
 module.exports = (sequelize, DataTypes) => {
@@ -99,7 +100,7 @@ module.exports = (sequelize, DataTypes) => {
         get() {
           const status = this.getDataValue('status');
           const fifteenDaysAgo = moment()
-            .subtract(15, 'days')
+            .subtract(EXPIRE_DAYS, 'days')
             .toDate();
           if (this.getDataValue('createdAt') < fifteenDaysAgo) {
             return 'EXPIRED';
@@ -206,11 +207,10 @@ module.exports = (sequelize, DataTypes) => {
             proforma.discount / proforma.subtotal,
             2,
           );
-          console.log(
-            'previous discount',
-            proforma.previous('discount'),
-            proforma.discount,
-          );
+
+          // if the discount it's same, don't validate the discount
+          // other wise will creaate a PENDING_DISCOUNT_APPROVAL if the user only
+          // modify other values of the proforma
           const isSameDiscount =
             proforma.previous('discount') === proforma.discount;
 
