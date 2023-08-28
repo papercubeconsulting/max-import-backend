@@ -10,6 +10,12 @@ const validatePutProforma = async reqParams => {
   const proforma = await Proforma.findByPk(reqParams.id);
   if (!proforma) return setResponse(404, 'Proforma not found.');
 
+  const status = proforma.checkProformaStatus();
+
+  if (status === 'EXPIRED') {
+    return setResponse(400, 'Proforma has expired');
+  }
+
   return setResponse(200, 'OK');
 };
 

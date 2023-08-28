@@ -6,8 +6,9 @@ module.exports = {
       CLOSED: { value: 'CLOSED', name: 'Cerrada' },
       PENDING_DISCOUNT_APPROVAL: {
         value: 'PENDING_DISCOUNT_APPROVAL',
-        name: 'Pendiente de aprobación del descuento',
+        name: 'Requiere aprobación',
       },
+      EXPIRED: { value: 'EXPIRED', name: 'Caducada' },
     },
     SALE_STATUS: {
       PENDING: { value: 'PENDING', name: 'Pendiente' },

@@ -15,6 +15,9 @@ module.exports = sequelize => {
         primaryKey: true,
         acceptedDiscount: DataTypes.INTEGER,
       },
+      approvedDiscount: {
+        type: DataTypes.INTEGER,
+      },
     },
     { sequelize, modelName: 'discountProforma' },
   );
