@@ -34,7 +34,11 @@ const sendPdf = async (url, bearerToken, req) => {
       'No se ha encontrado el usuario',
     );
 
-  const browser = await puppeteer.launch({ executablePath: '/usr/bin/google-chrome', headless: true });
+  const browser = await puppeteer.launch({
+    executablePath: '/usr/bin/google-chrome',
+    headless: true,
+    args: ['--no-sandbox'], // Add this line to disable sandboxing
+  });
   const page = await browser.newPage();
 
   // console.log(url);
