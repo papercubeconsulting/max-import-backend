@@ -33,6 +33,7 @@ router.put(
 );
 
 router.post('/:id/pdf', Controller.sendPdfProforma);
+router.post('/:id/downloadpdf', Controller.downloadProforma);
 
 router.get(
   '/validate_discount/:transactionId',
