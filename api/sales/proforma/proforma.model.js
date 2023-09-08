@@ -130,7 +130,7 @@ module.exports = (sequelize, DataTypes) => {
       efectivo: {
         type: DataTypes.INTEGER,
         set(value) {
-          this.setDataValue('efectivo', value * 100);
+          this.setDataValue('efectivo', Number((value * 100).toFixed(2))); // value * 100 return floating-point
         },
       },
       credit: {
@@ -186,7 +186,7 @@ module.exports = (sequelize, DataTypes) => {
       hooks: {
         // ? Calcular el precio total de la proforma
         beforeUpdate: async (proforma, options) => {
-          // console.log('Before update');
+          console.log('Before update', proforma);
           const proformaProducts = await proforma.getProformaProducts({
             transaction: _.get(options, 'transaction'),
           });
