@@ -11,6 +11,7 @@ const { from, templateIds } = config.get('sendgrid');
 sgMail.setApiKey(config.get('sendGridKey'));
 
 const sendPdf = async (url, bearerToken, req) => {
+  const DEFAULT_PHONE_NUMBER = '946098776';
   const { id: proformaId } = req.params || {};
   const proforma = await Proforma.findByPk(proformaId);
 
@@ -22,9 +23,10 @@ const sendPdf = async (url, bearerToken, req) => {
       'La proforma indicada no existe',
     );
 
-  const { clientId } = proforma.dataValues;
+  const { clientId, userId } = proforma.dataValues;
 
   const client = await Client.findByPk(clientId);
+  const user = await User.findByPk(userId);
 
   if (!client)
     return setResponse(
@@ -81,7 +83,7 @@ const sendPdf = async (url, bearerToken, req) => {
   const data = {
     CLIENT_NAME: client.name,
     INVOICE_NUMBER: proformaId,
-    PHONE_NUMBER_CONTACT: client.phoneNumber,
+    PHONE_NUMBER_CONTACT: user.phoneNumber || DEFAULT_PHONE_NUMBER,
     SELLER: `${client.name} ${client.lastname}`,
   };
 
