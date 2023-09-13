@@ -3,7 +3,14 @@ const moment = require('moment-timezone');
 const sequelize = require('sequelize');
 const { Op } = require('sequelize');
 
-const { Proforma, User, Client, Sale, DeliveryAgency } = require('@dbModels');
+const {
+  Proforma,
+  User,
+  Client,
+  Sale,
+  DeliveryAgency,
+  DiscountProforma,
+} = require('@dbModels');
 
 const { setResponse, paginate } = require('../../../utils');
 
@@ -65,6 +72,7 @@ const listProforma = async reqQuery => {
     where: mainQuery,
     order: [['createdAt', 'DESC']],
     include: [
+      DiscountProforma,
       {
         model: Client,
         where: clientQuery,

@@ -72,7 +72,7 @@ const sendPdfProforma = async (req, res) => {
   return res.status(200).send(pdf);
 };
 
-const downloadProforma = async (req, res)=>{
+const downloadProforma = async (req, res) => {
   const { url } = req.body;
   const bearerToken = req.headers.authorization;
   res.setHeader('Content-Disposition', `attachment; filename="file.pdf"`);
@@ -80,7 +80,7 @@ const downloadProforma = async (req, res)=>{
   const pdf = await Service.downloadPdf(url, bearerToken, req);
 
   return res.status(200).send(pdf);
-}
+};
 
 const validateDiscountProforma = async (req, res) => {
   const canUserValidateDiscount = Service.canCurrentUserValidate(req);

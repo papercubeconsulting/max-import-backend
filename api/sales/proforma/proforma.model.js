@@ -11,6 +11,7 @@ const { EXPIRE_DAYS } = require('@/utils/constants/proforma');
 module.exports = (sequelize, DataTypes) => {
   class Proforma extends Model {
     static associate(models) {
+      Proforma.hasMany(models.DiscountProforma);
       Proforma.belongsTo(models.User);
       Proforma.belongsTo(models.Client);
       Proforma.hasMany(models.ProformaProduct);
