@@ -105,7 +105,7 @@ module.exports = (sequelize, DataTypes) => {
             .toDate();
           if (
             this.getDataValue('createdAt') < fifteenDaysAgo &&
-            status !== PROFORMA.STATUS.CLOSED
+            status !== PROFORMA.STATUS.CLOSED.value
           ) {
             return 'EXPIRED';
             // currentObj.status = 'EXPIRE';
