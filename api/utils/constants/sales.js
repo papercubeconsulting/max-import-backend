@@ -3,7 +3,7 @@ module.exports = {
   PROFORMA: {
     STATUS: {
       OPEN: { value: 'OPEN', name: 'En cotización' },
-      CLOSED: { value: 'CLOSED', name: 'Cerrada' },
+      CLOSED: { value: 'CLOSED', name: 'Vendida' },
       PENDING_DISCOUNT_APPROVAL: {
         value: 'PENDING_DISCOUNT_APPROVAL',
         name: 'Requiere aprobación',
