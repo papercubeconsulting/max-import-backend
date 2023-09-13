@@ -72,7 +72,10 @@ const listProforma = async reqQuery => {
     where: mainQuery,
     order: [['createdAt', 'DESC']],
     include: [
-      DiscountProforma,
+      {
+        model: DiscountProforma,
+        include: [User],
+      },
       {
         model: Client,
         where: clientQuery,
