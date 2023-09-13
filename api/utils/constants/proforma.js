@@ -1,4 +1,4 @@
 /* eslint-disable global-require */
 module.exports = {
-  EXPIRE_DAYS: 2,
+  EXPIRE_DAYS: 1,
 };
