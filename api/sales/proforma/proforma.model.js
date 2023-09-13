@@ -26,7 +26,10 @@ module.exports = (sequelize, DataTypes) => {
       const fifteenDaysAgo = moment()
         .subtract(15, 'days')
         .toDate();
-      if (this.getDataValue('createdAt') < fifteenDaysAgo) {
+      if (
+        this.getDataValue('createdAt') < fifteenDaysAgo &&
+        status !== PROFORMA.STATUS.CLOSED.value
+      ) {
         return 'EXPIRED';
         // currentObj.status = 'EXPIRE';
         // return [...prev, currentObj];
@@ -190,7 +193,6 @@ module.exports = (sequelize, DataTypes) => {
       hooks: {
         // ? Calcular el precio total de la proforma
         beforeUpdate: async (proforma, options) => {
-          console.log('Before update', proforma);
           const proformaProducts = await proforma.getProformaProducts({
             transaction: _.get(options, 'transaction'),
           });
