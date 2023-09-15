@@ -183,7 +183,7 @@ module.exports = (sequelize, DataTypes) => {
       discountPercentage: {
         type: DataTypes.VIRTUAL,
         get() {
-          return _.round(this.discount / this.subtotal, 2);
+          return _.round(this.discount / this.subtotal, 3);
         },
       },
     },
@@ -193,6 +193,7 @@ module.exports = (sequelize, DataTypes) => {
       hooks: {
         // ? Calcular el precio total de la proforma
         beforeUpdate: async (proforma, options) => {
+
           const proformaProducts = await proforma.getProformaProducts({
             transaction: _.get(options, 'transaction'),
           });
@@ -211,7 +212,7 @@ module.exports = (sequelize, DataTypes) => {
           // calc discountPercentage for validation discount proforma
           const discountPercentage = _.round(
             proforma.discount / proforma.subtotal,
-            2,
+            3,
           );
 
           // if the discount it's same, don't validate the discount
@@ -223,7 +224,7 @@ module.exports = (sequelize, DataTypes) => {
           if (
             options.isDiscountAllowed &&
             options.DiscountProforma &&
-            !isSameDiscount
+            (!isSameDiscount || options.createProforma) // if we are on creating a proforma, we should ignore isSameDiscount
           ) {
             // console.log({ discountPercentage, role: options.role });
             const isValidDiscount = options.isDiscountAllowed(
