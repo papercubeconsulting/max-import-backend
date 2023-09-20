@@ -121,7 +121,7 @@ const getDiscountByProformaIdNoValidated = async proformaId => {
   const discountProforma = await DiscountProforma.findOne({
     where: { proformaId, userId: null },
   });
-  // console.log({ discountProforma });
+
   return discountProforma && discountProforma.dataValues;
 };
 

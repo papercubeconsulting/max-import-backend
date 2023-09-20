@@ -183,7 +183,7 @@ module.exports = (sequelize, DataTypes) => {
       discountPercentage: {
         type: DataTypes.VIRTUAL,
         get() {
-          return _.round(this.discount / this.subtotal, 3);
+          return _.round(this.discount / this.subtotal, 4);
         },
       },
     },
