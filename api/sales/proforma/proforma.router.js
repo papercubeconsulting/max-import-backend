@@ -45,4 +45,6 @@ router.post(
   Controller.validateDiscountProforma,
 );
 
+router.put('/:id/reset-expire', Controller.resetExpire);
+
 module.exports = router;

@@ -1,6 +1,6 @@
 const { setResponse } = require('@/utils');
 const Service = require('./proforma.service');
-const { update } = require('lodash');
+const { resetExpireProforma } = require('./proforma.service/resetStatus');
 // const { Proforma, ProformaProduct, DiscountProforma } = require('@dbModels');
 // const {
 //   isDiscountAllowed,
@@ -47,6 +47,7 @@ const putProforma = async (req, res) => {
   // Get any discountProforma id for a proforma that is pending to validate
   // const { id: discountValidationId } =
   //   (await Service.getDiscountByProformaIdNoValidated(req.params.id)) || {};
+  // console.log({ response: response.data.get() });
 
   // response.data = { ...response.data.get(), discountValidationId };
   const updatedResponse = await Service.updateResponseWithDiscountProformaId(
@@ -106,9 +107,15 @@ const getInfoValidationStatus = async (req, res) => {
   res.status(response.status).send(response);
 };
 
+const resetExpire = async (req, res) => {
+  const response = await resetExpireProforma(req);
+  res.status(response.status).send(response);
+};
+
 module.exports = {
   postProforma,
   putProforma,
+  resetExpire,
   getProforma,
   listProforma,
   sendPdfProforma,

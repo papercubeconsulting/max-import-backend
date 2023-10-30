@@ -193,7 +193,6 @@ module.exports = (sequelize, DataTypes) => {
       hooks: {
         // ? Calcular el precio total de la proforma
         beforeUpdate: async (proforma, options) => {
-
           const proformaProducts = await proforma.getProformaProducts({
             transaction: _.get(options, 'transaction'),
           });
@@ -220,7 +219,7 @@ module.exports = (sequelize, DataTypes) => {
           // modify other values of the proforma
           const isSameDiscount =
             proforma.previous('discount') === proforma.discount;
-
+          console.log(discountPercentage, isSameDiscount);
           if (
             options.isDiscountAllowed &&
             options.DiscountProforma &&
@@ -231,7 +230,7 @@ module.exports = (sequelize, DataTypes) => {
               discountPercentage * 100,
               options.role,
             );
-            // console.log({isValidDiscount})
+            console.log({ isValidDiscount });
             /* If discount not allowed set to pending approval the status */
             if (!isValidDiscount) {
               proforma.status = PROFORMA.STATUS.PENDING_DISCOUNT_APPROVAL.value;
@@ -257,7 +256,7 @@ module.exports = (sequelize, DataTypes) => {
             }
 
             // if the user edits again the proforma, and enteres a discount which is valid
-            // we then remove any record in DiscountProforma (that has userId = null) and updates proforma to open
+            // we then remove any record in DiscountProforma (that has userId = null (NO ANYMORE)) and updates proforma to open
             if (
               isValidDiscount &&
               proforma.status ===
