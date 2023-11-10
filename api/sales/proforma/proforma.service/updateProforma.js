@@ -24,7 +24,16 @@ const putProforma = async (reqParams, reqBody, reqUser) => {
 
   try {
     const proforma = await Proforma.findByPk(reqParams.id, {
-      include: [ProformaProduct],
+      include: [
+        ProformaProduct,
+        {
+          model: DiscountProforma,
+          where: {
+            userId: null,
+          },
+          required: false,
+        },
+      ],
       transaction: t,
     });
 
@@ -75,8 +84,28 @@ const putProforma = async (reqParams, reqBody, reqUser) => {
 
     await t.commit();
 
-    await proforma.reload();
-    return setResponse(200, 'Proforma created.', proforma);
+    await proforma.reload({
+      include: [
+        DiscountProforma,
+        // where: { userId: null },
+        // required: false, // This ensures a LEFT OUTER JOIN
+      ],
+    });
+
+    const updatedProforma = await Proforma.findByPk(reqParams.id, {
+      include: [
+        ProformaProduct,
+        {
+          model: DiscountProforma,
+          where: {
+            userId: null,
+          },
+          required: false,
+        },
+      ],
+    });
+
+    return setResponse(200, 'Proforma created.', updatedProforma);
   } catch (error) {
     winston.error(error);
 

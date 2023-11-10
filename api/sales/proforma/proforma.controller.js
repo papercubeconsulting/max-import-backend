@@ -50,12 +50,12 @@ const putProforma = async (req, res) => {
   // console.log({ response: response.data.get() });
 
   // response.data = { ...response.data.get(), discountValidationId };
-  const updatedResponse = await Service.updateResponseWithDiscountProformaId(
-    req.params.id,
-    response,
-  );
+  // const updatedResponse = await Service.updateResponseWithDiscountProformaId(
+  //   req.params.id,
+  //   response,
+  // );
 
-  return res.status(response.status).send(updatedResponse);
+  return res.status(response.status).send(response);
 };
 
 const listProforma = async (req, res) => {

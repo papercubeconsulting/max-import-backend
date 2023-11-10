@@ -219,10 +219,16 @@ module.exports = (sequelize, DataTypes) => {
           // modify other values of the proforma
           const isSameDiscount =
             proforma.previous('discount') === proforma.discount;
-          console.log(discountPercentage, isSameDiscount);
+          // console.log({
+          //   isSameDiscount,
+          //   options,
+          //   discountPercentage,
+          //   status: proforma.status,
+          // });
           if (
             options.isDiscountAllowed &&
             options.DiscountProforma &&
+            // options.createProforma
             (!isSameDiscount || options.createProforma) // if we are on creating a proforma, we should ignore isSameDiscount
           ) {
             // console.log({ discountPercentage, role: options.role });
@@ -230,7 +236,7 @@ module.exports = (sequelize, DataTypes) => {
               discountPercentage * 100,
               options.role,
             );
-            console.log({ isValidDiscount });
+            // console.log({ isValidDiscount });
             /* If discount not allowed set to pending approval the status */
             if (!isValidDiscount) {
               proforma.status = PROFORMA.STATUS.PENDING_DISCOUNT_APPROVAL.value;
@@ -262,6 +268,7 @@ module.exports = (sequelize, DataTypes) => {
               proforma.status ===
                 PROFORMA.STATUS.PENDING_DISCOUNT_APPROVAL.value
             ) {
+              // console.log('user edits again');
               // reset the status the proforma to OPEN
               // await proforma.update({ status: PROFORMA.STATUS.OPEN.value });
               proforma.status = PROFORMA.STATUS.OPEN.value;
