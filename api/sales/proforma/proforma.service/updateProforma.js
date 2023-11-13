@@ -92,6 +92,13 @@ const putProforma = async (reqParams, reqBody, reqUser) => {
       ],
     });
 
+    // Note: Try to refresh DiscountProforma due the next section wasn't refreshing with the latest information
+    await DiscountProforma.findAll({
+      where: {
+        proformaId: reqParams.id,
+      },
+    });
+
     const updatedProforma = await Proforma.findByPk(reqParams.id, {
       include: [
         ProformaProduct,
