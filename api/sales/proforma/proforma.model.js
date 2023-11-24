@@ -211,7 +211,7 @@ module.exports = (sequelize, DataTypes) => {
           // calc discountPercentage for validation discount proforma
           const discountPercentage = _.round(
             proforma.discount / proforma.subtotal,
-            3,
+            4,
           );
 
           // if the discount it's same, don't validate the discount
@@ -236,7 +236,10 @@ module.exports = (sequelize, DataTypes) => {
               discountPercentage * 100,
               options.role,
             );
-            // console.log({ isValidDiscount });
+            // console.log({
+            //   isValidDiscount,
+            //   discountPercentage: discountPercentage * 100,
+            // });
             /* If discount not allowed set to pending approval the status */
             if (!isValidDiscount) {
               proforma.status = PROFORMA.STATUS.PENDING_DISCOUNT_APPROVAL.value;

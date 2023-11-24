@@ -16,7 +16,8 @@ const isDiscountAllowed = (discount, userRole) => {
     ROLES[userRole].maxDiscount === null
       ? 100
       : ROLES[userRole].maxDiscount / 100 || DEFAULT_DISCOUNT;
-  return maxDiscount > discount;
+  // console.log({ maxDiscount, discount });
+  return maxDiscount >= discount;
 };
 
 const getValidateTransactionId = async proformaId => {
