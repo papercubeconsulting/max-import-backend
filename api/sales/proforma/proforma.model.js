@@ -236,10 +236,10 @@ module.exports = (sequelize, DataTypes) => {
               discountPercentage * 100,
               options.role,
             );
-            // console.log({
-            //   isValidDiscount,
-            //   discountPercentage: discountPercentage * 100,
-            // });
+            console.log({
+              isValidDiscount,
+              discountPercentage: discountPercentage * 100,
+            });
             /* If discount not allowed set to pending approval the status */
             if (!isValidDiscount) {
               proforma.status = PROFORMA.STATUS.PENDING_DISCOUNT_APPROVAL.value;

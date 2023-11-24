@@ -16,7 +16,7 @@ const isDiscountAllowed = (discount, userRole) => {
     ROLES[userRole].maxDiscount === null
       ? 100
       : ROLES[userRole].maxDiscount / 100 || DEFAULT_DISCOUNT;
-  // console.log({ maxDiscount, discount });
+  console.log({ maxDiscount, discount });
   return maxDiscount >= discount;
 };
 
