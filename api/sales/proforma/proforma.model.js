@@ -2,13 +2,16 @@
 /* eslint-disable no-param-reassign */
 const _ = require('lodash');
 const { Model } = require('sequelize');
-const { getDictValues, PROFORMA, DISPATCH } = require('../../utils/constants');
+const moment = require('moment');
 const { JSON } = require('sequelize');
+const { getDictValues, PROFORMA, DISPATCH } = require('../../utils/constants');
+const { EXPIRE_DAYS } = require('@/utils/constants/proforma');
 // const { isDiscountAllowed } = require('./proforma.service/discountProforma');
 
 module.exports = (sequelize, DataTypes) => {
   class Proforma extends Model {
     static associate(models) {
+      Proforma.hasMany(models.DiscountProforma);
       Proforma.belongsTo(models.User);
       Proforma.belongsTo(models.Client);
       Proforma.hasMany(models.ProformaProduct);
@@ -17,6 +20,22 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     // * INSTANCE METHODS
+
+    checkProformaStatus() {
+      const status = this.getDataValue('status');
+      const fifteenDaysAgo = moment()
+        .subtract(15, 'days')
+        .toDate();
+      if (
+        this.getDataValue('createdAt') < fifteenDaysAgo &&
+        status !== PROFORMA.STATUS.CLOSED.value
+      ) {
+        return 'EXPIRED';
+        // currentObj.status = 'EXPIRE';
+        // return [...prev, currentObj];
+      }
+      return status;
+    }
 
     // ? Se valida que NO haya un producto cuya cantidad exceda el stock
     async checkStock(options) {
@@ -82,6 +101,21 @@ module.exports = (sequelize, DataTypes) => {
       status: {
         type: DataTypes.ENUM(getDictValues(PROFORMA.STATUS)),
         defaultValue: PROFORMA.STATUS.OPEN.value,
+        get() {
+          const status = this.getDataValue('status');
+          const fifteenDaysAgo = moment()
+            .subtract(EXPIRE_DAYS, 'days')
+            .toDate();
+          if (
+            this.getDataValue('createdAt') < fifteenDaysAgo &&
+            status !== PROFORMA.STATUS.CLOSED.value
+          ) {
+            return 'EXPIRED';
+            // currentObj.status = 'EXPIRE';
+            // return [...prev, currentObj];
+          }
+          return status;
+        },
       },
       // ? Representa el estado de la venta, pendiente si aun no se ha generado
       // ? En caso se genere hay dos posibilidades, que haya deuda (PARTIAL) o que se haya pagado (PAID)
@@ -103,7 +137,7 @@ module.exports = (sequelize, DataTypes) => {
       efectivo: {
         type: DataTypes.INTEGER,
         set(value) {
-          this.setDataValue('efectivo', value * 100);
+          this.setDataValue('efectivo', Number((value * 100).toFixed(2))); // value * 100 return floating-point
         },
       },
       credit: {
@@ -149,7 +183,7 @@ module.exports = (sequelize, DataTypes) => {
       discountPercentage: {
         type: DataTypes.VIRTUAL,
         get() {
-          return _.round(this.discount / this.subtotal, 2);
+          return _.round(this.discount / this.subtotal, 4);
         },
       },
     },
@@ -157,40 +191,8 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       modelName: 'proforma',
       hooks: {
-        beforeCreate: async (proforma, options) => {
-          // console.log('Before create proforma');
-          // const { proformaProducts } = proforma;
-          // // console.log(proforma.get().proformaProducts.get())
-          // // console.log({ proformaProducts });
-          // const proforma = proformaProducts
-
-          // proforma.subtotal = proformaProducts.reduce(
-          //   (a, b) => a + b.subtotal,
-          //   0,
-          // );
-          // proforma.totalUnits = proformaProducts.reduce(
-          //   (a, b) => a + b.quantity,
-          //   0,
-          // );
-          // proforma.total = proforma.subtotal - proforma.discount;
-          // // due => default => total
-          // proforma.credit = proforma.total - proforma.efectivo;
-
-          // // calc discountPercentage for validation discount proforma
-          // const discountPercentage = _.round(
-          //   proforma.discount / proforma.subtotal,
-          //   2,
-          // );
-          // console.log({ options });
-
-          // console.log({ r: options.reqBody });
-
-          // // console.log(JSON.stringify(proforma));
-          return proforma;
-        },
         // ? Calcular el precio total de la proforma
         beforeUpdate: async (proforma, options) => {
-          // console.log('Before update');
           const proformaProducts = await proforma.getProformaProducts({
             transaction: _.get(options, 'transaction'),
           });
@@ -209,55 +211,79 @@ module.exports = (sequelize, DataTypes) => {
           // calc discountPercentage for validation discount proforma
           const discountPercentage = _.round(
             proforma.discount / proforma.subtotal,
-            2,
+            4,
           );
-          // console.log({ discountPercentage, role: options.role });
-          const isValidDiscount = options.isDiscountAllowed(
-            discountPercentage * 100,
-            options.role,
-          );
-          // console.log({isValidDiscount})
-          /* If discount not allowed set to pending approval the status */
-          if (!isValidDiscount) {
-            proforma.status = PROFORMA.STATUS.PENDING_DISCOUNT_APPROVAL.value;
-            // check if there's already an existing transactionId that hasn't been approved (userId = null)
-            // if so, dont create a transaction
-            // We could have a proforma that has been apprved before, updating to a new
-            // discount  we need to create a new transaction
-            // Later this will helps us to log all the approved history of that proforma
-            const discountProforma = options.DiscountProforma.findOrCreate({
-              where: { proformaId: proforma.id, userId: null },
-              default: {
-                proformaId: proforma.id,
-              },
-            });
 
-            // if (discountProforma.data)
-            //   await options.DiscountProforma.findOrCreate({
-            //     where: { proformId: proforma.id },
-            //     default: {
-            //       proformaId: proforma.id,
-            //     },
-            //   });
-          }
-
-          // if the user edits again the proforma, and enteres a discount which is valid
-          // we then remove any record in DiscountProforma (that has userId = null) and updates proforma to open
+          // if the discount it's same, don't validate the discount
+          // other wise will creaate a PENDING_DISCOUNT_APPROVAL if the user only
+          // modify other values of the proforma
+          const isSameDiscount =
+            proforma.previous('discount') === proforma.discount;
+          // console.log({
+          //   isSameDiscount,
+          //   options,
+          //   discountPercentage,
+          //   status: proforma.status,
+          // });
           if (
-            isValidDiscount &&
-            proforma.status === PROFORMA.STATUS.PENDING_DISCOUNT_APPROVAL.value
+            options.isDiscountAllowed &&
+            options.DiscountProforma &&
+            // options.createProforma
+            (!isSameDiscount || options.createProforma) // if we are on creating a proforma, we should ignore isSameDiscount
           ) {
-            // reset the status the proforma to OPEN
-            // await proforma.update({ status: PROFORMA.STATUS.OPEN.value });
-            proforma.status = PROFORMA.STATUS.OPEN.value;
-
-            // delete in DiscountProforma,by proformaId
-            await options.DiscountProforma.destroy({
-              where: {
-                proformaId: proforma.id,
-                userId: null,
-              },
+            // console.log({ discountPercentage, role: options.role });
+            const isValidDiscount = options.isDiscountAllowed(
+              discountPercentage * 100,
+              options.role,
+            );
+            console.log({
+              isValidDiscount,
+              discountPercentage: discountPercentage * 100,
             });
+            /* If discount not allowed set to pending approval the status */
+            if (!isValidDiscount) {
+              proforma.status = PROFORMA.STATUS.PENDING_DISCOUNT_APPROVAL.value;
+              // check if there's already an existing transactionId that hasn't been approved (userId = null)
+              // if so, dont create a transaction
+              // We could have a proforma that has been apprved before, updating to a new
+              // discount  we need to create a new transaction
+              // Later this will helps us to log all the approved history of that proforma
+              const discountProforma = options.DiscountProforma.findOrCreate({
+                where: { proformaId: proforma.id, userId: null },
+                default: {
+                  proformaId: proforma.id,
+                },
+              });
+
+              // if (discountProforma.data)
+              //   await options.DiscountProforma.findOrCreate({
+              //     where: { proformId: proforma.id },
+              //     default: {
+              //       proformaId: proforma.id,
+              //     },
+              //   });
+            }
+
+            // if the user edits again the proforma, and enteres a discount which is valid
+            // we then remove any record in DiscountProforma (that has userId = null (NO ANYMORE)) and updates proforma to open
+            if (
+              isValidDiscount &&
+              proforma.status ===
+                PROFORMA.STATUS.PENDING_DISCOUNT_APPROVAL.value
+            ) {
+              // console.log('user edits again');
+              // reset the status the proforma to OPEN
+              // await proforma.update({ status: PROFORMA.STATUS.OPEN.value });
+              proforma.status = PROFORMA.STATUS.OPEN.value;
+
+              // delete in DiscountProforma,by proformaId
+              await options.DiscountProforma.destroy({
+                where: {
+                  proformaId: proforma.id,
+                  userId: null,
+                },
+              });
+            }
           }
         },
         afterCreate: async (proforma, options) => {

@@ -9,6 +9,7 @@ const roles = {
   seller: (can, cannot) => {
     can('read', 'user');
     can('manage', 'proforma');
+    can('manage', 'sale');
 
     can('read', 'family');
     can('read', 'subfamily');
@@ -20,12 +21,12 @@ const roles = {
     can('read', 'warehouse');
 
     can('read', 'bank');
-    can('read', 'client');
+    can('manage', 'client');
 
     can('read', 'deliveryAgency');
     can('read', 'dispatch');
     can('manage', 'proforma');
-    can('read', 'sale');
+    
   },
   logistic: (can, cannot) => {
     can('read', 'user');
@@ -62,7 +63,7 @@ const roles = {
     can('read', 'warehouse');
 
     can('read', 'bank');
-    can('read', 'client');
+    can('manage', 'client');
     can('SIGO', 'client');
 
     can('read', 'deliveryAgency');

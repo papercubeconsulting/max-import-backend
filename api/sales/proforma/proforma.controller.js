@@ -1,6 +1,6 @@
 const { setResponse } = require('@/utils');
 const Service = require('./proforma.service');
-const { update } = require('lodash');
+const { resetExpireProforma } = require('./proforma.service/resetStatus');
 // const { Proforma, ProformaProduct, DiscountProforma } = require('@dbModels');
 // const {
 //   isDiscountAllowed,
@@ -47,14 +47,15 @@ const putProforma = async (req, res) => {
   // Get any discountProforma id for a proforma that is pending to validate
   // const { id: discountValidationId } =
   //   (await Service.getDiscountByProformaIdNoValidated(req.params.id)) || {};
+  // console.log({ response: response.data.get() });
 
   // response.data = { ...response.data.get(), discountValidationId };
-  const updatedResponse = await Service.updateResponseWithDiscountProformaId(
-    req.params.id,
-    response,
-  );
+  // const updatedResponse = await Service.updateResponseWithDiscountProformaId(
+  //   req.params.id,
+  //   response,
+  // );
 
-  return res.status(response.status).send(updatedResponse);
+  return res.status(response.status).send(response);
 };
 
 const listProforma = async (req, res) => {
@@ -69,7 +70,17 @@ const sendPdfProforma = async (req, res) => {
   res.setHeader('Content-Type', 'application/pdf');
   const pdf = await Service.sendPdf(url, bearerToken, req);
 
-  return res.send(pdf);
+  return res.status(200).send(pdf);
+};
+
+const downloadProforma = async (req, res) => {
+  const { url } = req.body;
+  const bearerToken = req.headers.authorization;
+  res.setHeader('Content-Disposition', `attachment; filename="file.pdf"`);
+  res.setHeader('Content-Type', 'application/pdf');
+  const pdf = await Service.downloadPdf(url, bearerToken, req);
+
+  return res.status(200).send(pdf);
 };
 
 const validateDiscountProforma = async (req, res) => {
@@ -96,12 +107,19 @@ const getInfoValidationStatus = async (req, res) => {
   res.status(response.status).send(response);
 };
 
+const resetExpire = async (req, res) => {
+  const response = await resetExpireProforma(req);
+  res.status(response.status).send(response);
+};
+
 module.exports = {
   postProforma,
   putProforma,
+  resetExpire,
   getProforma,
   listProforma,
   sendPdfProforma,
+  downloadProforma,
   validateDiscountProforma,
   getInfoValidationStatus,
 };

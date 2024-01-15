@@ -33,6 +33,7 @@ router.put(
 );
 
 router.post('/:id/pdf', Controller.sendPdfProforma);
+router.post('/:id/downloadpdf', Controller.downloadProforma);
 
 router.get(
   '/validate_discount/:transactionId',
@@ -43,5 +44,7 @@ router.post(
   '/validate_discount/:transactionId',
   Controller.validateDiscountProforma,
 );
+
+router.put('/:id/reset-expire', Controller.resetExpire);
 
 module.exports = router;

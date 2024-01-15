@@ -8,7 +8,7 @@ const {
 } = require('../../../../startup/db');
 
 const { sequelize } = require(`@root/startup/db`);
-const { setResponse, ROLES } = require('../../../utils');
+const { setResponse, ROLES, PROFORMA } = require('../../../utils');
 
 const isDiscountAllowed = (discount, userRole) => {
   const DEFAULT_DISCOUNT = 5;
@@ -16,6 +16,7 @@ const isDiscountAllowed = (discount, userRole) => {
     ROLES[userRole].maxDiscount === null
       ? 100
       : ROLES[userRole].maxDiscount / 100 || DEFAULT_DISCOUNT;
+  console.log({ maxDiscount, discount });
   return maxDiscount >= discount;
 };
 
@@ -59,6 +60,7 @@ const canCurrentUserValidate = req => {
 
 const updateDiscountProforma = async req => {
   const discountPercentage = getDiscountPercentage(req);
+  const { discount } = req.body;
   const role = getUserRole(req);
   const t = await sequelize.transaction();
   try {
@@ -87,19 +89,20 @@ const updateDiscountProforma = async req => {
     await discountProforma.update(
       {
         userId: getUserId(req),
+        approvedDiscount: Number(discount),
       },
       { transaction: t },
     );
 
     // update the status of the proforma to OPEN
-    await Proforma.update(
-      { status: 'OPEN' },
-      {
-        where: {
-          id: discountProforma.proformaId,
-        },
-      },
-    );
+    const proforma = await Proforma.findOne({
+      where: { id: discountProforma.proformaId },
+    });
+
+    proforma.discount = Number(discount);
+    proforma.status = PROFORMA.STATUS.OPEN.value;
+
+    await proforma.save();
 
     await t.commit();
     await discountProforma.reload();
@@ -109,7 +112,7 @@ const updateDiscountProforma = async req => {
       discountProforma,
     );
   } catch (error) {
-    // console.log(error);
+    console.log(error);
     await t.rollback();
     return setResponse(400, 'Proforma wasnt validated successfully.');
   }
@@ -119,7 +122,7 @@ const getDiscountByProformaIdNoValidated = async proformaId => {
   const discountProforma = await DiscountProforma.findOne({
     where: { proformaId, userId: null },
   });
-  // console.log({ discountProforma });
+
   return discountProforma && discountProforma.dataValues;
 };
 

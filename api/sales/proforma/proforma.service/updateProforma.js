@@ -10,6 +10,12 @@ const validatePutProforma = async reqParams => {
   const proforma = await Proforma.findByPk(reqParams.id);
   if (!proforma) return setResponse(404, 'Proforma not found.');
 
+  const status = proforma.checkProformaStatus();
+
+  if (status === 'EXPIRED') {
+    return setResponse(400, 'Proforma has expired');
+  }
+
   return setResponse(200, 'OK');
 };
 
@@ -18,7 +24,16 @@ const putProforma = async (reqParams, reqBody, reqUser) => {
 
   try {
     const proforma = await Proforma.findByPk(reqParams.id, {
-      include: [ProformaProduct],
+      include: [
+        ProformaProduct,
+        {
+          model: DiscountProforma,
+          where: {
+            userId: null,
+          },
+          required: false,
+        },
+      ],
       transaction: t,
     });
 
@@ -69,8 +84,35 @@ const putProforma = async (reqParams, reqBody, reqUser) => {
 
     await t.commit();
 
-    await proforma.reload();
-    return setResponse(200, 'Proforma created.', proforma);
+    await proforma.reload({
+      include: [
+        DiscountProforma,
+        // where: { userId: null },
+        // required: false, // This ensures a LEFT OUTER JOIN
+      ],
+    });
+
+    // Note: Try to refresh DiscountProforma due the next section wasn't refreshing with the latest information
+    await DiscountProforma.findAll({
+      where: {
+        proformaId: reqParams.id,
+      },
+    });
+
+    const updatedProforma = await Proforma.findByPk(reqParams.id, {
+      include: [
+        ProformaProduct,
+        {
+          model: DiscountProforma,
+          where: {
+            userId: null,
+          },
+          required: false,
+        },
+      ],
+    });
+
+    return setResponse(200, 'Proforma created.', updatedProforma);
   } catch (error) {
     winston.error(error);
 

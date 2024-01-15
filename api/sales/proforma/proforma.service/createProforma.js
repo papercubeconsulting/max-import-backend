@@ -31,18 +31,28 @@ const postProforma = async (reqBody, reqUser) => {
     );
 
     const { role } = reqUser.dataValues;
-
     // by default is already set to OPEN, but trigger beforeHook
     // to update the price values
+
+    // Note: Here we're setting the createProforma : true, so in the update
+    // we cancel the isSameDiscount comparison. The isSameDiscount is only going to work when updating
+    // create props.createProforma will be false | undefined. Before if the user enters a sameDiscount,
+    // because he only may changing other values in the proforma rather than sameDiscount, it will trigger
+    // a validation discount
     await proforma.update(
       { ...reqBody },
-      { role, isDiscountAllowed, DiscountProforma, transaction: t },
+      {
+        role,
+        isDiscountAllowed,
+        DiscountProforma,
+        transaction: t,
+        createProforma: true,
+      },
     );
 
     await t.commit();
 
     await proforma.reload();
-    // const proformaProducts = proforma.
 
     return setResponse(200, 'Proforma created.', proforma);
   } catch (error) {

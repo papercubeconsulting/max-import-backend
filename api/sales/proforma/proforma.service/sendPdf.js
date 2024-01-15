@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
-const { User, Proforma } = require('@dbModels');
+const { User, Proforma, Client } = require('@dbModels');
 const { setResponse } = require('@root/api/utils');
 const config = require('config');
 const sgMail = require('@sendgrid/mail');
@@ -11,8 +11,9 @@ const { from, templateIds } = config.get('sendgrid');
 sgMail.setApiKey(config.get('sendGridKey'));
 
 const sendPdf = async (url, bearerToken, req) => {
+  const DEFAULT_PHONE_NUMBER = '946098776';
   const { id: proformaId } = req.params || {};
-  const proforma = Proforma.findByPk(proformaId);
+  const proforma = await Proforma.findByPk(proformaId);
 
   if (!proforma)
     return setResponse(
@@ -21,7 +22,25 @@ const sendPdf = async (url, bearerToken, req) => {
       {},
       'La proforma indicada no existe',
     );
-  const browser = await puppeteer.launch({ headless: true });
+
+  const { clientId, userId } = proforma.dataValues;
+
+  const client = await Client.findByPk(clientId);
+  const user = await User.findByPk(userId);
+
+  if (!client)
+    return setResponse(
+      404,
+      'User not found.',
+      {},
+      'No se ha encontrado el usuario',
+    );
+
+  const browser = await puppeteer.launch({
+    executablePath: '/usr/bin/google-chrome',
+    headless: true,
+    args: ['--no-sandbox'], // Add this line to disable sandboxing
+  });
   const page = await browser.newPage();
 
   // console.log(url);
@@ -47,36 +66,6 @@ const sendPdf = async (url, bearerToken, req) => {
 
   await page.waitFor(3000);
 
-  // const content = await page.content();
-
-  // await new Promise((resolve, reject) => {
-  //   fs.writeFile(path.join(__dirname, './updateXml.html'), content, err => {
-  //     if (err) {
-  //       reject(err);
-  //     } else {
-  //       resolve();
-  //     }
-  //   });
-  // });
-
-  // const bearerToken = req.headers.authorization;
-  // console.log({ bearerToken });
-
-  // await page.setViewport({ width: 1200, height: 800 });
-
-  // await page.waitFor(5000)
-
-  // console.log(await page.content());
-  const user = await User.findByPk(req.user.id);
-
-  if (!user)
-    return setResponse(
-      404,
-      'User not found.',
-      {},
-      'El correo ingresado no pertenece a ningún usuario',
-    );
-
   const result = await page.pdf({
     format: 'a3',
   });
@@ -92,14 +81,14 @@ const sendPdf = async (url, bearerToken, req) => {
     },
   ];
   const data = {
-    CLIENT_NAME: user.name,
+    CLIENT_NAME: client.name,
     INVOICE_NUMBER: proformaId,
-    PHONE_NUMBER_CONTACT: user.phoneNumber,
-    SELLER: `${user.name} ${user.lastname}`,
+    PHONE_NUMBER_CONTACT: user.phoneNumber || DEFAULT_PHONE_NUMBER,
+    SELLER: `${client.name} ${client.lastname}`,
   };
 
   const msg = {
-    to: 'hreloza@gmail.com', // Change to your recipient
+    to: client.email, // Change to your recipient
     from, // Change to your verified sender
     subject: `MAX IMPORT: COTIZACION N°: ${proformaId}`,
     templateId: templateIds.emailProforma,
