@@ -15,6 +15,12 @@ router.get(
 );
 
 router.get(
+  '/tradename-all',
+  isAble('read', 'product'),
+  Controller.listTradenameAll,
+);
+
+router.get(
   '/inventoryReport',
   isAble('read', 'product'),
   Controller.getInventoryReport,

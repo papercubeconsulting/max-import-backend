@@ -121,7 +121,20 @@ const listTradename = async reqQuery => {
   return setResponse(200, 'Tradenames founds.', response);
 };
 
+const listTradenameAll = async () => {
+  const products = await Product.findAll({
+    attributes: ['tradename'],
+    group: ['tradename'],
+    order: ['tradename'],
+  });
+
+  return setResponse(200, 'All Tradenames founds.', {
+    listTradename: products,
+  });
+};
+
 module.exports = {
   listProducts,
   listTradename,
+  listTradenameAll,
 };
