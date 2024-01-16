@@ -25,6 +25,12 @@ const listTradename = async (req, res) => {
   return res.status(products.status).send(products);
 };
 
+const listTradenameAll = async (req, res) => {
+  const products = await Services.listTradenameAll(req.query);
+
+  return res.status(products.status).send(products);
+};
+
 const postProduct = async (req, res) => {
   const validate = await Services.validatePost(req.body);
   if (validate.status !== 200)
@@ -107,4 +113,5 @@ module.exports = {
   getInventoryReport,
   uploadCsvData,
   uploadImages,
+  listTradenameAll,
 };
