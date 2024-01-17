@@ -32,7 +32,7 @@ const createSupply = async (reqBody, reqUser) => {
   const t = await sequelize.transaction();
 
   try {
-    console.log("reqBody", reqBody);
+    console.log(JSON.stringify(reqBody, null, 2));
     let supply = await Supply.create(reqBody, { transaction: t });
     await SuppliedProduct.bulkCreate(
       reqBody.suppliedProducts.map(obj => ({ ...obj, supplyId: supply.id, initQuantity: obj.quantity, initBoxSize: obj.boxSize })),
@@ -71,7 +71,12 @@ const createSupply = async (reqBody, reqUser) => {
 
     return setResponse(201, 'Supply created.', supply);
   } catch (error) {
-    winston.error(error);
+    //winston.error(error);
+    if (error instanceof sequelize.ValidationError) {
+      console.error('Validation error details:', error.errors);
+    } else {
+      console.error('Non-validation error:', error);
+    }
     // If the execution reaches this line, an error was thrown.
     // We rollback the transaction.
     await t.rollback();
