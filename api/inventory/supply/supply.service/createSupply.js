@@ -32,6 +32,7 @@ const createSupply = async (reqBody, reqUser) => {
   const t = await sequelize.transaction();
 
   try {
+    console.log("reqBody", reqBody);
     let supply = await Supply.create(reqBody, { transaction: t });
     await SuppliedProduct.bulkCreate(
       reqBody.suppliedProducts.map(obj => ({ ...obj, supplyId: supply.id, initQuantity: obj.quantity, initBoxSize: obj.boxSize })),
