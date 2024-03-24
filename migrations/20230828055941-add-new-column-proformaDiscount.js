@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     /**
@@ -12,14 +10,5 @@ module.exports = {
       type: Sequelize.INTEGER,
       allowNull: true, // or false, depending on your needs
     });
-  },
-
-  down: async (queryInterface, Sequelize) => {
-    /**
-     * Add reverting commands here.
-     *
-     * Example:
-     * await queryInterface.dropTable('users');
-     */
   },
 };

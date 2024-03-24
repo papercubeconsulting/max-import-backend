@@ -5,8 +5,9 @@ const {
   Client,
   DiscountProforma,
 } = require('@dbModels');
+
 const { sequelize } = require(`@root/startup/db`);
-const { setResponse, PROFORMA } = require('../../../utils');
+const { setResponse } = require('../../../utils');
 const { isDiscountAllowed } = require('./discountProforma');
 
 const validateProforma = async reqBody => {

@@ -45,7 +45,6 @@ const updateSupply = async (reqBody, reqParams, validatedData, reqUser) => {
       return acc;
     }, promises);
 
-
     // * Update items (cantidad de cajas)
     validatedData.updateSuppliedProducts.reduce((acc, cur) => {
       const queryProd = reqBody.suppliedProducts.find(

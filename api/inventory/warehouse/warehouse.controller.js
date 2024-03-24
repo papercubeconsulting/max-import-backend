@@ -6,6 +6,11 @@ const getWarehouse = async (req, res) => {
   return res.status(warehouse.status).send(warehouse);
 };
 
+const getWarehouseByTrackingCode = async (req, res) => {
+  const warehouse = await Services.getWarehouseByTrackingCode(req.params);
+  return res.status(warehouse.status).send(warehouse);
+};
+
 const listWarehouses = async (req, res) => {
   const warehouses = await Services.listWarehouses(req.query);
 
@@ -22,4 +27,5 @@ module.exports = {
   getWarehouse,
   listWarehouses,
   postWarehouse,
+  getWarehouseByTrackingCode,
 };

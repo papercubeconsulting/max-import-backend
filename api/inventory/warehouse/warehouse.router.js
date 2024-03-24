@@ -25,5 +25,10 @@ router.post(
   celebrate(Validator.Post),
   Controller.postWarehouse,
 );
-
+router.get(
+  '/trackingCode/:id',
+  isAble('read', 'warehouse'),
+  celebrate(Validator.GetByTrackingCode),
+  Controller.getWarehouseByTrackingCode,
+);
 module.exports = router;

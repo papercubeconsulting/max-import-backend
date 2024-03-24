@@ -36,6 +36,14 @@ components:
       required: true
       schema:
         type: string
+    trackingCode:
+      name: id
+      in: path
+      description: TrackingCode del recurso requerido
+      required: true
+      schema:
+        type: string
+        default: 1000001000001001
     providerId:
       name: providerId
       in: query

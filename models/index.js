@@ -1,4 +1,4 @@
-const db = require("@root/startup/db");
+const db = require('@root/startup/db');
 
 // console.log("model")
 
