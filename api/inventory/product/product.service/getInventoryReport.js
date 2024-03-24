@@ -49,32 +49,34 @@ const getInventoryReport = async reqQuery => {
 
   let j = 0;
   products = products.map(product => {
-    product.productBoxes = [];
-    product.totalStock = 0;
-    product.activeStock = 0;
-    product.damagedStock = 0;
-    product.storeStock = 0;
-    product.warehouseStock = 0;
+    const modifiedProduct = { ...product }; // Cloning the product object
+    modifiedProduct.productBoxes = [];
+    modifiedProduct.totalStock = 0;
+    modifiedProduct.activeStock = 0;
+    modifiedProduct.damagedStock = 0;
+    modifiedProduct.storeStock = 0;
+    modifiedProduct.warehouseStock = 0;
+
     while (j < productBoxes.length) {
-      if (productBoxes[j].productId === product.id) {
-        product.productBoxes.push(productBoxes[j]);
-        product.totalStock += productBoxes[j].get('stock');
-        product[
+      if (productBoxes[j].productId === modifiedProduct.id) {
+        modifiedProduct.productBoxes.push(productBoxes[j]);
+        modifiedProduct.totalStock += productBoxes[j].get('stock');
+        modifiedProduct[
           productBoxes[j].warehouse.type === warehouseTypes.DAMAGED
             ? 'damagedStock'
             : 'activeStock'
         ] += productBoxes[j].get('stock');
 
         if (productBoxes[j].warehouse.type === warehouseTypes.STORE) {
-          product.storeStock += productBoxes[j].get('stock');
+          modifiedProduct.storeStock += productBoxes[j].get('stock');
         }
         if (productBoxes[j].warehouse.type === warehouseTypes.WAREHOUSE) {
-          product.warehouseStock += productBoxes[j].get('stock');
+          modifiedProduct.warehouseStock += productBoxes[j].get('stock');
         }
       } else break;
       j += 1;
     }
-    return product;
+    return modifiedProduct;
   });
   const columns = [];
   const rows = [].concat(

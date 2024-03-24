@@ -16,7 +16,6 @@ const isDiscountAllowed = (discount, userRole) => {
     ROLES[userRole].maxDiscount === null
       ? 100
       : ROLES[userRole].maxDiscount / 100 || DEFAULT_DISCOUNT;
-  console.log({ maxDiscount, discount });
   return maxDiscount >= discount;
 };
 
@@ -112,7 +111,6 @@ const updateDiscountProforma = async req => {
       discountProforma,
     );
   } catch (error) {
-    console.log(error);
     await t.rollback();
     return setResponse(400, 'Proforma wasnt validated successfully.');
   }

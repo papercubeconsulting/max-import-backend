@@ -37,6 +37,21 @@ paths:
           description: Invalid ID supplied
         "404":
           description: Resource not found
+  "/warehouses/trackingCode/{id}":
+    get:
+      tags:
+        - inventory.warehouses
+      summary: Encontrar almacen por trackingCode
+      operationId: getWarehouseByTrackingCode
+      parameters:
+        - $ref: "#/components/parameters/trackingCode"
+      responses:
+        "200":
+          description: successful operation
+        "400":
+          description: Invalid trackingCode supplied
+        "404":
+          description: Resource not found
 components:
   parameters:
     warehouseType:
@@ -56,10 +71,13 @@ components:
             properties:
               name:
                 type: string
+              subDivision:
+                type: string
               address:
                 type: string
             example:
               name: "Nuevo almacen"
+              subDivision: "Nueva subdivisión"
               address: "Nueva direccion"
             required:
               - name

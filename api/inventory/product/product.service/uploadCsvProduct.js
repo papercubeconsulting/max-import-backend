@@ -126,7 +126,7 @@ const uploadCsvProduct = async (reqParams, file, reqUser) => {
   const columnsOutput = [];
   const row = [];
 
-  const bulkProducts = await csv({delimiter: [';', ',']}).fromFile(file.path);
+  const bulkProducts = await csv({ delimiter: [';', ','] }).fromFile(file.path);
 
   fs.unlinkSync(file.path);
 
@@ -138,7 +138,7 @@ const uploadCsvProduct = async (reqParams, file, reqUser) => {
     const compatibility = bulkProducts[i].compatibilidad;
     const tradename = bulkProducts[i].nombreComercial;
     const suggestedPrice = parseInt(bulkProducts[i].precio) || 0;
-    const margin=1;
+    const margin = 1;
     const cost = suggestedPrice;
     const providerName = bulkProducts[i].proveedor;
 
@@ -153,7 +153,7 @@ const uploadCsvProduct = async (reqParams, file, reqUser) => {
       upload: '',
       reason: '',
     };
-    
+
     /*
     console.log(
       `Item ${i +
@@ -162,7 +162,7 @@ const uploadCsvProduct = async (reqParams, file, reqUser) => {
       }`,
     );
     */
-   
+
     const itemProductDraft = {
       familyName,
       subfamilyName,
@@ -247,7 +247,7 @@ const uploadCsvProduct = async (reqParams, file, reqUser) => {
     if (product) {
       rowResponse.upload = 'NO EXITOSO';
       rowResponse.reason = 'Product ya existe en la BD';
-      rowResponse.code= product.code;
+      rowResponse.code = product.code;
       row.push(rowResponse);
       continue;
     }

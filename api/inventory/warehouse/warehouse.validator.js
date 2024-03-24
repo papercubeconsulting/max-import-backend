@@ -16,20 +16,31 @@ const Get = {
   },
 };
 
+const GetByTrackingCode = {
+  params: {
+    id: Joi.string().required(),
+  },
+};
+
 const Post = {
   body: {
     name: Joi.string()
       .max(255)
       .min(1)
       .required(),
-    address: Joi.string()
+    subDivision: Joi.string()
       .max(255)
       .min(1)
       .required(),
+    address: Joi.string()
+      .max(255)
+      .min(1)
+      .optional(),
   },
 };
 module.exports = {
   List,
   Get,
   Post,
+  GetByTrackingCode,
 };

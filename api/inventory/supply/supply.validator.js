@@ -1,9 +1,8 @@
 const { Joi } = require('celebrate');
 
-const { supplyStatus: status } = require('../../utils/constants');
 const multer = require('multer');
 const path = require('path');
-
+const { supplyStatus: status } = require('../../utils/constants');
 
 const List = {
   query: {
@@ -96,8 +95,8 @@ const Put = {
             .integer()
             .required(),
           initBoxSize: Joi.number()
-          .integer()
-          .optional(),
+            .integer()
+            .optional(),
           quantity: Joi.number()
             .integer()
             .required(),
@@ -179,7 +178,7 @@ const uploadCsv = multer({
   dest: '_tmp_/',
 });
 
-const validateCsv= (req, res, next)=>{
+const validateCsv = (req, res, next) => {
   uploadCsv.single('csv')(req, res, function(err) {
     if (err) {
       return res
@@ -188,7 +187,7 @@ const validateCsv= (req, res, next)=>{
     }
     next();
   });
-}
+};
 
 module.exports = {
   List,

@@ -35,7 +35,12 @@ const createSupply = async (reqBody, reqUser) => {
     console.log(JSON.stringify(reqBody));
     let supply = await Supply.create(reqBody, { transaction: t });
     await SuppliedProduct.bulkCreate(
-      reqBody.suppliedProducts.map(obj => ({ ...obj, supplyId: supply.id, initQuantity: obj.quantity, initBoxSize: obj.boxSize })),
+      reqBody.suppliedProducts.map(obj => ({
+        ...obj,
+        supplyId: supply.id,
+        initQuantity: obj.quantity,
+        initBoxSize: obj.boxSize,
+      })),
       { transaction: t },
     );
 
@@ -71,7 +76,7 @@ const createSupply = async (reqBody, reqUser) => {
 
     return setResponse(201, 'Supply created.', supply);
   } catch (error) {
-    //winston.error(error);
+    // winston.error(error);
     console.log(error);
     // If the execution reaches this line, an error was thrown.
     // We rollback the transaction.

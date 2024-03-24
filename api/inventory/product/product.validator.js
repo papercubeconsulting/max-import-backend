@@ -140,6 +140,7 @@ const validateCsv = (req, res, next) => {
         .send({ status: 400, message: String(err), data: {} });
     }
     next();
+    return;
   });
 };
 
@@ -151,6 +152,7 @@ const validateImagesZip = (req, res, next) => {
         .send({ status: 400, message: String(err), data: {} });
     }
     next();
+    return;
   });
 };
 module.exports = {

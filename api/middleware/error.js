@@ -15,8 +15,7 @@ module.exports = function(err, req, res, next) {
   if (err instanceof ForbiddenError) {
     return res.status(403).send(setResponse(403, err.message));
   }
-
-  res
+  return res
     .status(500)
     .send(
       setResponse(
