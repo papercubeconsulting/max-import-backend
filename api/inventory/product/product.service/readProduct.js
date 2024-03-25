@@ -13,7 +13,7 @@ const readProduct = async reqParams => {
         include: [
           {
             model: Warehouse,
-            attributes: ['type', 'id', 'name'],
+            attributes: ['type', 'id', 'name', 'subDivision', 'address'],
           },
         ],
         required: false,
