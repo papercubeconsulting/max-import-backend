@@ -32,6 +32,8 @@ module.exports = (sequelize, DataTypes) => {
             accumulator[key] = {
               warehouseId: currentValue.warehouse.id,
               warehouseName: currentValue.warehouse.name,
+              warehouseSubdivision: currentValue.warehouse.subDivision,
+              warehouseAddress: currentValue.warehouse.address,
               warehouseType: currentValue.warehouse.type,
               stock: 0,
             };
@@ -63,6 +65,8 @@ module.exports = (sequelize, DataTypes) => {
                 warehouseId: currentValue.warehouse.id,
                 warehouseName: currentValue.warehouse.name,
                 warehouseType: currentValue.warehouse.type,
+                warehouseSubdivision: currentValue.warehouse.subDivision,
+                warehouseAddress: currentValue.warehouse.address,
                 boxSize: currentValue.boxSize,
                 quantityBoxes: 0,
                 completeBoxes: 0,
