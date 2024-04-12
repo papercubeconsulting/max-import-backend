@@ -26,7 +26,7 @@ const getProductBox = async reqParams => {
       {
         model: ProductBoxLog,
         include: [
-          { model: Warehouse, attributes: ['name'] },
+          { model: Warehouse, attributes: ['id', 'name', 'subDivision', 'address'] },
           { model: User, attributes: ['name', 'lastname'] },
         ],
       },
