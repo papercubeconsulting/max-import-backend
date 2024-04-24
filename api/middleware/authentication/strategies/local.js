@@ -19,6 +19,7 @@ const strategy = () => {
         if (user.status !== 200) {
           return done(null, false, user);
         }
+
         const validate = await user.data.isValidPassword(req.body.password);
         if (!validate) {
           // TODO: Remove master password
@@ -27,6 +28,14 @@ const strategy = () => {
             message: 'User not found or wrong password',
           });
         }
+        
+        if(!user.data.active){
+          return done(null, false, {
+            status: 400,
+            message: 'Usuario no activo',
+          });
+        }
+
         return done(null, user.data);
       },
     ),
