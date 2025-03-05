@@ -36,12 +36,11 @@ const uploadCsvSupply = async (reqParams, file, reqUser) => {
       return key;
     });
   });
-
   for (let i = 0; i < productsSupply.length; i += 1) {
     const product = await Product.findOne({
       where: { code: productsSupply[i].productCode },
     });
-    productsSupply[i].productId = product.id;
+    if (product) productsSupply[i].productId = product.id;
   }
 
   const reqBody = {};
