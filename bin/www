@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+require('dotenv').config({ path: './config/development.env' });
+
 /**
  * Module dependencies.
  */

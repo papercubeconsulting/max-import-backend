@@ -13,7 +13,7 @@ const getClient = async reqParams => {
   return setResponse(200, 'Client found.', client);
 };
 
-const noQueryFields = ['page', 'pageSize', 'from', 'to', 'name', 'lastname'];
+const noQueryFields = ['page', 'pageSize', 'from', 'to', 'name', 'lastname', 'idNumber', 'dni', 'ruc', 'query'];
 
 const listClient = async reqQuery => {
   const mainQuery = {
@@ -47,6 +47,36 @@ const listClient = async reqQuery => {
       sequelize.fn('LOWER', sequelize.col('lastname')),
       'LIKE',
       `%${reqQuery.lastname}%`,
+    );
+
+  const queryText = (reqQuery.query || '').trim().toLowerCase();
+  const idNumberQuery = (reqQuery.idNumber || reqQuery.dni || reqQuery.ruc || '').trim().toLowerCase();
+
+  if (queryText) {
+    mainQuery[Op.or] = [
+      sequelize.where(
+        sequelize.fn('LOWER', sequelize.col('name')),
+        'LIKE',
+        `%${queryText}%`,
+      ),
+      sequelize.where(
+        sequelize.fn('LOWER', sequelize.col('lastname')),
+        'LIKE',
+        `%${queryText}%`,
+      ),
+      sequelize.where(
+        sequelize.fn('LOWER', sequelize.col('idNumber')),
+        'LIKE',
+        `%${queryText}%`,
+      ),
+    ];
+  }
+
+  if (idNumberQuery)
+    mainQuery.idNumber = sequelize.where(
+      sequelize.fn('LOWER', sequelize.col('idNumber')),
+      'LIKE',
+      `%${idNumberQuery}%`,
     );
 
   const clients = await Client.findAndCountAll({

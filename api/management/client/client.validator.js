@@ -81,6 +81,9 @@ const List = {
 
       active: Joi.bool(),
 
+      query: Joi.string()
+        .lowercase()
+        .trim(),
       name: Joi.string()
         .lowercase()
         .trim(),
@@ -88,6 +91,8 @@ const List = {
         .lowercase()
         .trim(),
       idNumber: Joi.string(),
+      dni: Joi.string(),
+      ruc: Joi.string(),
     })
     .and('from', 'to'),
 };
