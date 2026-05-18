@@ -91,8 +91,6 @@ const List = {
         .lowercase()
         .trim(),
       idNumber: Joi.string(),
-      dni: Joi.string(),
-      ruc: Joi.string(),
     })
     .and('from', 'to'),
 };

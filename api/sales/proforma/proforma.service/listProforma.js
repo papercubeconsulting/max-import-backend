@@ -22,8 +22,6 @@ const noQueryFields = [
   'name',
   'lastname',
   'idNumber',
-  'dni',
-  'ruc',
 ];
 
 const listProforma = async reqQuery => {
@@ -62,12 +60,11 @@ const listProforma = async reqQuery => {
       `%${reqQuery.lastname}%`,
     );
 
-  const idNumberQuery = reqQuery.idNumber || reqQuery.dni || reqQuery.ruc;
-  if (idNumberQuery) {
+  if (reqQuery.idNumber) {
     clientQuery.idNumber = sequelize.where(
       sequelize.fn('LOWER', sequelize.col('idNumber')),
       'LIKE',
-      `%${idNumberQuery}%`,
+      `%${reqQuery.idNumber}%`,
     );
   }
 
