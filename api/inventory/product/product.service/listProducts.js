@@ -22,7 +22,7 @@ const listProducts = async reqQuery => {
     reqQuery.tradename = sequelize.where(
       sequelize.fn('LOWER', sequelize.col('tradename')),
       'LIKE',
-      `%${reqQuery.tradename}%`,
+      `%${reqQuery.tradename.toLowerCase()}%`,
     );
   }
 
