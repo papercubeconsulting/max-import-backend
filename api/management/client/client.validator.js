@@ -81,6 +81,9 @@ const List = {
 
       active: Joi.bool(),
 
+      query: Joi.string()
+        .lowercase()
+        .trim(),
       name: Joi.string()
         .lowercase()
         .trim(),
