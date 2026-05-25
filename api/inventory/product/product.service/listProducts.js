@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 const _ = require('lodash');
 const sequelize = require('sequelize');
-const { Product, ProductBox, Warehouse } = require('@dbModels');
+const { Product, ProductBox, ProductGroup, Warehouse } = require('@dbModels');
 
 const { setResponse } = require('../../../utils');
 
@@ -14,6 +14,7 @@ const productFields = [
   'elementId',
   'modelId',
   'providerId',
+  'groupId',
   'tradename',
 ];
 
@@ -56,6 +57,8 @@ const listProducts = async reqQuery => {
     },
     order: ['id'],
     raw: true,
+    nest: true,
+    include: [{ model: ProductGroup, attributes: ['id', 'name', 'code'] }],
   });
 
   let j = 0;

@@ -13,6 +13,9 @@ const List = {
     elementId: Joi.number().integer(),
     modelId: Joi.number().integer(),
     providerId: Joi.number().integer(),
+    groupId: Joi.number()
+      .integer()
+      .min(1),
 
     page: Joi.number()
       .integer()
@@ -36,6 +39,18 @@ const Get = {
   params: {
     id: Joi.number()
       .integer()
+      .required(),
+  },
+};
+
+const ChangeOptions = {
+  query: {
+    code: Joi.string()
+      .min(1)
+      .required(),
+    stock: Joi.number()
+      .integer()
+      .min(1)
       .required(),
   },
 };
@@ -76,6 +91,10 @@ const Post = {
       .integer()
       .required(),
     cost: Joi.number().default(0),
+    groupId: Joi.number()
+      .integer()
+      .min(1)
+      .allow(null),
   },
 };
 
@@ -93,6 +112,10 @@ const Put = {
     tradename: Joi.string(),
     suggestedPrice: Joi.number().integer(),
     cost: Joi.number().integer(),
+    groupId: Joi.number()
+      .integer()
+      .min(1)
+      .allow(null),
   },
 };
 
@@ -156,6 +179,7 @@ const validateImagesZip = (req, res, next) => {
 module.exports = {
   List,
   Get,
+  ChangeOptions,
   Post,
   Put,
   Delete,

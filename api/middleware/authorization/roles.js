@@ -16,6 +16,7 @@ const roles = {
     can('read', 'element');
     can('read', 'model');
     can('read', 'provider');
+    can('read', 'productGroup');
     can('read', 'product');
     can('read', 'productBox');
     can('read', 'warehouse');
@@ -36,6 +37,7 @@ const roles = {
     can('manage', 'element');
     can('manage', 'model');
     can('manage', 'provider');
+    can('manage', 'productGroup');
     can('manage', 'product');
     can('manage', 'productBox');
     can('manage', 'warehouse');
@@ -58,6 +60,7 @@ const roles = {
     can('read', 'element');
     can('read', 'model');
     can('read', 'provider');
+    can('read', 'productGroup');
     can('read', 'product');
     can('read', 'productBox');
     can('read', 'warehouse');
