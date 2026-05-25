@@ -1,5 +1,11 @@
 const { Op } = require('sequelize');
-const { Product, Provider, ProductBox, Warehouse } = require('@dbModels');
+const {
+  Product,
+  Provider,
+  ProductBox,
+  ProductGroup,
+  Warehouse,
+} = require('@dbModels');
 
 const { setResponse } = require('../../../utils');
 
@@ -19,6 +25,7 @@ const readProduct = async reqParams => {
         required: false,
       },
       Provider,
+      ProductGroup,
     ],
   });
   if (!product) return setResponse(404, 'Product not found.');
@@ -31,7 +38,9 @@ const readProduct = async reqParams => {
 };
 
 const readProductNoStock = async reqParams => {
-  const product = await Product.findByPk(reqParams.id, { include: [Provider] });
+  const product = await Product.findByPk(reqParams.id, {
+    include: [Provider, ProductGroup],
+  });
   if (!product) return setResponse(404, 'Product not found.');
 
   return setResponse(200, 'Product found.', product);

@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     // * CLASS METHODS
     static associate(models) {
       Product.belongsTo(models.Provider);
+      Product.belongsTo(models.ProductGroup, { foreignKey: 'groupId' });
       Product.belongsTo(models.Family);
       Product.belongsTo(models.Subfamily);
       Product.belongsTo(models.Element);
@@ -216,6 +217,7 @@ module.exports = (sequelize, DataTypes) => {
       providerId: DataTypes.INTEGER,
       subfamilyId: DataTypes.INTEGER,
       modelId: DataTypes.INTEGER,
+      groupId: DataTypes.INTEGER,
       cost: DataTypes.INTEGER,
       margin: DataTypes.FLOAT,
     },

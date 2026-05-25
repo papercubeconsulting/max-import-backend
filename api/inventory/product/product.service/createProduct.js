@@ -3,6 +3,7 @@ const { Op } = require('sequelize');
 const {
   Product,
   Provider,
+  ProductGroup,
   Family,
   Subfamily,
   Element,
@@ -180,6 +181,11 @@ const createCategories = async (reqBody, categories) => {
 const createProduct = async reqBody => {
   const model = await Model.findByPk(reqBody.modelId);
   if (!model) return setResponse(404, 'Model not found.');
+
+  if (reqBody.groupId !== undefined && reqBody.groupId !== null) {
+    const productGroup = await ProductGroup.findByPk(reqBody.groupId);
+    if (!productGroup) return setResponse(404, 'Product group not found.');
+  }
 
   let product = await Product.findOne({
     where: _.pick(reqBody, ['modelId']),

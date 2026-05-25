@@ -9,6 +9,8 @@ tags:
     description: Almacenes donde se guardan los productos
   - name: inventory.providers
     description: Proveedores de productos
+  - name: inventory.productGroups
+    description: Grupos de productos para sugerencias de cambio
   - name: inventory.families
     description: Familia a la que pertenece un producto
   - name: inventory.subfamilies
