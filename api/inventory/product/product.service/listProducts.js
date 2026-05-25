@@ -123,8 +123,9 @@ const listTradename = async reqQuery => {
 
 const listTradenameAll = async () => {
   const products = await Product.findAll({
-    attributes: ['tradename'],
-    group: ['tradename'],
+    attributes: {
+      exclude: ['imageBase64', 'secondImageBase64', 'thirdImageBase64'],
+    },
     order: ['tradename'],
   });
 
