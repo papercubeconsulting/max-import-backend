@@ -31,6 +31,12 @@ router.put(
   celebrate(Validator.Put),
   Controller.putProforma,
 );
+router.delete(
+  '/:id',
+  isAble('delete', 'proforma'),
+  celebrate(Validator.Delete),
+  Controller.deleteProforma,
+);
 
 router.post('/:id/pdf', Controller.sendPdfProforma);
 router.post('/:id/downloadpdf', Controller.downloadProforma);

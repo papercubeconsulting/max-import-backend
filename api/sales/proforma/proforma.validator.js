@@ -75,6 +75,14 @@ const Get = {
   },
 };
 
+const Delete = {
+  params: {
+    id: Joi.number()
+      .integer()
+      .required(),
+  },
+};
+
 const List = {
   query: {
     page: Joi.number()
@@ -114,5 +122,6 @@ module.exports = {
   Post,
   Put,
   Get,
+  Delete,
   List,
 };

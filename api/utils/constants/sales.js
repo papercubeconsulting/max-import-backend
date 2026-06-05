@@ -40,8 +40,10 @@ module.exports = {
       CASH: { value: 'CASH', name: 'Contado' },
     },
     BILLING_TYPE: {
-      CONSIGNMENT: { value: 'CONSIGNMENT', name: 'Consignación' },
       SALE: { value: 'SALE', name: 'Venta' },
+      INVOICE: { value: 'INVOICE', name: 'Factura' },
+      PROFORMA: { value: 'PROFORMA', name: 'Proforma' },
+      CONSIGNMENT: { value: 'CONSIGNMENT', name: 'Consignación' },
     },
     DISPATCHMENT_TYPE: {
       DELIVERY: { value: 'DELIVERY', name: 'Delivery' },

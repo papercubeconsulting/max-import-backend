@@ -4,6 +4,7 @@ module.exports = {
   ...require('./readProforma'),
   ...require('./listProforma'),
   ...require('./updateProforma'),
+  ...require('./deleteProforma'),
   ...require('./sendPdf'),
   ...require('./discountProforma'),
   ...require('./downloadPdf'),

@@ -58,6 +58,15 @@ const putProforma = async (req, res) => {
   return res.status(response.status).send(response);
 };
 
+const deleteProforma = async (req, res) => {
+  const validate = await Service.validateDeleteProforma(req.params);
+  if (validate.status !== 200)
+    return res.status(validate.status).send(validate);
+
+  const response = await Service.deleteProforma(req.params);
+  return res.status(response.status).send(response);
+};
+
 const listProforma = async (req, res) => {
   const response = await Service.listProforma(req.query);
   return res.status(response.status).send(response);
@@ -115,6 +124,7 @@ const resetExpire = async (req, res) => {
 module.exports = {
   postProforma,
   putProforma,
+  deleteProforma,
   resetExpire,
   getProforma,
   listProforma,
