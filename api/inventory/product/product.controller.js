@@ -37,6 +37,12 @@ const listProductChangeOptions = async (req, res) => {
   return res.status(products.status).send(products);
 };
 
+const listProductGroupSearchOptions = async (req, res) => {
+  const options = await Services.listProductGroupSearchOptions(req.query);
+
+  return res.status(options.status).send(options);
+};
+
 const postProduct = async (req, res) => {
   const validate = await Services.validatePost(req.body);
   if (validate.status !== 200)
@@ -121,4 +127,5 @@ module.exports = {
   uploadImages,
   listTradenameAll,
   listProductChangeOptions,
+  listProductGroupSearchOptions,
 };

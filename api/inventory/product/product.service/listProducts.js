@@ -13,6 +13,7 @@ const productFields = [
   'subfamilyId',
   'elementId',
   'modelId',
+  'modelName',
   'providerId',
   'groupId',
   'tradename',
@@ -24,6 +25,13 @@ const listProducts = async reqQuery => {
       sequelize.fn('LOWER', sequelize.col('tradename')),
       'LIKE',
       `%${reqQuery.tradename.toLowerCase()}%`,
+    );
+  }
+  if (reqQuery.modelName) {
+    reqQuery.modelName = sequelize.where(
+      sequelize.fn('LOWER', sequelize.col('modelName')),
+      'LIKE',
+      `%${reqQuery.modelName.toLowerCase()}%`,
     );
   }
 
@@ -137,8 +145,29 @@ const listTradenameAll = async () => {
   });
 };
 
+const listProductGroupSearchOptions = async () => {
+  const products = await Product.findAll({
+    attributes: ['modelName', 'tradename'],
+    where: {
+      groupId: {
+        [sequelize.Op.ne]: null,
+      },
+    },
+    raw: true,
+  });
+
+  const uniqueValues = key =>
+    [...new Set(products.map(product => product[key]).filter(Boolean))].sort();
+
+  return setResponse(200, 'Product group search options found.', {
+    models: uniqueValues('modelName'),
+    tradenames: uniqueValues('tradename'),
+  });
+};
+
 module.exports = {
   listProducts,
   listTradename,
   listTradenameAll,
+  listProductGroupSearchOptions,
 };

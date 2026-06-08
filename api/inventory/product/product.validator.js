@@ -12,6 +12,9 @@ const List = {
     subfamilyId: Joi.number().integer(),
     elementId: Joi.number().integer(),
     modelId: Joi.number().integer(),
+    modelName: Joi.string()
+      .lowercase()
+      .trim(),
     providerId: Joi.number().integer(),
     groupId: Joi.number()
       .integer()

@@ -32,6 +32,11 @@ router.get(
   Controller.listProductChangeOptions,
 );
 router.get(
+  '/group-search-options',
+  isAble('read', 'product'),
+  Controller.listProductGroupSearchOptions,
+);
+router.get(
   '/:id',
   isAble('read', 'product'),
   celebrate(Validator.Get),
