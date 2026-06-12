@@ -12,6 +12,12 @@ const listProductGroups = async (req, res) => {
   return res.status(productGroups.status).send(productGroups);
 };
 
+const suggestProductGroupCode = async (req, res) => {
+  const suggestion = await Services.suggestProductGroupCode(req.query);
+
+  return res.status(suggestion.status).send(suggestion);
+};
+
 const postProductGroup = async (req, res) => {
   const productGroup = await Services.createProductGroup(req.body);
 
@@ -27,6 +33,7 @@ const putProductGroup = async (req, res) => {
 module.exports = {
   getProductGroup,
   listProductGroups,
+  suggestProductGroupCode,
   postProductGroup,
   putProductGroup,
 };

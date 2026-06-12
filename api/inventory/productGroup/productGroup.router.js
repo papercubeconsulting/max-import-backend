@@ -8,6 +8,12 @@ const { isAble } = require('@/middleware/authorization');
 const router = express.Router();
 
 router.get(
+  '/suggest-code',
+  isAble('read', 'productGroup'),
+  celebrate(Validator.SuggestCode),
+  Controller.suggestProductGroupCode,
+);
+router.get(
   '/:id',
   isAble('read', 'productGroup'),
   celebrate(Validator.Get),

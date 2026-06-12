@@ -14,6 +14,15 @@ const Get = {
   },
 };
 
+const SuggestCode = {
+  query: {
+    prefix: Joi.string()
+      .max(20)
+      .min(1)
+      .required(),
+  },
+};
+
 const Post = {
   body: {
     name: Joi.string()
@@ -50,6 +59,7 @@ const Put = {
 module.exports = {
   List,
   Get,
+  SuggestCode,
   Post,
   Put,
 };
