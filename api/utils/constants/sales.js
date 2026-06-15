@@ -8,6 +8,7 @@ module.exports = {
         value: 'PENDING_DISCOUNT_APPROVAL',
         name: 'Requiere aprobación',
       },
+      REJECTED: { value: 'REJECTED', name: 'Rechazada' },
       EXPIRED: { value: 'EXPIRED', name: 'Caducada' },
     },
     SALE_STATUS: {

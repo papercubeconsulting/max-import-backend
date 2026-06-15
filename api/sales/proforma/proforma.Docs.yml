@@ -135,6 +135,9 @@ components:
         enum:
           - OPEN
           - CLOSED
+          - PENDING_DISCOUNT_APPROVAL
+          - REJECTED
+          - EXPIRED
     saleStatus:
       name: saleStatus
       in: query

@@ -1,8 +1,6 @@
 const winston = require('winston');
 const {
-  DiscountProforma,
   Proforma,
-  ProformaProduct,
   Sale,
 } = require('@dbModels');
 const { sequelize } = require(`@root/startup/db`);
@@ -19,13 +17,17 @@ const validateDeleteProforma = async reqParams => {
   if (proforma.sale || proforma.status === PROFORMA.STATUS.CLOSED.value) {
     return setResponse(
       400,
-      'No es posible eliminar una proforma que ya fue confirmada.',
+      'No es posible rechazar una proforma que ya fue confirmada.',
     );
+  }
+
+  if (proforma.status === PROFORMA.STATUS.REJECTED.value) {
+    return setResponse(400, 'La proforma ya fue rechazada.');
   }
 
   const status = proforma.checkProformaStatus();
   if (status === 'EXPIRED') {
-    return setResponse(400, 'No es posible eliminar una proforma expirada.');
+    return setResponse(400, 'No es posible rechazar una proforma expirada.');
   }
 
   return setResponse(200, 'OK');
@@ -39,25 +41,18 @@ const deleteProforma = async reqParams => {
       transaction: t,
     });
 
-    await DiscountProforma.destroy({
-      where: { proformaId: reqParams.id },
-      transaction: t,
-    });
-
-    await ProformaProduct.destroy({
-      where: { proformaId: reqParams.id },
-      transaction: t,
-    });
-
-    await proforma.destroy({ transaction: t });
+    await proforma.update(
+      { status: PROFORMA.STATUS.REJECTED.value },
+      { transaction: t },
+    );
 
     await t.commit();
 
-    return setResponse(200, 'Proforma deleted.');
+    return setResponse(200, 'Proforma rejected.', proforma);
   } catch (error) {
     winston.error(error);
     await t.rollback();
-    return setResponse(400, 'Proforma delete failed.');
+    return setResponse(400, 'Proforma reject failed.');
   }
 };
 
