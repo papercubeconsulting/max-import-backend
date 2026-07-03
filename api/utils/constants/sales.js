@@ -8,6 +8,7 @@ module.exports = {
         value: 'PENDING_DISCOUNT_APPROVAL',
         name: 'Requiere aprobación',
       },
+      REJECTED: { value: 'REJECTED', name: 'Rechazada' },
       EXPIRED: { value: 'EXPIRED', name: 'Caducada' },
     },
     SALE_STATUS: {
@@ -40,8 +41,10 @@ module.exports = {
       CASH: { value: 'CASH', name: 'Contado' },
     },
     BILLING_TYPE: {
-      CONSIGNMENT: { value: 'CONSIGNMENT', name: 'Consignación' },
       SALE: { value: 'SALE', name: 'Venta' },
+      INVOICE: { value: 'INVOICE', name: 'Factura' },
+      PROFORMA: { value: 'PROFORMA', name: 'Proforma' },
+      CONSIGNMENT: { value: 'CONSIGNMENT', name: 'Consignación' },
     },
     DISPATCHMENT_TYPE: {
       DELIVERY: { value: 'DELIVERY', name: 'Delivery' },

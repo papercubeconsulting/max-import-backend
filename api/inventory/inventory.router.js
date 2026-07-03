@@ -30,6 +30,11 @@ router.use(
   require('./provider/provider.router'),
 );
 router.use(
+  '/product-groups',
+  authenticateMiddleware('jwt'),
+  require('./productGroup/productGroup.router'),
+);
+router.use(
   '/warehouses',
   authenticateMiddleware('jwt'),
   require('./warehouse/warehouse.router'),

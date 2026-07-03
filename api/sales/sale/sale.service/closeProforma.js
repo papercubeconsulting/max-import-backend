@@ -35,6 +35,16 @@ const closeProforma = async (reqBody, reqUser) => {
       );
     }
 
+    if (proforma.status === PROFORMA.STATUS.REJECTED.value) {
+      await t.rollback();
+      return setResponse(
+        400,
+        'Proforma rejected',
+        null,
+        'La proforma ha sido rechazada.',
+      );
+    }
+
     // ? Se valida que el monto a pagar no exceda el monto de la proforma
     if (reqBody.initialPayment > proforma.total) {
       await t.rollback();

@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 const _ = require('lodash');
 const sequelize = require('sequelize');
-const { Product, ProductBox, Warehouse } = require('@dbModels');
+const { Product, ProductBox, ProductGroup, Warehouse } = require('@dbModels');
 
 const { setResponse } = require('../../../utils');
 
@@ -13,7 +13,9 @@ const productFields = [
   'subfamilyId',
   'elementId',
   'modelId',
+  'modelName',
   'providerId',
+  'groupId',
   'tradename',
 ];
 
@@ -22,7 +24,14 @@ const listProducts = async reqQuery => {
     reqQuery.tradename = sequelize.where(
       sequelize.fn('LOWER', sequelize.col('tradename')),
       'LIKE',
-      `%${reqQuery.tradename}%`,
+      `%${reqQuery.tradename.toLowerCase()}%`,
+    );
+  }
+  if (reqQuery.modelName) {
+    reqQuery.modelName = sequelize.where(
+      sequelize.fn('LOWER', sequelize.col('modelName')),
+      'LIKE',
+      `%${reqQuery.modelName.toLowerCase()}%`,
     );
   }
 
@@ -56,6 +65,8 @@ const listProducts = async reqQuery => {
     },
     order: ['id'],
     raw: true,
+    nest: true,
+    include: [{ model: ProductGroup, attributes: ['id', 'name', 'code'] }],
   });
 
   let j = 0;
@@ -123,8 +134,9 @@ const listTradename = async reqQuery => {
 
 const listTradenameAll = async () => {
   const products = await Product.findAll({
-    attributes: ['tradename'],
-    group: ['tradename'],
+    attributes: {
+      exclude: ['imageBase64', 'secondImageBase64', 'thirdImageBase64'],
+    },
     order: ['tradename'],
   });
 
@@ -133,8 +145,29 @@ const listTradenameAll = async () => {
   });
 };
 
+const listProductGroupSearchOptions = async () => {
+  const products = await Product.findAll({
+    attributes: ['modelName', 'tradename'],
+    where: {
+      groupId: {
+        [sequelize.Op.ne]: null,
+      },
+    },
+    raw: true,
+  });
+
+  const uniqueValues = key =>
+    [...new Set(products.map(product => product[key]).filter(Boolean))].sort();
+
+  return setResponse(200, 'Product group search options found.', {
+    models: uniqueValues('modelName'),
+    tradenames: uniqueValues('tradename'),
+  });
+};
+
 module.exports = {
   listProducts,
   listTradename,
   listTradenameAll,
+  listProductGroupSearchOptions,
 };

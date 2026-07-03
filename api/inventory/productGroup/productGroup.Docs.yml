@@ -1,0 +1,93 @@
+paths:
+  "/product-groups":
+    post:
+      tags:
+        - inventory.productGroups
+      summary: Crear un nuevo grupo de productos
+      operationId: addProductGroup
+      responses:
+        "201":
+          description: Product group created
+      requestBody:
+        $ref: "#/components/requestBodies/ProductGroup"
+    get:
+      tags:
+        - inventory.productGroups
+      summary: Listar todos los grupos de productos
+      operationId: listProductGroups
+      parameters:
+        - name: isActive
+          in: query
+          description: Valor booleano para filtrar grupos activos o inactivos
+          required: false
+          schema:
+            type: boolean
+      responses:
+        "200":
+          description: Product groups found
+  "/product-groups/{id}":
+    get:
+      tags:
+        - inventory.productGroups
+      summary: Encontrar grupo de productos por Id
+      operationId: getProductGroupById
+      parameters:
+        - $ref: "#/components/parameters/paramId"
+      responses:
+        "200":
+          description: Successful operation
+    put:
+      tags:
+        - inventory.productGroups
+      summary: Actualizar grupo de productos
+      operationId: updateProductGroup
+      parameters:
+        - $ref: "#/components/parameters/paramId"
+      requestBody:
+        $ref: "#/components/requestBodies/ProductGroupUpdate"
+      responses:
+        "200":
+          description: Product group updated
+components:
+  requestBodies:
+    ProductGroup:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              code:
+                type: string
+              isActive:
+                type: boolean
+            example:
+              name: "Grupo alternadores"
+              code: "ALT"
+              isActive: true
+            required:
+              - name
+              - code
+      required: true
+    ProductGroupUpdate:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              code:
+                type: string
+              isActive:
+                type: boolean
+            example:
+              name: "Grupo alternadores"
+              code: "ALT"
+              isActive: false
+            required:
+              - name
+              - code
+              - isActive
+      required: true

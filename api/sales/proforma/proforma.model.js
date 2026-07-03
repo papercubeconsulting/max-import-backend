@@ -28,7 +28,8 @@ module.exports = (sequelize, DataTypes) => {
         .toDate();
       if (
         this.getDataValue('createdAt') < fifteenDaysAgo &&
-        status !== PROFORMA.STATUS.CLOSED.value
+        status !== PROFORMA.STATUS.CLOSED.value &&
+        status !== PROFORMA.STATUS.REJECTED.value
       ) {
         return 'EXPIRED';
         // currentObj.status = 'EXPIRE';
@@ -108,7 +109,8 @@ module.exports = (sequelize, DataTypes) => {
             .toDate();
           if (
             this.getDataValue('createdAt') < fifteenDaysAgo &&
-            status !== PROFORMA.STATUS.CLOSED.value
+            status !== PROFORMA.STATUS.CLOSED.value &&
+            status !== PROFORMA.STATUS.REJECTED.value
           ) {
             return 'EXPIRED';
             // currentObj.status = 'EXPIRE';

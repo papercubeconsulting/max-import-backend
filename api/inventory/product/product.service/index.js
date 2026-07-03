@@ -6,6 +6,7 @@ module.exports = {
   ...require('./updateProduct'),
   ...require('./deleteProduct'),
   ...require('./getInventoryReport'),
+  ...require('./listProductChangeOptions'),
   ...require('./uploadCsvProduct'),
   ...require('./uploadImagesZip'),
 };

@@ -26,6 +26,17 @@ router.get(
   Controller.getInventoryReport,
 );
 router.get(
+  '/change-options',
+  isAble('read', 'product'),
+  celebrate(Validator.ChangeOptions),
+  Controller.listProductChangeOptions,
+);
+router.get(
+  '/group-search-options',
+  isAble('read', 'product'),
+  Controller.listProductGroupSearchOptions,
+);
+router.get(
   '/:id',
   isAble('read', 'product'),
   celebrate(Validator.Get),

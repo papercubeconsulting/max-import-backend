@@ -10,6 +10,7 @@ const productFields = [
   'elementId',
   'modelId',
   'providerId',
+  'groupId',
   'tradename',
 ];
 const { warehouseTypes } = require('../../../utils/constants');

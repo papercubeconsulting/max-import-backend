@@ -3,6 +3,7 @@ const { Op } = require('sequelize');
 const {
   Product,
   Provider,
+  ProductGroup,
   Family,
   Subfamily,
   Element,
@@ -10,6 +11,13 @@ const {
 } = require('@dbModels');
 
 const { setResponse } = require('../../../utils');
+
+const ALLOWED_GROUP_PREFIXES = ['ALT'];
+
+const isAllowedGroupCode = code =>
+  ALLOWED_GROUP_PREFIXES.some(prefix =>
+    new RegExp(`^${prefix}-\\d+$`).test((code || '').trim().toUpperCase()),
+  );
 
 const checkCategory = async (
   Category,
@@ -180,6 +188,20 @@ const createCategories = async (reqBody, categories) => {
 const createProduct = async reqBody => {
   const model = await Model.findByPk(reqBody.modelId);
   if (!model) return setResponse(404, 'Model not found.');
+
+  if (reqBody.groupId !== undefined && reqBody.groupId !== null) {
+    const productGroup = await ProductGroup.findByPk(reqBody.groupId);
+    if (!productGroup) return setResponse(404, 'Product group not found.');
+    if (!isAllowedGroupCode(productGroup.code))
+      return setResponse(
+        400,
+        `Product group code must use one of these formats: ${ALLOWED_GROUP_PREFIXES.map(
+          prefix => `${prefix}-XX`,
+        ).join(
+          ', ',
+        )}.`,
+      );
+  }
 
   let product = await Product.findOne({
     where: _.pick(reqBody, ['modelId']),
