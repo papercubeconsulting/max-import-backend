@@ -1,18 +1,12 @@
 const { Op } = require('sequelize');
 const { ProductGroup } = require('@dbModels');
 
-const { setResponse } = require('../../utils');
-
-const ALLOWED_GROUP_PREFIXES = ['ALT'];
-
-const normalizeGroupCode = code => (code || '').trim().toUpperCase();
-
-const getGroupPrefix = code => normalizeGroupCode(code).split('-')[0];
-
-const isAllowedGroupCode = code =>
-  ALLOWED_GROUP_PREFIXES.some(prefix =>
-    new RegExp(`^${prefix}-\\d+$`).test(normalizeGroupCode(code)),
-  );
+const {
+  setResponse,
+  PRODUCT_GROUP_PREFIXES,
+  normalizeGroupCode,
+  isAllowedGroupCode,
+} = require('../../utils');
 
 const normalizeProductGroupBody = reqBody => ({
   ...reqBody,
@@ -24,7 +18,7 @@ const validateProductGroupPrefix = reqBody => {
   if (!isAllowedGroupCode(reqBody.code)) {
     return setResponse(
       400,
-      `Product group code must use one of these formats: ${ALLOWED_GROUP_PREFIXES.map(
+      `Product group code must use one of these formats: ${PRODUCT_GROUP_PREFIXES.map(
         prefix => `${prefix}-XX`,
       ).join(
         ', ',
@@ -53,10 +47,10 @@ const listProductGroups = async reqQuery => {
 const suggestProductGroupCode = async reqQuery => {
   const prefix = normalizeGroupCode(reqQuery.prefix);
 
-  if (!ALLOWED_GROUP_PREFIXES.includes(prefix)) {
+  if (!PRODUCT_GROUP_PREFIXES.includes(prefix)) {
     return setResponse(
       400,
-      `Product group prefix must be one of: ${ALLOWED_GROUP_PREFIXES.join(
+      `Product group prefix must be one of: ${PRODUCT_GROUP_PREFIXES.join(
         ', ',
       )}.`,
     );

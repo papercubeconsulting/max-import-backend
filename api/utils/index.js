@@ -38,6 +38,7 @@ module.exports = {
   asyncForEach,
   paginate,
   orderByField,
+  ...require('./productGroupPrefixes'),
   ...require('./email'),
   ...require('./constants'),
   ...require('./jsonParser'),
