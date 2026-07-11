@@ -1,13 +1,10 @@
 const { Product, ProductGroup } = require('@dbModels');
 
-const { setResponse } = require('../../../utils');
-
-const ALLOWED_GROUP_PREFIXES = ['ALT'];
-
-const isAllowedGroupCode = code =>
-  ALLOWED_GROUP_PREFIXES.some(prefix =>
-    new RegExp(`^${prefix}-\\d+$`).test((code || '').trim().toUpperCase()),
-  );
+const {
+  setResponse,
+  PRODUCT_GROUP_PREFIXES,
+  isAllowedGroupCode,
+} = require('../../../utils');
 
 const updateProduct = async (reqParams, reqBody) => {
   const product = await Product.findByPk(reqParams.id);
@@ -19,7 +16,7 @@ const updateProduct = async (reqParams, reqBody) => {
     if (!isAllowedGroupCode(productGroup.code))
       return setResponse(
         400,
-        `Product group code must use one of these formats: ${ALLOWED_GROUP_PREFIXES.map(
+        `Product group code must use one of these formats: ${PRODUCT_GROUP_PREFIXES.map(
           prefix => `${prefix}-XX`,
         ).join(
           ', ',
