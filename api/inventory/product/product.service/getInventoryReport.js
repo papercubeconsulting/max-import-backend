@@ -13,7 +13,7 @@ const productFields = [
   'groupId',
   'tradename',
 ];
-const { warehouseTypes } = require('../../../utils/constants');
+const { warehouseTypes, productBoxKinds } = require('../../../utils/constants');
 
 const getInventoryReport = async reqQuery => {
   const productBoxes = await ProductBox.findAll({
@@ -48,12 +48,25 @@ const getInventoryReport = async reqQuery => {
     raw: true,
   });
 
+  const physicalBoxCounts = await ProductBox.count({
+    attributes: ['productId'],
+    where: {
+      inventoryKind: productBoxKinds.PHYSICAL,
+      stock: { [sequelize.Op.gt]: 0 },
+    },
+    group: ['productId'],
+  });
+  const physicalBoxCountByProduct = new Map(
+    physicalBoxCounts.map(item => [Number(item.productId), Number(item.count)]),
+  );
+
   let j = 0;
   products = products.map(product => {
     product.productBoxes = [];
     product.totalStock = 0;
     product.activeStock = 0;
     product.damagedStock = 0;
+    product.adjustmentStock = 0;
     product.storeStock = 0;
     product.warehouseStock = 0;
     while (j < productBoxes.length) {
@@ -63,6 +76,8 @@ const getInventoryReport = async reqQuery => {
         product[
           productBoxes[j].warehouse.type === warehouseTypes.DAMAGED
             ? 'damagedStock'
+            : productBoxes[j].warehouse.type === warehouseTypes.ADJUSTMENT
+            ? 'adjustmentStock'
             : 'activeStock'
         ] += productBoxes[j].get('stock');
 
@@ -89,7 +104,8 @@ const getInventoryReport = async reqQuery => {
         name: product.tradename,
         stockStore: product.storeStock,
         stockWarehouse: product.warehouseStock,
-        boxes: product.productBoxes.length,
+        stockAdjustment: product.adjustmentStock,
+        boxes: physicalBoxCountByProduct.get(product.id) || 0,
       };
     }),
   );

@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       Dispatch.belongsTo(models.Proforma);
       Dispatch.belongsTo(models.Sale);
       Dispatch.belongsTo(models.DeliveryAgency);
+      Dispatch.hasMany(models.InventoryMovement);
     }
     // * INSTANCE METHODS
   }

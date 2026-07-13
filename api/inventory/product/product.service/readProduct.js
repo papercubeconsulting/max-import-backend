@@ -15,7 +15,13 @@ const readProduct = async reqParams => {
       {
         model: ProductBox,
         where: { stock: { [Op.gt]: 0 } },
-        attributes: ['id', 'stock', 'boxSize'],
+        attributes: [
+          'id',
+          'stock',
+          'boxSize',
+          'inventoryKind',
+          'originProductBoxId',
+        ],
         include: [
           {
             model: Warehouse,

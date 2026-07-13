@@ -3,6 +3,7 @@ const {
   DispatchedProduct,
   DispatchedProductBox,
   Product,
+  ProductBarcode,
   Proforma,
   Client,
   User,
@@ -17,7 +18,16 @@ const getDispatch = async reqParams => {
         model: DispatchedProduct,
         include: [
           DispatchedProductBox,
-          Product,
+          {
+            model: Product,
+            include: [
+              {
+                model: ProductBarcode,
+                where: { type: 'UNIT_PRODUCT', isActive: true },
+                required: false,
+              },
+            ],
+          },
           { model: User, as: 'lastDispatcher' },
         ],
       },

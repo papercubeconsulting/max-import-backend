@@ -16,6 +16,10 @@ module.exports = (sequelize, DataTypes) => {
       Product.belongsTo(models.Model, { foreignKey: 'id' });
 
       Product.hasMany(models.ProductBox);
+      Product.hasMany(models.ProductBarcode);
+      Product.hasMany(models.InventoryMovement);
+      Product.hasMany(models.UnitTicketPrint);
+      Product.hasMany(models.InventoryReconciliation);
 
       Product.hasMany(models.SuppliedProduct);
       Product.hasMany(models.ProformaProduct);
@@ -58,6 +62,7 @@ module.exports = (sequelize, DataTypes) => {
       if (includeBoxSizeDetail)
         product.stockByWarehouseAndBoxSize = Object.values(
           product.productBoxes.reduce((accumulator, currentValue) => {
+            if (currentValue.inventoryKind === 'EXPLODED') return accumulator;
             const key = `${currentValue.warehouse.id}-${currentValue.boxSize}`;
             if (!_.get(accumulator, [key]))
               accumulator[key] = {
@@ -117,6 +122,13 @@ module.exports = (sequelize, DataTypes) => {
         'stock',
         0,
       );
+      const adjustmentStock = _.get(
+        summary.stockByWarehouseType.find(
+          obj => obj.warehouseType === warehouseTypes.ADJUSTMENT,
+        ),
+        'stock',
+        0,
+      );
       // ? Unidades vendidas
       const soldStock =
         (await SoldProduct.sum('quantity', {
@@ -133,9 +145,14 @@ module.exports = (sequelize, DataTypes) => {
       await product.update(
         {
           damagedStock,
+          adjustmentStock,
           availableStock:
-            summary.totalStock - damagedStock - (soldStock - dispatchedStock),
-          dispatchStock: summary.totalStock - damagedStock,
+            summary.totalStock -
+            damagedStock -
+            adjustmentStock -
+            (soldStock - dispatchedStock),
+          dispatchStock:
+            summary.totalStock - damagedStock - adjustmentStock,
         },
         { transaction: _.get(options, 'transaction') },
       );
@@ -205,6 +222,10 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: 0,
       },
       damagedStock: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
+      adjustmentStock: {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },
@@ -282,6 +303,25 @@ module.exports = (sequelize, DataTypes) => {
           product.familyName = categories.element.subfamily.family.name;
 
           product.code = `${categories.element.subfamily.family.code}-${categories.element.subfamily.code}-${categories.element.code}-${provider.code}-${categories.code}`;
+        },
+        afterCreate: async (product, options) => {
+          const { productBarcode: ProductBarcode } = product.sequelize.models;
+          if (!ProductBarcode) return;
+          await ProductBarcode.findOrCreate({
+            where: {
+              productId: product.id,
+              type: 'UNIT_PRODUCT',
+              isActive: true,
+            },
+            defaults: {
+              barcode: ProductBarcode.buildUnitBarcode(product.id),
+              productCodeSnapshot: product.code,
+              productId: product.id,
+              type: 'UNIT_PRODUCT',
+              isActive: true,
+            },
+            transaction: options.transaction,
+          });
         },
       },
     },

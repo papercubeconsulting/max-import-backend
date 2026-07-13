@@ -6,6 +6,7 @@
     "node": "22.x"
   },
   "scripts": {
+    "test": "node --test test/*.test.js",
     "start": "node  ./bin/www && npx sequelize-cli db:migrate",
     "startN": "set DEBUG=http & nodemon -e yml,js ./bin/www --trace-warnings",
     "prod": "NODE_ENV=production node ./bin/www",

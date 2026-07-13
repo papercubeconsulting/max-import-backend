@@ -26,6 +26,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       User.hasMany(models.ProductBoxLog);
+      User.hasMany(models.ProductBarcode, { foreignKey: 'createdBy' });
+      User.hasMany(models.InventoryMovement);
+      User.hasMany(models.UnitTicketPrint);
       User.hasMany(models.Proforma);
 
       User.hasMany(models.Sale, { foreignKey: 'cashierId' });

@@ -46,6 +46,26 @@ router.use(
   require('./product/product.router'),
 );
 router.use(
+  '/product-barcodes',
+  authenticateMiddleware('jwt'),
+  require('./productBarcode/productBarcode.router'),
+);
+router.use(
+  '/inventory-codes',
+  authenticateMiddleware('jwt'),
+  require('./inventoryCode/inventoryCode.router'),
+);
+router.use(
+  '/unit-ticket-prints',
+  authenticateMiddleware('jwt'),
+  require('./unitTicketPrint/unitTicketPrint.router'),
+);
+router.use(
+  '/reconciliations',
+  authenticateMiddleware('jwt'),
+  require('./reconciliation/reconciliation.router'),
+);
+router.use(
   '/productboxes',
   authenticateMiddleware('jwt'),
   require('./productbox/productbox.router'),

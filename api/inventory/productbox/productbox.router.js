@@ -35,14 +35,14 @@ router.get(
 
 router.put(
   '/move',
-  isAble('read', 'productBox'),
+  isAble('move', 'inventory'),
   celebrate(Validator.PutMove),
   Controller.putMoveProductBox,
 );
 
 router.put(
   '/:id',
-  isAble('read', 'productBox'),
+  isAble('move', 'inventory'),
   celebrate(Validator.Put),
   Controller.putProductBox,
 );

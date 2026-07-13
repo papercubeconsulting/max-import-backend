@@ -1,14 +1,23 @@
 /* eslint-disable import/no-dynamic-require */
 const winston = require('winston');
-const { Supply, SuppliedProduct, ProductBox, Product } = require('@dbModels');
+const {
+  InventoryMovement,
+  Supply,
+  SuppliedProduct,
+  ProductBox,
+  Product,
+  Warehouse,
+} = require('@dbModels');
 
 const { sequelize } = require(`@root/startup/db`);
 
 const {
   supplyStatus: status,
   PRODUCTBOX_UPDATES,
+  warehouseTypes,
 } = require('../../../utils/constants');
 const { setResponse } = require('../../../utils');
+const { moveLockedProductBox } = require('../../inventoryTransaction.service');
 
 const validateAttendSuppliedProduct = async (reqBody, reqParams) => {
   const suppliedProduct = await SuppliedProduct.findByPk(
@@ -83,15 +92,54 @@ const updateAttendSuppliedProduct = async (reqBody, reqParams, reqUser) => {
     );
     await suppliedProduct.save({ transaction: t });
 
-    await Product.updateStock(suppliedProduct.productId, { transaction: t });
-
-    await t.commit();
     await ProductBox.bulkRegisterLog(
       PRODUCTBOX_UPDATES.CREATION.value,
       reqUser,
       newProductBoxes,
+      { transaction: t },
     );
-    return setResponse(200, 'Supplied Product attended.', newProductBoxes);
+
+    await InventoryMovement.bulkCreate(
+      newProductBoxes.map(productBox => ({
+        type: 'SUPPLY',
+        quantity: productBox.stock,
+        productId: productBox.productId,
+        targetProductBoxId: productBox.id,
+        toWarehouseId: productBox.warehouseId,
+        targetStockBefore: 0,
+        targetStockAfter: productBox.stock,
+        userId: reqUser.id,
+        supplyId: productBox.supplyId,
+        description: 'Ingreso por abastecimiento',
+      })),
+      { transaction: t },
+    );
+
+    const supplyWarehouse = await Warehouse.findByPk(
+      suppliedProduct.supply.warehouseId,
+      { transaction: t },
+    );
+    let attendedProductBoxes = newProductBoxes;
+    if (supplyWarehouse.type === warehouseTypes.STORE) {
+      const explosionResults = [];
+      for (const productBox of newProductBoxes)
+        explosionResults.push(
+          await moveLockedProductBox(
+            { productBoxId: productBox.id, warehouseId: supplyWarehouse.id },
+            reqUser,
+            t,
+          ),
+        );
+      attendedProductBoxes = explosionResults.map(result => {
+        result.productBox.setDataValue('explodedLot', result.explodedLot);
+        return result.productBox;
+      });
+    }
+
+    await Product.updateStock(suppliedProduct.productId, { transaction: t });
+
+    await t.commit();
+    return setResponse(200, 'Supplied Product attended.', attendedProductBoxes);
   } catch (error) {
     winston.error(error);
     // If the execution reaches this line, an error was thrown.
