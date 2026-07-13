@@ -58,14 +58,15 @@ const PostDispatchProductBox = {
       .integer()
       .required(),
   },
-  body: {
-    productBoxId: Joi.number()
-      .integer()
-      .required(),
-    quantity: Joi.number()
-      .integer()
-      .required(),
-  },
+  body: Joi.object()
+    .keys({
+      productBoxId: Joi.number().integer().min(1),
+      productBarcode: Joi.string().pattern(/^2\d{15}$/),
+      warehouseId: Joi.number().integer().min(1),
+      quantity: Joi.number().integer().min(1).required(),
+    })
+    .xor('productBoxId', 'productBarcode')
+    .with('productBarcode', 'warehouseId'),
 };
 
 module.exports = {

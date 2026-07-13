@@ -55,13 +55,16 @@ module.exports = (sequelize, DataTypes) => {
             transaction: t,
           });
 
-          productBox.registerLog(
+          if (productBox.stock <= 0)
+            await productBox.update({ isAvailable: false }, { transaction: t });
+
+          await productBox.registerLog(
             `Despachado ${dispatchedProductBox.quantity} unidades`,
             dispatchedProductBox.dispatcherId,
             { transaction: t },
           );
 
-          await Product.updateStock(dispatchedProductBox.productId, {
+          await Product.updateStock(productBox.productId, {
             transaction: t,
           });
         },

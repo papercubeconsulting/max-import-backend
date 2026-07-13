@@ -11,6 +11,15 @@ module.exports = {
     WAREHOUSE: 'Almacén',
     STORE: 'Tienda',
     DAMAGED: 'Averiado',
+    ADJUSTMENT: 'AjusteInventario',
+  },
+  productBoxKinds: {
+    PHYSICAL: 'PHYSICAL',
+    EXPLODED: 'EXPLODED',
+  },
+  productBoxLifecycle: {
+    ACTIVE: 'ACTIVE',
+    DISCARDED: 'DISCARDED',
   },
   PRODUCTBOX_UPDATES: {
     MOVEMENT: { value: 'MOVEMENT', name: 'Movimiento de caja' },

@@ -24,19 +24,33 @@ module.exports = (sequelize, DataTypes) => {
       });
       ProductBox.belongsTo(models.Supply);
       ProductBox.belongsTo(models.SuppliedProduct);
+      ProductBox.belongsTo(models.ProductBox, {
+        as: 'originProductBox',
+        foreignKey: 'originProductBoxId',
+      });
+      ProductBox.hasMany(models.ProductBox, {
+        as: 'explodedLots',
+        foreignKey: 'originProductBoxId',
+      });
+      ProductBox.belongsTo(models.User, {
+        as: 'explodedByUser',
+        foreignKey: 'explodedBy',
+      });
 
       ProductBox.hasMany(models.DispatchedProductBox);
+      ProductBox.hasMany(models.UnitTicketPrint);
     }
 
-    static bulkRegisterLog(message, user, data) {
+    static bulkRegisterLog(message, user, data, options) {
       const { productBoxLog: ProductBoxLog } = this.sequelize.models;
-      ProductBoxLog.bulkCreate(
+      return ProductBoxLog.bulkCreate(
         data.map(productBox => ({
           productBoxId: productBox.id,
           log: _.get(PRODUCTBOX_UPDATES, `${message}.name`, message),
           userId: _.get(user, 'id', user),
           warehouseId: productBox.warehouseId,
         })),
+        { transaction: _.get(options, 'transaction') },
       );
     }
 
@@ -84,6 +98,21 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
       },
+      inventoryKind: {
+        type: DataTypes.STRING,
+        defaultValue: 'PHYSICAL',
+      },
+      lifecycleStatus: {
+        type: DataTypes.STRING,
+        defaultValue: 'ACTIVE',
+      },
+      originProductBoxId: DataTypes.INTEGER,
+      explodedAt: DataTypes.DATE,
+      explodedBy: DataTypes.INTEGER,
+      sourceType: {
+        type: DataTypes.STRING,
+        defaultValue: 'SUPPLY',
+      },
     },
     {
       sequelize,
@@ -102,11 +131,13 @@ module.exports = (sequelize, DataTypes) => {
       hooks: {
         // ? Generar codigo de identificacion de la caja
         beforeCreate: async productBox => {
-          productBox.trackingCode = productBox.getTrackingCode();
+          if (productBox.inventoryKind !== 'EXPLODED' && !productBox.trackingCode)
+            productBox.trackingCode = productBox.getTrackingCode();
         },
         beforeBulkCreate: async productBoxes => {
           productBoxes.forEach((obj, index, array) => {
-            array[index].trackingCode = array[index].getTrackingCode();
+            if (obj.inventoryKind !== 'EXPLODED' && !obj.trackingCode)
+              array[index].trackingCode = array[index].getTrackingCode();
           });
         },
       },

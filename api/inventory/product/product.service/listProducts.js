@@ -76,14 +76,17 @@ const listProducts = async reqQuery => {
       product.totalStock = 0;
       product.activeStock = 0;
       product.damagedStock = 0;
+      product.adjustmentStock = 0;
       while (j < productBoxes.length) {
         if (productBoxes[j].productId === product.id) {
           product.productBoxes.push(productBoxes[j]);
           product.totalStock += productBoxes[j].get('stock');
           product[
-            productBoxes[j].warehouse.type === warehouseTypes.DAMAGED
-              ? 'damagedStock'
-              : 'activeStock'
+          productBoxes[j].warehouse.type === warehouseTypes.DAMAGED
+            ? 'damagedStock'
+            : productBoxes[j].warehouse.type === warehouseTypes.ADJUSTMENT
+            ? 'adjustmentStock'
+            : 'activeStock'
           ] += productBoxes[j].get('stock');
         } else break;
         j += 1;

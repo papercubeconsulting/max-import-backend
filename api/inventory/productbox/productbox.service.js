@@ -10,6 +10,10 @@ const {
 const moment = require('moment-timezone');
 const { Op } = require('sequelize');
 const { setResponse } = require('../../utils');
+const {
+  InventoryOperationError,
+  moveProductBoxes,
+} = require('../inventoryTransaction.service');
 
 const getProductBox = async reqParams => {
   const productBox = await ProductBox.findOne({
@@ -23,6 +27,16 @@ const getProductBox = async reqParams => {
         },
       },
       Warehouse,
+      { model: ProductBox, as: 'originProductBox' },
+      { model: User, as: 'explodedByUser', attributes: ['id', 'name', 'lastname'] },
+      {
+        model: ProductBox,
+        as: 'explodedLots',
+        include: [
+          Warehouse,
+          { model: User, as: 'explodedByUser', attributes: ['id', 'name', 'lastname'] },
+        ],
+      },
       {
         model: ProductBoxLog,
         include: [
@@ -39,9 +53,15 @@ const getProductBox = async reqParams => {
 };
 
 const listProductBoxes = async reqQuery => {
+  const where = { ...reqQuery, inventoryKind: 'PHYSICAL' };
   const productBoxes = await ProductBox.findAll({
-    where: reqQuery,
-    include: [Warehouse, Supply, { model: Warehouse, as: 'previousWarehouse' }],
+    where,
+    include: [
+      Warehouse,
+      Supply,
+      { model: Warehouse, as: 'previousWarehouse' },
+      { model: ProductBox, as: 'explodedLots', include: [Warehouse] },
+    ],
   });
 
   return setResponse(200, 'ProductBoxs found.', productBoxes);
@@ -54,35 +74,28 @@ const createProductBox = async reqBody => {
 };
 
 const putProductBox = async (reqBody, reqParams, reqUser) => {
-  const productBox = await ProductBox.findByPk(reqParams.id);
-  if (!productBox) return setResponse(404, 'ProductBox not found.');
-  if (reqBody.warehouseId) {
-    reqBody.previousWarehouseId = productBox.dataValues.warehouseId;
-    const warehouse = await Warehouse.findByPk(reqBody.warehouseId);
-    if (!warehouse) return setResponse(404, 'Warehouse not found.');
+  try {
+    const [result] = await moveProductBoxes(
+      [{ id: Number(reqParams.id), warehouseId: reqBody.warehouseId }],
+      reqUser,
+    );
+    return setResponse(200, 'ProductBox updated.', result);
+  } catch (error) {
+    if (error instanceof InventoryOperationError)
+      return setResponse(error.status, 'ProductBox movement failed.', null, error.userMessage);
+    throw error;
   }
-  await productBox.update(reqBody);
-  productBox.registerLog(reqBody.message, reqUser);
-  return setResponse(200, 'ProductBox updated.', productBox);
 };
 
 const putMoveProductBoxes = async (reqBody, reqUser) => {
-  const { boxes } = reqBody;
-  for (let i = 0; i < boxes.length; i++) {
-    console.log(boxes[i].id);
-    const productBox = await ProductBox.findByPk(boxes[i].id);
-    if (!productBox) return setResponse(404, 'ProductBox not found.');
+  try {
+    const results = await moveProductBoxes(reqBody.boxes, reqUser);
+    return setResponse(200, 'ProductBoxes updated.', results);
+  } catch (error) {
+    if (error instanceof InventoryOperationError)
+      return setResponse(error.status, 'ProductBox movement failed.', null, error.userMessage);
+    throw error;
   }
-  for (let i = 0; i < boxes.length; i++) {
-    const productBox = await ProductBox.findByPk(boxes[i].id);
-    const item = {
-      warehouseId: boxes[i].warehouseId,
-      previousWarehouseId: boxes[i].previousWarehouseId,
-    };
-    await productBox.update(item);
-    productBox.registerLog(reqBody.message, reqUser);
-  }
-  return setResponse(200, 'ProductBox updated.', boxes);
 };
 
 const columns = [{ label: 'CODIGO CAJAS', value: 'code' }];
@@ -91,6 +104,7 @@ const getAvailableReport = async reqQuery => {
   const productBoxes = await ProductBox.findAll({
     where: {
       stock: { [Op.gt]: 0 },
+      inventoryKind: 'PHYSICAL',
     },
     attributes: ['trackingCode', 'boxSize', 'stock', 'createdAt'],
     include: [
@@ -159,6 +173,7 @@ const getMovementReport = async reqQuery => {
     include: [
       {
         model: ProductBox,
+        where: { inventoryKind: 'PHYSICAL' },
         attributes: ['trackingCode', 'stock'],
         include: [
           {

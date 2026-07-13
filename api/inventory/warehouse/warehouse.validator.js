@@ -4,7 +4,12 @@ const { warehouseTypes: types } = require('../../utils/constants');
 
 const List = {
   query: {
-    type: Joi.string().valid(types.WAREHOUSE, types.STORE, types.DAMAGED),
+    type: Joi.string().valid(
+      types.WAREHOUSE,
+      types.STORE,
+      types.DAMAGED,
+      types.ADJUSTMENT,
+    ),
   },
 };
 
@@ -26,6 +31,9 @@ const Post = {
       .max(255)
       .min(1)
       .required(),
+    type: Joi.string()
+      .valid(types.WAREHOUSE, types.STORE, types.DAMAGED, types.ADJUSTMENT)
+      .default(types.WAREHOUSE),
   },
 };
 module.exports = {

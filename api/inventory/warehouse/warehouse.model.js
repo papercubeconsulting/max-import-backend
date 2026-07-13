@@ -10,6 +10,8 @@ module.exports = (sequelize, DataTypes) => {
 
       Warehouse.hasMany(models.Supply);
       Warehouse.hasMany(models.DispatchedProductBox);
+      Warehouse.hasMany(models.UnitTicketPrint);
+      Warehouse.hasMany(models.InventoryReconciliation);
     }
   }
   Warehouse.init(
@@ -24,7 +26,12 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       type: {
-        type: DataTypes.ENUM([types.WAREHOUSE, types.STORE, types.DAMAGED]),
+        type: DataTypes.ENUM([
+          types.WAREHOUSE,
+          types.STORE,
+          types.DAMAGED,
+          types.ADJUSTMENT,
+        ]),
         defaultValue: types.WAREHOUSE,
       },
     },

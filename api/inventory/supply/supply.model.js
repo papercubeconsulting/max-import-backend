@@ -10,6 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Supply.hasMany(models.SuppliedProduct);
       Supply.hasMany(models.ProductBox);
+      Supply.hasMany(models.InventoryMovement);
+      Supply.hasMany(models.InventoryReconciliation);
 
       Supply.belongsTo(models.Warehouse);
       Supply.belongsTo(models.Provider);
@@ -33,6 +35,10 @@ module.exports = (sequelize, DataTypes) => {
       },
       observations: {
         type: DataTypes.TEXT,
+      },
+      type: {
+        type: DataTypes.STRING,
+        defaultValue: 'NORMAL',
       },
       status: {
         type: DataTypes.ENUM(statuses),

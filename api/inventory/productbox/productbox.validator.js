@@ -31,22 +31,16 @@ const Put = {
 
 const PutMove = {
   body: {
-    boxes: Joi.array().items(
-      Joi.object({
-        id: Joi.number()
-          .integer()
-          .min(1)
-          .required(),
-        warehouseId: Joi.number()
-          .integer()
-          .min(1)
-          .required(),
-        previousWarehouseId: Joi.number()
-          .integer()
-          .min(1)
-          .required(),
-      }),
-    ),
+    boxes: Joi.array()
+      .items(
+        Joi.object({
+          id: Joi.number().integer().min(1).required(),
+          warehouseId: Joi.number().integer().min(1).required(),
+          previousWarehouseId: Joi.number().integer().min(1),
+        }),
+      )
+      .min(1)
+      .required(),
   },
 };
 

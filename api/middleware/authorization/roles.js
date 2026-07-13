@@ -1,7 +1,5 @@
 const { AbilityBuilder, Ability } = require('@casl/ability');
 
-const { ROLES } = require('@/utils');
-
 const roles = {
   superuser: (can, cannot) => {
     can('manage', 'all'); // read-write access to everything
@@ -20,6 +18,7 @@ const roles = {
     can('read', 'product');
     can('read', 'productBox');
     can('read', 'warehouse');
+    can('read', 'inventory');
 
     can('read', 'bank');
     can('manage', 'client');
@@ -41,6 +40,9 @@ const roles = {
     can('manage', 'product');
     can('manage', 'productBox');
     can('manage', 'warehouse');
+    can('read', 'inventory');
+    can('move', 'inventory');
+    can('print', 'inventory');
 
     can('manage', 'supply'); // ? Gestión y atención
     can('read', 'productBox');
@@ -64,6 +66,10 @@ const roles = {
     can('read', 'product');
     can('read', 'productBox');
     can('read', 'warehouse');
+    can('read', 'inventory');
+    can('move', 'inventory');
+    can('print', 'inventory');
+    can('reconcile', 'inventory');
 
     can('read', 'bank');
     can('manage', 'client');
