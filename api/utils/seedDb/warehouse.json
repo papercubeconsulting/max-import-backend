@@ -5,118 +5,28 @@
     "address": ""
   },
   {
-    "name": "GIMANSIO 1ER PISO",
+    "name": "CANTO GRANDE 8",
     "type": "Almacén",
     "address": ""
   },
   {
-    "name": "GIMANSIO 2DO PISO",
+    "name": "CANTO GRANDE 6",
     "type": "Almacén",
     "address": ""
   },
   {
-    "name": "GIMANSIO 3ER PISO",
-    "type": "Almacén",
+    "name": "TIENDA LV",
+    "type": "Tienda",
     "address": ""
   },
   {
-    "name": "CASA ZAMBO",
-    "type": "Almacén",
-    "address": ""
-  },
-  {
-    "name": "CASA PAPA",
-    "type": "Almacén",
-    "address": ""
-  },
-  {
-    "name": "CASA GIANINA",
-    "type": "Almacén",
-    "address": ""
-  },
-  {
-    "name": "CANTO GRANDE 1ER PISO",
-    "type": "Almacén",
-    "address": ""
-  },
-  {
-    "name": "CANTO GRANDE 2DO PISO",
-    "type": "Almacén",
-    "address": ""
-  },
-  {
-    "name": "CANTO GRANDE 3ER PISO",
-    "type": "Almacén",
-    "address": ""
-  },
-  {
-    "name": "CANTO GRANDE 4TO PISO",
-    "type": "Almacén",
-    "address": ""
-  },
-  {
-    "name": "CANTO GRANDE 5TO PISO",
-    "type": "Almacén",
-    "address": ""
-  },
-  {
-    "name": "CANTO GRANDE 6TO PISO",
-    "type": "Almacén",
-    "address": ""
-  },
-  {
-    "name": "348 AZAPA 1ER PISO",
-    "type": "Almacén",
-    "address": ""
-  },
-  {
-    "name": "348 AZAPA 2DO PISO",
-    "type": "Almacén",
-    "address": ""
-  },
-  {
-    "name": "348 AZAPA 3ER PISO",
-    "type": "Almacén",
-    "address": ""
-  },
-  {
-    "name": "348 AZAPA 4TO PISO",
-    "type": "Almacén",
-    "address": ""
-  },
-  {
-    "name": "348 AZAPA 5TO PISO",
+    "name": "TECHO",
     "type": "Averiado",
     "address": ""
   },
   {
-    "name": "364 AZAPA 1ER PISO",
-    "type": "Almacén",
-    "address": ""
-  },
-  {
-    "name": "364 AZAPA 2DO PISO",
-    "type": "Almacén",
-    "address": ""
-  },
-  {
-    "name": "364 AZAPA 3ER PISO",
-    "type": "Almacén",
-    "address": ""
-  },
-  {
-    "name": "364 AZAPA 4TO PISO",
-    "type": "Almacén",
-    "address": ""
-  },
-  {
-    "name": "364 AZAPA 5TO PISO",
-    "type": "Averiado",
-    "address": ""
-  },
-  {
-    "name": "353 AZAPA",
-    "type": "Almacén",
-    "address": ""
+    "name": "Ajuste Inventario",
+    "type": "AjusteInventario",
+    "address": "-"
   }
 ]

@@ -16,7 +16,7 @@
   },
   {
     "providerId": 2,
-    "warehouseId": 8,
+    "warehouseId": 2,
     "observations": "Ullamco eiusmod nostrud amet dolor officia in consequat.",
     "createdAt": "2020-07-30T21:47:13+00:00",
     "status": "Atendido",
@@ -46,7 +46,7 @@
   },
   {
     "providerId": 6,
-    "warehouseId": 5,
+    "warehouseId": 3,
     "observations": "Dolore laboris amet laborum duis adipisicing pariatur minim officia eiusmod laborum ad sunt laborum incididunt.",
     "createdAt": "2020-07-27T10:50:02+00:00",
     "status": "Atendido",
@@ -86,7 +86,7 @@
   },
   {
     "providerId": 8,
-    "warehouseId": 6,
+    "warehouseId": 3,
     "observations": "Veniam culpa sunt reprehenderit non pariatur aute in qui sunt mollit anim tempor incididunt veniam.",
     "createdAt": "2020-07-30T06:15:04+00:00",
     "status": "Atendido",
