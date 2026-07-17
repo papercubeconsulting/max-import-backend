@@ -7,6 +7,7 @@ const {
   SuppliedProduct,
   Supply,
   SupplyLog,
+  User,
   Warehouse,
 } = require('@dbModels');
 const { sequelize } = require('@root/startup/db');
@@ -17,6 +18,11 @@ const {
 } = require('@/utils');
 
 const activeWarehouseTypes = [warehouseTypes.WAREHOUSE, warehouseTypes.STORE];
+const reconciliationStatus = {
+  PENDING: 'PENDING',
+  DENIED: 'DENIED',
+  COMPLETED: 'COMPLETED',
+};
 
 const loadSnapshot = async (productId, options = {}) => {
   const boxes = await ProductBox.findAll({
@@ -168,8 +174,8 @@ const createIncrease = async ({ product, warehouse, delta, reconciliation, user 
   return { supply, lot };
 };
 
-const createDecrease = async (
-  { product, sources, expectedQuantity, reconciliation, user },
+const validateDecreaseSources = async (
+  { product, sources, expectedQuantity },
   transaction,
 ) => {
   if (!sources || !sources.length)
@@ -188,6 +194,42 @@ const createDecrease = async (
     lock: transaction.LOCK.UPDATE,
   });
   if (boxes.length !== uniqueIds.size) throw new Error('Una de las fuentes ya no existe.');
+
+  return sources.map(selected => {
+    const source = boxes.find(box => box.id === selected.productBoxId);
+    if (!source || !activeWarehouseTypes.includes(source.warehouse.type))
+      throw new Error('Una fuente seleccionada no pertenece al inventario activo.');
+    if (source.inventoryKind === 'PHYSICAL' && source.lifecycleStatus !== 'ACTIVE')
+      throw new Error('Una caja seleccionada ya fue explotada.');
+    if (selected.quantity <= 0 || selected.quantity > source.stock)
+      throw new Error('Una cantidad seleccionada excede el stock disponible.');
+
+    return {
+      productBoxId: selected.productBoxId,
+      quantity: selected.quantity,
+      trackingCode: source.trackingCode,
+      inventoryKind: source.inventoryKind,
+      lifecycleStatus: source.lifecycleStatus,
+      stockAtRequest: source.stock,
+      warehouseId: source.warehouseId,
+      warehouseName: source.warehouse.name,
+      warehouseType: source.warehouse.type,
+    };
+  });
+};
+
+const createDecrease = async (
+  { product, sources, expectedQuantity, reconciliation, user },
+  transaction,
+) => {
+  await validateDecreaseSources({ product, sources, expectedQuantity }, transaction);
+  const uniqueIds = new Set(sources.map(source => source.productBoxId));
+  const boxes = await ProductBox.findAll({
+    where: { id: [...uniqueIds], productId: product.id },
+    include: [{ model: Warehouse, required: true }],
+    transaction,
+    lock: transaction.LOCK.UPDATE,
+  });
 
   const adjustmentWarehouse = await getAdjustmentWarehouse(transaction);
   await reconciliation.update(
@@ -279,6 +321,18 @@ const confirm = async (reqBody, reqUser) => {
       throw new Error('El inventario cambió desde la vista previa. Vuelva a calcular el ajuste.');
 
     const delta = reqBody.countedStock - snapshot.systemStock;
+    let sources = [];
+    if (delta < 0) {
+      sources = await validateDecreaseSources(
+        {
+          product,
+          sources: reqBody.sources,
+          expectedQuantity: Math.abs(delta),
+        },
+        transaction,
+      );
+    }
+
     const reconciliation = await InventoryReconciliation.create(
       {
         productId: product.id,
@@ -286,12 +340,56 @@ const confirm = async (reqBody, reqUser) => {
         systemStock: snapshot.systemStock,
         countedStock: reqBody.countedStock,
         delta,
-        status: 'COMPLETED',
+        status: reconciliationStatus.PENDING,
+        sources,
         createdBy: reqUser.id,
-        confirmedBy: reqUser.id,
       },
       { transaction },
     );
+
+    await transaction.commit();
+    return setResponse(201, 'Inventory reconciliation requested.', { reconciliation });
+  } catch (error) {
+    await transaction.rollback();
+    return setResponse(400, 'Inventory reconciliation request failed.', null, error.message);
+  }
+};
+
+const approveOne = async (id, reqUser) => {
+  const transaction = await sequelize.transaction();
+  try {
+    const reconciliation = await InventoryReconciliation.findByPk(id, {
+      transaction,
+      lock: transaction.LOCK.UPDATE,
+    });
+    if (!reconciliation)
+      throw new Error('Reconciliación no encontrada.');
+    if (reconciliation.status !== reconciliationStatus.PENDING)
+      throw new Error('Solo se pueden aprobar reconciliaciones pendientes.');
+
+    const product = await Product.findByPk(reconciliation.productId, {
+      transaction,
+      lock: transaction.LOCK.UPDATE,
+    });
+    if (!product) throw new Error('Producto no encontrado.');
+
+    const warehouse = await Warehouse.findByPk(reconciliation.warehouseId, {
+      transaction,
+      lock: transaction.LOCK.SHARE,
+    });
+    if (!warehouse || warehouse.type !== warehouseTypes.STORE)
+      throw new Error('La tienda de la reconciliación ya no es válida.');
+
+    const snapshot = await loadSnapshot(product.id, {
+      transaction,
+      lock: transaction.LOCK.UPDATE,
+    });
+    if (snapshot.systemStock !== reconciliation.systemStock)
+      throw new Error('El inventario cambió desde la solicitud. Deniegue y solicite un nuevo cálculo.');
+
+    const delta = reconciliation.countedStock - snapshot.systemStock;
+    if (delta !== reconciliation.delta)
+      throw new Error('La diferencia de la solicitud ya no coincide con el inventario actual.');
 
     let operation = null;
     if (delta > 0)
@@ -303,7 +401,7 @@ const confirm = async (reqBody, reqUser) => {
       operation = await createDecrease(
         {
           product,
-          sources: reqBody.sources,
+          sources: reconciliation.sources || [],
           expectedQuantity: Math.abs(delta),
           reconciliation,
           user: reqUser,
@@ -311,22 +409,81 @@ const confirm = async (reqBody, reqUser) => {
         transaction,
       );
 
+    await reconciliation.update(
+      {
+        status: reconciliationStatus.COMPLETED,
+        confirmedBy: reqUser.id,
+      },
+      { transaction },
+    );
     await Product.updateStock(product.id, { transaction });
     await transaction.commit();
-    return setResponse(201, 'Inventory reconciled.', { reconciliation, operation });
+    return { id: reconciliation.id, ok: true, reconciliation, operation };
   } catch (error) {
     await transaction.rollback();
-    return setResponse(400, 'Inventory reconciliation failed.', null, error.message);
+    return { id, ok: false, error: error.message };
   }
 };
 
+const approve = async (reqBody, reqUser) => {
+  const ids = reqBody.ids || [];
+  const results = [];
+  for (const id of ids) results.push(await approveOne(id, reqUser));
+  const failed = results.filter(result => !result.ok);
+  if (failed.length === results.length)
+    return setResponse(400, 'Inventory reconciliations approve failed.', { results }, failed[0]?.error);
+  return setResponse(200, 'Inventory reconciliations approved.', { results });
+};
+
+const denyOne = async (id, reqUser) => {
+  const transaction = await sequelize.transaction();
+  try {
+    const reconciliation = await InventoryReconciliation.findByPk(id, {
+      transaction,
+      lock: transaction.LOCK.UPDATE,
+    });
+    if (!reconciliation)
+      throw new Error('Reconciliación no encontrada.');
+    if (reconciliation.status !== reconciliationStatus.PENDING)
+      throw new Error('Solo se pueden denegar reconciliaciones pendientes.');
+    await reconciliation.update(
+      {
+        status: reconciliationStatus.DENIED,
+        confirmedBy: reqUser.id,
+      },
+      { transaction },
+    );
+    await transaction.commit();
+    return { id: reconciliation.id, ok: true, reconciliation };
+  } catch (error) {
+    await transaction.rollback();
+    return { id, ok: false, error: error.message };
+  }
+};
+
+const deny = async (reqBody, reqUser) => {
+  const ids = reqBody.ids || [];
+  const results = [];
+  for (const id of ids) results.push(await denyOne(id, reqUser));
+  const failed = results.filter(result => !result.ok);
+  if (failed.length === results.length)
+    return setResponse(400, 'Inventory reconciliations deny failed.', { results }, failed[0]?.error);
+  return setResponse(200, 'Inventory reconciliations denied.', { results });
+};
+
 const list = async reqQuery => {
+  const where = {};
+  if (reqQuery.productId) where.productId = reqQuery.productId;
+  if (reqQuery.status) where.status = reqQuery.status;
+
   const reconciliations = await InventoryReconciliation.findAll({
-    where: reqQuery,
+    where,
     include: [
       Product,
       Warehouse,
       { model: Warehouse, as: 'adjustmentWarehouse' },
+      { model: User, as: 'creator', attributes: ['id', 'name', 'lastname', 'email'] },
+      { model: User, as: 'confirmer', attributes: ['id', 'name', 'lastname', 'email'] },
       InventoryMovement,
     ],
     order: [['createdAt', 'DESC']],
@@ -340,6 +497,8 @@ const read = async reqParams => {
       Product,
       Warehouse,
       { model: Warehouse, as: 'adjustmentWarehouse' },
+      { model: User, as: 'creator', attributes: ['id', 'name', 'lastname', 'email'] },
+      { model: User, as: 'confirmer', attributes: ['id', 'name', 'lastname', 'email'] },
       InventoryMovement,
     ],
   });
@@ -348,4 +507,4 @@ const read = async reqParams => {
   return setResponse(200, 'Inventory reconciliation found.', reconciliation);
 };
 
-module.exports = { confirm, list, preview, read };
+module.exports = { approve, confirm, deny, list, preview, read };
