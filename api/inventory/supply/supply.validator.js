@@ -1,6 +1,9 @@
 const { Joi } = require('celebrate');
 
-const { supplyStatus: status } = require('../../utils/constants');
+const {
+  supplyStatus: status,
+  supplyTypes,
+} = require('../../utils/constants');
 const multer = require('multer');
 const path = require('path');
 
@@ -20,6 +23,11 @@ const List = {
     to: Joi.date()
       .iso()
       .min(Joi.ref('from')),
+    type: Joi.string().valid(
+      supplyTypes.NORMAL,
+      supplyTypes.STORE_RETURN,
+      supplyTypes.INVENTORY_ADJUSTMENT,
+    ),
   },
 };
 
@@ -33,9 +41,19 @@ const Get = {
 
 const Post = {
   body: {
-    providerId: Joi.number()
-      .integer()
-      .required(),
+    type: Joi.string()
+      .valid(supplyTypes.NORMAL, supplyTypes.STORE_RETURN)
+      .default(supplyTypes.NORMAL),
+    providerId: Joi.when('type', {
+      is: supplyTypes.STORE_RETURN,
+      then: Joi.any().valid(null),
+      otherwise: Joi.number().integer().required(),
+    }),
+    sourceWarehouseId: Joi.when('type', {
+      is: supplyTypes.STORE_RETURN,
+      then: Joi.number().integer().min(1).required(),
+      otherwise: Joi.any().valid(null),
+    }),
     warehouseId: Joi.number()
       .integer()
       .required(),
@@ -55,12 +73,14 @@ const Post = {
             .required(),
           boxSize: Joi.number()
             .integer()
+            .min(1)
             .required(),
           initBoxSize: Joi.number()
             .integer()
             .optional(),
           quantity: Joi.number()
             .integer()
+            .min(1)
             .required(),
           initQuantity: Joi.number()
             .integer()
@@ -82,7 +102,9 @@ const Put = {
   },
   body: {
     code: Joi.string().allow(''),
-    providerId: Joi.number().integer(),
+    type: Joi.string().valid(supplyTypes.NORMAL, supplyTypes.STORE_RETURN),
+    providerId: Joi.number().integer().allow(null),
+    sourceWarehouseId: Joi.number().integer().min(1).allow(null),
     warehouseId: Joi.number().integer(),
     observations: Joi.string().allow(''),
     arrivalDate: Joi.date().optional(),
@@ -94,12 +116,14 @@ const Put = {
             .required(),
           boxSize: Joi.number()
             .integer()
+            .min(1)
             .required(),
           initBoxSize: Joi.number()
           .integer()
           .optional(),
           quantity: Joi.number()
             .integer()
+            .min(1)
             .required(),
           initQuantity: Joi.number()
             .integer()
@@ -120,7 +144,7 @@ const PutStatus = {
   },
   body: {
     status: Joi.string()
-      .valid(status.CANCELLED, status.ATTENDED)
+      .valid(status.CANCELLED, status.ATTENDED, status.CLOSED_PARTIAL)
       .required(),
   },
 };
@@ -165,6 +189,13 @@ const DeleteAttendSuppliedProduct = {
   },
 };
 
+const StoreReturnAvailability = {
+  query: {
+    warehouseId: Joi.number().integer().min(1).required(),
+    productId: Joi.number().integer().min(1),
+  },
+};
+
 const uploadCsv = multer({
   fileFilter(req, file, callback) {
     const ext = path.extname(file.originalname);
@@ -200,5 +231,6 @@ module.exports = {
   PutStatus,
   PostAttendSuppliedProduct,
   DeleteAttendSuppliedProduct,
+  StoreReturnAvailability,
   validateCsv,
 };

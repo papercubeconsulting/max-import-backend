@@ -8,7 +8,11 @@ const {
   Provider,
   Warehouse,
 } = require('@dbModels');
-const { SUPPLY_LOGS } = require('@/utils/constants');
+const { SUPPLY_LOGS, supplyTypes } = require('@/utils/constants');
+const {
+  StoreReturnError,
+  validateStoreReturnRequest,
+} = require('./storeReturn');
 
 const { sequelize } = require(`@root/startup/db`);
 
@@ -17,6 +21,16 @@ const { setResponse } = require('../../../utils');
 const _ = require('lodash');
 
 const validateCreateSupply = async reqBody => {
+  if (reqBody.type === supplyTypes.STORE_RETURN) {
+    try {
+      await validateStoreReturnRequest(reqBody);
+      return setResponse(200, 'Ok');
+    } catch (error) {
+      if (error instanceof StoreReturnError)
+        return setResponse(error.status, 'Invalid store return.', null, error.message);
+      throw error;
+    }
+  }
   const productIds = Array.from(
     new Set(reqBody.suppliedProducts.map(obj => obj.productId)),
   );
@@ -32,8 +46,17 @@ const createSupply = async (reqBody, reqUser) => {
   const t = await sequelize.transaction();
 
   try {
-    console.log(JSON.stringify(reqBody));
-    let supply = await Supply.create(reqBody, { transaction: t });
+    const body = {
+      ...reqBody,
+      type: reqBody.type || supplyTypes.NORMAL,
+      sourceWarehouseId:
+        reqBody.type === supplyTypes.STORE_RETURN
+          ? reqBody.sourceWarehouseId
+          : null,
+      providerId:
+        reqBody.type === supplyTypes.STORE_RETURN ? null : reqBody.providerId,
+    };
+    let supply = await Supply.create(body, { transaction: t });
     await SuppliedProduct.bulkCreate(
       reqBody.suppliedProducts.map(obj => ({ ...obj, supplyId: supply.id, initQuantity: obj.quantity, initBoxSize: obj.boxSize })),
       { transaction: t },
@@ -43,6 +66,7 @@ const createSupply = async (reqBody, reqUser) => {
     supply = await Supply.findByPk(supply.id, {
       include: [
         Warehouse,
+        { model: Warehouse, as: 'sourceWarehouse' },
         Provider,
         {
           model: SuppliedProduct,
@@ -57,17 +81,17 @@ const createSupply = async (reqBody, reqUser) => {
       transaction: t,
     });
 
-    // If the execution reaches this line, no errors were thrown.
-    // We commit the transaction.
-    await t.commit();
-
     await SupplyLog.create({
       log: `${SUPPLY_LOGS.CREATE.LOG}`,
       action: SUPPLY_LOGS.CREATE.ACTION,
       detail: '-',
       userId: _.get(reqUser, 'id', reqUser),
       supplyId: supply.id,
-    });
+    }, { transaction: t });
+
+    // If the execution reaches this line, no errors were thrown.
+    // We commit the transaction.
+    await t.commit();
 
     return setResponse(201, 'Supply created.', supply);
   } catch (error) {

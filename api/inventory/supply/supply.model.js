@@ -1,9 +1,14 @@
 const { Sequelize } = require('@root/startup/db');
 const { Model } = require('sequelize');
 const SequelizeLib = require('sequelize');
-const { supplyStatus: status } = require('../../utils/constants');
+const { supplyStatus: status, supplyTypes } = require('../../utils/constants');
 
-const statuses = [status.PENDING, status.CANCELLED, status.ATTENDED];
+const statuses = [
+  status.PENDING,
+  status.CANCELLED,
+  status.ATTENDED,
+  status.CLOSED_PARTIAL,
+];
 
 module.exports = (sequelize, DataTypes) => {
   class Supply extends Model {
@@ -14,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
       Supply.hasMany(models.InventoryReconciliation);
 
       Supply.belongsTo(models.Warehouse);
+      Supply.belongsTo(models.Warehouse, {
+        as: 'sourceWarehouse',
+        foreignKey: 'sourceWarehouseId',
+      });
       Supply.belongsTo(models.Provider);
     }
   }
@@ -38,8 +47,10 @@ module.exports = (sequelize, DataTypes) => {
       },
       type: {
         type: DataTypes.STRING,
-        defaultValue: 'NORMAL',
+        defaultValue: supplyTypes.NORMAL,
       },
+      providerId: { type: DataTypes.INTEGER, allowNull: true },
+      sourceWarehouseId: DataTypes.INTEGER,
       status: {
         type: DataTypes.ENUM(statuses),
         defaultValue: status.PENDING,

@@ -10,6 +10,13 @@ const router = express.Router();
 router.get('/logs', isAble('read', 'supply'), Controller.listSupplyLogs);
 
 router.get(
+  '/store-return/availability',
+  isAble('read', 'supply'),
+  celebrate(Validator.StoreReturnAvailability),
+  Controller.getStoreReturnAvailability,
+);
+
+router.get(
   '/:id',
   isAble('read', 'supply'),
   celebrate(Validator.Get),

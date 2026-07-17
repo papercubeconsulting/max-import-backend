@@ -5,6 +5,7 @@ const winston = require('winston');
 const {
   supplyStatus: status,
   PRODUCTBOX_UPDATES,
+  supplyTypes,
 } = require('../../../utils/constants');
 const { setResponse } = require('../../../utils');
 
@@ -18,6 +19,26 @@ const deleteAttendSuppliedProduct = async (reqParams, reqUser) => {
         transaction: t,
       },
     );
+    if (!suppliedProduct) {
+      await t.rollback();
+      return setResponse(404, 'Supplied product not found.');
+    }
+    const supply = await Supply.findByPk(suppliedProduct.supplyId, {
+      transaction: t,
+      lock: t.LOCK.UPDATE,
+    });
+    if (
+      supply.type === supplyTypes.STORE_RETURN &&
+      suppliedProduct.suppliedQuantity > 0
+    ) {
+      await t.rollback();
+      return setResponse(
+        400,
+        'Store return item already attended.',
+        null,
+        'No se puede eliminar un producto de devolución que ya generó cajas.',
+      );
+    }
 
     if (
       suppliedProduct.status === status.PENDING &&

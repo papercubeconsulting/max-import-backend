@@ -2,7 +2,12 @@ const { Model } = require('sequelize');
 
 const { supplyStatus: status } = require('../../utils/constants');
 
-const statuses = [status.PENDING, status.CANCELLED, status.ATTENDED];
+const statuses = [
+  status.PENDING,
+  status.CANCELLED,
+  status.ATTENDED,
+  status.CLOSED_PARTIAL,
+];
 
 module.exports = (sequelize, DataTypes) => {
   class SuppliedProduct extends Model {
@@ -29,6 +34,10 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: 0,
       },
       suppliedQuantity: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
+      cancelledQuantity: {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },

@@ -6,6 +6,12 @@ module.exports = {
     ACCEPTED: 'Aceptado',
     COMPLETED: 'Completado',
     ATTENDED: 'Atendido',
+    CLOSED_PARTIAL: 'Cerrado parcial',
+  },
+  supplyTypes: {
+    NORMAL: 'NORMAL',
+    INVENTORY_ADJUSTMENT: 'INVENTORY_ADJUSTMENT',
+    STORE_RETURN: 'STORE_RETURN',
   },
   warehouseTypes: {
     WAREHOUSE: 'Almacén',
@@ -24,5 +30,6 @@ module.exports = {
   PRODUCTBOX_UPDATES: {
     MOVEMENT: { value: 'MOVEMENT', name: 'Movimiento de caja' },
     CREATION: { value: 'CREATION', name: 'Abastecimiento' },
+    STORE_RETURN: { value: 'STORE_RETURN', name: 'Devolución de tienda' },
   },
 };

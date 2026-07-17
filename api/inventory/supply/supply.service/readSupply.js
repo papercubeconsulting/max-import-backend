@@ -13,6 +13,7 @@ const readSupply = async reqParams => {
   const supply = await Supply.findByPk(reqParams.id, {
     include: [
       Warehouse,
+      { model: Warehouse, as: 'sourceWarehouse' },
       Provider,
       {
         model: SuppliedProduct,
@@ -20,7 +21,15 @@ const readSupply = async reqParams => {
           Product,
           {
             model: ProductBox,
-            attributes: ['indexFromSupliedProduct', 'trackingCode'],
+            attributes: [
+              'id',
+              'indexFromSupliedProduct',
+              'trackingCode',
+              'boxSize',
+              'stock',
+              'sourceType',
+              'warehouseId',
+            ],
           },
         ],
       },
