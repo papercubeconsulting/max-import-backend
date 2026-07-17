@@ -7,6 +7,14 @@ const confirm = async (req, res) => {
   const response = await Service.confirm(req.body, req.user);
   return res.status(response.status).send(response);
 };
+const approve = async (req, res) => {
+  const response = await Service.approve(req.body, req.user);
+  return res.status(response.status).send(response);
+};
+const deny = async (req, res) => {
+  const response = await Service.deny(req.body, req.user);
+  return res.status(response.status).send(response);
+};
 const list = async (req, res) => {
   const response = await Service.list(req.query);
   return res.status(response.status).send(response);
@@ -15,4 +23,4 @@ const read = async (req, res) => {
   const response = await Service.read(req.params);
   return res.status(response.status).send(response);
 };
-module.exports = { preview, confirm, list, read };
+module.exports = { approve, confirm, deny, list, preview, read };

@@ -118,7 +118,8 @@ module.exports = {
         systemStock: { type: Sequelize.INTEGER, allowNull: false },
         countedStock: { type: Sequelize.INTEGER, allowNull: false },
         delta: { type: Sequelize.INTEGER, allowNull: false },
-        status: { type: Sequelize.STRING, allowNull: false, defaultValue: 'COMPLETED' },
+        status: { type: Sequelize.STRING, allowNull: false, defaultValue: 'PENDING' },
+        sources: { type: Sequelize.JSONB, allowNull: true },
         supplyId: {
           type: Sequelize.INTEGER,
           allowNull: true,
