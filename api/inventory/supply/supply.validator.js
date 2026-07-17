@@ -23,6 +23,11 @@ const List = {
     to: Joi.date()
       .iso()
       .min(Joi.ref('from')),
+    type: Joi.string().valid(
+      supplyTypes.NORMAL,
+      supplyTypes.STORE_RETURN,
+      supplyTypes.INVENTORY_ADJUSTMENT,
+    ),
   },
 };
 
