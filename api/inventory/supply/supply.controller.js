@@ -15,6 +15,11 @@ const listSupplies = async (req, res) => {
   return res.status(supplies.status).send(supplies);
 };
 
+const getStoreReturnAvailability = async (req, res) => {
+  const response = await Services.getStoreReturnAvailability(req.query);
+  return res.status(response.status).send(response);
+};
+
 const postSupply = async (req, res) => {
   const validate = await Services.validateCreateSupply(req.body);
   if (validate.status !== 200)
@@ -47,7 +52,7 @@ const deleteSupply = async (req, res) => {
 };
 
 const putSupplyStatus = async (req, res) => {
-  const supply = await Services.updateSupplyStatus(req.body, req.params);
+  const supply = await Services.updateSupplyStatus(req.body, req.params, req.user);
 
   return res.status(supply.status).send(supply);
 };
@@ -79,6 +84,9 @@ const deleteAttendSuppliedProduct = async (req, res) => {
     req.user,
   );
 
+  if (suppliedProduct.status !== 200)
+    return res.status(suppliedProduct.status).send(suppliedProduct);
+
   const supply = await Services.readSupply(req.params);
   return res.status(supply.status).send(supply);
 };
@@ -102,6 +110,7 @@ const uploadCsvData = async (req,res)=>{
 module.exports = {
   getSupply,
   listSupplies,
+  getStoreReturnAvailability,
   postSupply,
   putSupply,
   deleteSupply,

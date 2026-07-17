@@ -12,4 +12,5 @@ module.exports = {
   ...require('./deleteAttendSuppliedProduct'),
   ...require('./listSupplyLogs'),
   ...require('./uploadCsvSupply'),
+  ...require('./storeReturn'),
 };

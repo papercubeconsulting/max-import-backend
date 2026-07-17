@@ -1,7 +1,14 @@
 const { Supply, SuppliedProduct, Product } = require('@dbModels');
 
 const { setResponse } = require('../../../utils');
-const { supplyStatus: status } = require('../../../utils/constants');
+const {
+  supplyStatus: status,
+  supplyTypes,
+} = require('../../../utils/constants');
+const {
+  StoreReturnError,
+  validateStoreReturnRequest,
+} = require('./storeReturn');
 
 // ? Servicio para actualiza campos del abastecimiento y añadir/remover productos
 // ? El abastecimiento debe estar sin atender
@@ -12,12 +19,44 @@ const validateUpdateSupply = async (reqBody, reqParams) => {
   if (!supply) return setResponse(404, 'Supply not found.');
   if (supply.status !== status.PENDING)
     return setResponse(400, 'Supply already cancelled or completed.');
+  if (reqBody.type && reqBody.type !== supply.type)
+    return setResponse(
+      400,
+      'Supply type cannot be changed.',
+      null,
+      'El tipo del abastecimiento no puede modificarse después de crearlo.',
+    );
 
   // * Se verifica si los productos que fueron removidos no han sido ya procesados
   const suppliedProducts = await SuppliedProduct.findAll({
     where: { supplyId: reqParams.id },
     include: [Product],
   });
+
+  if (
+    supply.type === supplyTypes.STORE_RETURN &&
+    suppliedProducts.some(item => item.suppliedQuantity > 0)
+  )
+    return setResponse(
+      400,
+      'Attended store return cannot be edited.',
+      null,
+      'La devolución ya generó cajas y no puede editarse.',
+    );
+
+  if (supply.type === supplyTypes.STORE_RETURN) {
+    try {
+      await validateStoreReturnRequest({
+        ...reqBody,
+        type: supplyTypes.STORE_RETURN,
+        providerId: null,
+      });
+    } catch (error) {
+      if (error instanceof StoreReturnError)
+        return setResponse(error.status, 'Invalid store return.', null, error.message);
+      throw error;
+    }
+  }
 
   // * Elementos que NO estan en el query pero si en la DB
   const deleteSuppliedProducts = suppliedProducts.filter(

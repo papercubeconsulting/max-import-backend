@@ -14,10 +14,12 @@ const { sequelize } = require(`@root/startup/db`);
 const {
   supplyStatus: status,
   PRODUCTBOX_UPDATES,
+  supplyTypes,
   warehouseTypes,
 } = require('../../../utils/constants');
 const { setResponse } = require('../../../utils');
 const { moveLockedProductBox } = require('../../inventoryTransaction.service');
+const { attendStoreReturn } = require('./storeReturn');
 
 const validateAttendSuppliedProduct = async (reqBody, reqParams) => {
   const suppliedProduct = await SuppliedProduct.findByPk(
@@ -43,6 +45,10 @@ const validateAttendSuppliedProduct = async (reqBody, reqParams) => {
 };
 
 const updateAttendSuppliedProduct = async (reqBody, reqParams, reqUser) => {
+  const supply = await Supply.findByPk(reqParams.id);
+  if (supply && supply.type === supplyTypes.STORE_RETURN)
+    return attendStoreReturn(reqBody, reqParams, reqUser);
+
   const t = await sequelize.transaction();
   try {
     const suppliedProduct = await SuppliedProduct.findByPk(

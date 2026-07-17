@@ -15,7 +15,7 @@ const {
 const { sequelize } = require(`@root/startup/db`);
 
 const { setResponse } = require('../../../utils');
-const { SUPPLY_LOGS } = require('@/utils/constants');
+const { SUPPLY_LOGS, supplyTypes } = require('@/utils/constants');
 
 // ? Servicio para actualiza campos del abastecimiento y añadir/remover productos
 // ? El abastecimiento debe estar sin atender
@@ -23,7 +23,9 @@ const updateSupply = async (reqBody, reqParams, validatedData, reqUser) => {
   const t = await sequelize.transaction();
 
   try {
-    await Supply.update(_.omit(reqBody, ['suppliedProducts']), {
+    const supplyValues = _.omit(reqBody, ['suppliedProducts']);
+    if (reqBody.type === supplyTypes.STORE_RETURN) supplyValues.providerId = null;
+    await Supply.update(supplyValues, {
       where: { id: reqParams.id },
       transaction: t,
     });
@@ -71,10 +73,12 @@ const updateSupply = async (reqBody, reqParams, validatedData, reqUser) => {
     // * Crear nuevos items
     promises.push(
       SuppliedProduct.bulkCreate(
-        validatedData.newSuppliedProducts.map(row => {
-          row.supplyId = reqParams.id;
-          return row;
-        }),
+        validatedData.newSuppliedProducts.map(row => ({
+          ...row,
+          supplyId: reqParams.id,
+          initQuantity: row.quantity,
+          initBoxSize: row.boxSize,
+        })),
         { transaction: t },
       ),
     );
@@ -88,6 +92,7 @@ const updateSupply = async (reqBody, reqParams, validatedData, reqUser) => {
     const supply = await Supply.findByPk(reqParams.id, {
       include: [
         Warehouse,
+        { model: Warehouse, as: 'sourceWarehouse' },
         Provider,
         {
           model: SuppliedProduct,

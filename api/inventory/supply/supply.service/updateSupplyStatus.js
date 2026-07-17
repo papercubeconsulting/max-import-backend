@@ -1,9 +1,13 @@
-const { Supply, SuppliedProduct, ProductBox } = require('@dbModels');
+const { Supply, SuppliedProduct, ProductBox, Product } = require('@dbModels');
 
 const { setResponse } = require('../../../utils');
-const { supplyStatus: status } = require('../../../utils/constants');
+const {
+  supplyStatus: status,
+  supplyTypes,
+} = require('../../../utils/constants');
+const { updateStoreReturnStatus } = require('./storeReturn');
 
-const updateSupplyStatus = async (reqBody, reqParams) => {
+const updateSupplyStatus = async (reqBody, reqParams, reqUser) => {
   const supply = await Supply.findByPk(reqParams.id, {
     include: SuppliedProduct,
   });
@@ -12,6 +16,17 @@ const updateSupplyStatus = async (reqBody, reqParams) => {
     return setResponse(
       404,
       `Supply not found or current status different from ${status.PENDING}.`,
+    );
+
+  if (supply.type === supplyTypes.STORE_RETURN)
+    return updateStoreReturnStatus(reqBody, reqParams, reqUser);
+
+  if (reqBody.status === status.CLOSED_PARTIAL)
+    return setResponse(
+      400,
+      'Partial close is only valid for store returns.',
+      null,
+      'El cierre parcial solo aplica a devoluciones desde tienda.',
     );
 
   if (supply.status === status.ATTENDED) {

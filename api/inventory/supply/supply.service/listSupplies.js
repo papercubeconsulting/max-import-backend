@@ -14,24 +14,29 @@ const { Op } = require('sequelize');
 const { setResponse, paginate } = require('../../../utils');
 
 const listSupplies = async reqQuery => {
-  const supplies = await Supply.findAndCountAll({
-    where: {
-      arrivalDate: {
-        [Op.between]: [
-          moment
-            .tz(moment.utc(reqQuery.from).format('YYYY-MM-DD'), 'America/Lima')
-            .startOf('day')
-            .toDate(),
-          moment
-            .tz(moment.utc(reqQuery.to).format('YYYY-MM-DD'), 'America/Lima')
-            .endOf('day')
-            .toDate(),
-        ],
-      },
+  const where = {
+    arrivalDate: {
+      [Op.between]: [
+        moment
+          .tz(moment.utc(reqQuery.from).format('YYYY-MM-DD'), 'America/Lima')
+          .startOf('day')
+          .toDate(),
+        moment
+          .tz(moment.utc(reqQuery.to).format('YYYY-MM-DD'), 'America/Lima')
+          .endOf('day')
+          .toDate(),
+      ],
     },
+  };
+
+  if (reqQuery.type) where.type = reqQuery.type;
+
+  const supplies = await Supply.findAndCountAll({
+    where,
     order: [['arrivalDate', 'DESC']],
     include: [
       Warehouse,
+      { model: Warehouse, as: 'sourceWarehouse' },
       Provider,
       {
         model: SuppliedProduct,
