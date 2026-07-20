@@ -6,6 +6,7 @@ const Validator = require('./reconciliation.validator');
 
 const router = express.Router();
 router.get('/preview', isAble('reconcile', 'inventory'), celebrate(Validator.Preview), Controller.preview);
+router.get('/boxes', isAble('reconcile', 'inventory'), celebrate(Validator.Boxes), Controller.boxes);
 router.post('/', isAble('reconcile', 'inventory'), celebrate(Validator.Confirm), Controller.confirm);
 router.post('/approve', isAble('manage', 'all'), celebrate(Validator.BulkAction), Controller.approve);
 router.post('/deny', isAble('manage', 'all'), celebrate(Validator.BulkAction), Controller.deny);

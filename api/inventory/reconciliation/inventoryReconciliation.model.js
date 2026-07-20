@@ -32,6 +32,11 @@ module.exports = (sequelize, DataTypes) => {
       systemStock: { type: DataTypes.INTEGER, allowNull: false },
       countedStock: { type: DataTypes.INTEGER, allowNull: false },
       delta: { type: DataTypes.INTEGER, allowNull: false },
+      mode: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: 'GLOBAL_COUNT',
+      },
       status: { type: DataTypes.STRING, allowNull: false, defaultValue: 'PENDING' },
       sources: DataTypes.JSONB,
       supplyId: DataTypes.INTEGER,
