@@ -12,7 +12,12 @@ const {
 } = require('@dbModels');
 const { sequelize } = require('@root/startup/db');
 const {
+  calculateBoxReduction,
+  sumBoxReductions,
+} = require('./reconciliation.utils');
+const {
   setResponse,
+  reconciliationModes,
   supplyStatus,
   warehouseTypes,
 } = require('@/utils');
@@ -79,6 +84,67 @@ const preview = async reqQuery => {
     countedStock,
     delta,
     sources: delta < 0 ? snapshot.activeBoxes.map(serializeSource) : [],
+  });
+};
+
+const listEligibleBoxes = async reqQuery => {
+  const product = await Product.findByPk(reqQuery.productId, {
+    attributes: ['id', 'code'],
+  });
+  if (!product)
+    return setResponse(404, 'Product not found.', null, 'Producto no encontrado.');
+
+  const page = Number(reqQuery.page || 1);
+  const pageSize = Number(reqQuery.pageSize || 20);
+  const where = {
+    productId: product.id,
+    inventoryKind: 'PHYSICAL',
+    lifecycleStatus: 'ACTIVE',
+    stock: { [Op.gt]: 0 },
+  };
+  const search = String(reqQuery.search || '').trim();
+  if (search) where.trackingCode = { [Op.iLike]: `%${search}%` };
+
+  const result = await ProductBox.findAndCountAll({
+    where,
+    attributes: [
+      'id',
+      'trackingCode',
+      'boxSize',
+      'stock',
+      'warehouseId',
+      'inventoryKind',
+      'lifecycleStatus',
+    ],
+    include: [
+      {
+        model: Warehouse,
+        attributes: ['id', 'name', 'type'],
+        where: { type: warehouseTypes.WAREHOUSE },
+        required: true,
+      },
+    ],
+    order: [['createdAt', 'ASC'], ['id', 'ASC']],
+    limit: pageSize,
+    offset: (page - 1) * pageSize,
+    distinct: true,
+  });
+
+  const snapshot = await loadSnapshot(product.id);
+  return setResponse(200, 'Eligible reconciliation boxes found.', {
+    product,
+    rows: result.rows.map(box => ({
+      productBoxId: box.id,
+      trackingCode: box.trackingCode,
+      boxSize: box.boxSize,
+      stock: box.stock,
+      warehouseId: box.warehouseId,
+      warehouseName: box.warehouse.name,
+    })),
+    count: result.count,
+    page,
+    pageSize,
+    systemStock: snapshot.systemStock,
   });
 };
 
@@ -298,6 +364,133 @@ const createDecrease = async (
   return { adjustmentWarehouse, adjustmentLot };
 };
 
+const confirmBoxStock = async ({ body, product, user }, transaction) => {
+  const changes = body.boxes || [];
+  const ids = changes.map(item => item.productBoxId);
+  const boxes = await ProductBox.findAll({
+    where: {
+      id: ids,
+      productId: product.id,
+      inventoryKind: 'PHYSICAL',
+      lifecycleStatus: 'ACTIVE',
+      stock: { [Op.gt]: 0 },
+    },
+    include: [
+      {
+        model: Warehouse,
+        where: { type: warehouseTypes.WAREHOUSE },
+        required: true,
+      },
+    ],
+    transaction,
+    lock: transaction.LOCK.UPDATE,
+  });
+  if (boxes.length !== ids.length)
+    throw new Error(
+      'Una o más cajas ya no están disponibles en un almacén válido.',
+    );
+
+  const sources = changes.map(change => {
+    const box = boxes.find(item => item.id === change.productBoxId);
+    const targetStock = Number(change.targetStock);
+    if (!box) throw new Error('Una de las cajas seleccionadas no existe.');
+    let quantity;
+    try {
+      quantity = calculateBoxReduction(box.stock, targetStock);
+    } catch (error) {
+      throw new Error(
+        `La caja ${box.trackingCode} debe quedar con una cantidad entre 0 y ${box.stock - 1}.`,
+      );
+    }
+    return {
+      productBoxId: box.id,
+      quantity,
+      targetStock,
+      trackingCode: box.trackingCode,
+      inventoryKind: box.inventoryKind,
+      lifecycleStatus: box.lifecycleStatus,
+      stockAtRequest: box.stock,
+      warehouseId: box.warehouseId,
+      warehouseName: box.warehouse.name,
+      warehouseType: box.warehouse.type,
+    };
+  });
+  const reduction = sumBoxReductions(sources);
+  if (reduction <= 0)
+    throw new Error('Debe reducir al menos una unidad de las cajas seleccionadas.');
+
+  const snapshot = await loadSnapshot(product.id, { transaction });
+  const reconciliation = await InventoryReconciliation.create(
+    {
+      mode: reconciliationModes.BOX_STOCK,
+      productId: product.id,
+      warehouseId: null,
+      systemStock: snapshot.systemStock,
+      countedStock: snapshot.systemStock - reduction,
+      delta: -reduction,
+      status: reconciliationStatus.PENDING,
+      sources,
+      createdBy: user.id,
+    },
+    { transaction },
+  );
+  return reconciliation;
+};
+
+const validateBoxStockApproval = async (
+  { reconciliation, product },
+  transaction,
+) => {
+  const sources = reconciliation.sources || [];
+  if (!sources.length)
+    throw new Error('La reconciliación no contiene cajas para ajustar.');
+  const ids = sources.map(source => source.productBoxId);
+  const boxes = await ProductBox.findAll({
+    where: { id: ids },
+    include: [{ model: Warehouse, required: true }],
+    transaction,
+    lock: transaction.LOCK.UPDATE,
+  });
+  if (boxes.length !== ids.length)
+    throw new Error('Una de las cajas seleccionadas ya no existe.');
+
+  for (const selected of sources) {
+    const box = boxes.find(item => item.id === selected.productBoxId);
+    if (box.productId !== product.id)
+      throw new Error(`La caja ${selected.trackingCode} cambió de producto.`);
+    if (
+      box.inventoryKind !== 'PHYSICAL' ||
+      box.lifecycleStatus !== 'ACTIVE' ||
+      box.warehouse.type !== warehouseTypes.WAREHOUSE
+    )
+      throw new Error(
+        `La caja ${selected.trackingCode} ya no es una caja física activa en almacén.`,
+      );
+    if (box.warehouseId !== selected.warehouseId)
+      throw new Error(`La caja ${selected.trackingCode} cambió de almacén.`);
+    if (box.stock !== selected.stockAtRequest)
+      throw new Error(
+        `La caja ${selected.trackingCode} cambió de ${selected.stockAtRequest} a ${box.stock} unidades. Deniegue y cree una nueva solicitud.`,
+      );
+    let quantity;
+    try {
+      quantity = calculateBoxReduction(
+        selected.stockAtRequest,
+        selected.targetStock,
+      );
+    } catch (error) {
+      throw new Error(`El ajuste solicitado para ${selected.trackingCode} no es válido.`);
+    }
+    if (selected.quantity !== quantity)
+      throw new Error(`El ajuste solicitado para ${selected.trackingCode} no es válido.`);
+  }
+
+  const expectedQuantity = sumBoxReductions(sources);
+  if (reconciliation.delta !== -expectedQuantity)
+    throw new Error('La diferencia de la reconciliación no coincide con sus cajas.');
+  return expectedQuantity;
+};
+
 const confirm = async (reqBody, reqUser) => {
   const transaction = await sequelize.transaction();
   try {
@@ -306,6 +499,16 @@ const confirm = async (reqBody, reqUser) => {
       lock: transaction.LOCK.UPDATE,
     });
     if (!product) throw new Error('Producto no encontrado.');
+    if (reqBody.mode === reconciliationModes.BOX_STOCK) {
+      const reconciliation = await confirmBoxStock(
+        { body: reqBody, product, user: reqUser },
+        transaction,
+      );
+      await transaction.commit();
+      return setResponse(201, 'Box stock reconciliation requested.', {
+        reconciliation,
+      });
+    }
     const warehouse = await Warehouse.findByPk(reqBody.warehouseId, {
       transaction,
       lock: transaction.LOCK.SHARE,
@@ -335,6 +538,7 @@ const confirm = async (reqBody, reqUser) => {
 
     const reconciliation = await InventoryReconciliation.create(
       {
+        mode: reconciliationModes.GLOBAL_COUNT,
         productId: product.id,
         warehouseId: warehouse.id,
         systemStock: snapshot.systemStock,
@@ -372,6 +576,33 @@ const approveOne = async (id, reqUser) => {
       lock: transaction.LOCK.UPDATE,
     });
     if (!product) throw new Error('Producto no encontrado.');
+
+    if (reconciliation.mode === reconciliationModes.BOX_STOCK) {
+      const expectedQuantity = await validateBoxStockApproval(
+        { reconciliation, product },
+        transaction,
+      );
+      const operation = await createDecrease(
+        {
+          product,
+          sources: reconciliation.sources || [],
+          expectedQuantity,
+          reconciliation,
+          user: reqUser,
+        },
+        transaction,
+      );
+      await reconciliation.update(
+        {
+          status: reconciliationStatus.COMPLETED,
+          confirmedBy: reqUser.id,
+        },
+        { transaction },
+      );
+      await Product.updateStock(product.id, { transaction });
+      await transaction.commit();
+      return { id: reconciliation.id, ok: true, reconciliation, operation };
+    }
 
     const warehouse = await Warehouse.findByPk(reconciliation.warehouseId, {
       transaction,
@@ -475,6 +706,7 @@ const list = async reqQuery => {
   const where = {};
   if (reqQuery.productId) where.productId = reqQuery.productId;
   if (reqQuery.status) where.status = reqQuery.status;
+  if (reqQuery.mode) where.mode = reqQuery.mode;
 
   const reconciliations = await InventoryReconciliation.findAll({
     where,
@@ -507,4 +739,12 @@ const read = async reqParams => {
   return setResponse(200, 'Inventory reconciliation found.', reconciliation);
 };
 
-module.exports = { approve, confirm, deny, list, preview, read };
+module.exports = {
+  approve,
+  confirm,
+  deny,
+  list,
+  listEligibleBoxes,
+  preview,
+  read,
+};

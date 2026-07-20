@@ -3,6 +3,10 @@ const preview = async (req, res) => {
   const response = await Service.preview(req.query);
   return res.status(response.status).send(response);
 };
+const boxes = async (req, res) => {
+  const response = await Service.listEligibleBoxes(req.query);
+  return res.status(response.status).send(response);
+};
 const confirm = async (req, res) => {
   const response = await Service.confirm(req.body, req.user);
   return res.status(response.status).send(response);
@@ -23,4 +27,4 @@ const read = async (req, res) => {
   const response = await Service.read(req.params);
   return res.status(response.status).send(response);
 };
-module.exports = { approve, confirm, deny, list, preview, read };
+module.exports = { approve, boxes, confirm, deny, list, preview, read };

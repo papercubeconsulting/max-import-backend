@@ -13,6 +13,10 @@ module.exports = {
     INVENTORY_ADJUSTMENT: 'INVENTORY_ADJUSTMENT',
     STORE_RETURN: 'STORE_RETURN',
   },
+  reconciliationModes: {
+    GLOBAL_COUNT: 'GLOBAL_COUNT',
+    BOX_STOCK: 'BOX_STOCK',
+  },
   warehouseTypes: {
     WAREHOUSE: 'Almacén',
     STORE: 'Tienda',
