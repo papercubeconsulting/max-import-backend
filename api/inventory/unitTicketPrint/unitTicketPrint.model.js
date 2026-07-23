@@ -20,10 +20,15 @@ module.exports = (sequelize, DataTypes) => {
       productBoxId: DataTypes.INTEGER,
       warehouseId: DataTypes.INTEGER,
       quantity: { type: DataTypes.INTEGER, allowNull: false },
+      batchId: DataTypes.UUID,
       reprintOfId: DataTypes.INTEGER,
       userId: { type: DataTypes.INTEGER, allowNull: false },
     },
-    { sequelize, modelName: 'unitTicketPrint' },
+    {
+      sequelize,
+      modelName: 'unitTicketPrint',
+      indexes: [{ fields: ['batchId'] }],
+    },
   );
 
   return UnitTicketPrint;
